@@ -8,6 +8,13 @@
 \usepackage{csquotes}
 \usepackage[nonumberlist]{glossaries}
 \usepackage{enumitem}
+\usepackage{verbatim}
+
+\makeatletter
+\newenvironment{mycode}
+ {\def\@xobeysp{\ }\verbatim\rightskip=0pt plus 6em\relax}
+ {\endverbatim}
+\makeatother
 
 \makenoidxglossaries
 
@@ -56,11 +63,11 @@
 
 \section{Benutzer Oberfläche}
 \subsection{\glspl{CLI}}
-\begin{verbatim}
+\begin{mycode}
 bb [--block|-b] [<--priority|-p> <Integer>] [<--docker-file|-df> <path to dockerfile>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] <program> [args]+
-\end{verbatim}
+\end{mycode}
 
-\subsubsection{--block}
+\subsubsection{\begin{verbatim}--block\end{verbatim}}
 Kehrt erst nach der Ausführung der Aufgabe zum Aufrufer zurück. Nützlich um voneinander abhängige Aufgaben, in einem Konsolen Skript, nacheinander auszuführen.
 
 \printnoidxglossaries
