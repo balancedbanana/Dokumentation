@@ -10,3 +10,8 @@ jobs:
         uses: dante-ev/latex-action@master
         with:
           root_file: Lastenheft.tex
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: Dokumentation
+          path: ${{ github.workspace }}/Lastenheft.pdf
