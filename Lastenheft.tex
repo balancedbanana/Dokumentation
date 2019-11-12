@@ -24,6 +24,12 @@
 	description={Commandline Interface},
 }
 
+\newglossaryentry{CPU}
+{
+	name=CPU,
+	description={Central Processing Unit, Kern jedes Rechners um Anwendungen auszuführen},
+}
+
 \title{Balanced Banana}
 \subtitle{Distributed Task Scheduling}
 \author{Niklas Lorenz \and Thomas Häuselmann \and Rakan Zeid Al Masri \and Christopher Lukas Homberger \and Jonas Seiler}
@@ -77,6 +83,9 @@ Die höchste Priorität ist 255.
 \subsubsection{\texttt{-{}-docker-file}}
 Legt sämtliche Eigenschaften eines Docker Abbildes, gefolgt vom Pfad einer benutzerdefinierten \href{https://docs.docker.com/engine/reference/builder/}{DockerFile}, fest.
 Beispielsweise Benutzer ID, installierte Programme, auszuführende Umgebung.
+
+\subsubsection{\texttt{-{}-min-cpu-count} und \texttt{-{}-max-cpu-count}}
+Legen die minimale bzw. maximale anzahl der verwendbaren \glspl{CPU} fest.
 
 \printnoidxglossaries
 
