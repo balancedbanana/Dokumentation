@@ -41,6 +41,8 @@
 	name=Daemon,
 	description={Ein Dienst der auf Anfragen reagiert und antwortet},
 }
+\newglossaryentry{Client}{name={Client},description={Programm auf dem Computer eines Benutzers um mit dem Server zu  kommunizieren}}
+\newglossaryentry{Configfile}{name={Configfile},description={Eine Datei die bestimmte Einstellungen speichert}}
 
 \title{Balanced Banana}
 \author{Niklas Lorenz \and Thomas Häuselmann \and Rakan Zeid Al Masri \and Christopher Lukas Homberger \and Jonas Seiler}
@@ -108,8 +110,26 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 % Unter welcher Software / Hardware läuft es?
 
 \section{Funktionale Anforderungen}
+\subsection{Liste der funktionalen Anforderungen}
+
+\subsubsection{Kernanforderungen} %Name ändern pls
+
 \begin{itemize}[nosep]
-\item[FA10] Automatische Aufgabenverteilung über ein \glspl{CLI} auf mehrere Rechner
+\item[FA10]	\gls{Client} verbindet sich beim Starten mit dem Server
+\item[FA20] Benutzer kann eine Aufgabe über \gls{Client} einreihen
+\item[FA30] Benutzer kann Parameter übergeben %evtl auf FA20 verweisen
+\item[FA31]	\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}
+\item[FA32]	Benutzer kann Parameter über \gls{Configfile} übergeben
+\item[FA33] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
+\item[FA34] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
+\item[FA35] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
+\item[FA40] Anfragen nach Status
+\item[FA50] Benutzer bekommt Benachrichtigung über erledigte Aufgabe 
+\end{itemize}
+
+\subsubsection{optionale Anforderungen}
+\begin{itemize}[nosep]
+\item[OFA01] Benutzer kann eine geschätzte Restzeit einer Aufgabe sehen	
 \end{itemize}
 % Was soll das Produkt machen können
 
