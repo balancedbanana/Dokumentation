@@ -1,0 +1,123 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amssymb} % needed for math
+\usepackage{amsmath} % needed for math
+\usepackage[utf8]{inputenc} % this is needed for german umlauts
+\usepackage[ngerman]{babel} % this is needed for german umlauts
+\usepackage[T1]{fontenc}    % this is needed for correct output of umlauts in pdf
+\usepackage[margin=2.5cm]{geometry} %layout
+\usepackage{booktabs}
+
+% this is needed for forms and links within the text
+\usepackage{hyperref}
+
+% glossar, see http://en.wikibooks.org/wiki/LaTeX/Glossary
+% has to be loaded AFTER hyperref so that entries are clickable
+\usepackage[nonumberlist]{glossaries}
+
+% The following is needed in order to make the code compatible
+% with both latex/dvips and pdflatex.
+\ifx\pdftexversion\undefined
+\usepackage[dvips]{graphicx}
+\else
+\usepackage[pdftex]{graphicx}
+\DeclareGraphicsRule{*}{mps}{*}{}
+\fi
+
+\makeglossaries
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Variablen                                 						 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\authorName}{Niklas Lorenz \and Thomas Häuselmann \and Rakan Zeid Al Masri \and Christopher Lukas Homberger \and Jonas Seiler}
+\newcommand{\auftraggeber}{ITEC Henkel}
+\newcommand{\projektName}{Balanced Banana}
+\newcommand{\tags}{\authorName, Pflichtenheft, KIT, Informatik, PSE}
+\newcommand{\glossarName}{Glossar}
+\title{\projektName~(Pflichtenheft)}
+\author{\authorName}
+\date{\today}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Create a shorter version for tables. DO NOT CHANGE               	 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\addrow[2]{#1 &#2\\ }
+
+\newcommand\addheading[2]{#1 &#2\\ \hline}
+\newcommand\tabularhead{\begin{tabular}{lp{13cm}}
+\hline
+	}
+
+\newcommand\addmulrow[2]{ \begin{minipage}[t][][t]{2.5cm}#1\end{minipage}%
+   &\begin{minipage}[t][][t]{8cm}
+    \begin{enumerate} #2   \end{enumerate}
+    \end{minipage}\\ }
+
+\newenvironment{usecase}{\tabularhead}
+{\hline\end{tabular}}
+
+\usepackage{microtype}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THE DOCUMENT BEGINS             	                              	 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+ \pagenumbering{roman}
+ \input{Deckblatt}         % Deckblatt.tex laden und einfügen
+ \setcounter{page}{2}
+ \tableofcontents          % Inhaltsverzeichnis ausgeben
+ \clearpage
+ \pagenumbering{arabic}
+
+\section{Einleitung}
+\vspace*{1.5cm}
+Aufgabenverteilung ist ein in vielen Unternehmen übliches Problem. Wenn ein Unternehmen größer wird, 
+so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Aufgaben größer und komplexer sein. Es wird immer schwieriger, die genannten Ressourcen effizient und gerecht auf die verschiedenen Teams, Mitarbeiter und Arbeitsplätze aufzuteilen. \\
+
+Viele Lösungen gibt es bereits auf dem Markt, sie sind aber zu komplex und nicht leicht erweiterbar. Balanced Banana löst diese Probleme in Form eines kompakten, einfach zu bedienenden und skalierbaren Programms. \\
+
+Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, Priorität, Einschränkungen und Bedingungen.
+
+\section{Zielbestimmung}
+\subsection{Musskriterien}
+\subsection{Wunschkriterien}
+\subsection{Abgrenzungskriterien}
+% Was will ich bewusst nicht umsetzen?
+% Was soll es nicht sein?
+
+\section{Produkteinsatz}
+% Zielgruppe
+% Anwendungsbereiche
+% Betriebsbedinugen
+% Wer? Was? Wozu?
+
+\section{Produktumgebung}
+% Unter welcher Software / Hardware läuft es?
+
+\section{Funktionale Anforderungen}
+% Was soll das Produkt machen können
+
+\section{Produktdaten}
+% Was soll gespeichert werden?
+
+\subsection{Personendaten}
+\subsection{Messdaten}
+
+\section{Nichtfunktionale Anforderungen}
+
+\section{Benutzeroberfläche}
+
+\section{Qualitätszielbestimmungen}
+% Tabelle ... schafeln .. was ist ihm wichtig
+
+\section{Globale Testfälle und Szenarien}
+\subsection{Globale Testfälle}
+\subsubsection{Grundlegende Testfälle}
+\subsubsection{Erweiterte Testfälle}
+\subsection{Szenarien}
+\section{Entwicklungsumgebung}
+
+\clearpage
+\input{Glossar}
+\end{document}
