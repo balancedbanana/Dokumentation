@@ -30,6 +30,12 @@
 	description={Central Processing Unit, Kern jedes Rechners um Anwendungen auszuführen},
 }
 
+\newglossaryentry{Daemon}
+{
+	name=Daemon,
+	description={Ein Dienst der auf Anfragen reagiert und antwortet},
+}
+
 \title{Balanced Banana}
 \subtitle{Distributed Task Scheduling}
 \author{Niklas Lorenz \and Thomas Häuselmann \and Rakan Zeid Al Masri \and Christopher Lukas Homberger \and Jonas Seiler}
@@ -69,8 +75,15 @@
 
 \section{Benutzer Oberfläche}
 \subsection{Befehlszeile}
+\subsubsection{Client}
 \begin{mycode}
 bb [--block|-b] [<--priority|-p> <Integer>] [<--docker-file|-df> <path to dockerfile>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] <program> [args]+
+\end{mycode}
+
+\subsubsection{Server bzw. Arbeiter}
+Startet das Programm im \gls{Daemon} Modus.
+\begin{mycode}
+bb -d [<--server|-s>]
 \end{mycode}
 
 \subsubsection{\texttt{-{}-block}}
@@ -89,6 +102,9 @@ Legen die minimale bzw. maximale anzahl der verwendbaren \glspl{CPU} fest.
 
 \subsubsection{\texttt{-{}-min-ram} und \texttt{-{}-max-ram}}
 Legen den minimal verfügbaren bzw. maximale verwendbaren Arbeitsspeicher fest.
+
+\subsubsection{\texttt{-{}-server}}
+Startet den Server, der die Aufgaben an die Arbeiter verteilt.
 
 \printnoidxglossaries
 
