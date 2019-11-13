@@ -27,7 +27,19 @@
 \newglossaryentry{CLI}
 {
 	name=CLI,
-	description={Commandline Interface},
+	description={Befehlszeile, engl. Commandline Interface},
+}
+
+\newglossaryentry{CPU}
+{
+	name=CPU,
+	description={Central Processing Unit, Kern jedes Rechners um Anwendungen auszuführen},
+}
+
+\newglossaryentry{Daemon}
+{
+	name=Daemon,
+	description={Ein Dienst der auf Anfragen reagiert und antwortet},
 }
 
 \title{Balanced Banana}
@@ -194,13 +206,37 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 % Statistiken sind read only
 
 \section{Benutzer Oberfläche}
-\subsection{\glspl{CLI}}
+\subsection{Befehlszeile}
+\subsubsection{Client}
 \begin{mycode}
 bb [--block|-b] [<--priority|-p> <Integer>] [<--docker-file|-df> <path to dockerfile>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] <program> [args]+
 \end{mycode}
 
+\subsubsection{Server bzw. Arbeiter}
+Startet das Programm im \gls{Daemon} Modus.
+\begin{mycode}
+bb -d [<--server|-s>]
+\end{mycode}
+
 \subsubsection{\texttt{-{}-block}}
 Kehrt erst nach der Ausführung der Aufgabe zum Aufrufer zurück. Nützlich um voneinander abhängige Aufgaben, in einem Konsolen Skript, nacheinander auszuführen.
+
+\subsubsection{\texttt{-{}-priority}}
+Legt die Priorität der auszuführenden Aufgabe fest, gefolgt von low (0), medium (1), high (2), banana (3).
+Es kann der Name bzw. die Zahl in der Klammer als Priorität verwendet werden.
+
+\subsubsection{\texttt{-{}-docker-file}}
+Legt sämtliche Eigenschaften eines Docker Abbildes, gefolgt vom Pfad einer benutzerdefinierten \href{https://docs.docker.com/engine/reference/builder/}{DockerFile}, fest.
+Beispielsweise Benutzer ID, installierte Programme, auszuführende Umgebung.
+
+\subsubsection{\texttt{-{}-min-cpu-count} und \texttt{-{}-max-cpu-count}}
+Legen die minimale bzw. maximale anzahl der verwendbaren \glspl{CPU} fest.
+
+\subsubsection{\texttt{-{}-min-ram} und \texttt{-{}-max-ram}}
+Legen den minimal verfügbaren bzw. maximale verwendbaren Arbeitsspeicher fest.
+
+\subsubsection{\texttt{-{}-server}}
+Startet den Server, der die Aufgaben an die Arbeiter verteilt.
 
 \section{Qualitätszielbestimmungen}
 % Tabelle ... schafeln .. was ist ihm wichtig
