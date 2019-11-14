@@ -1,7 +1,11 @@
-\documentclass[parskip=full]{scrartcl}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[german]{babel}
+\documentclass[a4paper,12pt]{article}
+\usepackage{amssymb} % needed for math
+\usepackage{amsmath} % needed for math
+\usepackage[utf8]{inputenc} % this is needed for german umlauts
+\usepackage[ngerman]{babel} % this is needed for german umlauts
+\usepackage[T1]{fontenc}    % this is needed for correct output of umlauts in pdf
+\usepackage[margin=2.5cm]{geometry} %layout
+\usepackage{booktabs}
 \usepackage{hyperref}
 \hypersetup{pdftitle={Balanced Banana},bookmarks=true,}
 \usepackage{graphicx}
@@ -9,6 +13,8 @@
 \usepackage[nonumberlist]{glossaries}
 \usepackage{enumitem}
 \usepackage{verbatim}
+
+\deftranslation[to=ngerman]{Glossary}{\section{Stichwortverzeichnis}}
 
 \makeatletter
 \newenvironment{mycode}
@@ -23,26 +29,79 @@
 \newglossaryentry{CLI}
 {
 	name=CLI,
-	description={Commandline Interface},
+	description={Befehlszeile, engl. Commandline Interface},
+}
+
+\newglossaryentry{CPU}
+{
+	name=CPU,
+	description={Central Processing Unit, Kern jedes Rechners um Anwendungen auszuführen},
+}
+
+\newglossaryentry{Daemon}
+{
+	name=Daemon,
+	description={Ein Dienst der auf Anfragen reagiert und antwortet},
 }
 \newglossaryentry{Client}{name={Client},description={Programm auf dem Computer eines Benutzers um mit dem Server zu  kommunizieren}}
 \newglossaryentry{Configfile}{name={Configfile},description={Eine Datei die bestimmte Einstellungen speichert}}
 
 \title{Balanced Banana}
-\subtitle{Distributed Task Scheduling}
 \author{Niklas Lorenz \and Thomas Häuselmann \and Rakan Zeid Al Masri \and Christopher Lukas Homberger \and Jonas Seiler}
 
-\begin{document}
 
-\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Create a shorter version for tables. DO NOT CHANGE               	 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\addrow[2]{#1 &#2\\ }
+
+\newcommand\addheading[2]{#1 &#2\\ \hline}
+\newcommand\tabularhead{\begin{tabular}{lp{13cm}}
+\hline
+	}
+
+\newcommand\addmulrow[2]{ \begin{minipage}[t][][t]{2.5cm}#1\end{minipage}%
+   &\begin{minipage}[t][][t]{8cm}
+    \begin{enumerate} #2   \end{enumerate}
+    \end{minipage}\\ }
+
+\newenvironment{usecase}{\tabularhead}
+{\hline\end{tabular}}
+
+\usepackage{microtype}
+
+\begin{document}
+\pagenumbering{roman}
+\input{Deckblatt}         % Deckblatt.tex laden und einfügen
+\setcounter{page}{2}
+\tableofcontents          % Inhaltsverzeichnis ausgeben
+\clearpage
+\pagenumbering{arabic}
 
 \section{Einleitung}
+\vspace*{1.5cm}
+Aufgabenverteilung ist ein in vielen Unternehmen übliches Problem. Wenn ein Unternehmen größer wird, 
+so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Aufgaben größer und komplexer sein. Es wird immer schwieriger, die genannten Ressourcen effizient und gerecht auf die verschiedenen Teams, Mitarbeiter und Arbeitsplätze aufzuteilen. \\
+
+Viele Lösungen gibt es bereits auf dem Markt, sie sind aber zu komplex und nicht leicht erweiterbar. Balanced Banana löst diese Probleme in Form eines kompakten, einfach zu bedienenden und skalierbaren Programms. \\
+
+Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, Priorität, Einschränkungen und Bedingungen.
 
 \section{Zielbestimmung}
+\subsection{Musskriterien}
+\subsection{Wunschkriterien}
+\subsection{Abgrenzungskriterien}
+% Was will ich bewusst nicht umsetzen?
+% Was soll es nicht sein?
 
 \section{Produkteinsatz}
+% Zielgruppe
+% Anwendungsbereiche
+% Betriebsbedinugen
+% Wer? Was? Wozu?
 
 \section{Produktumgebung}
+% Unter welcher Software / Hardware läuft es?
 
 \section{Funktionale Anforderungen}
 \subsection{Liste der funktionalen Anforderungen}
@@ -88,12 +147,77 @@
 \leftskip=0.5cm
 \item[OFA01] Benutzer kann eine geschätzte Restzeit einer Aufgabe sehen	
 \end{itemize}
+% Was soll das Produkt machen können
+
+% Es soll einen Webserver als Mittelmann geben
+
+% Es soll möglich sein, Backups von laufenden Aufgaben zu erstellen
+
+% Aufgaben, die nach 2 Tagen arbeitszeit noch nicht beenden, sollen unterbrochen werden und dem Auftraggeber soll eine Mitteilung geschickt werden
+
+% Die Anwendung soll über verschiedene Betriebsmodi verfügen (Client, Server, Worker, Admin?)
+
+% Die folgenden Parameter sind für den Befehl vorgesehen:
+
+% Priorität (low, medium, high, extreme, bananas)
+
+% Anzahl der zu gewünschten Prozessorkerne
+
+% Größe des benötigten Arbeitsspeichers
+
+% Auf welchem Betriebssystem soll die Aufgabe ausgeführt werden?
+
+% Ist die Aufgabe pausierbar?
+
+% Soll der Aufrufer im Terminal blockiert werden
+
+% An wen soll die Rückmeldung erfolgen (EMail oder Nutzerkonto)
+
+% Wo sind die Ordner mit den benötigten Daten abgelegt (Pfad übersetzten damit der Worker die Ordner findet)
+
+% Anforderung eines manuellen Backups / Pausierung / Abbruch
+
+% Anforderung der Log daten
+
+% Am Ende des unseres Befehls folgt der Befehl mit dem die Aufgabe gestartet werden kann
+
+% Wie kann die Aufgabe abgebrochen oder pausiert werden (Einen Befehl spezifizieren)
 
 \section{Produktdaten}
 \begin{itemize}[nosep]
 \leftskip=0.5cm
 \item[PD10]
 \end{itemize}
+% Was soll gespeichert werden?
+
+% Daten über ein Nutzerkonto?
+
+% Ausführungszeit (insgesamt, aktiv, passiv)
+
+% Ausführungsbefehl, Pausierbefehl, Abbruchbefehl
+
+% Ist das Programm pausierbar
+
+% Ausgabedaten
+
+% Logdaten
+
+% Mit welcher Priorität ist die Aufgabe gestartet worden
+
+% wer hat die Aufgabe gestartet (EMail oder Nutzerkonto)
+
+% Auf welchem Betriebssystem soll die Aufgabe ausgeführt werden
+
+% Auf wie vielen Rechnern lief die Aufgabe (Wie oft wurde sie pausiert)
+
+% Allgemein alle Parameter unseres Befehls die für diese Aufgabe angegeben wurden
+
+% Globale Statistiken wie z.B. Anzahl aktive, passive, gequete Aufgaben, Gesamtlast, ...
+
+% Eine Liste mit allen verfügbaren Workern
+
+\subsection{Personendaten}
+\subsection{Messdaten}
 
 \section{Nichtfunktionale Anforderungen}
 \begin{itemize}[nosep]
@@ -107,15 +231,70 @@
 
 \subsection{Anwendungsfälle}
 
+% Verteilung und Start der Aufgabe innerhalb von XX Minuten
+
+% Verhältnis von Laufzeit und Pausierzeit soll nicht geringer sein als 1 zu XX
+
+% Mindestens 1000 Aufgaben sollen in der Warteschlage gehalten werden können
+
+% Mindestens 100 Nutzer sollen zeitgleich neue Aufgaben in Auftrag geben können
+
+% Bei Ausfall der Worker (Stromausfall, ...) soll nicht mehr als 1 Stunde Rechenzeit verloren gehen -> Stündliche Backups
+
+% Bei Abschluss einer Aufgabe soll die Rückmeldung innerhalb von XX Minuten erfolgen
+
+% Statistiken sollen nur veröffentlicht werden, nachdem die Aufgabe abgeschlossen ist
+
+% Ein Administrator soll den Prioritätenpool verwalten können
+
+% Ein Benutzer darf nur auf eigene Dateien zugreifen
+
+% Statistiken sind read only
+
 \section{Benutzer Oberfläche}
-\subsection{\glspl{CLI}}
+\subsection{Befehlszeile}
+\subsubsection{Client}
 \begin{mycode}
 bb [--block|-b] [<--priority|-p> <Integer>] [<--docker-file|-df> <path to dockerfile>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] <program> [args]+
+\end{mycode}
+
+\subsubsection{Server bzw. Arbeiter}
+Startet das Programm im \gls{Daemon} Modus.
+\begin{mycode}
+bb -d [<--server|-s>]
 \end{mycode}
 
 \subsubsection{\texttt{-{}-block}}
 Kehrt erst nach der Ausführung der Aufgabe zum Aufrufer zurück. Nützlich um voneinander abhängige Aufgaben, in einem Konsolen Skript, nacheinander auszuführen.
 
+\subsubsection{\texttt{-{}-priority}}
+Legt die Priorität der auszuführenden Aufgabe fest, gefolgt von low (0), medium (1), high (2), banana (3).
+Es kann der Name bzw. die Zahl in der Klammer als Priorität verwendet werden.
+
+\subsubsection{\texttt{-{}-docker-file}}
+Legt sämtliche Eigenschaften eines Docker Abbildes, gefolgt vom Pfad einer benutzerdefinierten \href{https://docs.docker.com/engine/reference/builder/}{DockerFile}, fest.
+Beispielsweise Benutzer ID, installierte Programme, auszuführende Umgebung.
+
+\subsubsection{\texttt{-{}-min-cpu-count} und \texttt{-{}-max-cpu-count}}
+Legen die minimale bzw. maximale anzahl der verwendbaren \glspl{CPU} fest.
+
+\subsubsection{\texttt{-{}-min-ram} und \texttt{-{}-max-ram}}
+Legen den minimal verfügbaren bzw. maximale verwendbaren Arbeitsspeicher fest.
+
+\subsubsection{\texttt{-{}-server}}
+Startet den Server, der die Aufgaben an die Arbeiter verteilt.
+
+\section{Qualitätszielbestimmungen}
+% Tabelle ... schafeln .. was ist ihm wichtig
+
+\section{Globale Testfälle und Szenarien}
+\subsection{Globale Testfälle}
+\subsubsection{Grundlegende Testfälle}
+\subsubsection{Erweiterte Testfälle}
+\subsection{Szenarien}
+\section{Entwicklungsumgebung}
+
+\clearpage
 \printnoidxglossaries
 
 \end{document}
