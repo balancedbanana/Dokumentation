@@ -256,35 +256,48 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 
 \section{Benutzer Oberfläche}
 \subsection{Befehlszeile}
-\subsubsection{Aufgabe senden}
-\begin{mycode}
-bb [--block|-b] [<--priority|-p> <Integer>] [<--docker-file|-df> <path to dockerfile>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] <program> [args]+
-\end{mycode}
-
 \subsubsection{Server bzw. Arbeiter}
 Startet das Programm im \gls{Daemon} Modus.
 \begin{mycode}
 bb -d [<--server|-s>]
 \end{mycode}
 
+\subsubsection{Aufgabe erstellen}
+Sendet die angegebene Aufgabe an den Server und gibt die Aufgaben ID an der Standard Ausgabe aus (Dezimal).
+\begin{mycode}
+bb [--block|-b] [<--priority|-p> <Integer>] [<--docker-file|-df> <path to dockerfile>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] <program> [args]+
+\end{mycode}
+
 \subsubsection{Aufgaben sichern}
-Erstellt ein Schnapschuss des programmes.
+Erstellt einen Schnapschuss der Aufgabe, der später bei bedarf wiederhergestellt werden kann.
+Gibt die Sicherungs ID an der Standard Ausgabe aus (Dezimal).
 \begin{mycode}
 bb <--backup|-b> <id>
+\subsubsubsection{<id>}
+Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
 \end{mycode}
+
 \subsubsection{Aufgaben fortsetzen}
+Setzt die angehaltene Aufgabe fort.
 \begin{mycode}
 bb <--continue|-c> <id>
 \end{mycode}
 \subsubsection{Aufgaben wiederherstellen}
 \begin{mycode}
-bb <--restore|-r> <id>
+bb <--restore|-r> <id> <backupid>
 \end{mycode}
+\subsubsubsection{<backupid>}
+Sicherungs ID die beim erstellen der Sicherung ausgegeben wurde.
+\end{mycode}
+
 \subsubsection{Aufgaben Pausieren}
+Pausiert die Aufgabe mit der angegeben ID Nummer.
 \begin{mycode}
 bb <--pause|-p> <id>
 \end{mycode}
+
 \subsubsection{Aufgaben beenden}
+Beendet die Aufgabe mit der angegeben ID Nummer.
 \begin{mycode}
 bb <--stop|-s> <id>
 \end{mycode}
