@@ -256,7 +256,7 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 
 \section{Benutzer Oberfläche}
 \subsection{Befehlszeile}
-\subsubsection{Client}
+\subsubsection{Aufgabe senden}
 \begin{mycode}
 bb [--block|-b] [<--priority|-p> <Integer>] [<--docker-file|-df> <path to dockerfile>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] <program> [args]+
 \end{mycode}
@@ -265,6 +265,20 @@ bb [--block|-b] [<--priority|-p> <Integer>] [<--docker-file|-df> <path to docker
 Startet das Programm im \gls{Daemon} Modus.
 \begin{mycode}
 bb -d [<--server|-s>]
+\end{mycode}
+
+\subsubsection{Aufgaben sichern}
+Erstellt ein Schnapschuss des programmes.
+\begin{mycode}
+bb <--backup|-b>
+\end{mycode}
+\subsubsection{Aufgaben fortsetzen}
+\begin{mycode}
+bb <--continue|-b>
+\end{mycode}
+\subsubsection{Aufgaben wiederherstellen}
+\begin{mycode}
+bb <--restore|-r>
 \end{mycode}
 
 \subsubsection{\texttt{-{}-block}}
