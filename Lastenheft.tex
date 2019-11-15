@@ -142,7 +142,16 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 \item[FA34] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
 \item[FA35] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
 \item[FA40] Anfragen nach Status
-\item[FA50] Benutzer bekommt Benachrichtigung über erledigte Aufgabe 
+\item[FA50] Benutzer bekommt Benachrichtigung über erledigte Aufgabe
+\item[FA60] \textbf{Sichere Kommunikation}
+\subitem \textbf{Erklärung} Um Nutzerdaten und Passwörter zu schützen ist eine gute Verschlüsslung unerlässlich
+\subitem \textbf{Wichtigkeit} Sehr Hoch, damit der Datenschutz gewährleistet werden kann.
+\subitem \textbf{Vorraussetzungen} Der Server muss im Netzwerk erreichbar sein.
+\subitem \textbf{Nachbedingung} Die Netwerkverbindung ist Aktiv und der Server ist für weitere Kommunikation bereit.
+\subsubitem \textbf{Erfolg} Bearbeiten der Anfrage fortsetzen
+\subsubitem \textbf{Misserfolg} Fehlermeldung Ausgeben und Verbindung zum Server trennen.
+\subitem \textbf{Details} Benutzer müssen sich über ein Anmeldesystem anmelden können, damit die idendität des Aufrufers sichergestellt werden kann.
+
 \end{itemize}
 
 \subsubsection{optionale Anforderungen}
