@@ -270,15 +270,23 @@ bb -d [<--server|-s>]
 \subsubsection{Aufgaben sichern}
 Erstellt ein Schnapschuss des programmes.
 \begin{mycode}
-bb <--backup|-b>
+bb <--backup|-b> <id>
 \end{mycode}
 \subsubsection{Aufgaben fortsetzen}
 \begin{mycode}
-bb <--continue|-b>
+bb <--continue|-c> <id>
 \end{mycode}
 \subsubsection{Aufgaben wiederherstellen}
 \begin{mycode}
-bb <--restore|-r>
+bb <--restore|-r> <id>
+\end{mycode}
+\subsubsection{Aufgaben Pausieren}
+\begin{mycode}
+bb <--pause|-p> <id>
+\end{mycode}
+\subsubsection{Aufgaben beenden}
+\begin{mycode}
+bb <--stop|-s> <id>
 \end{mycode}
 
 \subsubsection{\texttt{-{}-block}}
