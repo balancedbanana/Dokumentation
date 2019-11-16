@@ -43,8 +43,47 @@
 	name=Daemon,
 	description={Ein Dienst der auf Anfragen reagiert und antwortet},
 }
-\newglossaryentry{Client}{name={Client},description={Programm auf dem Computer eines Benutzers um mit dem Server zu  kommunizieren}}
-\newglossaryentry{Configfile}{name={Configfile},description={Eine Datei die bestimmte Einstellungen speichert}}
+\newglossaryentry{Client}
+{
+	name={Client},
+	description={Programm auf dem Computer eines Benutzers um mit dem Server zu  kommunizieren}
+}
+
+\newglossaryentry{Configfile}
+{
+	name={Configfile},
+	description={Eine Datei die bestimmte Einstellungen speichert}
+}
+
+\newglossaryentry{Server}
+{
+	name={Server},
+	description={Programm auf dem Server, der die Benutzer (Außenwelt) mit den Arbeitern (Privates Netzwerk) verbindet.}
+}
+
+\newglossaryentry{Benutzer}
+{
+	name={Benutzer},
+	description={Eine Person, die dazu in der Lage ist, Befehle auszuführen.}
+}
+
+\newglossaryentry{Multicast}
+{
+	name={Multicast},
+	description={Eine besondere Form von Netzwerk Packet, welches an alle Adressen des Netzwerkes gesendet wird.}
+}
+
+\newglossaryentry{Worker}
+{
+	name={Worker},
+	description={Programm auf den Rechnern, welche dafür zuständig sind, die Aufgaben auszuführen.}
+}
+
+\newglossaryentry{Administrator}
+{
+	name={Administrator},
+	description={Eine Person, die dazu privilegiert ist, das Gesamtsystem zu verwalten und über uneingeschränkten Zugriff auf Ein- und Ausgabedateien verfügt.}
+}
 
 \title{Balanced Banana}
 \author{Niklas Lorenz \and Thomas Häuselmann \and Rakan Zeid Al Masri \and Christopher Lukas Homberger \and Jonas Seiler}
@@ -118,8 +157,8 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 \item[FA00] \textbf{<Titel>}
 \subitem \textbf{Erklärung} <In ca. 3 Zeilen eine grobe Beschreibung geben>
 \subitem \textbf{Wichtigkeit} <entweder Kern-Funktionalität oder Optionale-Funktionalität>
-\subitem \textbf{Vorraussetzungen} <Wann ist diese Funktion nutzbar?> <dieser Punkt kann weggelassen werden>
-\subitem \textbf{Nachbedingung} <Dieser Punkt kann weggelassen werden>
+\subitem \textbf{Voraussetzung(en)} <Wann ist diese Funktion nutzbar?> <dieser Punkt kann weggelassen werden>
+\subitem \textbf{Nachbedingung(en)} <Dieser Punkt kann weggelassen werden>
 \subsubitem \textbf{Erfolg} <Was geschieht wenn diese Funktion erfolgreich ausgeführt wurde>
 \subsubitem \textbf{Misserfolg} <Was geschieht wenn diese Funktion nicht ausgeführt werden kann>
 \subitem \textbf{Auslöser} <Wie wird diese Funktion gestartet> <Dieser Punkt kann weggelassen werden>
@@ -130,16 +169,78 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 
 \end{comment}
 
-\item[FA10]	\gls{Client} verbindet sich beim Starten mit dem Server
-\item[FA20] Benutzer kann eine Aufgabe über \gls{Client} einreihen
+%\item[FA10]	\gls{Client} verbindet sich beim Starten mit dem Server
+\begin{minipage}[t]{\linewidth}
+\item[FA10] \textbf{Automatisierter Verbindungsaufbau}
+\subitem \textbf{Erklärung} Der \gls{Client} soll ohne explizite Aufforderung durch den \gls{Benutzer} mit dem \gls{Server} eine Netzwerk Verbindung zum Übermitteln der Daten aufbauen.
+\subitem \textbf{Wichtigkeit} Kernfunktionalität
+\subitem \textbf{Voraussetzung(en)} Ein \gls{Server} muss erreichbar sein.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Der \gls{Client} ist in der Lage jeden Befehlsaufruf, ohne den \gls{Benutzer} darüber zu informieren, an den \gls{Server} zu übermitteln.
+\subsubitem \textbf{Misserfolg} Eine Fehlernachricht wird ausgegeben, die den \gls{Benutzer} darüber in Kenntnis setzt, dass keine Netzwerk Verbindung mit dem \gls{Server} aufgebaut werden konnte.
+\subitem \textbf{Auslöser} Jeder Befehlsaufruf des \gls{Client} löst einen automatisierten Verbindungsaufbau aus.
+\subitem \textbf{Details} Zur einfachen Verwendung eines \gls{Client} soll sich dieser selbstständig mit einem \gls{Server} verbinden.\newline
+Die Verbindung wird zum Start jeder Übermittlung aufgebaut und nach Ende der Übermittlung geschlossen.\newline
+Die Verbindung dient einzig dem Zweck, den \gls{Server} über einen Befehlsaufruf  in Kenntnis zu setzen.\newline
+Ablauf:\newline
+Schritt 1: Der \gls{Client} sendet eine \gls{Multicast} Nachricht an das Netzwerk.\newline
+Schritt 2: Der \gls{Server} beantwortet die Nachricht und setzt so den \gls{Client} über seine Existenz und Netzwerk-Adresse in Kenntnis.\newline
+Schritt 3: Der \gls{Client} übermittelt den Befehlsaufruf an den Server.\newline
+Schritt 4: Der \gls{Server} sendet eine Eingangsbestätigung an den \gls{Client}.\newline
+Schritt 5: Da nun keine Nachrichten mehr übermittelt werden müssen, wird die Verbindung geschlossen.
+\end{minipage}
+\pagebreak
+
+\begin{minipage}[t]{\linewidth}
+\item[FA11] \textbf{Gedächtnis der vorherigen Verbindung}
+\subitem \textbf{Erklärung} Der \gls{Client} soll sich Informationen über eine erfolgreiche Verbindung zu einem \gls{Server} merken.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Voraussetzung(en)} Diese Funktionalität wird stets in Verbindung mit Funktion FA10 verwendet.\newline
+Funktion FA10 konnte erfolgreich abgeschlossen werden.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Der \gls{Client} ist bei dem nächsten Verbindungsaufbau in der Lage, den \gls{Server} direkt anzusprechen.
+\subsubitem \textbf{Misserfolg} Der \gls{Client} hat keine Informationen über einen existierenden \gls{Server}.
+\subitem \textbf{Auslöser} Funktion FA10 wurde erfolgreich ausgeführt.
+\subitem \textbf{Details} Der Verbindungsaufbau zwischen \gls{Client} und \gls{Server} mithilfe einer \gls{Multicast} Nachricht sollte vermieden werden. Daher soll sich der \gls{Client} den letzten \gls{Server} mit dem er sich erfolgreich verbunden hat merken. Somit kann der \gls{Client} bei dem nächsten Verbindungsaufbau die \gls{Multicast} Nachricht vermeiden, indem er sich direkt mit dem \gls{Server} in Verbindung setzt.\newline
+Ist der hinterlegte \gls{Server} nicht mehr erreichbar, so wird er vom \gls{Client} vergessen.\newline
+Der Ablauf von Funktionalität FA10 ändert sich wie folgt:\newline
+Schritt 1: Der \gls{Client} versucht den vorgemerkten \gls{Server} zu erreichen. Ist dies nicht möglich, vergisst er diesen und sendet eine \gls{Multicast} Nachricht an das Netzwerk.\newline
+Schritt 2-5: Unverändert
+Schritt 6: Der \gls{Client} speichert sich die Netzwerkadresse des \gls{Server} ab.
+\end{minipage}
+\pagebreak
+
+%\item[FA20] Benutzer kann eine Aufgabe über \gls{Client} einreihen
+\begin{minipage}[t]{\linewidth}
+\item[FA20] \textbf{Warteschlange}
+\subitem \textbf{Erklärung} Sollte zum Zeitpunkt des Eingangs einer neuen Aufgabe kein \gls{Worker} mit hinreichend Arbeitskapazität verfügbar sein, so soll die Aufgabe nicht abgelehnt oder verloren gehen, sondern in eine Warteschlange eingereiht werden. Zu einem späteren Zeitpunkt kann die Aufgabe dann ausgeführt werden.
+\subitem \textbf{Wichtigkeit} Kernfunktionalität
+\subitem \textbf{Voraussetzung(en)} Diese Funktion ist auf jedem \gls{Server} verfügbar.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Die Aufgabe ist in einer Warteschlange eingereiht.
+\subsubitem \textbf{Misserfolg} Der Auftraggeber (\gls{Client}) wird darüber in Kenntnis gesetzt, dass seine Aufgabe nicht bearbeitet wird.\newline
+Ein \gls{Administrator} wird davon in Kenntnis gesetzt, dass ein Fehler beim Aufnehmen einer Aufgabe in die Warteschlange aufgetreten ist.
+\subitem \textbf{Auslöser} Der \gls{Server} erhält eine Aufgabe zu einem Zeitpunkt, an dem kein geeigneter \gls{Worker} verfügbar ist.
+\subitem \textbf{Details} Alle von einem \gls{Benutzer} in Auftrag gegebenen Aufgaben sollen angenommen und ausgeführt werden. Dies ist jedoch aufgrund beschränkter Rechenkapazität nicht immer sofort möglich. Daher sollen Aufgaben, die nicht sofort bearbeitet werden können, vorübergehend vom \gls{Server} in einer Warteschlange gehalten werden. Nachdem ausreichend Rechenkapazität frei geworden ist, soll die Warteschlange wieder geleert werden.
+\end{minipage}
+\pagebreak
+
 \item[FA30] Benutzer kann Parameter übergeben %evtl auf FA20 verweisen
+
 \item[FA31]	\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}
+
 \item[FA32]	Benutzer kann Parameter über \gls{Configfile} übergeben
+
 \item[FA33] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
+
 \item[FA34] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
+
 \item[FA35] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
+
 \item[FA40] Anfragen nach Status
+
 \item[FA50] Benutzer bekommt Benachrichtigung über erledigte Aufgabe 
+
 \end{itemize}
 
 \subsubsection{optionale Anforderungen}
