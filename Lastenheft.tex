@@ -67,6 +67,12 @@
 	description={Eine Person, die dazu in der Lage ist, Befehle auszuführen.}
 }
 
+\newglossaryentry{Priorität}
+{
+	name={Priorität},
+	description={Ein diskretes Maß für Wichtigkeit bzw. Relevanz. Meist eine ganze Zahl, wobei gewisse Werte auch durch vorher definierte Wörter bezeichnet werden können.}
+}
+
 \newglossaryentry{Multicast}
 {
 	name={Multicast},
@@ -280,15 +286,117 @@ Die benutzerdefinierten Standardwerte sind in einer ausgezeichneten Konfiguratio
 \end{minipage}
 \pagebreak
 
-\item[FA33] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
+%\item[FA33] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
+\begin{minipage}[t]{\linewidth}
+\item[FA33] \textbf{\gls{Priorität} (Parameter)}
+\subitem \textbf{Erklärung} Beim Einreichen einer neuen Aufgabe soll der Auftraggeber (\gls{Benutzer}) in der Lage sein, seine Aufgabe mit einer \gls{Priorität} zu versehen.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Voraussetzung(en)} Der Benutzer muss mit dem Befehl eine zulässige Aufgabe einreichen.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Die Aufgabe wird mit der gewünschten \gls{Priorität} in die Warteschlange eingereiht oder sofort ausgeführt.
+\subitem \textbf{Details} Eine \gls{Priorität} stellt eine Ordnung auf allen ausstehenden Aufgaben dar. Das bedeutet, Für je zwei (aktive oder passive) Aufgaben lässt sich bestimmen, welche von beiden zuerst ausgeführt werden soll.\newline
+Die \gls{Priorität} bestimmt somit die Position einer Aufgabe innerhalb der Warteschlange (FA20).\newline
+Tritt der Fall ein, dass zwei Aufgaben die selbe \gls{Priorität} haben, beide in der Warteschlange liegen und nur Rechenleistung für eine der Aufgaben verfügbar ist, so ist die Ausführungsreihenfolge der Aufgaben zufällig.\newline
+Aufgaben mit hohen \glspl{Priorität} können aktive Aufgaben mit stark geringerer \gls{Priorität} unterbrechen.\newline
+Aufgaben, die längere Zeit in der Warteschlange verbringen, werden in ihrer \gls{Priorität} aufgewertet.\newline
+Eine aktive Aufgabe wird in ihrer \gls{Priorität} aufgewertet.\newline
+Die \gls{Priorität} wird auf der Kommandozeile mit "--priority" oder "-p" angegeben.\newline
+Für eine \gls{Priorität} sind folgende Werte zulässig:\newline
+geringste: low (l)\newline
+normal: medium (m)\newline
+hoch: high (h)\newline
+sehr hoch: extreme (e)\newline
+höchste: bananas (b)\newline
+Der globale Standardwert ist festgelegt auf medium (m).
+\end{minipage}
+\pagebreak
 
-\item[FA34] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
+%\item[FA34] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
+\begin{minipage}[t]{\linewidth}
+\item[FA34] \textbf{CPU Kerne (Parameter)}
+\subitem \textbf{Erklärung} Erlaubt es dem \gls{Benutzer} eine minimale bzw. eine maximale Anzahl von gewünschten bzw. benötigten CPU Kernen anzugeben.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Voraussetzung(en)} Der Benutzer muss mit dem Befehl eine zulässige Aufgabe einreichen.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Der Aufgabe wird das angegebene Minimum an Prozessorkernen garantiert.\newline
+Der Aufgabe werden nicht mehr Prozessorkerne zugewiesen, als durch das Maximum angegeben.\newline
+\subitem \textbf{Details} Die Angabe von minimaler Anzahl benötigter Prozessorkernen erlaubt es dem Programm sicherzustellen, dass die Aufgabe nur dann gestartet wird, wenn ihr ausreichend Prozessorkerne zur Verfügung stehen.\newline
+Die Angabe einer maximalen Anzahl benötigter Prozessorkerne ermöglicht es dem Programm mehrere Aufgaben parallel an einen \gls{Worker} zu geben. Eine notwendige Bedingung dafür, dass mehrere Aufgaben auf dem selben \gls{Worker} laufen können ist, dass die Summe der Maxima aller Aufgaben unter der Anzahl der auf dem \gls{Worker} verfügbaren Prozessorkerne liegt. Somit blockieren Single-Thread Aufgaben nicht zwangsläufig einen ganzen \gls{Worker}.\newline
+Für die Anzahl der Prozessorkerne ist jede natürliche Zahl sowie die Null zulässig.\newline
+Der Wert null bedeutet hierbei, dass der Aufgabe eine dynamische Anzahl an Prozessorkernen zugewiesen wird.\newline
+Der minimale Wert wird auf der Kommandozeile mit "-min-cpu-count" angegeben.\newline
+Der maximale Wert wird auf der Kommandozeile mit "-max-cpu-count" angegeben.\newline
+Liegt der Minimalwert über der Zahl der verfügbaren Prozessorkerne, wird die Aufgabe mit der größtmöglichen Anzahl Prozessorkerne ausgeführt.\newline
+Der globale Standardwert für die minimale Anzahl an Prozessorkernen ist festgelegt auf 1.\newline
+Der globale Standardwert für die maximale Anzahl an Prozessorkernen ist festgelegt auf 0.
+\end{minipage}
+\pagebreak
 
-\item[FA35] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
+%\item[FA35] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
+\begin{minipage}[t]{\linewidth}
+\item[FA35] \textbf{Größe des benötigten Arbeitsspeichers (Parameter)}
+\subitem \textbf{Erklärung} Erlaubt es dem Nutzer eine minimale bzw. maximale Menge Arbeitsspeicher anzufordern.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Voraussetzung(en)} Der Benutzer muss mit dem Befehl eine zulässige Aufgabe einreichen.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Die Aufgabe hat das angegebene Minimum an Arbeitsspeicher zur Verfügung.\newline
+Die Aufgabe hat nicht mehr als das angegebene Maximum an Arbeitsspeicher zur Verfügung.
+\subitem \textbf{Details} Die Angabe eines Mindestwerts erlaubt es dem Programm sicherzustellen, dass die Aufgabe hinreichend Arbeitsspeicher für ihre Ausführung zur Verfügung hat.\newline
+Die Angabe eines Maximalwerts erlaubt es dem Programm, mehrere Aufgaben an den selben \gls{Worker} zu verteilen. Eine notwendige Bedingung dafür, dass mehrere Aufgaben auf dem selben \gls{Worker} laufen können ist, dass die Summe der Maxima aller Aufgaben unterhalb des eingebauten Arbeitsspeichers des \gls{Worker} liegt.\newline
+Für die Größe des zugewiesenen Arbeitsspeichers ist jede Natürliche Zahl sowie die Null zulässig. Der Wert wird als Angabe in GiB interpretiert. Für kleinere Mengen kann der Suffix k bzw m für KiB bzw. MiB verwendet werden.\newline
+Der Wert Null bedeutet hierbei, dass die Größe des zugewiesenen Arbeitsspeichers dynamisch ist.\newline
+Der minimale Wert kann auf der Kommandozeile mit "-min-ram" angegeben werden.\newline
+Der maximale Wert kann auf der Kommandozeile mit "-max-ram" angegeben werden.\
+Liegt der Minimalwert über dem verfügbaren Arbeitsspeicher, wird der Aufgabe die größtmögliche Menge Arbeitsspeicher zugewiesen.\newline
+Der globale Standardwert für die minimale Menge Arbeitsspeicher ist festgelegt auf 1GiB.\newline
+Der globale Standardwert für die maximale Menge Arbeitsspeicher ist festgelegt auf 8GiB.
+\end{minipage}
+\pagebreak
 
-\item[FA40] Anfragen nach Status
+% Ist die Aufgabe pausierbar?
 
-\item[FA50] Benutzer bekommt Benachrichtigung über erledigte Aufgabe 
+% Wie kann die Aufgabe abgebrochen oder pausiert werden (Einen Befehl spezifizieren)
+
+% Soll der Aufrufer im Terminal blockiert werden
+
+% An wen soll die Rückmeldung erfolgen (EMail oder Nutzerkonto)
+
+% Wo sind die Ordner mit den benötigten Daten abgelegt (Pfad übersetzten damit der Worker die Ordner findet)
+
+% Auf welchem Betriebssystem soll die Aufgabe ausgeführt werden?
+
+%\item[FA40] Anfragen nach Status
+\begin{minipage}[t]{\linewidth}
+\item[FA40] \textbf{Statusabfrage}
+\subitem \textbf{Erklärung} Der Ausführungsstatus der in Auftrag gegebenen Aufgabe(n) kann von dem Auftraggeber abgefragt werden.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Voraussetzung(en)} Der \gls{Client} muss sich mit dem \gls{Server} verbinden können, der die Aufgabe(n) verteilt hat.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Dem \gls{Benutzer} wird angezeigt, in welchem Ausführungsstatus sich die Aufgabe(n) befinden.
+\subsubitem \textbf{Misserfolg} Dem \gls{Benutzer} wird mitgeteilt, an welchem Punkt die Abfrage fehlgeschlagen ist.
+\subitem \textbf{Auslöser} Der \gls{Benutzer} sendet einen Abfragebefehl ab.
+\subitem \textbf{Details} Die Statusabfrage ist eine Variante des Hauptbefehls zum Verteilen von Aufgaben und teilt denselben Befehlsnamen.\newline
+Die Statusabfrage ist durch den Parameter "--status" gekennzeichnet.\newline
+Die Statusabfrage liefert Informationen zu allen in Auftrag gegebenen Aufgaben des Auftraggebers.\newline
+Genauere Informationen können mithilfe weiterer Parameter angefragt werden. (siehe folgende funktionale Anforderungen sowie Abschnitt 10 Benutzeroberfläche)
+\end{minipage}
+\pagebreak
+
+%\item[FA50] Benutzer bekommt Benachrichtigung über erledigte Aufgabe 
+\begin{minipage}[t]{\linewidth}
+\item[FA50] \textbf{Rückmeldung}
+\subitem \textbf{Erklärung} Nach Abschluss einer Aufgabe soll der Auftraggeber über den Abschluss in Kenntnis gesetzt werden.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Voraussetzung(en)} Der Auftraggeber hat eine gültige E-Mail Adresse hinterlegt.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Der Auftraggeber erhält an der hinterlegten E-Mail Adresse eine Nachricht, die das Bearbeitungsende seiner Aufgabe signalisiert.
+\subitem \textbf{Auslöser} Eine Aufgabe beendet ihre Ausführung.
+\subitem \textbf{Details} Insofern der Auftraggeber eine gültige E-Mail Adresse hinterlegt hat, wird an diese Adresse eine E-Mail versandt, die folgende Informationen enthält:\newline
+1. Mitteilung über den Abschluss der Aufgabe.
+2. Der Name der Aufgabe (Name des ausgeführten Programms).
+3. Das Ende der Log-Datei der Aufgabe.
+\end{minipage}
+\pagebreak
 
 \end{itemize}
 
@@ -297,7 +405,6 @@ Die benutzerdefinierten Standardwerte sind in einer ausgezeichneten Konfiguratio
 \leftskip=0.5cm
 \item[OFA01] Benutzer kann eine geschätzte Restzeit einer Aufgabe sehen	
 \end{itemize}
-% Was soll das Produkt machen können
 
 % Es soll einen Webserver als Mittelmann geben
 
@@ -307,31 +414,11 @@ Die benutzerdefinierten Standardwerte sind in einer ausgezeichneten Konfiguratio
 
 % Die Anwendung soll über verschiedene Betriebsmodi verfügen (Client, Server, Worker, Admin?)
 
-% Die folgenden Parameter sind für den Befehl vorgesehen:
-
-% Priorität (low, medium, high, extreme, bananas)
-
-% Anzahl der zu gewünschten Prozessorkerne
-
-% Größe des benötigten Arbeitsspeichers
-
-% Auf welchem Betriebssystem soll die Aufgabe ausgeführt werden?
-
-% Ist die Aufgabe pausierbar?
-
-% Soll der Aufrufer im Terminal blockiert werden
-
-% An wen soll die Rückmeldung erfolgen (EMail oder Nutzerkonto)
-
-% Wo sind die Ordner mit den benötigten Daten abgelegt (Pfad übersetzten damit der Worker die Ordner findet)
-
 % Anforderung eines manuellen Backups / Pausierung / Abbruch
 
 % Anforderung der Log daten
 
 % Am Ende des unseres Befehls folgt der Befehl mit dem die Aufgabe gestartet werden kann
-
-% Wie kann die Aufgabe abgebrochen oder pausiert werden (Einen Befehl spezifizieren)
 
 \section{Produktdaten}
 \begin{itemize}[nosep]
