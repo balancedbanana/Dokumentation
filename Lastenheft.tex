@@ -225,11 +225,60 @@ Ein \gls{Administrator} wird davon in Kenntnis gesetzt, dass ein Fehler beim Auf
 \end{minipage}
 \pagebreak
 
-\item[FA30] Benutzer kann Parameter übergeben %evtl auf FA20 verweisen
+%\item[FA30] Benutzer kann Parameter übergeben %evtl auf FA20 verweisen
+\begin{minipage}[t]{\linewidth}
+\item[FA30] \textbf{Befehlsparameter}
+\subitem \textbf{Erklärung} Dem Programm können per Befehlszeile bestimmte Optionen bzw. Informationen bezüglich der Ausführung des gegebenen Befehls bereitgestellt werde.
+\subitem \textbf{Wichtigkeit} Kernfunktionalität
+\subitem \textbf{Voraussetzung(en)} Jeder Befehl kann mit einem gewissen Satz von Parametern aufgerufen werden.\newline
+Die Parameter sind für den angegebenen Befehl zulässig.\newline
+Es sind keine Parameter angegeben, die sich gegenseitig ausschließen.\newline
+Jeder Parameter wird mit einem zulässigen Eingabewert angegeben.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Der Befehl wird unter den angegebenen Parametern ausgeführt.
+\subsubitem \textbf{Misserfolg} Dem Benutzer wird mitgeteilt, welcher Parameter unzulässig angegeben wurde.\newline
+Der Befehl wird nicht ausgeführt und nicht an den \gls{Server} weitergeleitet bzw. von diesem ignoriert.
+\subitem \textbf{Auslöser} Angabe des Parameters auf der Kommandozeile.
+\subitem \textbf{Details} Damit das Programm mehr als eine Funktion erfüllen kann oder eine der angebotenen Funktionen mit nicht-standardmäßigen Werten ausführen kann, muss dem Programm mitgeteilt werden, welche Funktion mit welchen Werten gewünscht ist. Hierzu werden Befehlsparameter verwendet (für genauere Angaben zu allen Parametern siehe nachfolgende funktionale Anforderungen sowie Absatz 10 Benutzeroberfläche).\newline
+Jeder Parameter kann auf der Kommandozeile durch die Syntax "--<Name>" oder "-<Kürzel>", gefolgt von dem gewünschten Wert, verwendet werden.\newline
+Ein Parameter hat entweder durch Angabe eines Wertes oder durch Angabe des Parameters Einfluss auf die Ausführung des Befehls (abhängig vom konkreten Parameter).\newline
+Jeder Parameter hat einen eindeutig definierten Standardwert.\newline
+Es ist möglich, dass zwei Parameter nicht in dem selben Befehl verwendet werden können und dürfen. Sollte eine solche Kollision dennoch vorhanden sein, schlägt die Ausführung des Befehls fehl.
+\end{minipage}
+\pagebreak
 
-\item[FA31]	\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}
+%\item[FA31]	\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}
+\begin{minipage}[t]{\linewidth}
+\item[FA31] \textbf{Global definierte Standardwerte}
+\subitem \textbf{Erklärung} Jeder Parameter hat einen global definierten Standardwert. Dieser wird verwendet, wenn der \gls{Benutzer} keinen anderen Wert angibt. Ein globaler Standardwert kann nie einen Fehler auslösen.
+\subitem \textbf{Wichtigkeit} Kernfunktionalität
+\subitem \textbf{Voraussetzung(en)} Dem Parameter kann ein Wert zugewiesen werden.
+\subitem \textbf{Nachbedingung(en)} 
+\subsubitem \textbf{Erfolg} Der Parameter wird mit einem unkritischen Wert aufgefüllt.\newline
+Der Befehl wird trotz unvollständiger Parameter ausgeführt.
+\subitem \textbf{Auslöser} Der Benutzer hat keinen eigenen Parameterwert angegeben.
+\subitem \textbf{Details} Parameter, bei denen die reine Angabe auf der Kommandozeile nicht Aussagekräftig ist (Der Parameter erfordert z.B. einen numerischen Wert) müssen immer mit einem Wert ausgefüllt werden.\newline
+Oftmals ist es lästig einen Parameter explizit anzugeben, da bis auf Randfälle immer der gleiche Wert verwendet wird. In solch einem Fall soll es möglich sein, den Parameter implizit anzugeben.\newline
+Sollte ein \gls{Benutzer} vergessen, einen Parameter anzugeben, so soll der Befehl dennoch mit einem stets unkritischen Wert ausgeführt werden.\newline
+Sollte ein \gls{Benutzer} nicht darüber im klaren sein, wozu ein bestimmter Parameter dient, soll dem \gls{Benutzer} ein unkritischer Wert vorgeschlagen werden.\newline
+Die Standardwerte sind in einer Konfigurationsdatei abgespeichert.
+\end{minipage}
+\pagebreak
 
-\item[FA32]	Benutzer kann Parameter über \gls{Configfile} übergeben
+%\item[FA32]	Benutzer kann Parameter über \gls{Configfile} übergeben
+\begin{minipage}[t]{\linewidth}
+\item[FA32] \textbf{Benutzerdefinierte Standardwerte}
+\subitem \textbf{Erklärung} Jeder Parameter hat einen eindeutig definierten Standardwert, der bei Nichtangabe des Parameters auf der Kommandozeile verwendet wird. Der \gls{Benutzer} kann lokal eine eigene Standardbelegung definieren.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Voraussetzung(en)} Die lokal definierte Standardbelegung darf keine unzulässige Belegung enthalten.\newline
+Der Benutzer hat keinen eigenen Parameterwert angegeben.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Bei Nichtangabe eines Parameters auf der Kommandozeile werden die von dem \gls{Benutzer} angegebenen Standardwerte vor den globalen Standardwerten eingesetzt.
+\subitem \textbf{Auslöser} Der \gls{Benutzer} hat den Parameter nicht auf der Kommandozeile angegeben.
+\subitem \textbf{Details} Ein \gls{Benutzer} verwendet möglicherweise bei jedem Befehlsaufruf immer identische Werte für manche Parameter. Sollten diese Werte nicht mit den global definierten Standardwerten übereinstimmen, kann der \gls{Benutzer} individuelle Standardwerte angeben. Somit muss der \gls{Benutzer} nicht bei jedem Aufruf den Parameter explizit angeben.\newline
+Die benutzerdefinierten Standardwerte sind in einer ausgezeichneten Konfigurationsdatei abgespeichert.
+\end{minipage}
+\pagebreak
 
 \item[FA33] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
 
