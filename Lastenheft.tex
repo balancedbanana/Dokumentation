@@ -122,7 +122,7 @@ Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozei
 
 % Soll nur eine Liste sein, dass Ausschreiben kommt später
 
-\subsubsection{Kernanforderungen} %Name ändern pls
+\subsubsection{Kernanforderungen}
 
 \begin{itemize}[nosep]
 \leftskip=0.5cm
@@ -168,8 +168,8 @@ Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozei
 \begin{minipage}[t]{\linewidth}
 \item[FA00] \textbf{<Titel>}
 \subitem \textbf{Erklärung} <In ca. 3 Zeilen eine grobe Beschreibung geben>
-\subitem \textbf{Wichtigkeit} <entweder Kern-Funktionalität oder Optionale-Funktionalität>
-\subitem \textbf{Vorraussetzungen} <Wann ist diese Funktion nutzbar?> <dieser Punkt kann weggelassen werden>
+\subitem \textbf{Wichtigkeit} <entweder Kern-Funktionalität oder Optionale-Funktionalität> %würde ich weglassen
+\subitem \textbf{Vorraussetzungen} <Wann ist diese Funktion nutzbar?> <dieser Punkt kann weggelassen werden> %absolut nicht, das ist wichtig für testfälle
 \subitem \textbf{Nachbedingung} <Dieser Punkt kann weggelassen werden>
 \subsubitem \textbf{Erfolg} <Was geschieht wenn diese Funktion erfolgreich ausgeführt wurde>
 \subsubitem \textbf{Misserfolg} <Was geschieht wenn diese Funktion nicht ausgeführt werden kann>
@@ -182,22 +182,19 @@ Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozei
 \end{comment}
 
 \begin{itemize}[nosep]
-\item[FA60] \textbf{Sichere Kommunikation}
-\subitem \textbf{Erklärung} Um Nutzerdaten und Passwörter zu schützen ist eine gute Verschlüsslung unerlässlich
-\subitem \textbf{Wichtigkeit} Sehr Hoch, damit der Datenschutz gewährleistet werden kann.
-\subitem \textbf{Vorraussetzungen} Der Server muss im Netzwerk erreichbar sein.
-\subitem \textbf{Nachbedingung} Die Netwerkverbindung ist Aktiv und der Server ist für weitere Kommunikation bereit.
-\subsubitem \textbf{Erfolg} Bearbeiten der Anfrage fortsetzen
-\subsubitem \textbf{Misserfolg} Fehlermeldung Ausgeben und Verbindung zum Server trennen.
-\subitem \textbf{Details} Benutzer müssen sich über ein Anmeldesystem anmelden können, damit die idendität des Aufrufers sichergestellt werden kann.
-\item[FA70] \textbf{Sicherungen}
-\subitem \textbf{Erklärung} Damit bei einen Serverausfall gestartete Aufgaben nicht komplett von vorne beginnen müssen. Ermöglicht den Transfer einer Aufgabe von einen Arbeiter zum anderen.
-\subitem \textbf{Wichtigkeit} Hoch
-\subitem \textbf{Vorraussetzungen} Der Server muss im Netzwerk erreichbar sein.
-\subsubitem \textbf{Erfolg} Der Benutzer bekommt eine ID der Sicherung
-\subsubitem \textbf{Misserfolg} Fehlermeldung Ausgeben und Verbindung zum Server trennen.
-\subitem \textbf{Details} ..
-
+\leftskip=0.5cm
+\item[FA1] \textbf{\gls{Client} verbindet sich beim Start mit dem Server.}
+\begin{itemize}[nosep]
+\item \textbf{Erklärung:} Beim Starten der Client-Anwendung versucht diese sich automatisch mit der Serveranwendung zu verbinden.
+\item \textbf{Vorraussetzungen:} Keine.
+\item \textbf{Erfolg:} Die Client-Anwendung konnte sich mit der Serveranwendung verbinden. Eine entsprechende Meldung wird ausgegeben.
+\item \textbf{Misserfolg:} Die Client-Anwendung konnte sich nicht mit der Serveranwendung verbinden. Eine entsprechende Fehlermeldung wird ausgegeben.
+\item \textbf{Auslöser:} Die Client-Anwendung wird gestartet.
+\item \textbf{Details:}
+\begin{itemize}[nosep]
+	\item Wenn der Benutzer die Client-Anwendung startet, versucht diese die zugehörige Serveranwendung zu finden und sich mit dieser zu verbinden.
+\end{itemize}
+\end{itemize}
 \end{itemize}
 
 
