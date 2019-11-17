@@ -45,8 +45,16 @@
 	name=Daemon,
 	description={Ein Dienst der auf Anfragen reagiert und antwortet},
 }
-\newglossaryentry{Client}{name={Client},description={Programm auf dem Computer eines Benutzers um mit dem Server zu  kommunizieren}}
-\newglossaryentry{Configfile}{name={Configfile},description={Eine Datei die bestimmte Einstellungen speichert}}
+\newglossaryentry{Client}
+{
+	name={Client},
+	description={Programm auf dem Computer eines Benutzers um mit dem Server zu  kommunizieren}
+}
+\newglossaryentry{Configfile}
+{
+	name={Configfile},
+	description={Eine Datei die bestimmte Einstellungen speichert}
+}
 
 \title{Balanced Banana}
 \author{Niklas Lorenz \and Thomas Häuselmann \and Rakan Zeid Al Masri \and Christopher Lukas Homberger \and Jonas Seiler}
@@ -88,7 +96,7 @@ so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Au
 
 Viele Lösungen gibt es bereits auf dem Markt, sie sind aber zu komplex und nicht leicht erweiterbar. Balanced Banana löst diese Probleme in Form eines kompakten, einfach zu bedienenden und skalierbaren Programms. \\
 
-Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, Priorität, Einschränkungen und Bedingungen.
+Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, Priorität, Einschränkungen und Bedingungen.
 
 \section{Zielbestimmung}
 \subsection{Musskriterien}
@@ -96,6 +104,9 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 \subsection{Abgrenzungskriterien}
 % Was will ich bewusst nicht umsetzen?
 % Was soll es nicht sein?
+
+% Ist das nicht ne Wiederholung von Einleitung + Anforderungen?
+% Ich würde das sehr kurz halten, so wie die Einleitung zum Beispiel
 
 \section{Produkteinsatz}
 % Zielgruppe
@@ -107,12 +118,49 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 % Unter welcher Software / Hardware läuft es?
 
 \section{Funktionale Anforderungen}
-\subsection{Liste der funktionalen Anforderungen}
+\subsection{Übersicht der Anforderungen}
+
+% Soll nur eine Liste sein, dass Ausschreiben kommt später
 
 \subsubsection{Kernanforderungen} %Name ändern pls
 
 \begin{itemize}[nosep]
 \leftskip=0.5cm
+
+\item[FA1]	\gls{Client} verbindet sich beim Starten mit dem Server
+\item[FA2] Benutzer authentifiziert sich über den \gls{Client} gegenüber dem Server
+\item[FA3] Benutzer kann eine Aufgabe über \gls{Client} einreihen
+\item[FA4] Benutzer kann Parameter übergeben %evtl auf FA20 verweisen
+\item[FA41]	\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}
+\item[FA42]	Benutzer kann Parameter über \gls{Configfile} übergeben
+\item[FA43] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
+\item[FA44] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
+\item[FA45] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
+\item[FA46] Benutzer kann das benutzte Betriebssystem festlegen
+\item[FA47] Benutzer kann angeben ob die Aufgabe pausierbar ist. %evtl optional
+\item[FA48] Benutzer kann angeben ob der \gls{Client} blockieren soll bis die Aufgabe beendet ist. %Blockierbar glosar?
+\item[FA49] Benutzer übergibt Pfad zu den für die Aufgabe benötigten Dateien. %Pfad glosar?
+\item[FA5] Benutzer kann den Status einer Aufgabe einsehen
+\item[FA51] Benutzer kann die verstrichene Zeit einer Aufgabe einsehen %evtl optional
+\item[FA6] Benutzer bekommt Benachrichtigung über erledigte Aufgabe
+\item[FA7] Server erstellt regelmäßige Sicherungen von laufenden Aufgaben
+\item[FA8] Benutzer kann die Ausgabe seiner Aufgabe anfordern
+\end{itemize}
+
+\subsubsection{optionale Anforderungen}
+\begin{itemize}[nosep]
+\leftskip=0.5cm
+\item[OFA1] Benutzer kann eine geschätzte Restzeit einer Aufgabe sehen	
+\item[OFA2] Server stoppt Aufgaben die zu lange dauern %Dauer einfügen
+\item[OFA3] Benutzer kann eine manuelle Stoppung seiner Aufgabe anfordern
+\item[OFA4] Benutzer kann eine manuelle Sicherung seiner Aufgabe anfordern
+\end{itemize}
+% Die Anwendung soll über verschiedene Betriebsmodi verfügen (Client, Server, Worker, Admin?)
+
+% An wen soll die Rückmeldung erfolgen (EMail oder Nutzerkonto)
+
+% Am Ende des unseres Befehls folgt der Befehl mit dem die Aufgabe gestartet werden kann
+\subsubsection{Funktionale Anforderungen}
 
 \begin{comment}
 
@@ -133,16 +181,7 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 
 \end{comment}
 
-\item[FA10]	\gls{Client} verbindet sich beim Starten mit dem Server
-\item[FA20] Benutzer kann eine Aufgabe über \gls{Client} einreihen
-\item[FA30] Benutzer kann Parameter übergeben %evtl auf FA20 verweisen
-\item[FA31]	\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}
-\item[FA32]	Benutzer kann Parameter über \gls{Configfile} übergeben
-\item[FA33] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
-\item[FA34] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
-\item[FA35] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
-\item[FA40] Anfragen nach Status
-\item[FA50] Benutzer bekommt Benachrichtigung über erledigte Aufgabe
+\begin{itemize}[nosep]
 \item[FA60] \textbf{Sichere Kommunikation}
 \subitem \textbf{Erklärung} Um Nutzerdaten und Passwörter zu schützen ist eine gute Verschlüsslung unerlässlich
 \subitem \textbf{Wichtigkeit} Sehr Hoch, damit der Datenschutz gewährleistet werden kann.
@@ -158,48 +197,9 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 \subsubitem \textbf{Erfolg} Der Benutzer bekommt eine ID der Sicherung
 \subsubitem \textbf{Misserfolg} Fehlermeldung Ausgeben und Verbindung zum Server trennen.
 \subitem \textbf{Details} ..
+
 \end{itemize}
 
-\subsubsection{optionale Anforderungen}
-\begin{itemize}[nosep]
-\leftskip=0.5cm
-\item[OFA01] Benutzer kann eine geschätzte Restzeit einer Aufgabe sehen	
-\end{itemize}
-% Was soll das Produkt machen können
-
-% Es soll einen Webserver als Mittelmann geben
-
-% Es soll möglich sein, Backups von laufenden Aufgaben zu erstellen
-
-% Aufgaben, die nach 2 Tagen arbeitszeit noch nicht beenden, sollen unterbrochen werden und dem Auftraggeber soll eine Mitteilung geschickt werden
-
-% Die Anwendung soll über verschiedene Betriebsmodi verfügen (Client, Server, Worker, Admin?)
-
-% Die folgenden Parameter sind für den Befehl vorgesehen:
-
-% Priorität (low, medium, high, extreme, bananas)
-
-% Anzahl der zu gewünschten Prozessorkerne
-
-% Größe des benötigten Arbeitsspeichers
-
-% Auf welchem Betriebssystem soll die Aufgabe ausgeführt werden?
-
-% Ist die Aufgabe pausierbar?
-
-% Soll der Aufrufer im Terminal blockiert werden
-
-% An wen soll die Rückmeldung erfolgen (EMail oder Nutzerkonto)
-
-% Wo sind die Ordner mit den benötigten Daten abgelegt (Pfad übersetzten damit der Worker die Ordner findet)
-
-% Anforderung eines manuellen Backups / Pausierung / Abbruch
-
-% Anforderung der Log daten
-
-% Am Ende des unseres Befehls folgt der Befehl mit dem die Aufgabe gestartet werden kann
-
-% Wie kann die Aufgabe abgebrochen oder pausiert werden (Einen Befehl spezifizieren)
 
 \section{Produktdaten}
 \begin{itemize}[nosep]
