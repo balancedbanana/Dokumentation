@@ -50,7 +50,6 @@
 	name={Client},
 	description={Programm auf dem Computer eines Benutzers um mit dem Server zu  kommunizieren}
 }
-
 \newglossaryentry{Configfile}
 {
 	name={Configfile},
@@ -133,7 +132,7 @@ so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Au
 
 Viele Lösungen gibt es bereits auf dem Markt, sie sind aber zu komplex und nicht leicht erweiterbar. Balanced Banana löst diese Probleme in Form eines kompakten, einfach zu bedienenden und skalierbaren Programms. \\
 
-Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, Priorität, Einschränkungen und Bedingungen.
+Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, Priorität, Einschränkungen und Bedingungen.
 
 \section{Zielbestimmung}
 \subsection{Musskriterien}
@@ -141,6 +140,9 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 \subsection{Abgrenzungskriterien}
 % Was will ich bewusst nicht umsetzen?
 % Was soll es nicht sein?
+
+% Ist das nicht ne Wiederholung von Einleitung + Anforderungen?
+% Ich würde das sehr kurz halten, so wie die Einleitung zum Beispiel
 
 \section{Produkteinsatz}
 % Zielgruppe
@@ -152,12 +154,62 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 % Unter welcher Software / Hardware läuft es?
 
 \section{Funktionale Anforderungen}
-\subsection{Liste der funktionalen Anforderungen}
+
+\subsection{Übersicht der Anforderungen}
 
 \subsubsection{Kernanforderungen} %Name ändern pls
 
 \begin{itemize}[nosep]
 \leftskip=0.5cm
+
+\item[FA1]	\gls{Client} verbindet sich beim Starten mit dem Server
+\item[FA2] Benutzer authentifiziert sich über den \gls{Client} gegenüber dem Server
+\item[FA3] Benutzer kann eine Aufgabe über \gls{Client} einreihen
+\item[FA4] Benutzer kann Parameter übergeben %evtl auf FA20 verweisen
+\item[FA41]	\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}
+\item[FA42]	Benutzer kann Parameter über \gls{Configfile} übergeben
+\item[FA43] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
+\item[FA44] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
+\item[FA45] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
+\item[FA46] Benutzer kann das benutzte Betriebssystem festlegen
+\item[FA47] Benutzer kann angeben ob die Aufgabe pausierbar ist. %evtl optional
+\item[FA48] Benutzer kann angeben ob der \gls{Client} blockieren soll bis die Aufgabe beendet ist. %Blockierbar glosar?
+\item[FA49] Benutzer übergibt Pfad zu den für die Aufgabe benötigten Dateien. %Pfad glosar?
+\item[FA5] Benutzer kann den Status einer Aufgabe einsehen
+\item[FA51] Benutzer kann die verstrichene Zeit einer Aufgabe einsehen %evtl optional
+\item[FA6] Benutzer bekommt Benachrichtigung über erledigte Aufgabe
+\item[FA7] Server erstellt regelmäßige Sicherungen von laufenden Aufgaben
+\item[FA8] Benutzer kann die Ausgabe seiner Aufgabe anfordern
+\end{itemize}
+
+% Ist die Aufgabe pausierbar?
+
+% Wie kann die Aufgabe abgebrochen oder pausiert werden (Einen Befehl spezifizieren)
+
+% Soll der Aufrufer im Terminal blockiert werden
+
+\subsubsection{optionale Anforderungen}
+\begin{itemize}[nosep]
+\leftskip=0.5cm
+\item[OFA1] Benutzer kann eine geschätzte Restzeit einer Aufgabe sehen	
+\item[OFA2] Server stoppt Aufgaben die zu lange dauern %Dauer einfügen
+\item[OFA3] Benutzer kann eine manuelle Stoppung seiner Aufgabe anfordern
+\item[OFA4] Benutzer kann eine manuelle Sicherung seiner Aufgabe anfordern
+\end{itemize}
+% Es soll einen Webserver als Mittelmann geben
+
+% Es soll möglich sein, Backups von laufenden Aufgaben zu erstellen
+
+% Aufgaben, die nach 2 Tagen arbeitszeit noch nicht beenden, sollen unterbrochen werden und dem Auftraggeber soll eine Mitteilung geschickt werden
+
+% Die Anwendung soll über verschiedene Betriebsmodi verfügen (Client, Server, Worker, Admin?)
+
+% Anforderung eines manuellen Backups / Pausierung / Abbruch
+
+% An wen soll die Rückmeldung erfolgen (EMail oder Nutzerkonto)
+
+% Am Ende des unseres Befehls folgt der Befehl mit dem die Aufgabe gestartet werden kann
+\subsubsection{Funktionale Anforderungen}
 
 \begin{comment}
 
@@ -165,9 +217,9 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 \begin{minipage}[t]{\linewidth}
 \item[FA00] \textbf{<Titel>}
 \subitem \textbf{Erklärung} <In ca. 3 Zeilen eine grobe Beschreibung geben>
-\subitem \textbf{Wichtigkeit} <entweder Kern-Funktionalität oder Optionale-Funktionalität>
-\subitem \textbf{Voraussetzung(en)} <Wann ist diese Funktion nutzbar?> <dieser Punkt kann weggelassen werden>
-\subitem \textbf{Nachbedingung(en)} <Dieser Punkt kann weggelassen werden>
+\subitem \textbf{Wichtigkeit} <entweder Kern-Funktionalität oder Optionale-Funktionalität> %würde ich weglassen
+\subitem \textbf{Vorraussetzungen} <Wann ist diese Funktion nutzbar?> <dieser Punkt kann weggelassen werden> %absolut nicht, das ist wichtig für testfälle
+\subitem \textbf{Nachbedingung} <Dieser Punkt kann weggelassen werden>
 \subsubitem \textbf{Erfolg} <Was geschieht wenn diese Funktion erfolgreich ausgeführt wurde>
 \subsubitem \textbf{Misserfolg} <Was geschieht wenn diese Funktion nicht ausgeführt werden kann>
 \subitem \textbf{Auslöser} <Wie wird diese Funktion gestartet> <Dieser Punkt kann weggelassen werden>
@@ -178,6 +230,22 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 
 \end{comment}
 
+\begin{itemize}[nosep]
+\leftskip=0.5cm
+\begin{comment}
+\item[FA1] \textbf{\gls{Client} verbindet sich beim Start mit dem Server.}
+\begin{itemize}[nosep]
+\item \textbf{Erklärung:} Beim Starten der Client-Anwendung versucht diese sich automatisch mit der Serveranwendung zu verbinden.
+\item \textbf{Vorraussetzungen:} Keine.
+\item \textbf{Erfolg:} Die Client-Anwendung konnte sich mit der Serveranwendung verbinden. Eine entsprechende Meldung wird ausgegeben.
+\item \textbf{Misserfolg:} Die Client-Anwendung konnte sich nicht mit der Serveranwendung verbinden. Eine entsprechende Fehlermeldung wird ausgegeben.
+\item \textbf{Auslöser:} Die Client-Anwendung wird gestartet.
+\item \textbf{Details:}
+\begin{itemize}[nosep]
+	\item Wenn der Benutzer die Client-Anwendung startet, versucht diese die zugehörige Serveranwendung zu finden und sich mit dieser zu verbinden.
+\end{itemize}
+\end{itemize}
+\end{comment}
 %\item[FA10]	\gls{Client} verbindet sich beim Starten mit dem Server
 \begin{minipage}[t]{\linewidth}
 \item[FA10] \textbf{Automatisierter Verbindungsaufbau}
@@ -354,18 +422,6 @@ Liegt der Minimalwert über dem verfügbaren Arbeitsspeicher, wird der Aufgabe d
 Der globale Standardwert für die minimale Menge Arbeitsspeicher ist festgelegt auf 1GiB.\newline
 Der globale Standardwert für die maximale Menge Arbeitsspeicher ist festgelegt auf 8GiB.
 \end{minipage}
-\pagebreak
-
-% Ist die Aufgabe pausierbar?
-
-% Wie kann die Aufgabe abgebrochen oder pausiert werden (Einen Befehl spezifizieren)
-
-% Soll der Aufrufer im Terminal blockiert werden
-
-% An wen soll die Rückmeldung erfolgen (EMail oder Nutzerkonto)
-
-% Wo sind die Ordner mit den benötigten Daten abgelegt (Pfad übersetzten damit der Worker die Ordner findet)
-
 % Auf welchem Betriebssystem soll die Aufgabe ausgeführt werden?
 
 %\item[FA40] Anfragen nach Status
@@ -402,26 +458,6 @@ Genauere Informationen können mithilfe weiterer Parameter angefragt werden. (si
 \pagebreak
 
 \end{itemize}
-
-\subsubsection{optionale Anforderungen}
-\begin{itemize}[nosep]
-\leftskip=0.5cm
-\item[OFA01] Benutzer kann eine geschätzte Restzeit einer Aufgabe sehen	
-\end{itemize}
-
-% Es soll einen Webserver als Mittelmann geben
-
-% Es soll möglich sein, Backups von laufenden Aufgaben zu erstellen
-
-% Aufgaben, die nach 2 Tagen arbeitszeit noch nicht beenden, sollen unterbrochen werden und dem Auftraggeber soll eine Mitteilung geschickt werden
-
-% Die Anwendung soll über verschiedene Betriebsmodi verfügen (Client, Server, Worker, Admin?)
-
-% Anforderung eines manuellen Backups / Pausierung / Abbruch
-
-% Anforderung der Log daten
-
-% Am Ende des unseres Befehls folgt der Befehl mit dem die Aufgabe gestartet werden kann
 
 \section{Produktdaten}
 \begin{itemize}[nosep]
