@@ -13,6 +13,8 @@
 \usepackage[nonumberlist]{glossaries}
 \usepackage{enumitem}
 \usepackage{verbatim}
+\usepackage{indentfirst} % Adds indent for the first paragraph after a {/section}
+
 
 \deftranslation[to=ngerman]{Glossary}{\section{Stichwortverzeichnis}}
 
@@ -21,6 +23,8 @@
  {\def\@xobeysp{\ }\verbatim\rightskip=0pt plus 6em\relax}
  {\endverbatim}
 \makeatother
+
+\setitemize{align=parleft, labelsep=0.5cm}
 
 \makenoidxglossaries
 
@@ -41,6 +45,8 @@
 	name=Daemon,
 	description={Ein Dienst der auf Anfragen reagiert und antwortet},
 }
+\newglossaryentry{Client}{name={Client},description={Programm auf dem Computer eines Benutzers um mit dem Server zu  kommunizieren}}
+\newglossaryentry{Configfile}{name={Configfile},description={Eine Datei die bestimmte Einstellungen speichert}}
 
 \title{Balanced Banana}
 \author{Niklas Lorenz \and Thomas Häuselmann \and Rakan Zeid Al Masri \and Christopher Lukas Homberger \and Jonas Seiler}
@@ -75,9 +81,10 @@
 \pagenumbering{arabic}
 
 \section{Einleitung}
-\vspace*{1.5cm}
+\vspace*{1cm}
+
 Aufgabenverteilung ist ein in vielen Unternehmen übliches Problem. Wenn ein Unternehmen größer wird, 
-so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Aufgaben größer und komplexer sein. Es wird immer schwieriger, die genannten Ressourcen effizient und gerecht auf die verschiedenen Teams, Mitarbeiter und Arbeitsplätze aufzuteilen. \\
+so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Aufgaben größer und komplexer sein. Es wird immer schwieriger, die genannten Ressourcen effizient und gerecht auf die verschiedenen Teams, Mitarbeiter und Aufgaben aufzuteilen. \\
 
 Viele Lösungen gibt es bereits auf dem Markt, sie sind aber zu komplex und nicht leicht erweiterbar. Balanced Banana löst diese Probleme in Form eines kompakten, einfach zu bedienenden und skalierbaren Programms. \\
 
@@ -100,8 +107,48 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 % Unter welcher Software / Hardware läuft es?
 
 \section{Funktionale Anforderungen}
+\subsection{Liste der funktionalen Anforderungen}
+
+\subsubsection{Kernanforderungen} %Name ändern pls
+
 \begin{itemize}[nosep]
-\item[FA10] Automatische Aufgabenverteilung über ein \glspl{CLI} auf mehrere Rechner
+\leftskip=0.5cm
+
+\begin{comment}
+
+%Format einer funktionalen Anforderung:
+\begin{minipage}[t]{\linewidth}
+\item[FA00] \textbf{<Titel>}
+\subitem \textbf{Erklärung} <In ca. 3 Zeilen eine grobe Beschreibung geben>
+\subitem \textbf{Wichtigkeit} <entweder Kern-Funktionalität oder Optionale-Funktionalität>
+\subitem \textbf{Vorraussetzungen} <Wann ist diese Funktion nutzbar?> <dieser Punkt kann weggelassen werden>
+\subitem \textbf{Nachbedingung} <Dieser Punkt kann weggelassen werden>
+\subsubitem \textbf{Erfolg} <Was geschieht wenn diese Funktion erfolgreich ausgeführt wurde>
+\subsubitem \textbf{Misserfolg} <Was geschieht wenn diese Funktion nicht ausgeführt werden kann>
+\subitem \textbf{Auslöser} <Wie wird diese Funktion gestartet> <Dieser Punkt kann weggelassen werden>
+\subitem \textbf{Details} <Ausführliche Beschreibung dieser funktionalen Anforderung>
+\end{minipage}
+\pagebreak
+%Ende der Vorlage
+
+\end{comment}
+
+\item[FA10]	\gls{Client} verbindet sich beim Starten mit dem Server
+\item[FA20] Benutzer kann eine Aufgabe über \gls{Client} einreihen
+\item[FA30] Benutzer kann Parameter übergeben %evtl auf FA20 verweisen
+\item[FA31]	\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}
+\item[FA32]	Benutzer kann Parameter über \gls{Configfile} übergeben
+\item[FA33] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
+\item[FA34] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
+\item[FA35] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
+\item[FA40] Anfragen nach Status
+\item[FA50] Benutzer bekommt Benachrichtigung über erledigte Aufgabe 
+\end{itemize}
+
+\subsubsection{optionale Anforderungen}
+\begin{itemize}[nosep]
+\leftskip=0.5cm
+\item[OFA01] Benutzer kann eine geschätzte Restzeit einer Aufgabe sehen	
 \end{itemize}
 % Was soll das Produkt machen können
 
@@ -141,6 +188,7 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 
 \section{Produktdaten}
 \begin{itemize}[nosep]
+\leftskip=0.5cm
 \item[PD10]
 \end{itemize}
 % Was soll gespeichert werden?
@@ -176,6 +224,7 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 
 \section{Nichtfunktionale Anforderungen}
 \begin{itemize}[nosep]
+\leftskip=0.5cm
 
 \begin{comment}
 
@@ -194,12 +243,6 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 
 \item[NF10]
 \end{itemize}
-
-\section{Systemmodelle}
-
-\subsection{Szenarien}
-
-\subsection{Anwendungsfälle}
 
 % Verteilung und Start der Aufgabe innerhalb von XX Minuten
 
@@ -220,6 +263,12 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 % Ein Benutzer darf nur auf eigene Dateien zugreifen
 
 % Statistiken sind read only
+
+\section{Systemmodelle}
+
+\subsection{Szenarien}
+
+\subsection{Anwendungsfälle}
 
 \section{Benutzer Oberfläche}
 \subsection{Befehlszeile}
