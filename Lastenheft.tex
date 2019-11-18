@@ -146,43 +146,81 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 
 %Format eines Produktdatums:
 \begin{minipage}[t]{\linewidth}
-\item[PD00] \textbf{<Titel>}
-\subitem \textbf{Erklärung} <In ca. 3 Zeilen eine grobe Beschreibung geben>
-\subitem \textbf{Wichtigkeit} <Soll dieses Datum unbedingt gespeichert werden (core) oder ist es optional?>
-\subitem \textbf{Details} <Ausführliche Beschreibung dieses Produktdatums>
+\item[PD00] \textbf{}
+\subitem \textbf{Erklärung} 
+\subitem \textbf{Wichtigkeit} 
+\subitem \textbf{Details} 
 \end{minipage}
 \pagebreak
 %Ende der Vorlage
 
 \end{comment}
 
-\item[PD00] \textbf{Benutzer}
-\subitem \textbf{Erklärung} Wird zur Zuordnung von Benutzern und Aufgaben verwendet, damit 
-\subitem \textbf{Wichtigkeit} <Soll dieses Datum unbedingt gespeichert werden (core) oder ist es optional?>
-\subitem \textbf{Details} <Ausführliche Beschreibung dieses Produktdatums>
-\end{itemize}
-\item[PD00] \textbf{Befehl}
-\subitem \textbf{Erklärung} <In ca. 3 Zeilen eine grobe Beschreibung geben>
-\subitem \textbf{Wichtigkeit} <Soll dieses Datum unbedingt gespeichert werden (core) oder ist es optional?>
-\subitem \textbf{Details} <Ausführliche Beschreibung dieses Produktdatums>
-\end{itemize}
-% Was soll gespeichert werden?
-
-% Daten über ein Nutzerkonto?
-
 % Ausführungszeit (insgesamt, aktiv, passiv)
+\begin{minipage}[t]{\linewidth}
+\item[PD10] \textbf{Arbeitszeiten}
+\subitem \textbf{Erklärung} Das Programm kann sich Details über die Dauer der Ausführung der einzelnen Aufgaben speichern.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Details} Die Informationen über die Arbeitszeit einer Aufgabe sind aufgeteilt in:\newline
+1. aktive Zeit: Die Zeit, in der die Aufgabe tatsächlich ausgeführt wurde.\newline
+2. passive Zeit: Die Zeit in der die Aufgabe in der Warteschlange verbracht hat.\newline
+3. Gesamtzeit: Die Zeit die zwischen Auftragseingang und Abschicken der Abschlussbenachrichtigung vergangen ist.
+\end{minipage}
+\pagebreak
 
 % Ausführungsbefehl, Pausierbefehl, Abbruchbefehl
+\begin{minipage}[t]{\linewidth}
+\item[PD20] \textbf{Aufgabenspezifische Befehle}
+\subitem \textbf{Erklärung} Jede Aufgabe wird mit einem von dem Benutzer definierten Befehl gestartet, pausiert und abgebrochen, sofern diese Aktionen verfügbar sind.
+\subitem \textbf{Wichtigkeit} Nicht optional
+\subitem \textbf{Details} Für jede Aufgabe sind insgesamt drei verschiedene Befehle definierbar:\newline
+1. Start-Befehl: Wie wird diese Aufgabe gestartet?\newline
+2. Pause-Befehl: Wie wird diese Aufgabe pausiert, wenn möglich?\newline
+2,5. Fortsetzen-Befehl: Wie kann die pausierte Aufgabe fortgesetzt werden?\newline
+3. Abbruch-Befehl: Wie kann diese Aufgabe abgebrochen werden?\newline
+Ist für eine Aufgabe eine dieser Aktionen nicht verfügbar, oder muss für diese Aktion nichts besonderes unternommen werden, werden keine besonderen Befehle angegeben und das Programm verwendet nur seine Standardroutine.
+\end{minipage}
+\pagebreak
 
 % Ist das Programm pausierbar
+\begin{minipage}[t]{\linewidth}
+\item[PD21] \textbf{Pausierbarkeit}
+\subitem \textbf{Erklärung} Hinsichtlich der Warteschlangenfunktionalität ist es notwendig für jede Aufgabe zu wissen, ob diese unterbrochen (pausiert) werden kann.
+\subitem \textbf{Wichtigkeit} Nicht optional
+\subitem \textbf{Details} Die Information über die Pausierbarkeit einer Aufgabe wird beim Einreichen der Aufgabe als Parameter mitgegeben.\newline
+Die Information über die Pausierbarkeit ist ein Wahrheitswert.
+\end{minipage}
+\pagebreak
 
 % Ausgabedaten
-
 % Logdaten
+\begin{minipage}[t]{\linewidth}
+\item[PD30] \textbf{Ausgabedaten}
+\subitem \textbf{Erklärung} Aufgaben erzeugen typischerweise Ausgabedaten im Verlauf ihrer Ausführung.
+\subitem \textbf{Wichtigkeit} Nicht optional
+\subitem \textbf{Details} Ausgabedaten bezeichnen hier die Ausgaben der Aufgabe auf der Standardausgabe (z.B. std:out oder System.out).\newline
+Um eine Abfrage der letzten Ausgaben einer Aufgabe zu ermöglichen, müssen diese Ausgaben dem Programm bekannt sein. Sie sind in einer Log-Datei abgespeichert und können auf Anfrage des Auftragsgebers an einen Client übermittelt werden.
+\end{minipage}
+\pagebreak
 
 % Mit welcher Priorität ist die Aufgabe gestartet worden
+\begin{minipage}[t]{\linewidth}
+\item[PD40] \textbf{Aufgabenpriorität}
+\subitem \textbf{Erklärung} Hinsichtlich der Warteschlangenfunktionalität ist es interessant, für jede Aufgabe die angegebene Priorität zu kennen.
+\subitem \textbf{Wichtigkeit} Zusammen mit Priorität Parameter
+\subitem \textbf{Details} Die Position einer Aufgabe in der Warteschlange, sowie das Recht andere Aufgaben zu unterbrechen sind wesentlich von der eigenen Priorität abhängig. Daher muss diese Information abgespeichert werden (sofern vorhanden).
+\end{minipage}
+\pagebreak
 
-% wer hat die Aufgabe gestartet (EMail oder Nutzerkonto)
+% wer hat die Aufgabe gestartet
+\begin{minipage}[t]{\linewidth}
+\item[PD50] \textbf{Auftraggeber Kontaktinformation}
+\subitem \textbf{Erklärung} Hält Kontaktinformationen (E-Mail Adresse) des Auftraggebers.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Details} Um dem Auftraggeber Rückmeldung über abgeschlossene Aufgaben geben zu können, muss eine Kontaktinformation hinterlegt sein.\newline
+Es ist vorgesehen, eine E-Mail Adresse als Kontaktinformation anzunehmen. Diese wird beim Einreichen der Aufgabe von dem Auftraggeber angegeben.
+\end{minipage}
+\pagebreak
 
 % Auf welchem Betriebssystem soll die Aufgabe ausgeführt werden
 
@@ -193,6 +231,8 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 % Globale Statistiken wie z.B. Anzahl aktive, passive, gequete Aufgaben, Gesamtlast, ...
 
 % Eine Liste mit allen verfügbaren Workern
+
+\end{itemize}
 
 \subsection{Personendaten}
 \subsection{Messdaten}
