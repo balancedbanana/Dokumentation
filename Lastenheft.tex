@@ -151,9 +151,36 @@ Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozei
 % Anwendungsbereiche
 % Betriebsbedinugen
 % Wer? Was? Wozu?
+\begin{itemize}
+\item \textbf{Zielgruppe}\newline
+Das Produkt ist für die Verwendung durch die Mitarbeiter am Institut für Technische Informatik (ITEC) des Karlsruher Institut für Technologie (KIT) gedacht.
+\item \textbf{Anwendung}\newline
+Das Produkt dient dazu, Simulationen und andere rechenintensive Aufgaben auf eigens zu diesem Zweck gedachte Rechner (Arbeiter) zu verteilen.
+\item \textbf{Produktaufbau}\newline
+Das Produkt ist den Aufgabengebieten entsprechend in drei Programme aufgeteilt:\newline
+1. Der Client (Benutzer): Verantwortlich für die Interaktion des Benutzers mit dem Produkt auf der Befehlszeile.\newline
+2. Der Scheduler (Server): Verantwortlich für das effiziente Verteilen der Aufgaben auf dem Arbeiterpool. Agiert als Mittelmann zwischen Benutzer und Arbeiter.\newline
+3. Der Arbeiter (Worker): Verantwortlich für Ausführung, Pausieren und Abbruch der Aufgaben auf den Arbeitern (spezielle Rechner für die Aufgabenverarbeitung).
+\end{itemize}
+\newpage
 
 \section{Produktumgebung}
 % Unter welcher Software / Hardware läuft es?
+
+\begin{itemize}
+\item \textbf{Client (Nutzer) Umgebung}\newline
+Betriebssystem: Linux oder Linux basiertes System\newline
+Mindestanforderungen: 1 CPU Kern sowie 1 GB Arbeitsspeicher
+\item \textbf{Scheduler (Server) Umgebung}\newline
+Betriebssystem: CentOS 7 oder Ubuntu 18.04\newline
+Mindestanforderungen: 1 CPU Kern sowie 4 GB Arbeitsspeicher
+\item \textbf{Arbeiter (Worker) Umgebung}\newline
+Betriebssystem: CentOS 7 oder Ubuntu 18.04\newline
+Mindestanforderungen: 1 CPU Kern sowie 8 GB Arbeitsspeicher\newline
+Empfohlen: 24 CPU Kerne sowie 64 GB Arbeitsspeicher
+\subitem 
+\end{itemize}
+\newpage
 
 \section{Funktionale Anforderungen}
 
