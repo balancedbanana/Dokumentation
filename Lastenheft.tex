@@ -462,35 +462,174 @@ Genauere Informationen können mithilfe weiterer Parameter angefragt werden. (si
 \section{Produktdaten}
 \begin{itemize}[nosep]
 \leftskip=0.5cm
-\item[PD10]
-\end{itemize}
 % Was soll gespeichert werden?
 
-% Daten über ein Nutzerkonto?
+\begin{comment}
 
-% Ausführungszeit (insgesamt, aktiv, passiv)
+%Format eines Produktdatums:
+\begin{minipage}[t]{\linewidth}
+\item[PD00] \textbf{}
+\subitem \textbf{Erklärung} 
+\subitem \textbf{Wichtigkeit} 
+\subitem \textbf{Details} 
+\end{minipage}
+\pagebreak
+%Ende der Vorlage
 
-% Ausführungsbefehl, Pausierbefehl, Abbruchbefehl
-
-% Ist das Programm pausierbar
+\end{comment}
 
 % Ausgabedaten
-
 % Logdaten
-
-% Mit welcher Priorität ist die Aufgabe gestartet worden
-
-% wer hat die Aufgabe gestartet (EMail oder Nutzerkonto)
-
-% Auf welchem Betriebssystem soll die Aufgabe ausgeführt werden
-
-% Auf wie vielen Rechnern lief die Aufgabe (Wie oft wurde sie pausiert)
+\begin{minipage}[t]{\linewidth}
+\item[PD10] \textbf{Ausgabedaten}
+\subitem \textbf{Erklärung} Aufgaben erzeugen typischerweise Ausgabedaten im Verlauf ihrer Ausführung.
+\subitem \textbf{Wichtigkeit} Nicht optional
+\subitem \textbf{Details} Ausgabedaten bezeichnen hier die Ausgaben der Aufgabe auf der Standardausgabe (z.B. std:out oder System.out).\newline
+Um eine Abfrage der letzten Ausgaben einer Aufgabe zu ermöglichen, müssen diese Ausgaben dem Programm bekannt sein. Sie sind in einer Log-Datei abgespeichert und können auf Anfrage des Auftragsgebers an einen Client übermittelt werden.
+\end{minipage}
+\pagebreak
 
 % Allgemein alle Parameter unseres Befehls die für diese Aufgabe angegeben wurden
+\begin{minipage}[t]{\linewidth}
+\item[PD20] \textbf{Befehlsparameter}
+\subitem \textbf{Erklärung} Die Werte der Befehlsparameter auf der Kommandozeile.
+\subitem \textbf{Wichtigkeit} Nicht-optional
+\subitem \textbf{Details} Alle übergebenen Parameter werden zusammen mit ihren Werten für spätere Verwendung abgespeichert.
+\end{minipage}
+\pagebreak
+
+% Ausführungsbefehl, Pausierbefehl, Abbruchbefehl
+\begin{minipage}[t]{\linewidth}
+\item[PD21] \textbf{Aufgabenspezifische Befehle}
+\subitem \textbf{Erklärung} Jede Aufgabe wird mit einem von dem Benutzer definierten Befehl gestartet, pausiert und abgebrochen, sofern diese Aktionen verfügbar sind.
+\subitem \textbf{Wichtigkeit} Nicht optional
+\subitem \textbf{Details} Für jede Aufgabe sind insgesamt drei verschiedene Befehle definierbar:\newline
+1. Start-Befehl: Wie wird diese Aufgabe gestartet?\newline
+2. Pause-Befehl: Wie wird diese Aufgabe pausiert, wenn möglich?\newline
+2,5. Fortsetzen-Befehl: Wie kann die pausierte Aufgabe fortgesetzt werden?\newline
+3. Abbruch-Befehl: Wie kann diese Aufgabe abgebrochen werden?\newline
+Ist für eine Aufgabe eine dieser Aktionen nicht verfügbar, oder muss für diese Aktion nichts besonderes unternommen werden, werden keine besonderen Befehle angegeben und das Programm verwendet nur seine Standardroutine.
+\end{minipage}
+\pagebreak
+
+% Mit welcher Priorität ist die Aufgabe gestartet worden
+\begin{minipage}[t]{\linewidth}
+\item[PD22] \textbf{Aufgabenpriorität}
+\subitem \textbf{Erklärung} Hinsichtlich der Warteschlangenfunktionalität ist es interessant, für jede Aufgabe die angegebene Priorität zu kennen.
+\subitem \textbf{Wichtigkeit} Zusammen mit Priorität Parameter
+\subitem \textbf{Details} Die Position einer Aufgabe in der Warteschlange, sowie das Recht andere Aufgaben zu unterbrechen sind wesentlich von der eigenen Priorität abhängig. Daher muss diese Information abgespeichert werden (sofern vorhanden).
+\end{minipage}
+\pagebreak
+
+% wer hat die Aufgabe gestartet
+\begin{minipage}[t]{\linewidth}
+\item[PD23] \textbf{Auftraggeber Kontaktinformation}
+\subitem \textbf{Erklärung} Hält Kontaktinformationen (E-Mail Adresse) des Auftraggebers.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Details} Um dem Auftraggeber Rückmeldung über abgeschlossene Aufgaben geben zu können, muss eine Kontaktinformation hinterlegt sein.\newline
+Es ist vorgesehen, eine E-Mail Adresse als Kontaktinformation anzunehmen. Diese wird beim Einreichen der Aufgabe von dem Auftraggeber angegeben.
+\end{minipage}
+\pagebreak
+
+% Auf welchem Betriebssystem soll die Aufgabe ausgeführt werden
+\begin{minipage}[t]{\linewidth}
+\item[PD24] \textbf{Zielbetriebssystem}
+\subitem \textbf{Erklärung} Speichert Betriebssystem Vorgaben für Aufgaben, die ein spezielles Betriebssystem erfordern.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Details} Manche Programme sind Abhängig vom Betriebssystem. Diesen Programmen soll daher ermöglicht werden, auf ihrem gewünschten Zielbetriebssystem zu laufen. Hierzu ist es notwendig, Informationen über besagtes Zielbetriebssystem zu speichern.
+\end{minipage}
+\pagebreak
+
+% Ist das Programm pausierbar
+\begin{minipage}[t]{\linewidth}
+\item[PD25] \textbf{Pausierbarkeit}
+\subitem \textbf{Erklärung} Hinsichtlich der Warteschlangenfunktionalität ist es notwendig für jede Aufgabe zu wissen, ob diese unterbrochen (pausiert) werden kann.
+\subitem \textbf{Wichtigkeit} Nicht optional
+\subitem \textbf{Details} Die Information über die Pausierbarkeit einer Aufgabe wird beim Einreichen der Aufgabe als Parameter mitgegeben.\newline
+Die Information über die Pausierbarkeit ist ein Wahrheitswert.
+\end{minipage}
+\pagebreak
+
+%Aufgabenspezifische Statistiken
+\begin{minipage}[t]{\linewidth}
+\item[PD40] \textbf{Aufgabenspezifische Statistiken}
+\subitem \textbf{Erklärung} Das Programm soll in der Lage sein, Kennwerte bezüglich der einzelnen Aufgaben zu erheben.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Details} Die einzelnen Kennwerte sind im folgenden aufgelistet.\newline
+Ein aufgabenspezifischer Kennwert enthält eine Information über eine einzelne Aufgabe.
+\end{minipage}
+\pagebreak
+
+% Ausführungszeit (insgesamt, aktiv, passiv)
+\begin{minipage}[t]{\linewidth}
+\item[PD41] \textbf{Arbeitszeiten}
+\subitem \textbf{Erklärung} Das Programm kann sich Details über die Dauer der Ausführung der einzelnen Aufgaben speichern.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Details} Die Informationen über die Arbeitszeit einer Aufgabe sind aufgeteilt in:\newline
+1. aktive Zeit: Die Zeit, in der die Aufgabe tatsächlich ausgeführt wurde.\newline
+2. passive Zeit: Die Zeit in der die Aufgabe in der Warteschlange verbracht hat.\newline
+3. Gesamtzeit: Die Zeit die zwischen Auftragseingang und Abschicken der Abschlussbenachrichtigung vergangen ist.
+\end{minipage}
+\pagebreak
+
+% Auf wie vielen Rechnern lief die Aufgabe (Wie oft wurde sie pausiert)
+\begin{minipage}[t]{\linewidth}
+\item[PD42] \textbf{Pausen}
+\subitem \textbf{Erklärung} Anzahl der Pausen und möglicherweise Rechnerwechsel einer Aufgabe.
+\subitem \textbf{Wichtigkeit} Optional (Statistik)
+\subitem \textbf{Details} Für jedes Programm wird die Anzahl der erfolgten Pausen abgespeichert.\newline
+Zusätzlich soll hinterlegt werden, auf welchen Rechnern die Aufgabe aktiv lief.
+\end{minipage}
+\pagebreak
 
 % Globale Statistiken wie z.B. Anzahl aktive, passive, gequete Aufgaben, Gesamtlast, ...
+\begin{minipage}[t]{\linewidth}
+\item[PD60] \textbf{Globale Statistiken}
+\subitem \textbf{Erklärung} Das Programm soll in der Lage sein, Kennwerte bezüglich des Gesamtsystems (alle Aufgaben) zu erheben.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Details} Die einzelnen Kennwerte sind im folgenden Aufgelistet.\newline
+Ein globaler Kennwert enthält eine Information über das gesamte System. Das heißt über den Zustand aller Aufgaben, aller Worker, usw.
+\end{minipage}
+\pagebreak
 
 % Eine Liste mit allen verfügbaren Workern
+\begin{minipage}[t]{\linewidth}
+\item[PD61] \textbf{Worker Liste}
+\subitem \textbf{Erklärung} Eine Liste aller einsatzbereiten Worker.
+\subitem \textbf{Wichtigkeit} Nicht-optional
+\subitem \textbf{Details} Enthält alle verfügbaren Worker.\newline
+Somit kann der Server die Aufgaben auf alle Worker verteilen.
+\end{minipage}
+\pagebreak
+
+%Anzahl aktive und passive Aufgaben
+\begin{minipage}[t]{\linewidth}
+\item[PD62] \textbf{Aufgaben}
+\subitem \textbf{Erklärung} Anzahl aller laufenden und wartenden Aufgaben.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Details} Die Anzahl der derzeit laufenden (aktiven) Aufgaben und die Anzahl der in der Warteschlange verweilenden Aufgaben.
+\end{minipage}
+\pagebreak
+
+%Gesamtlast
+\begin{minipage}[t]{\linewidth}
+\item[PD63] \textbf{Gesamtlast}
+\subitem \textbf{Erklärung} Auslastung der Worker
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Details} Gibt einen Wert für die Gesamtauslastung der Worker (CPU, Arbeitsspeicher, usw.)
+\end{minipage}
+\pagebreak
+
+%Prioritätsverteilung
+\begin{minipage}[t]{\linewidth}
+\item[PD64] \textbf{Prioritäten der Aufgaben}
+\subitem \textbf{Erklärung} Summe aller Aufgaben einer bestimmten Priorität
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Details} Summiert für jede Priorität die Anzahl der derzeit aktiven und passiven Aufgaben auf, die mit dieser Priorität gestartet wurden.
+\end{minipage}
+\pagebreak
+
+\end{itemize}
 
 \subsection{Personendaten}
 \subsection{Messdaten}
