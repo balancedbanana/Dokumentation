@@ -45,8 +45,52 @@
 	name=Daemon,
 	description={Ein Dienst der auf Anfragen reagiert und antwortet},
 }
-\newglossaryentry{Client}{name={Client},description={Programm auf dem Computer eines Benutzers um mit dem Server zu  kommunizieren}}
-\newglossaryentry{Configfile}{name={Configfile},description={Eine Datei die bestimmte Einstellungen speichert}}
+\newglossaryentry{Client}
+{
+	name={Client},
+	description={Programm auf dem Computer eines Benutzers um mit dem Server zu  kommunizieren}
+}
+\newglossaryentry{Configfile}
+{
+	name={Configfile},
+	description={Eine Datei die bestimmte Einstellungen speichert}
+}
+
+\newglossaryentry{Server}
+{
+	name={Server},
+	description={Programm auf dem Server, der die Benutzer (Außenwelt) mit den Arbeitern (Privates Netzwerk) verbindet.}
+}
+
+\newglossaryentry{Benutzer}
+{
+	name={Benutzer},
+	description={Eine Person, die dazu in der Lage ist, Befehle auszuführen.}
+}
+
+\newglossaryentry{Prioritaet}
+{
+	name={Priorität},
+	description={Ein diskretes Maß für Wichtigkeit bzw. Relevanz. Meist eine ganze Zahl, wobei gewisse Werte auch durch vorher definierte Wörter bezeichnet werden können.}
+}
+
+\newglossaryentry{Multicast}
+{
+	name={Multicast},
+	description={Eine besondere Form von Netzwerk Packet, welches an alle Adressen des Netzwerkes gesendet wird.}
+}
+
+\newglossaryentry{Worker}
+{
+	name={Worker},
+	description={Programm auf den Rechnern, welche dafür zuständig sind, die Aufgaben auszuführen.}
+}
+
+\newglossaryentry{Administrator}
+{
+	name={Administrator},
+	description={Eine Person, die dazu privilegiert ist, das Gesamtsystem zu verwalten und über uneingeschränkten Zugriff auf Ein- und Ausgabedateien verfügt.}
+}
 
 \title{Balanced Banana}
 \author{Niklas Lorenz \and Thomas Häuselmann \and Rakan Zeid Al Masri \and Christopher Lukas Homberger \and Jonas Seiler}
@@ -88,7 +132,7 @@ so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Au
 
 Viele Lösungen gibt es bereits auf dem Markt, sie sind aber zu komplex und nicht leicht erweiterbar. Balanced Banana löst diese Probleme in Form eines kompakten, einfach zu bedienenden und skalierbaren Programms. \\
 
-Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, Priorität, Einschränkungen und Bedingungen.
+Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, Priorität, Einschränkungen und Bedingungen.
 
 \section{Zielbestimmung}
 \subsection{Musskriterien}
@@ -96,6 +140,9 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 \subsection{Abgrenzungskriterien}
 % Was will ich bewusst nicht umsetzen?
 % Was soll es nicht sein?
+
+% Ist das nicht ne Wiederholung von Einleitung + Anforderungen?
+% Ich würde das sehr kurz halten, so wie die Einleitung zum Beispiel
 
 \section{Produkteinsatz}
 % Zielgruppe
@@ -107,12 +154,62 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 % Unter welcher Software / Hardware läuft es?
 
 \section{Funktionale Anforderungen}
-\subsection{Liste der funktionalen Anforderungen}
+
+\subsection{Übersicht der Anforderungen}
 
 \subsubsection{Kernanforderungen} %Name ändern pls
 
 \begin{itemize}[nosep]
 \leftskip=0.5cm
+
+\item[FA1]	\gls{Client} verbindet sich beim Starten mit dem Server
+\item[FA2] Benutzer authentifiziert sich über den \gls{Client} gegenüber dem Server
+\item[FA3] Benutzer kann eine Aufgabe über \gls{Client} einreihen
+\item[FA4] Benutzer kann Parameter übergeben %evtl auf FA20 verweisen
+\item[FA41]	\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}
+\item[FA42]	Benutzer kann Parameter über \gls{Configfile} übergeben
+\item[FA43] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
+\item[FA44] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
+\item[FA45] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
+\item[FA46] Benutzer kann das benutzte Betriebssystem festlegen
+\item[FA47] Benutzer kann angeben ob die Aufgabe pausierbar ist. %evtl optional
+\item[FA48] Benutzer kann angeben ob der \gls{Client} blockieren soll bis die Aufgabe beendet ist. %Blockierbar glosar?
+\item[FA49] Benutzer übergibt Pfad zu den für die Aufgabe benötigten Dateien. %Pfad glosar?
+\item[FA5] Benutzer kann den Status einer Aufgabe einsehen
+\item[FA51] Benutzer kann die verstrichene Zeit einer Aufgabe einsehen %evtl optional
+\item[FA6] Benutzer bekommt Benachrichtigung über erledigte Aufgabe
+\item[FA7] Server erstellt regelmäßige Sicherungen von laufenden Aufgaben
+\item[FA8] Benutzer kann die Ausgabe seiner Aufgabe anfordern
+\end{itemize}
+
+% Ist die Aufgabe pausierbar?
+
+% Wie kann die Aufgabe abgebrochen oder pausiert werden (Einen Befehl spezifizieren)
+
+% Soll der Aufrufer im Terminal blockiert werden
+
+\subsubsection{optionale Anforderungen}
+\begin{itemize}[nosep]
+\leftskip=0.5cm
+\item[OFA1] Benutzer kann eine geschätzte Restzeit einer Aufgabe sehen	
+\item[OFA2] Server stoppt Aufgaben die zu lange dauern %Dauer einfügen
+\item[OFA3] Benutzer kann eine manuelle Stoppung seiner Aufgabe anfordern
+\item[OFA4] Benutzer kann eine manuelle Sicherung seiner Aufgabe anfordern
+\end{itemize}
+% Es soll einen Webserver als Mittelmann geben
+
+% Es soll möglich sein, Backups von laufenden Aufgaben zu erstellen
+
+% Aufgaben, die nach 2 Tagen arbeitszeit noch nicht beenden, sollen unterbrochen werden und dem Auftraggeber soll eine Mitteilung geschickt werden
+
+% Die Anwendung soll über verschiedene Betriebsmodi verfügen (Client, Server, Worker, Admin?)
+
+% Anforderung eines manuellen Backups / Pausierung / Abbruch
+
+% An wen soll die Rückmeldung erfolgen (EMail oder Nutzerkonto)
+
+% Am Ende des unseres Befehls folgt der Befehl mit dem die Aufgabe gestartet werden kann
+\subsubsection{Funktionale Anforderungen}
 
 \begin{comment}
 
@@ -120,8 +217,8 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 \begin{minipage}[t]{\linewidth}
 \item[FA00] \textbf{<Titel>}
 \subitem \textbf{Erklärung} <In ca. 3 Zeilen eine grobe Beschreibung geben>
-\subitem \textbf{Wichtigkeit} <entweder Kern-Funktionalität oder Optionale-Funktionalität>
-\subitem \textbf{Vorraussetzungen} <Wann ist diese Funktion nutzbar?> <dieser Punkt kann weggelassen werden>
+\subitem \textbf{Wichtigkeit} <entweder Kern-Funktionalität oder Optionale-Funktionalität> %würde ich weglassen
+\subitem \textbf{Vorraussetzungen} <Wann ist diese Funktion nutzbar?> <dieser Punkt kann weggelassen werden> %absolut nicht, das ist wichtig für testfälle
 \subitem \textbf{Nachbedingung} <Dieser Punkt kann weggelassen werden>
 \subsubitem \textbf{Erfolg} <Was geschieht wenn diese Funktion erfolgreich ausgeführt wurde>
 \subsubitem \textbf{Misserfolg} <Was geschieht wenn diese Funktion nicht ausgeführt werden kann>
@@ -133,58 +230,234 @@ Mit unsrer Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeil
 
 \end{comment}
 
-\item[FA10]	\gls{Client} verbindet sich beim Starten mit dem Server
-\item[FA20] Benutzer kann eine Aufgabe über \gls{Client} einreihen
-\item[FA30] Benutzer kann Parameter übergeben %evtl auf FA20 verweisen
-\item[FA31]	\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}
-\item[FA32]	Benutzer kann Parameter über \gls{Configfile} übergeben
-\item[FA33] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
-\item[FA34] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
-\item[FA35] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
-\item[FA40] Anfragen nach Status
-\item[FA50] Benutzer bekommt Benachrichtigung über erledigte Aufgabe 
-\end{itemize}
-
-\subsubsection{optionale Anforderungen}
 \begin{itemize}[nosep]
 \leftskip=0.5cm
-\item[OFA01] Benutzer kann eine geschätzte Restzeit einer Aufgabe sehen	
+\begin{comment}
+\item[FA1] \textbf{\gls{Client} verbindet sich beim Start mit dem Server.}
+\begin{itemize}[nosep]
+\item \textbf{Erklärung:} Beim Starten der Client-Anwendung versucht diese sich automatisch mit der Serveranwendung zu verbinden.
+\item \textbf{Vorraussetzungen:} Keine.
+\item \textbf{Erfolg:} Die Client-Anwendung konnte sich mit der Serveranwendung verbinden. Eine entsprechende Meldung wird ausgegeben.
+\item \textbf{Misserfolg:} Die Client-Anwendung konnte sich nicht mit der Serveranwendung verbinden. Eine entsprechende Fehlermeldung wird ausgegeben.
+\item \textbf{Auslöser:} Die Client-Anwendung wird gestartet.
+\item \textbf{Details:}
+\begin{itemize}[nosep]
+	\item Wenn der Benutzer die Client-Anwendung startet, versucht diese die zugehörige Serveranwendung zu finden und sich mit dieser zu verbinden.
 \end{itemize}
-% Was soll das Produkt machen können
+\end{itemize}
+\end{comment}
+%\item[FA10]	\gls{Client} verbindet sich beim Starten mit dem Server
+\begin{minipage}[t]{\linewidth}
+\item[FA10] \textbf{Automatisierter Verbindungsaufbau}
+\subitem \textbf{Erklärung} Der \gls{Client} soll ohne explizite Aufforderung durch den \gls{Benutzer} mit dem \gls{Server} eine Netzwerk Verbindung zum Übermitteln der Daten aufbauen.
+\subitem \textbf{Wichtigkeit} Kernfunktionalität
+\subitem \textbf{Voraussetzung(en)} Ein \gls{Server} muss erreichbar sein.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Der \gls{Client} ist in der Lage jeden Befehlsaufruf, ohne den \gls{Benutzer} darüber zu informieren, an den \gls{Server} zu übermitteln.
+\subsubitem \textbf{Misserfolg} Eine Fehlernachricht wird ausgegeben, die den \gls{Benutzer} darüber in Kenntnis setzt, dass keine Netzwerk Verbindung mit dem \gls{Server} aufgebaut werden konnte.
+\subitem \textbf{Auslöser} Jeder Befehlsaufruf des \gls{Client} löst einen automatisierten Verbindungsaufbau aus.
+\subitem \textbf{Details} Zur einfachen Verwendung eines \gls{Client} soll sich dieser selbstständig mit einem \gls{Server} verbinden.\newline
+Die Verbindung wird zum Start jeder Übermittlung aufgebaut und nach Ende der Übermittlung geschlossen.\newline
+Die Verbindung dient einzig dem Zweck, den \gls{Server} über einen Befehlsaufruf  in Kenntnis zu setzen.\newline
+Ablauf:\newline
+Schritt 1: Der \gls{Client} sendet eine \gls{Multicast} Nachricht an das Netzwerk.\newline
+Schritt 2: Der \gls{Server} beantwortet die Nachricht und setzt so den \gls{Client} über seine Existenz und Netzwerk-Adresse in Kenntnis.\newline
+Schritt 3: Der \gls{Client} übermittelt den Befehlsaufruf an den Server.\newline
+Schritt 4: Der \gls{Server} sendet eine Eingangsbestätigung an den \gls{Client}.\newline
+Schritt 5: Da nun keine Nachrichten mehr übermittelt werden müssen, wird die Verbindung geschlossen.
+\end{minipage}
+\pagebreak
 
-% Es soll einen Webserver als Mittelmann geben
+\begin{minipage}[t]{\linewidth}
+\item[FA11] \textbf{Gedächtnis der vorherigen Verbindung}
+\subitem \textbf{Erklärung} Der \gls{Client} soll sich Informationen über eine erfolgreiche Verbindung zu einem \gls{Server} merken.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Voraussetzung(en)} Diese Funktionalität wird stets in Verbindung mit Funktion FA10 verwendet.\newline
+Funktion FA10 konnte erfolgreich abgeschlossen werden.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Der \gls{Client} ist bei dem nächsten Verbindungsaufbau in der Lage, den \gls{Server} direkt anzusprechen.
+\subsubitem \textbf{Misserfolg} Der \gls{Client} hat keine Informationen über einen existierenden \gls{Server}.
+\subitem \textbf{Auslöser} Funktion FA10 wurde erfolgreich ausgeführt.
+\subitem \textbf{Details} Der Verbindungsaufbau zwischen \gls{Client} und \gls{Server} mithilfe einer \gls{Multicast} Nachricht sollte vermieden werden. Daher soll sich der \gls{Client} den letzten \gls{Server} mit dem er sich erfolgreich verbunden hat merken. Somit kann der \gls{Client} bei dem nächsten Verbindungsaufbau die \gls{Multicast} Nachricht vermeiden, indem er sich direkt mit dem \gls{Server} in Verbindung setzt.\newline
+Ist der hinterlegte \gls{Server} nicht mehr erreichbar, so wird er vom \gls{Client} vergessen.\newline
+Der Ablauf von Funktionalität FA10 ändert sich wie folgt:\newline
+Schritt 1: Der \gls{Client} versucht den vorgemerkten \gls{Server} zu erreichen. Ist dies nicht möglich, vergisst er diesen und sendet eine \gls{Multicast} Nachricht an das Netzwerk.\newline
+Schritt 2-5: Unverändert
+Schritt 6: Der \gls{Client} speichert sich die Netzwerkadresse des \gls{Server} ab.
+\end{minipage}
+\pagebreak
 
-% Es soll möglich sein, Backups von laufenden Aufgaben zu erstellen
+%\item[FA20] Benutzer kann eine Aufgabe über \gls{Client} einreihen
+\begin{minipage}[t]{\linewidth}
+\item[FA20] \textbf{Warteschlange}
+\subitem \textbf{Erklärung} Sollte zum Zeitpunkt des Eingangs einer neuen Aufgabe kein \gls{Worker} mit hinreichend Arbeitskapazität verfügbar sein, so soll die Aufgabe nicht abgelehnt oder verloren gehen, sondern in eine Warteschlange eingereiht werden. Zu einem späteren Zeitpunkt kann die Aufgabe dann ausgeführt werden.
+\subitem \textbf{Wichtigkeit} Kernfunktionalität
+\subitem \textbf{Voraussetzung(en)} Diese Funktion ist auf jedem \gls{Server} verfügbar.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Die Aufgabe ist in einer Warteschlange eingereiht.
+\subsubitem \textbf{Misserfolg} Der Auftraggeber (\gls{Client}) wird darüber in Kenntnis gesetzt, dass seine Aufgabe nicht bearbeitet wird.\newline
+Ein \gls{Administrator} wird davon in Kenntnis gesetzt, dass ein Fehler beim Aufnehmen einer Aufgabe in die Warteschlange aufgetreten ist.
+\subitem \textbf{Auslöser} Der \gls{Server} erhält eine Aufgabe zu einem Zeitpunkt, an dem kein geeigneter \gls{Worker} verfügbar ist.
+\subitem \textbf{Details} Alle von einem \gls{Benutzer} in Auftrag gegebenen Aufgaben sollen angenommen und ausgeführt werden. Dies ist jedoch aufgrund beschränkter Rechenkapazität nicht immer sofort möglich. Daher sollen Aufgaben, die nicht sofort bearbeitet werden können, vorübergehend vom \gls{Server} in einer Warteschlange gehalten werden. Nachdem ausreichend Rechenkapazität frei geworden ist, soll die Warteschlange wieder geleert werden.
+\end{minipage}
+\pagebreak
 
-% Aufgaben, die nach 2 Tagen arbeitszeit noch nicht beenden, sollen unterbrochen werden und dem Auftraggeber soll eine Mitteilung geschickt werden
+%\item[FA30] Benutzer kann Parameter übergeben %evtl auf FA20 verweisen
+\begin{minipage}[t]{\linewidth}
+\item[FA30] \textbf{Befehlsparameter}
+\subitem \textbf{Erklärung} Dem Programm können per Befehlszeile bestimmte Optionen bzw. Informationen bezüglich der Ausführung des gegebenen Befehls bereitgestellt werde.
+\subitem \textbf{Wichtigkeit} Kernfunktionalität
+\subitem \textbf{Voraussetzung(en)} Jeder Befehl kann mit einem gewissen Satz von Parametern aufgerufen werden.\newline
+Die Parameter sind für den angegebenen Befehl zulässig.\newline
+Es sind keine Parameter angegeben, die sich gegenseitig ausschließen.\newline
+Jeder Parameter wird mit einem zulässigen Eingabewert angegeben.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Der Befehl wird unter den angegebenen Parametern ausgeführt.
+\subsubitem \textbf{Misserfolg} Dem Benutzer wird mitgeteilt, welcher Parameter unzulässig angegeben wurde.\newline
+Der Befehl wird nicht ausgeführt und nicht an den \gls{Server} weitergeleitet bzw. von diesem ignoriert.
+\subitem \textbf{Auslöser} Angabe des Parameters auf der Kommandozeile.
+\subitem \textbf{Details} Damit das Programm mehr als eine Funktion erfüllen kann oder eine der angebotenen Funktionen mit nicht-standardmäßigen Werten ausführen kann, muss dem Programm mitgeteilt werden, welche Funktion mit welchen Werten gewünscht ist. Hierzu werden Befehlsparameter verwendet (für genauere Angaben zu allen Parametern siehe nachfolgende funktionale Anforderungen sowie Absatz 10 Benutzeroberfläche).\newline
+Jeder Parameter kann auf der Kommandozeile durch die Syntax "--<Name>" oder "-<Kürzel>", gefolgt von dem gewünschten Wert, verwendet werden.\newline
+Ein Parameter hat entweder durch Angabe eines Wertes oder durch Angabe des Parameters Einfluss auf die Ausführung des Befehls (abhängig vom konkreten Parameter).\newline
+Jeder Parameter hat einen eindeutig definierten Standardwert.\newline
+Es ist möglich, dass zwei Parameter nicht in dem selben Befehl verwendet werden können und dürfen. Sollte eine solche Kollision dennoch vorhanden sein, schlägt die Ausführung des Befehls fehl.
+\end{minipage}
+\pagebreak
 
-% Die Anwendung soll über verschiedene Betriebsmodi verfügen (Client, Server, Worker, Admin?)
+%\item[FA31]	\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}
+\begin{minipage}[t]{\linewidth}
+\item[FA31] \textbf{Global definierte Standardwerte}
+\subitem \textbf{Erklärung} Jeder Parameter hat einen global definierten Standardwert. Dieser wird verwendet, wenn der \gls{Benutzer} keinen anderen Wert angibt. Ein globaler Standardwert kann nie einen Fehler auslösen.
+\subitem \textbf{Wichtigkeit} Kernfunktionalität
+\subitem \textbf{Voraussetzung(en)} Dem Parameter kann ein Wert zugewiesen werden.
+\subitem \textbf{Nachbedingung(en)} 
+\subsubitem \textbf{Erfolg} Der Parameter wird mit einem unkritischen Wert aufgefüllt.\newline
+Der Befehl wird trotz unvollständiger Parameter ausgeführt.
+\subitem \textbf{Auslöser} Der Benutzer hat keinen eigenen Parameterwert angegeben.
+\subitem \textbf{Details} Parameter, bei denen die reine Angabe auf der Kommandozeile nicht Aussagekräftig ist (Der Parameter erfordert z.B. einen numerischen Wert) müssen immer mit einem Wert ausgefüllt werden.\newline
+Oftmals ist es lästig einen Parameter explizit anzugeben, da bis auf Randfälle immer der gleiche Wert verwendet wird. In solch einem Fall soll es möglich sein, den Parameter implizit anzugeben.\newline
+Sollte ein \gls{Benutzer} vergessen, einen Parameter anzugeben, so soll der Befehl dennoch mit einem stets unkritischen Wert ausgeführt werden.\newline
+Sollte ein \gls{Benutzer} nicht darüber im klaren sein, wozu ein bestimmter Parameter dient, soll dem \gls{Benutzer} ein unkritischer Wert vorgeschlagen werden.\newline
+Die Standardwerte sind in einer Konfigurationsdatei abgespeichert.
+\end{minipage}
+\pagebreak
 
-% Die folgenden Parameter sind für den Befehl vorgesehen:
+%\item[FA32]	Benutzer kann Parameter über \gls{Configfile} übergeben
+\begin{minipage}[t]{\linewidth}
+\item[FA32] \textbf{Benutzerdefinierte Standardwerte}
+\subitem \textbf{Erklärung} Jeder Parameter hat einen eindeutig definierten Standardwert, der bei Nichtangabe des Parameters auf der Kommandozeile verwendet wird. Der \gls{Benutzer} kann lokal eine eigene Standardbelegung definieren.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Voraussetzung(en)} Die lokal definierte Standardbelegung darf keine unzulässige Belegung enthalten.\newline
+Der Benutzer hat keinen eigenen Parameterwert angegeben.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Bei Nichtangabe eines Parameters auf der Kommandozeile werden die von dem \gls{Benutzer} angegebenen Standardwerte vor den globalen Standardwerten eingesetzt.
+\subitem \textbf{Auslöser} Der \gls{Benutzer} hat den Parameter nicht auf der Kommandozeile angegeben.
+\subitem \textbf{Details} Ein \gls{Benutzer} verwendet möglicherweise bei jedem Befehlsaufruf immer identische Werte für manche Parameter. Sollten diese Werte nicht mit den global definierten Standardwerten übereinstimmen, kann der \gls{Benutzer} individuelle Standardwerte angeben. Somit muss der \gls{Benutzer} nicht bei jedem Aufruf den Parameter explizit angeben.\newline
+Die benutzerdefinierten Standardwerte sind in einer ausgezeichneten Konfigurationsdatei abgespeichert.
+\end{minipage}
+\pagebreak
 
-% Priorität (low, medium, high, extreme, bananas)
+%\item[FA33] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
+\begin{minipage}[t]{\linewidth}
+\item[FA33] \textbf{\gls{Prioritaet} (Parameter)}
+\subitem \textbf{Erklärung} Beim Einreichen einer neuen Aufgabe soll der Auftraggeber (\gls{Benutzer}) in der Lage sein, seine Aufgabe mit einer \gls{Prioritaet} zu versehen.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Voraussetzung(en)} Der Benutzer muss mit dem Befehl eine zulässige Aufgabe einreichen.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Die Aufgabe wird mit der gewünschten \gls{Prioritaet} in die Warteschlange eingereiht oder sofort ausgeführt.
+\subitem \textbf{Details} Eine \gls{Prioritaet} stellt eine Ordnung auf allen ausstehenden Aufgaben dar. Das bedeutet, Für je zwei (aktive oder passive) Aufgaben lässt sich bestimmen, welche von beiden zuerst ausgeführt werden soll.\newline
+Die \gls{Prioritaet} bestimmt somit die Position einer Aufgabe innerhalb der Warteschlange (FA20).\newline
+Tritt der Fall ein, dass zwei Aufgaben die selbe \gls{Prioritaet} haben, beide in der Warteschlange liegen und nur Rechenleistung für eine der Aufgaben verfügbar ist, so ist die Ausführungsreihenfolge der Aufgaben zufällig.\newline
+Aufgaben mit hohen \glspl{Prioritaet} können aktive Aufgaben mit stark geringerer \gls{Prioritaet} unterbrechen.\newline
+Aufgaben, die längere Zeit in der Warteschlange verbringen, werden in ihrer \gls{Prioritaet} aufgewertet.\newline
+Eine aktive Aufgabe wird in ihrer \gls{Prioritaet} aufgewertet.\newline
+Die \gls{Prioritaet} wird auf der Kommandozeile mit "--priority" oder "-p" angegeben.\newline
+Für eine \gls{Prioritaet} sind folgende Werte zulässig:\newline
+geringste: low (l)\newline
+normal: medium (m)\newline
+hoch: high (h)\newline
+sehr hoch: extreme (e)\newline
+höchste: bananas (b)\newline
+Der globale Standardwert ist festgelegt auf medium (m).
+\end{minipage}
+\pagebreak
 
-% Anzahl der zu gewünschten Prozessorkerne
+%\item[FA34] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
+\begin{minipage}[t]{\linewidth}
+\item[FA34] \textbf{CPU Kerne (Parameter)}
+\subitem \textbf{Erklärung} Erlaubt es dem \gls{Benutzer} eine minimale bzw. eine maximale Anzahl von gewünschten bzw. benötigten CPU Kernen anzugeben.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Voraussetzung(en)} Der Benutzer muss mit dem Befehl eine zulässige Aufgabe einreichen.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Der Aufgabe wird das angegebene Minimum an Prozessorkernen garantiert.\newline
+Der Aufgabe werden nicht mehr Prozessorkerne zugewiesen, als durch das Maximum angegeben.\newline
+\subitem \textbf{Details} Die Angabe von minimaler Anzahl benötigter Prozessorkernen erlaubt es dem Programm sicherzustellen, dass die Aufgabe nur dann gestartet wird, wenn ihr ausreichend Prozessorkerne zur Verfügung stehen.\newline
+Die Angabe einer maximalen Anzahl benötigter Prozessorkerne ermöglicht es dem Programm mehrere Aufgaben parallel an einen \gls{Worker} zu geben. Eine notwendige Bedingung dafür, dass mehrere Aufgaben auf dem selben \gls{Worker} laufen können ist, dass die Summe der Maxima aller Aufgaben unter der Anzahl der auf dem \gls{Worker} verfügbaren Prozessorkerne liegt. Somit blockieren Single-Thread Aufgaben nicht zwangsläufig einen ganzen \gls{Worker}.\newline
+Für die Anzahl der Prozessorkerne ist jede natürliche Zahl sowie die Null zulässig.\newline
+Der Wert null bedeutet hierbei, dass der Aufgabe eine dynamische Anzahl an Prozessorkernen zugewiesen wird.\newline
+Der minimale Wert wird auf der Kommandozeile mit "-min-cpu-count" angegeben.\newline
+Der maximale Wert wird auf der Kommandozeile mit "-max-cpu-count" angegeben.\newline
+Liegt der Minimalwert über der Zahl der verfügbaren Prozessorkerne, wird die Aufgabe mit der größtmöglichen Anzahl Prozessorkerne ausgeführt.\newline
+Der globale Standardwert für die minimale Anzahl an Prozessorkernen ist festgelegt auf 1.\newline
+Der globale Standardwert für die maximale Anzahl an Prozessorkernen ist festgelegt auf 0.
+\end{minipage}
+\pagebreak
 
-% Größe des benötigten Arbeitsspeichers
-
+%\item[FA35] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
+\begin{minipage}[t]{\linewidth}
+\item[FA35] \textbf{Größe des benötigten Arbeitsspeichers (Parameter)}
+\subitem \textbf{Erklärung} Erlaubt es dem Nutzer eine minimale bzw. maximale Menge Arbeitsspeicher anzufordern.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Voraussetzung(en)} Der Benutzer muss mit dem Befehl eine zulässige Aufgabe einreichen.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Die Aufgabe hat das angegebene Minimum an Arbeitsspeicher zur Verfügung.\newline
+Die Aufgabe hat nicht mehr als das angegebene Maximum an Arbeitsspeicher zur Verfügung.
+\subitem \textbf{Details} Die Angabe eines Mindestwerts erlaubt es dem Programm sicherzustellen, dass die Aufgabe hinreichend Arbeitsspeicher für ihre Ausführung zur Verfügung hat.\newline
+Die Angabe eines Maximalwerts erlaubt es dem Programm, mehrere Aufgaben an den selben \gls{Worker} zu verteilen. Eine notwendige Bedingung dafür, dass mehrere Aufgaben auf dem selben \gls{Worker} laufen können ist, dass die Summe der Maxima aller Aufgaben unterhalb des eingebauten Arbeitsspeichers des \gls{Worker} liegt.\newline
+Für die Größe des zugewiesenen Arbeitsspeichers ist jede Natürliche Zahl sowie die Null zulässig. Der Wert wird als Angabe in GiB interpretiert. Für kleinere Mengen kann der Suffix k bzw m für KiB bzw. MiB verwendet werden.\newline
+Der Wert Null bedeutet hierbei, dass die Größe des zugewiesenen Arbeitsspeichers dynamisch ist.\newline
+Der minimale Wert kann auf der Kommandozeile mit "-min-ram" angegeben werden.\newline
+Der maximale Wert kann auf der Kommandozeile mit "-max-ram" angegeben werden.\
+Liegt der Minimalwert über dem verfügbaren Arbeitsspeicher, wird der Aufgabe die größtmögliche Menge Arbeitsspeicher zugewiesen.\newline
+Der globale Standardwert für die minimale Menge Arbeitsspeicher ist festgelegt auf 1GiB.\newline
+Der globale Standardwert für die maximale Menge Arbeitsspeicher ist festgelegt auf 8GiB.
+\end{minipage}
 % Auf welchem Betriebssystem soll die Aufgabe ausgeführt werden?
 
-% Ist die Aufgabe pausierbar?
+%\item[FA40] Anfragen nach Status
+\begin{minipage}[t]{\linewidth}
+\item[FA40] \textbf{Statusabfrage}
+\subitem \textbf{Erklärung} Der Ausführungsstatus der in Auftrag gegebenen Aufgabe(n) kann von dem Auftraggeber abgefragt werden.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Voraussetzung(en)} Der \gls{Client} muss sich mit dem \gls{Server} verbinden können, der die Aufgabe(n) verteilt hat.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Dem \gls{Benutzer} wird angezeigt, in welchem Ausführungsstatus sich die Aufgabe(n) befinden.
+\subsubitem \textbf{Misserfolg} Dem \gls{Benutzer} wird mitgeteilt, an welchem Punkt die Abfrage fehlgeschlagen ist.
+\subitem \textbf{Auslöser} Der \gls{Benutzer} sendet einen Abfragebefehl ab.
+\subitem \textbf{Details} Die Statusabfrage ist eine Variante des Hauptbefehls zum Verteilen von Aufgaben und teilt denselben Befehlsnamen.\newline
+Die Statusabfrage ist durch den Parameter "--status" gekennzeichnet.\newline
+Die Statusabfrage liefert Informationen zu allen in Auftrag gegebenen Aufgaben des Auftraggebers.\newline
+Genauere Informationen können mithilfe weiterer Parameter angefragt werden. (siehe folgende funktionale Anforderungen sowie Abschnitt 10 Benutzeroberfläche)
+\end{minipage}
+\pagebreak
 
-% Soll der Aufrufer im Terminal blockiert werden
+%\item[FA50] Benutzer bekommt Benachrichtigung über erledigte Aufgabe 
+\begin{minipage}[t]{\linewidth}
+\item[FA50] \textbf{Rückmeldung}
+\subitem \textbf{Erklärung} Nach Abschluss einer Aufgabe soll der Auftraggeber über den Abschluss in Kenntnis gesetzt werden.
+\subitem \textbf{Wichtigkeit} Optional
+\subitem \textbf{Voraussetzung(en)} Der Auftraggeber hat eine gültige E-Mail Adresse hinterlegt.
+\subitem \textbf{Nachbedingung(en)}
+\subsubitem \textbf{Erfolg} Der Auftraggeber erhält an der hinterlegten E-Mail Adresse eine Nachricht, die das Bearbeitungsende seiner Aufgabe signalisiert.
+\subitem \textbf{Auslöser} Eine Aufgabe beendet ihre Ausführung.
+\subitem \textbf{Details} Insofern der Auftraggeber eine gültige E-Mail Adresse hinterlegt hat, wird an diese Adresse eine E-Mail versandt, die folgende Informationen enthält:\newline
+1. Mitteilung über den Abschluss der Aufgabe.
+2. Der Name der Aufgabe (Name des ausgeführten Programms).
+3. Das Ende der Log-Datei der Aufgabe.
+\end{minipage}
+\pagebreak
 
-% An wen soll die Rückmeldung erfolgen (EMail oder Nutzerkonto)
-
-% Wo sind die Ordner mit den benötigten Daten abgelegt (Pfad übersetzten damit der Worker die Ordner findet)
-
-% Anforderung eines manuellen Backups / Pausierung / Abbruch
-
-% Anforderung der Log daten
-
-% Am Ende des unseres Befehls folgt der Befehl mit dem die Aufgabe gestartet werden kann
-
-% Wie kann die Aufgabe abgebrochen oder pausiert werden (Einen Befehl spezifizieren)
+\end{itemize}
 
 \section{Produktdaten}
 \begin{itemize}[nosep]
