@@ -152,15 +152,28 @@ Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozei
 % Betriebsbedinugen
 % Wer? Was? Wozu?
 \begin{itemize}
+\begin{minipage}[t]{\linewidth}
 \item \textbf{Zielgruppe}\newline
-Das Produkt ist für die Verwendung durch die Mitarbeiter am Institut für Technische Informatik (ITEC) des Karlsruher Institut für Technologie (KIT) gedacht.
-\item \textbf{Anwendung}\newline
-Das Produkt dient dazu, Simulationen und andere rechenintensive Aufgaben auf eigens zu diesem Zweck gedachte Rechner (Arbeiter) zu verteilen.
+Das Produkt ist für die Verwendung durch die Mitarbeiter am Institut für Technische Informatik (ITEC) des Karlsruher Institut für Technologie (KIT) gedacht.\newline
+Den Mitarbeitern soll die Benutzung der Arbeiter Rechner erleichtert werden, indem die Verteilung der Aufgaben automatisch erfolgt. Somit soll garantiert werden, dass die Aufgaben sich gegenseitig möglichst wenig stören.\newline
+Durch die Vermeidung von Situationen, in denen mehrere Personen Aufgaben auf dem selben Rechner ausführen, während einer oder mehrere andere Arbeiter unbeschäftigt sind, soll die Leistungsfähigkeit sowie allgemeine Zufriedenheit und Harmonie gesteigert werden.
+\end{minipage}
+\\
+
+\begin{minipage}[t]{\linewidth}
+\item \textbf{Verwendungszweck}\newline
+Das Produkt dient dazu, Simulationen und andere rechenintensive Aufgaben auf eigens zu diesem Zweck gedachte Rechner (Arbeiter) zu verteilen.\newline
+Oftmals fallen Aufgaben an, die von einem Computer berechnet werden können und sollen. Nicht immer ist der eigene Rechner jedoch dieser Aufgabe gewachsen. Damit sich Benutzer und Aufgabe also nicht um Rechenzeit streiten, werden die anstehenden Aufgaben auf einen Pool von Arbeiter Rechnern verteilt, die speziell für diesen Zweck zur Verfügung stehen. Die Aufgabe des Verteilens wird von dem Produkt übernommen.
+\end{minipage}
+\\
+
+\begin{minipage}[t]{\linewidth}
 \item \textbf{Produktaufbau}\newline
 Das Produkt ist den Aufgabengebieten entsprechend in drei Programme aufgeteilt:\newline
 1. Der Client (Benutzer): Verantwortlich für die Interaktion des Benutzers mit dem Produkt auf der Befehlszeile.\newline
 2. Der Scheduler (Server): Verantwortlich für das effiziente Verteilen der Aufgaben auf dem Arbeiterpool. Agiert als Mittelmann zwischen Benutzer und Arbeiter.\newline
 3. Der Arbeiter (Worker): Verantwortlich für Ausführung, Pausieren und Abbruch der Aufgaben auf den Arbeitern (spezielle Rechner für die Aufgabenverarbeitung).
+\end{minipage}
 \end{itemize}
 \newpage
 
@@ -168,17 +181,31 @@ Das Produkt ist den Aufgabengebieten entsprechend in drei Programme aufgeteilt:\
 % Unter welcher Software / Hardware läuft es?
 
 \begin{itemize}
+\begin{minipage}[t]{\linewidth}
 \item \textbf{Client (Nutzer) Umgebung}\newline
-Betriebssystem: Linux oder Linux basiertes System\newline
-Mindestanforderungen: 1 CPU Kern sowie 1 GB Arbeitsspeicher
+Das Benutzer Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgenden Anforderungen genügt:
+\subitem \textbf{Betriebssystem:} Linux oder ein Linux basiertes Betriebssystem
+\subitem \textbf{CPU:} Mindestens ein CPU Kern
+\subitem \textbf{Arbeitsspeicher:} Mindestens 1 GB verfügbarer Arbeitsspeicher
+\end{minipage}
+\\
+
+\begin{minipage}[t]{\linewidth}
 \item \textbf{Scheduler (Server) Umgebung}\newline
-Betriebssystem: CentOS 7 oder Ubuntu 18.04\newline
-Mindestanforderungen: 1 CPU Kern sowie 4 GB Arbeitsspeicher
+Das Server Produkt ist für den Einsatz auf einem Rechner bestimmt, der das Benutzer Netzwerk mit dem Arbeiter Netzwerk verbindet und folgenden Anforderungen genügt:
+\subitem \textbf{Betriebssystem:} CentOS 7 oder Ubuntu 18.04
+\subitem \textbf{CPU:} Mindestens ein CPU Kern
+\subitem \textbf{Arbeitsspeicher:} Mindestens 4 GB verfügbarer Arbeitsspeicher
+\end{minipage}
+\\
+
+\begin{minipage}[t]{\linewidth}
 \item \textbf{Arbeiter (Worker) Umgebung}\newline
-Betriebssystem: CentOS 7 oder Ubuntu 18.04\newline
-Mindestanforderungen: 1 CPU Kern sowie 8 GB Arbeitsspeicher\newline
-Empfohlen: 24 CPU Kerne sowie 64 GB Arbeitsspeicher
-\subitem 
+Das Arbeiter Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgenden Anforderungen genügt:
+\subitem \textbf{Betriebssystem:} CentOS 7 oder Ubuntu 18.04
+\subitem \textbf{CPU:} Mindestens ein CPU Kern, Empfohlen: 24 CPU Kerne
+\subitem \textbf{Arbeitsspeicher:} Mindestens 8 GB verfügbarer Arbeitsspeicher, Empfohlen: 64 GB Arbeitsspeicher
+\end{minipage}
 \end{itemize}
 \newpage
 
