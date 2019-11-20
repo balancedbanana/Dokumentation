@@ -71,6 +71,7 @@
 \newglossaryentry{Prioritaet}
 {
 	name={Priorität},
+	plural={Prioritäten},
 	description={Ein diskretes Maß für Wichtigkeit bzw. Relevanz. Meist eine ganze Zahl, wobei gewisse Werte auch durch vorher definierte Wörter bezeichnet werden können.}
 }
 
@@ -132,7 +133,7 @@ so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Au
 
 Viele Lösungen gibt es bereits auf dem Markt, sie sind aber zu komplex und nicht leicht erweiterbar. Balanced Banana löst diese Probleme in Form eines kompakten, einfach zu bedienenden und skalierbaren Programms. \\
 
-Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, Priorität, Einschränkungen und Bedingungen.
+Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, \gls{Prioritaet}, Einschränkungen und Bedingungen.
 
 \section{Zielbestimmung}
 \subsection{Musskriterien}
@@ -170,7 +171,7 @@ Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozei
 \item[FA4] Benutzer kann Parameter übergeben %evtl auf FA20 verweisen
 \item[FA41]	\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}
 \item[FA42]	Benutzer kann Parameter über \gls{Configfile} übergeben
-\item[FA43] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
+\item[FA43] Benutzer kann \gls{Prioritaet} einer Aufgabe festlegen %Glossar \gls{Prioritaet}???
 \item[FA44] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
 \item[FA45] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
 \item[FA46] Benutzer kann das benutzte Betriebssystem festlegen
@@ -359,7 +360,7 @@ Die benutzerdefinierten Standardwerte sind in einer ausgezeichneten Konfiguratio
 \end{minipage}
 \pagebreak
 
-%\item[FA33] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
+%\item[FA33] Benutzer kann \gls{Prioritaet} einer Aufgabe festlegen %Glossar \gls{Prioritaet}???
 \begin{minipage}[t]{\linewidth}
 \item[FA33] \textbf{\gls{Prioritaet} (Parameter)}
 \subitem \textbf{Erklärung} Beim Einreichen einer neuen Aufgabe soll der Auftraggeber (\gls{Benutzer}) in der Lage sein, seine Aufgabe mit einer \gls{Prioritaet} zu versehen.
@@ -513,12 +514,12 @@ Ist für eine Aufgabe eine dieser Aktionen nicht verfügbar, oder muss für dies
 \end{minipage}
 \pagebreak
 
-% Mit welcher Priorität ist die Aufgabe gestartet worden
+% Mit welcher \gls{Prioritaet} ist die Aufgabe gestartet worden
 \begin{minipage}[t]{\linewidth}
 \item[PD22] \textbf{Aufgabenpriorität}
-\subitem \textbf{Erklärung} Hinsichtlich der Warteschlangenfunktionalität ist es interessant, für jede Aufgabe die angegebene Priorität zu kennen.
-\subitem \textbf{Wichtigkeit} Zusammen mit Priorität Parameter
-\subitem \textbf{Details} Die Position einer Aufgabe in der Warteschlange, sowie das Recht andere Aufgaben zu unterbrechen sind wesentlich von der eigenen Priorität abhängig. Daher muss diese Information abgespeichert werden (sofern vorhanden).
+\subitem \textbf{Erklärung} Hinsichtlich der Warteschlangenfunktionalität ist es interessant, für jede Aufgabe die angegebene \gls{Prioritaet} zu kennen.
+\subitem \textbf{Wichtigkeit} Zusammen mit \gls{Prioritaet} Parameter
+\subitem \textbf{Details} Die Position einer Aufgabe in der Warteschlange, sowie das Recht andere Aufgaben zu unterbrechen sind wesentlich von der eigenen \gls{Prioritaet} abhängig. Daher muss diese Information abgespeichert werden (sofern vorhanden).
 \end{minipage}
 \pagebreak
 
@@ -623,10 +624,10 @@ Somit kann der Server die Aufgaben auf alle Worker verteilen.
 
 %Prioritätsverteilung
 \begin{minipage}[t]{\linewidth}
-\item[PD64] \textbf{Prioritäten der Aufgaben}
-\subitem \textbf{Erklärung} Summe aller Aufgaben einer bestimmten Priorität
+\item[PD64] \textbf{\glspl{Prioritaet} der Aufgaben}
+\subitem \textbf{Erklärung} Summe aller Aufgaben einer bestimmten \gls{Prioritaet}
 \subitem \textbf{Wichtigkeit} Optional
-\subitem \textbf{Details} Summiert für jede Priorität die Anzahl der derzeit aktiven und passiven Aufgaben auf, die mit dieser Priorität gestartet wurden.
+\subitem \textbf{Details} Summiert für jede \gls{Prioritaet} die Anzahl der derzeit aktiven und passiven Aufgaben auf, die mit dieser \gls{Prioritaet} gestartet wurden.
 \end{minipage}
 \pagebreak
 
@@ -732,8 +733,8 @@ bb <--stop|-s> <id>
 Kehrt erst nach der Ausführung der Aufgabe zum Aufrufer zurück. Nützlich um voneinander abhängige Aufgaben, in einem Konsolen Skript, nacheinander auszuführen.
 
 \subsubsection{\texttt{-{}-priority}}
-Legt die Priorität der auszuführenden Aufgabe fest, gefolgt von low (0), medium (1), high (2), banana (3).
-Es kann der Name bzw. die Zahl in der Klammer als Priorität verwendet werden.
+Legt die \gls{Prioritaet} der auszuführenden Aufgabe fest, gefolgt von low (4), medium (3), high (2), extreme (1), bananas (0).
+Es kann der Name bzw. die Zahl in der Klammer als \gls{Prioritaet} verwendet werden.
 
 \subsubsection{\texttt{-{}-docker-file}}
 Legt sämtliche Eigenschaften eines Docker Abbildes, gefolgt vom Pfad einer benutzerdefinierten \href{https://docs.docker.com/engine/reference/builder/}{DockerFile}, fest.
