@@ -119,6 +119,18 @@
 	name={Web-API},
 	description={Web-API (Web-Application Programming Interface) ist eine Art Schnittstelle über das Web, die über eine Reihe von Funktionen verfügt, die es Benutzern ermöglichen, auf bestimmte Funktionen oder Daten einer Applikation, eines Betriebssystems oder anderer Dienste zuzugreifen}
 }
+
+\newglossaryentry{Ausnahmebehandlung}
+{
+	name={Ausnahmebehandlung},
+	description={Der Prozess der Reaktion auf das Auftreten von Ausnahmen  - außergewöhnliche Bedingungen, die eine spezielle Verarbeitung erfordern - während der Berechnung , die oft den normalen Ablauf der Programmausführung unterbrechen}
+}
+
+\newglossaryentry{Estimated Time of Arrival}
+{
+	name={ETA},
+	description={Der Zeitpunkt, zu dem eine Task erledigt wird}
+}
 \title{Balanced Banana}
 \author{Niklas Lorenz \and Thomas Häuselmann \and Rakan Zeid Al Masri \and Christopher Lukas Homberger \and Jonas Seiler}
 
@@ -192,10 +204,22 @@ Mit unserem Programm kann der Benutzer seinen \gls{Task} einfach von der Kommand
 \begin{itemize}[nosep]
 
 	\item Der Benutzer kann \glspl{Task} pausieren.	
+	
+	\item Das Programm kann die \gls{Estimated Time of Arrival} für die verbleibenden Aufgaben vorhersagen.
 
 \end{itemize}
 
 \subsection{Abgrenzungskriterien}
+\begin{itemize}[nosep]
+
+	\item Das Programm führt die gescheduelten \glspl{Task} nicht persönlich aus, sondern überlässt die Arbeit den \gls{Rechenknoten}.
+	
+	\item Das Programm macht nichts mit der Ausgabe der verschiedenen Tasks, es verteilt nur die Tasks.
+	
+	\item Das Programm macht keine \gls{Ausnahmebehandlung}. Es geht davon aus, dass die an es gesendeten Tasks fehlerfrei funktionieren.
+	
+	\
+\end{itemize}
 
 % Was will ich bewusst nicht umsetzen?
 % Was soll es nicht sein?
