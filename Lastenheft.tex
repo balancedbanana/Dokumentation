@@ -26,6 +26,7 @@
 
 \setitemize{align=parleft, labelsep=0.5cm}
 
+
 \makenoidxglossaries
 
 \newglossaryentry{CLI}
@@ -59,40 +60,65 @@
 \newglossaryentry{Server}
 {
 	name={Server},
-	description={Programm auf dem Server, der die Benutzer (Außenwelt) mit den Arbeitern (Privates Netzwerk) verbindet.}
+	description={Programm auf dem Server, der die Benutzer (Außenwelt) mit den Arbeitern (Privates Netzwerk) verbindet}
 }
 
 \newglossaryentry{Benutzer}
 {
 	name={Benutzer},
-	description={Eine Person, die dazu in der Lage ist, Befehle auszuführen.}
+	description={Eine Person, die dazu in der Lage ist, Befehle auszuführen}
 }
 
 \newglossaryentry{Prioritaet}
 {
 	name={Priorität},
 	plural={Prioritäten},
-	description={Ein diskretes Maß für Wichtigkeit bzw. Relevanz. Meist eine ganze Zahl, wobei gewisse Werte auch durch vorher definierte Wörter bezeichnet werden können.}
+	description={Ein diskretes Maß für Wichtigkeit bzw. Relevanz. Meist eine ganze Zahl, wobei gewisse Werte auch durch vorher definierte Wörter bezeichnet werden können}
 }
 
 \newglossaryentry{Multicast}
 {
 	name={Multicast},
-	description={Eine besondere Form von Netzwerk Packet, welches an alle Adressen des Netzwerkes gesendet wird.}
+	description={Eine besondere Form von Netzwerk Packet, welches an alle Adressen des Netzwerkes gesendet wird}
 }
 
 \newglossaryentry{Worker}
 {
 	name={Worker},
-	description={Programm auf den Rechnern, welche dafür zuständig sind, die Aufgaben auszuführen.}
+	description={Programm auf den Rechenknoten, welche dafür zuständig sind, die Aufgaben auszuführen}
 }
 
 \newglossaryentry{Administrator}
 {
 	name={Administrator},
-	description={Eine Person, die dazu privilegiert ist, das Gesamtsystem zu verwalten und über uneingeschränkten Zugriff auf Ein- und Ausgabedateien verfügt.}
+	description={Eine Person, die dazu privilegiert ist, das Gesamtsystem zu verwalten und über uneingeschränkten Zugriff auf Ein- und Ausgabedateien verfügt}
 }
 
+\newglossaryentry{Task}
+{
+	name={Task},
+	plural={Tasks},
+	description={Jedes Programm (z.B. Skripte, Simulationen, etc.), das ein Benutzer auf einem Rechenknoten ausführen möchte}
+}
+
+\newglossaryentry{Rechenknoten}
+{
+	name={Rechenknoten},
+	description={Leistungsstarke Rechner, die die von einem Benutzer gescheduelten Task ausführen}
+}
+
+\newglossaryentry{Statistik}
+{
+	name={Statistik},
+	plural={Statistiken},
+	description={not 100\% sure}
+}
+
+\newglossaryentry{Web-API}
+{
+	name={Web-API},
+	description={Web-API (Web-Application Programming Interface) ist eine Art Schnittstelle über das Web, die über eine Reihe von Funktionen verfügt, die es Benutzern ermöglichen, auf bestimmte Funktionen oder Daten einer Applikation, eines Betriebssystems oder anderer Dienste zuzugreifen}
+}
 \title{Balanced Banana}
 \author{Niklas Lorenz \and Thomas Häuselmann \and Rakan Zeid Al Masri \and Christopher Lukas Homberger \and Jonas Seiler}
 
@@ -129,33 +155,69 @@
 \vspace*{1cm}
 
 Aufgabenverteilung ist ein in vielen Unternehmen übliches Problem. Wenn ein Unternehmen größer wird, 
-so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Aufgaben größer und komplexer sein. Es wird immer schwieriger, die genannten Ressourcen effizient und gerecht auf die verschiedenen Teams, Mitarbeiter und Aufgaben aufzuteilen. \\
+so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Aufgaben größer und komplexer sein. Es wird immer schwieriger, die genannten Ressourcen effizient und gerecht auf die verschiedenen Teams, Mitarbeiter und \glspl{Task} aufzuteilen. \\
 
 Viele Lösungen gibt es bereits auf dem Markt, sie sind aber zu komplex und nicht leicht erweiterbar. Balanced Banana löst diese Probleme in Form eines kompakten, einfach zu bedienenden und skalierbaren Programms. \\
 
-Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, \gls{Prioritaet}, Einschränkungen und Bedingungen.
+Mit unserem Programm kann der Benutzer seinen \gls{Task} einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Tasks effizient zu verteilen, basierend auf Größe, \gls{Prioritaet}, Einschränkungen und Bedingungen.
 
+\clearpage
 \section{Zielbestimmung}
 \subsection{Musskriterien}
+\begin{itemize}[nosep]
+	
+	\item Der Benutzer kann seine Aufgabe einfach von der Kommandozeile absetzen.
+	
+	\item Parameter ermöglichen die Angabe weiterer Optionen, zum Beispiel das Setzen einer Priorität oder Anforderungen für die Tasks. 
+		
+	\item Balanced Banana soll in der Lage sein, die Tasks des Benutzers auf die \gls{Rechenknoten} zu verteilen.
+	
+	\item Balanced Banane soll, das oben genannte Ziel mit minimalem Aufwand für den Benutzer zu erfüllen.
+	
+	\item Vom Benutzer gescheduelte \glspl{Task} sollen nicht manuell gestartet werden müssen. Balanced Banana macht dies automatisch.
+	
+	\item Balanced Banana sammelt \glspl{Statistik} über \glspl{Task} und stellt sie den Benutzern zur Verfügung.
+	
+	\item Die Anzahl der Worker ist leicht anpassbar.
+	
+	\item Der Benutzer ist in der Lage, verschiedene Prioritäten für Tasks zu setzen.
+	
+	\item Der Benutzer soll benachrichtigt werden, wenn eine Task erledigt ist oder fehlschlägt.
+	
+	\item Statistiken sollen über eine \gls{Web-API} mit HTTP-Requests bereitgestellt werden.
+
+\end{itemize}
+
 \subsection{Wunschkriterien}
+\begin{itemize}[nosep]
+
+	\item Der Benutzer kann \glspl{Task} pausieren.	
+
+\end{itemize}
+
 \subsection{Abgrenzungskriterien}
+
 % Was will ich bewusst nicht umsetzen?
 % Was soll es nicht sein?
 
 % Ist das nicht ne Wiederholung von Einleitung + Anforderungen?
 % Ich würde das sehr kurz halten, so wie die Einleitung zum Beispiel
 
+\clearpage
 \section{Szenarien}
 
+\clearpage
 \section{Produkteinsatz}
 % Zielgruppe
 % Anwendungsbereiche
 % Betriebsbedinugen
 % Wer? Was? Wozu?
 
+\newpage
 \section{Produktumgebung}
 % Unter welcher Software / Hardware läuft es?
 
+\newpage
 \section{Funktionale Anforderungen}
 
 \subsection{Übersicht der Anforderungen}
@@ -173,7 +235,7 @@ Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozei
 \item[FA42]	Benutzer kann Parameter über \gls{Configfile} übergeben
 \item[FA43] Benutzer kann \gls{Prioritaet} einer Aufgabe festlegen %Glossar \gls{Prioritaet}???
 \item[FA44] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
-\item[FA45] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
+ \item[FA45] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
 \item[FA46] Benutzer kann das benutzte Betriebssystem festlegen
 \item[FA47] Benutzer kann angeben ob die Aufgabe pausierbar ist. %evtl optional
 \item[FA48] Benutzer kann angeben ob der \gls{Client} blockieren soll bis die Aufgabe beendet ist. %Blockierbar glosar?
@@ -682,6 +744,7 @@ Somit kann der Server die Aufgaben auf alle Worker verteilen.
 
 % hier die Systemmodelle einfügen
 
+\clearpage
 \section{Benutzer Oberfläche}
 \subsection{Befehlszeile}
 \subsubsection{Server bzw. Arbeiter}
@@ -749,6 +812,7 @@ Legen den minimal verfügbaren bzw. maximale verwendbaren Arbeitsspeicher fest.
 \subsubsection{\texttt{-{}-server}}
 Startet den Server, der die Aufgaben an die Arbeiter verteilt.
 
+\clearpage
 \section{Qualitätszielbestimmungen}
 % Tabelle ... schafeln .. was ist ihm wichtig
 
@@ -768,6 +832,7 @@ Startet den Server, der die Aufgaben an die Arbeiter verteilt.
 
 \end{comment}
 
+\clearpage
 \section{Globale Testfälle}
 \subsection{Globale Testfälle}
 \subsubsection{Grundlegende Testfälle}
