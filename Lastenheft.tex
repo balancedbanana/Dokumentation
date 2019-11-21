@@ -863,6 +863,19 @@ Wenn das System korrekt funktioniert, werden in beiden Fällen die Aufgaben mit 
 Der Nutzer startet eine Aufgabe, die mindestens 2 Kilobyte Speicher anfordert und stellt der Aufgabe einen maximalen Hauptspeicher von einem Kilobyte zur Verfügung.
 Bekommt er eine Nachricht, dass der Speicher vollgeöaufen ist und die Aufgabe deshalb abgebrochen werden musste, funktioniert das System.
 
+\item[T06] \textbf{Festlegen des Betriebssystems/des zu verwendenden Containers (FA46)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer verschiedene Container angeben kann, die für die Bearbeitung seiner Aufgabe verwendet werden sollen.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das Aufgaben entgegennehmen und bearbeiten kann.
+Der Nutzer erstellt einen Container auf dem ein Program X installiert ist und einen identischen Container, auf dem aber X nicht installiert ist.
+Dann startet er eine Aufgabe, die das Programm aufrufen soll mit den unterschiedlichen Containern. Wenn das System funktioniert, dann wird genau eine Aufgabe mit einem Fehler beenden und die andere wird korrekt ausgeführt werden.
+
+\item[T07] \textbf{Festlegender Pausierbareit einer Aufgabe}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer festlegen kann, ob seine Aufgabe pausiert werden darf und ob das System dies berücksichtigt.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das Aufgaben entgegennimmt und bearbeitet.
+Der Nutzer erstellt eine Aufgabe und gint an, dass diese pausierbar sein soll. Während die Aufgabe bearbeitet wird, versucht er über seine Konsole die Aufgabe zu pausieren.
+Funktioniert das, erstellt er dieselbe Aufgabe erneut, aber lässt sie nicht pausierbar sein. Er versucht erneut die AUfgabe zu pausieren.
+Falls das System korrekt funktioniert, lässt sich diese Aufgabe nicht pausieren und der Nutzer bekommt eine Fehlermeldung angezeigt.
+
 \end{itemize}
 
 \subsubsection{Erweiterte Testfälle}
