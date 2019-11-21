@@ -798,11 +798,11 @@ Der Nutzer trägt in das \gls{Configfile} eine maximale Speichernutzung von eine
 Bekommt er eine Benachrichtigung, dass das Programm abgestürzt ist, weil der Speicher vollgelaufen ist, wird das \gls{Configfile} korrekt mit einbezogen.
 
 \item[T03] \textbf{Festlegen von Prioritäten (FA 43)}
-\subitem \textbf{Erklärung} Ziel ist zu testen, ob Aufgaben mit einer höheren Priorität bevorzugt werden.
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob Aufgaben mit einer höheren \gls{Prioritaet} bevorzugt werden.
 \subitem \textbf{Ablauf} Ausgegangen wird von einem bereits funktionierenden System mit genau einem Arbeiter, in dem Aufgaben verteilt und bearbeitet werden können.
-Der Nutzer startet eine Aufgabe die einige Zeit benötigt. Während der Bearbeitung gibt er eine Aufgabe mit einer niedrigen Priorität auf gefolgt von derselben Aufgabe mit einer hohen Priorität.
-Sind alle drei Aufgaben bearbeitet, startet er wieder eine Aufgabe, die einige Zeit benötigt. Danach erstellt er eine Aufgabe mit einer hohen Priorität und danach dieselbe Aufgabe mit niedriger Priorität.
-Wenn das System korrekt funktioniert, werden in beiden Fällen die Aufgaben mit hoher Priorität zuerst bearbeitet.
+Der Nutzer startet eine Aufgabe die einige Zeit benötigt. Während der Bearbeitung gibt er eine Aufgabe mit einer niedrigen \gls{Prioritaet} auf gefolgt von derselben Aufgabe mit einer hohen Priorität.
+Sind alle drei Aufgaben bearbeitet, startet er wieder eine Aufgabe, die einige Zeit benötigt. Danach erstellt er eine Aufgabe mit einer hohen \gls{Prioritaet} und danach dieselbe Aufgabe mit niedriger Priorität.
+Wenn das System korrekt funktioniert, werden in beiden Fällen die Aufgaben mit hoher \gls{Prioritaet} zuerst bearbeitet.
 
 \item[T04] \textbf{Festlegen von minimal und maximal bereitgestellten CPU-Kernen (FA44)}
 \subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer festlegen kann wie viele Kerne einer Aufgabe zur Verfügung gestellt werden sollen.
