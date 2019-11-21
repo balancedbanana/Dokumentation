@@ -147,6 +147,35 @@ Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozei
 
 \section{Szenarien}
 
+\subsection{\textbf{Einreihen einer Aufgabe in Warteschlange}}
+Tom möchte eine Katzensimulation auf dem Rechenkluster simulieren lassen. %Alternative für Rechenkluster
+Tom startet auf seinem PC den BalancedBanana-Client. Dieser verbindet sich im Hintergrund mit dem Hauptserver des Rechenklusters und authentifiziert Tom.
+Nun reiht Tom seine Simulation auf der Kommandozeile mit dem Befehl 
+\begin{mycode}
+	bb -df \textbackslash CatSimulation.docker -cf \textbackslash Config.txt -p 2 -e TomSim@Cats.de
+\end{mycode}
+ein. %bitte den Befehl ändern, nur ganz schlechter Prototyp
+Die Aufgabe wird nun mit normaler Priorität in die Warteschlange eingereiht.
+Tom sieht das alle Server ausgelastet sind und das er an zweiter Stelle in der Warteschlange steht.
+Mit dem Befehl
+\begin{mycode}
+	bb queue
+\end{mycode}
+sieht Tom den Inhalt der aktuellen Warteschlange ein. Vor ihm liegt eine Aufgabe mit höherer Priorität und hinter ihm eine Aufgabe mit niedrigerer Priorität.
+Nach zwei Stunden sieht Tom erneut nach und stellt fest das er nun an vorderer Stelle in der Warteschlange steht.
+Nach drei weiteren Stunden sieht er das seine Aufgabe aus der Warteschlange verschwunden ist und er eine Email an TomSim@Cats.de erhalten hat.
+In dieser steht das seine Aufgabe in 43 Minuten abgeschlossen wurde er erhält einen Link mit dem er die Ausgabe seiner Aufgabe einsehen kann.
+
+\subsection{\textbf{Aufwerten der Priorität}}
+Peter möchte eine wichtige Bauteilsimulation rechnen lassen.
+Dazu startet Peter den BalancedBanana-Client und reiht seine Aufgabe mit normaler Priorität ein.
+Nachdem Peter nach 3 Stunden keine Rückmeldung bekommen hat, prüft er die Warteschlange und sieht das Tom ein Duzent Katzensimulationen mit hoher Priorität eingereiht hat.
+Genervt beendet Peter seinen PC und hofft das seine Simulation bis morgen abgeschlossen ist.
+Am nächsten morgen bemerkt Peter das Tom ein weitere Duzent Katzensimulationen mit erneut hoher Priorität eingereiht hat.
+24 Stunden nach Einreihung seiner Aufgabe wird nun die Priorität dieser erhöht und hat nun ebenfalls hohe Priorität.
+Peter bemerkt das seine Aufgabe nun in der Warteschlange langsam nach vorne rückt und schließlich gestartet wird. 
+Nach einiger Zeit erhält Peter eine Email mit dem Ergebnis seiner Simulation.
+
 \section{Produkteinsatz}
 % Zielgruppe
 % Anwendungsbereiche
