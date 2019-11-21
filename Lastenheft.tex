@@ -804,6 +804,16 @@ Der Nutzer startet eine Aufgabe die einige Zeit benötigt. Während der Bearbeit
 Sind alle drei Aufgaben bearbeitet, startet er wieder eine Aufgabe, die einige Zeit benötigt. Danach erstellt er eine Aufgabe mit einer hohen Priorität und danach dieselbe Aufgabe mit niedriger Priorität.
 Wenn das System korrekt funktioniert, werden in beiden Fällen die Aufgaben mit hoher Priorität zuerst bearbeitet.
 
+\item[T04] \textbf{Festlegen von minimal und maximal bereitgestellten CPU-Kernen (FA44)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer festlegen kann wie viele Kerne einer Aufgabe zur Verfügung gestellt werden sollen.
+\subitem \textbf{Ablauf} Da jede Aufgabe in einem eigenen Container ausgeführt wird, reicht es aus eine Aufgabe zu starten, die die Anzahl der CPU-Kerne der virtuellen Umgebung ausgibt und diese Aufgabe mit verschiedenen Werten aufgibt.
+
+\item[T05] \textbf{Festlegen von maximal nutzbarem RAM (FA45)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer festlegen kann wie viel Hauptspeicher seiner Anwendung zur Verfügung gestellt werden soll.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, in dem der Nutzer Aufgaben erstellen kann, die bearbeitet werden.
+Der Nutzer startet eine Aufgabe, die mindestens 2 Kilobyte Speicher anfordert und stellt der Aufgabe einen maximalen Hauptspeicher von einem Kilobyte zur Verfügung.
+Bekommt er eine Nachricht, dass der Speicher vollgeöaufen ist und die Aufgabe deshalb abgebrochen werden musste, funktioniert das System.
+
 \end{itemize}
 
 \subsubsection{Erweiterte Testfälle}
