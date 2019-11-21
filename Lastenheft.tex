@@ -771,6 +771,27 @@ Startet den Server, der die Aufgaben an die Arbeiter verteilt.
 \section{Testfälle/Testszenarien}
 \subsection{Globale Testfälle}
 \subsubsection{Grundlegende Testfälle}
+
+\begin{minipage}[t]{\linewidth}
+\item[T000] \textbf{Das Verbinden des Clients mit dem Server (FA1, FA2, FA3)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob sich der Client beim Programstart automatisch mit dem Server verbinden kann.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits laufenden System, das mindestens aus dem Server und einem Arbeiter besteht.
+Der Client führt folgenden Befehl aus:
+\begin{mycode}
+bb --block sleep 10 ; echo "test"
+\end{mycode}
+Bekommt der Client die Fehlermeldung
+\begin{mycode}
+Error: Can not find server
+\end{mycode}
+so konnte keine Verbindung zum Server hergestellt werden. Erhält er die Fehlermelung
+\begin{mycode}
+Error: Could not authenticate to the server
+\end{mycode}
+so konnte der Benutzer sich nicht gegenüber dem Server authentisieren. Erhält er eine andere Fehlermeldung, so konnte die Aufgabe nicht gestartet werden.
+Bekommt er hingegen eine Job-ID zurück, so konnte die Aufgabe erfolgreich in die Warteschlange eingereiht werden.
+\end{minipage}
+
 \subsubsection{Erweiterte Testfälle}
 \subsection{Testszenarien}
 
