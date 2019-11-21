@@ -131,6 +131,13 @@
 	name={ETA},
 	description={Der Zeitpunkt, zu dem eine Task erledigt wird}
 }
+
+\newglossaryentry{Concurrency}
+{
+	name={Concurrency},
+	description={Die Eigenschaft eines Systems, mehrere Berechnungen, Anweisungen oder Befehle gleichzeitig auszuführen}
+}
+
 \title{Balanced Banana}
 \author{Niklas Lorenz \and Thomas Häuselmann \and Rakan Zeid Al Masri \and Christopher Lukas Homberger \and Jonas Seiler}
 
@@ -197,6 +204,10 @@ Mit unserem Programm kann der Benutzer seinen \gls{Task} einfach von der Kommand
 	\item Der Benutzer soll benachrichtigt werden, wenn eine Task erledigt ist oder fehlschlägt.
 	
 	\item Statistiken sollen über eine \gls{Web-API} mit HTTP-Requests bereitgestellt werden.
+	
+	\item Die \gls{Web-API} ermöglicht eine einfache Integration der Balanced Banana-Statistik in andere Projekte (z.B. das SmartTV-Projekt).
+	
+	\item Das Programm ist ausführlich dokumentiert und enthält klare Anleitungen zur Benutzung.
 
 \end{itemize}
 
@@ -210,7 +221,9 @@ Mit unserem Programm kann der Benutzer seinen \gls{Task} einfach von der Kommand
 	\item Mehrsprachige Benachrichtigung.
 	
 	\item Andere Benutzer können den Status anderer Tasks verfolgen und sich darüber benachrichtigen lassen.
-
+	
+	\item Der Benutzer kann die Ausführung einer Task verzögern (z.B. wenn eine Task in 30 Minuten ausgeführt werden soll).
+	
 \end{itemize}
 
 \subsection{Abgrenzungskriterien}
@@ -223,6 +236,8 @@ Mit unserem Programm kann der Benutzer seinen \gls{Task} einfach von der Kommand
 	\item Das Programm macht keine \gls{Ausnahmebehandlung}. Es geht davon aus, dass die an es gesendeten Tasks fehlerfrei funktionieren.
 	
 	\item Das Programm macht nichts mit den gesammelten \glspl{Statistik}, es lässt den Benutzer sie nur über die \gls{Web-API} sehen.
+	
+	\item Das Programm ermöglicht keine \gls{Concurrency} von Tasks auf einem Rechenknoten.
 	
 \end{itemize}
 
