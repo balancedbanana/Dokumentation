@@ -773,7 +773,7 @@ Startet den Server, der die Aufgaben an die Arbeiter verteilt.
 \subsubsection{Grundlegende Testfälle}
 
 \begin{itemize}
-\item[T000] \textbf{Das Verbinden des Clients mit dem Server (FA1, FA2, FA3)}
+\item[T01] \textbf{Verbinden des Clients mit dem Server (FA1, FA2, FA3)}
 \subitem \textbf{Erklärung} Ziel ist zu testen, ob sich der Client beim Programstart automatisch mit dem Server verbinden kann.
 \subitem \textbf{Ablauf} Ausgegangen wird von einem bereits laufenden System, das mindestens aus dem Server und einem Arbeiter besteht.
 Der Client führt folgenden Befehl aus:
@@ -790,6 +790,20 @@ Error: Could not authenticate to the server
 \end{mycode}
 so konnte der Benutzer sich nicht gegenüber dem Server authentisieren. Erhält er eine andere Fehlermeldung, so konnte die Aufgabe nicht gestartet werden.
 Bekommt er hingegen eine Job-ID zurück, so konnte die Aufgabe erfolgreich in die Warteschlange eingereiht werden.
+
+\item[T02] \textbf{Speichern von Parametern in dem \gls{Configfile} (FA41 FA42)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob im \gls{Configfile} angegebene Einstellungen beim Erstellen von Aufgaben berücksichtigt werden.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits funktionierenden System, in dem Aufgaben an Arbeiter verteilt werden können.
+Der Nutzer trägt in das \gls{Configfile} eine maximale Speichernutzung von einem Kilobyte ein und erstellt eine Aufgabe, die 2 Kilobyte benötigt.
+Bekommt er eine Benachrichtigung, dass das Programm abgestürzt ist, weil der Speicher vollgelaufen ist, wird das \gls{Configfile} korrekt mit einbezogen.
+
+\item[T03] \textbf{Festlegen von Prioritäten (FA 43)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob Aufgaben mit einer höheren Priorität bevorzugt werden.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits funktionierenden System mit genau einem Arbeiter, in dem Aufgaben verteilt und bearbeitet werden können.
+Der Nutzer startet eine Aufgabe die einige Zeit benötigt. Während der Bearbeitung gibt er eine Aufgabe mit einer niedrigen Priorität auf gefolgt von derselben Aufgabe mit einer hohen Priorität.
+Sind alle drei Aufgaben bearbeitet, startet er wieder eine Aufgabe, die einige Zeit benötigt. Danach erstellt er eine Aufgabe mit einer hohen Priorität und danach dieselbe Aufgabe mit niedriger Priorität.
+Wenn das System korrekt funktioniert, werden in beiden Fällen die Aufgaben mit hoher Priorität zuerst bearbeitet.
+
 \end{itemize}
 
 \subsubsection{Erweiterte Testfälle}
