@@ -894,6 +894,29 @@ sleep 10
 \end{mycode}
 besteht und gibt seine Mail-Adresse an, entweder als Parameter in der Konsole oder als Eintrag im \gls{Configfile}.
 Er wartet 2 Minuten und aktualisiert ab und zu seine Mailbox. Bis dahin ist die Aufgabe abgearbeitet und der Mailserver sollte genug Zeit bekommen haben, die Mail zuzustellen.
+Funktioniert das System, so hat er eine Bestätigungsmail vom System erhalten.
+
+\item[T10] \textbf{Erstellen von Sicherungen (FA 7)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob das System regelmäßige Sicherungen seiner Aufgaben anlegt.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist Aufgaben entgegen zu nehmen und zu verarbeiten.
+Der Administrator setzt zuerst das Backup-Intervall des Servers auf eine Minute.
+Dann startet der Nutzer eine Aufgabe, die nur aus dem Aufruf
+\begin{mycode}
+sleep 130
+\end{mycode}
+besteht. Nachdem die Aufgabe abgearbeitet ist, schaut der Administrator nach, ob im Dateisystem Sicherungen der Aufgabe liegen.
+Falls das System korrekt funktioniert, findet er genau zwei dieser Sicherungen vor.
+Am Schluss setzt der Administrator das Backup-Intervall wieder zurück.
+
+\item[T11] \textbf{Anforderung der Standard-Ausgabe (FA 8)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer in der Lage ist sich die korrekte Standardausgabe seiner Aufgabe anzusehen
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System mit genau einem Arbeiter, das in der Lage ist Aufgaben entgegen zu nehmen und zu verarbeiten.
+Der Nutzer führt eine kleine Aufgabe lokal bei sich aus und gibt sie auch an das System weiter. Er sorgt dafür, dass diese Aufgabe alle Resourcen des Arbeiters für sich beansprucht.
+Dann fragt der die Ausgabe der Aufgabe ab und vergleicht sie mit seiner lokalen Ausgabe.
+Bevor die Aufgabe abgeschlossen ist, erstellt er noch eine weitere Aufgabe und ruft direkt die Ausgabe ab.
+Wenn das System funktioniert, bekommt er eine Fehlermeldung zurück, die ihn darauf hinweist, dass die Aufgabe noch nicht begonnen ist, sondern noch in der Warteschlange hängt.
+Dann versucht der Nutzer die Ausgabe einer Aufgabe anzufordern, die es nicht gibt. Auch hier sollte er eine Fehlermeldung erhalten.
+Als letztes wartet er, bis seine erste Aufgabe abgeschlossen ist und fragt dann die Ausgabe der zweiten Aufgabe ab. Jetzt sollte er keine Fehlermeldung mehr erhalten.
 
 \end{itemize}
 
