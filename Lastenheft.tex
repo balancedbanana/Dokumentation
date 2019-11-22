@@ -872,6 +872,27 @@ Als letztes wartet er, bis seine erste Aufgabe abgeschlossen ist und fragt dann 
 \end{itemize}
 
 \subsubsection{Erweiterte Testfälle}
+
+\begin{itemize}
+
+\item[T12] \textbf{Abbrechen von zu langen Aufgaben}
+\subitem \bftext{Erklärung} Ziel ist zu testen, ob der Server in der Lage ist Aufgaben, die zu viel Zeit benötigen, abzubrechen.
+\subitem \bftext{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist Aufgaben entgegenzunehmen und zu verarbeiten und den Auftraggeber nach Abschluss einer Aufgabe zu benachrichtigen.
+Der Administrator setzt die maximale Bearbeitungszeit für Aufgaben auf 1 Minute.
+Danach erstellt der Benutzer eine Aufgabe, die 30 Sekunden für die Bearbeitung benötigt und eine Aufgabe, die 2 Minuten benötigt.
+Wenn das System korrekt funktioniert, bekommt er eine Benachrichtigung, dass seine erste Aufgabe abgeschlossen wurde,
+und eine zweite Nachricht, die ihn darauf hinweist, dass seine Aufgabe die zulässige Zeit überschritten hat.
+Der Administrator setzt zuletzt die maximale Bearbeitungszeit zurück.
+
+\item[T13] \bftext{Manuelles Stoppen von Aufgaben}
+\subitem \bftext{Erklärung} Ziel ist zu testen, ob der Nutzer in der Lage ist seine Aufgaben selbst abzubrechen.
+\subitem \bftext{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist Aufgaben entegenzunehmen, zu verarbeiten und den Status von Aufgaben zurückzugeben.
+Der Nutzer gibt eine Aufgabe auf, die einige Zeit zur Abarbeitung benötigt. Als nächstes gibt er eine zweite Aufgabe auf, die sich nicht selbst beenden kann.
+Dann versucht er diese zweite Aufgabe manuell zu beenden. Wenn das System funktioniert, bekommt der Nutzer, wenn er den Status der Aufgabe anfragt, "cancelled" zurück.
+Außerdem sollte der Status der ersten Aufgabe weiterhin "processing" sein.
+
+\end{itemize}
+
 \subsection{Testszenarien}
 
 \clearpage
