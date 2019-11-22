@@ -26,6 +26,7 @@
 
 \setitemize{align=parleft, labelsep=0.5cm}
 
+
 \makenoidxglossaries
 
 \newglossaryentry{CLI}
@@ -59,38 +60,82 @@
 \newglossaryentry{Server}
 {
 	name={Server},
-	description={Programm auf dem Server, der die Benutzer (Außenwelt) mit den Arbeitern (Privates Netzwerk) verbindet.}
+	description={Programm auf dem Server, der die Benutzer (Außenwelt) mit den Arbeitern (Privates Netzwerk) verbindet}
 }
 
 \newglossaryentry{Benutzer}
 {
 	name={Benutzer},
-	description={Eine Person, die dazu in der Lage ist, Befehle auszuführen.}
+	description={Eine Person, die dazu in der Lage ist, Befehle auszuführen}
 }
 
 \newglossaryentry{Prioritaet}
 {
 	name={Priorität},
 	plural={Prioritäten},
-	description={Ein diskretes Maß für Wichtigkeit bzw. Relevanz. Meist eine ganze Zahl, wobei gewisse Werte auch durch vorher definierte Wörter bezeichnet werden können.}
+	description={Ein diskretes Maß für Wichtigkeit bzw. Relevanz. Meist eine ganze Zahl, wobei gewisse Werte auch durch vorher definierte Wörter bezeichnet werden können}
 }
 
 \newglossaryentry{Multicast}
 {
 	name={Multicast},
-	description={Eine besondere Form von Netzwerk Packet, welches an alle Adressen des Netzwerkes gesendet wird.}
+	description={Eine besondere Form von Netzwerk Packet, welches an alle Adressen des Netzwerkes gesendet wird}
 }
 
 \newglossaryentry{Worker}
 {
 	name={Worker},
-	description={Programm auf den Rechnern, welche dafür zuständig sind, die Aufgaben auszuführen.}
+	description={Programm auf den Rechenknoten, welche dafür zuständig sind, die Aufgaben auszuführen}
 }
 
 \newglossaryentry{Administrator}
 {
 	name={Administrator},
-	description={Eine Person, die dazu privilegiert ist, das Gesamtsystem zu verwalten und über uneingeschränkten Zugriff auf Ein- und Ausgabedateien verfügt.}
+	description={Eine Person, die dazu privilegiert ist, das Gesamtsystem zu verwalten und über uneingeschränkten Zugriff auf Ein- und Ausgabedateien verfügt}
+}
+
+\newglossaryentry{Task}
+{
+	name={Task},
+	plural={Tasks},
+	description={Jedes Programm (z.B. Skripte, Simulationen, etc.), das ein Benutzer auf einem Rechenknoten ausführen möchte}
+}
+
+\newglossaryentry{Rechenknoten}
+{
+	name={Rechenknoten},
+	description={Leistungsstarke Rechner, die die von einem Benutzer gescheduelten Task ausführen}
+}
+
+\newglossaryentry{Statistik}
+{
+	name={Statistik},
+	plural={Statistiken},
+	description={not 100\% sure}
+}
+
+\newglossaryentry{Web-API}
+{
+	name={Web-API},
+	description={Web-API (Web-Application Programming Interface) ist eine Art Schnittstelle über das Web, die über eine Reihe von Funktionen verfügt, die es Benutzern ermöglichen, auf bestimmte Funktionen oder Daten einer Applikation, eines Betriebssystems oder anderer Dienste zuzugreifen}
+}
+
+\newglossaryentry{Ausnahmebehandlung}
+{
+	name={Ausnahmebehandlung},
+	description={Der Prozess der Reaktion auf das Auftreten von Ausnahmen  - außergewöhnliche Bedingungen, die eine spezielle Verarbeitung erfordern - während der Berechnung , die oft den normalen Ablauf der Programmausführung unterbrechen}
+}
+
+\newglossaryentry{Estimated Time of Arrival}
+{
+	name={ETA},
+	description={Der Zeitpunkt, zu dem eine Task erledigt wird}
+}
+
+\newglossaryentry{Concurrency}
+{
+	name={Concurrency},
+	description={Die Eigenschaft eines Systems, mehrere Berechnungen, Anweisungen oder Befehle gleichzeitig auszuführen}
 }
 
 \title{Balanced Banana}
@@ -142,18 +187,77 @@ Mit Hilfe intelligenter Algorithmen soll unser Programm in der Lage sein die ver
 basierend auf Größe, Priorität und gegebenen Einschränkungen und Bedingungen. Um möglichst flexibel einsetzbar zu sein, soll außerdem die Verteilalgorithmik
 über eine feste Schnittstelle jederzeit änderbar sein, sodass Aspekten wie Fairness oder Turnaround-Zeit unterschiedliche Priorität eingeräumt werden kann.
 
+\clearpage
 \section{Zielbestimmung}
 \subsection{Musskriterien}
+\begin{itemize}[nosep]
+	
+	\item Der Benutzer kann seine Aufgabe einfach von der Kommandozeile absetzen.
+	
+	\item Parameter ermöglichen die Angabe weiterer Optionen, zum Beispiel das Setzen einer Priorität oder Anforderungen für die Tasks. 
+		
+	\item Balanced Banana soll in der Lage sein, die Tasks des Benutzers auf die \gls{Rechenknoten} zu verteilen.
+	
+	\item Balanced Banana soll das oben genannte Ziel mit minimalem Aufwand für den Benutzer erfüllen.
+	
+	\item Vom Benutzer gescheduelte \glspl{Task} sollen nicht manuell gestartet werden müssen. Balanced Banana macht dies automatisch.
+	
+	\item Balanced Banana sammelt \glspl{Statistik} über \glspl{Task} und stellt sie den Benutzern zur Verfügung.
+	
+	\item Die Anzahl der Worker ist leicht anpassbar.
+	
+	\item Der Benutzer ist in der Lage, verschiedene Prioritäten für Tasks zu setzen.
+	
+	\item Der Benutzer soll benachrichtigt werden, wenn eine Task erledigt ist oder fehlschlägt.
+	
+	\item Statistiken sollen über eine \gls{Web-API} mit HTTP-Requests bereitgestellt werden.
+	
+	\item Die \gls{Web-API} ermöglicht eine einfache Integration der Balanced Banana-Statistik in andere Projekte (z.B. das SmartTV-Projekt).
+	
+	\item Das Programm ist ausführlich dokumentiert und enthält klare Anleitungen zur Benutzung.
+
+\end{itemize}
+
 \subsection{Wunschkriterien}
+\begin{itemize}[nosep]
+
+	\item Der Benutzer kann \glspl{Task} pausieren.	
+	
+	\item Das Programm kann die \gls{Estimated Time of Arrival} für die verbleibenden Tasks vorhersagen.
+	
+	\item Mehrsprachige Benachrichtigung.
+	
+	\item Andere Benutzer können den Status anderer Tasks verfolgen und sich darüber benachrichtigen lassen.
+	
+	\item Der Benutzer kann die Ausführung einer Task verzögern (z.B. wenn eine Task in 30 Minuten ausgeführt werden soll).
+	
+\end{itemize}
+
 \subsection{Abgrenzungskriterien}
+\begin{itemize}[nosep]
+
+	\item Das Programm führt die gescheduelten \glspl{Task} nicht persönlich aus, sondern überlässt die Arbeit den \gls{Rechenknoten}.
+	
+	\item Das Programm macht nichts mit der Ausgabe der verschiedenen Tasks, es verteilt nur die Tasks.
+	
+	\item Das Programm macht keine \gls{Ausnahmebehandlung}. Es geht davon aus, dass die an es gesendeten Tasks fehlerfrei funktionieren.
+	
+	\item Das Programm macht nichts mit den gesammelten \glspl{Statistik}, es lässt den Benutzer sie nur über die \gls{Web-API} sehen.
+	
+	\item Das Programm ermöglicht keine \gls{Concurrency} von Tasks auf einem Rechenknoten.
+	
+\end{itemize}
+
 % Was will ich bewusst nicht umsetzen?
 % Was soll es nicht sein?
 
 % Ist das nicht ne Wiederholung von Einleitung + Anforderungen?
 % Ich würde das sehr kurz halten, so wie die Einleitung zum Beispiel
 
+\clearpage
 \section{Szenarien}
 
+\clearpage
 \section{Produkteinsatz}
 % Zielgruppe
 % Anwendungsbereiche
@@ -185,6 +289,7 @@ Das Produkt ist den Aufgabengebieten entsprechend in drei Programme aufgeteilt:\
 \end{itemize}
 \newpage
 
+\newpage
 \section{Produktumgebung}
 % Unter welcher Software / Hardware läuft es?
 
@@ -234,7 +339,7 @@ Das Arbeiter Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgen
 \item[FA42]	Benutzer kann Parameter über \gls{Configfile} übergeben
 \item[FA43] Benutzer kann \gls{Prioritaet} einer Aufgabe festlegen %Glossar \gls{Prioritaet}???
 \item[FA44] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
-\item[FA45] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
+ \item[FA45] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
 \item[FA46] Benutzer kann das benutzte Betriebssystem festlegen
 \item[FA47] Benutzer kann angeben ob die Aufgabe pausierbar ist. %evtl optional
 \item[FA48] Benutzer kann angeben ob der \gls{Client} blockieren soll bis die Aufgabe beendet ist. %Blockierbar glosar?
@@ -708,6 +813,7 @@ Zusätzlich soll hinterlegt werden, auf welchen Rechnern die Aufgabe aktiv lief.
 
 % hier die Systemmodelle einfügen
 
+\clearpage
 \section{Benutzer Oberfläche}
 \subsection{Befehlszeile}
 
@@ -827,6 +933,8 @@ echo $taskid
 bbc --tail $taskid
 \end{mycode}
 
+\clearpage
+
 \section{Qualitätszielbestimmungen}
 % Tabelle ... schafeln .. was ist ihm wichtig
 
@@ -846,6 +954,7 @@ bbc --tail $taskid
 
 \end{comment}
 
+\clearpage
 \section{Testfälle/Testszenarien}
 \subsection{Globale Testfälle}
 \subsubsection{Grundlegende Testfälle}
