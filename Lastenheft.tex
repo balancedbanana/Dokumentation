@@ -26,6 +26,7 @@
 
 \setitemize{align=parleft, labelsep=0.5cm}
 
+
 \makenoidxglossaries
 
 \newglossaryentry{CLI}
@@ -59,38 +60,82 @@
 \newglossaryentry{Server}
 {
 	name={Server},
-	description={Programm auf dem Server, der die Benutzer (Außenwelt) mit den Arbeitern (Privates Netzwerk) verbindet.}
+	description={Programm auf dem Server, der die Benutzer (Außenwelt) mit den Arbeitern (Privates Netzwerk) verbindet}
 }
 
 \newglossaryentry{Benutzer}
 {
 	name={Benutzer},
-	description={Eine Person, die dazu in der Lage ist, Befehle auszuführen.}
+	description={Eine Person, die dazu in der Lage ist, Befehle auszuführen}
 }
 
 \newglossaryentry{Prioritaet}
 {
 	name={Priorität},
 	plural={Prioritäten},
-	description={Ein diskretes Maß für Wichtigkeit bzw. Relevanz. Meist eine ganze Zahl, wobei gewisse Werte auch durch vorher definierte Wörter bezeichnet werden können.}
+	description={Ein diskretes Maß für Wichtigkeit bzw. Relevanz. Meist eine ganze Zahl, wobei gewisse Werte auch durch vorher definierte Wörter bezeichnet werden können}
 }
 
 \newglossaryentry{Multicast}
 {
 	name={Multicast},
-	description={Eine besondere Form von Netzwerk Packet, welches an alle Adressen des Netzwerkes gesendet wird.}
+	description={Eine besondere Form von Netzwerk Packet, welches an alle Adressen des Netzwerkes gesendet wird}
 }
 
 \newglossaryentry{Worker}
 {
 	name={Worker},
-	description={Programm auf den Rechnern, welche dafür zuständig sind, die Aufgaben auszuführen.}
+	description={Programm auf den Rechenknoten, welche dafür zuständig sind, die Aufgaben auszuführen}
 }
 
 \newglossaryentry{Administrator}
 {
 	name={Administrator},
-	description={Eine Person, die dazu privilegiert ist, das Gesamtsystem zu verwalten und über uneingeschränkten Zugriff auf Ein- und Ausgabedateien verfügt.}
+	description={Eine Person, die dazu privilegiert ist, das Gesamtsystem zu verwalten und über uneingeschränkten Zugriff auf Ein- und Ausgabedateien verfügt}
+}
+
+\newglossaryentry{Task}
+{
+	name={Task},
+	plural={Tasks},
+	description={Jedes Programm (z.B. Skripte, Simulationen, etc.), das ein Benutzer auf einem Rechenknoten ausführen möchte}
+}
+
+\newglossaryentry{Rechenknoten}
+{
+	name={Rechenknoten},
+	description={Leistungsstarke Rechner, die die von einem Benutzer gescheduelten Task ausführen}
+}
+
+\newglossaryentry{Statistik}
+{
+	name={Statistik},
+	plural={Statistiken},
+	description={not 100\% sure}
+}
+
+\newglossaryentry{Web-API}
+{
+	name={Web-API},
+	description={Web-API (Web-Application Programming Interface) ist eine Art Schnittstelle über das Web, die über eine Reihe von Funktionen verfügt, die es Benutzern ermöglichen, auf bestimmte Funktionen oder Daten einer Applikation, eines Betriebssystems oder anderer Dienste zuzugreifen}
+}
+
+\newglossaryentry{Ausnahmebehandlung}
+{
+	name={Ausnahmebehandlung},
+	description={Der Prozess der Reaktion auf das Auftreten von Ausnahmen  - außergewöhnliche Bedingungen, die eine spezielle Verarbeitung erfordern - während der Berechnung , die oft den normalen Ablauf der Programmausführung unterbrechen}
+}
+
+\newglossaryentry{Estimated Time of Arrival}
+{
+	name={ETA},
+	description={Der Zeitpunkt, zu dem eine Task erledigt wird}
+}
+
+\newglossaryentry{Concurrency}
+{
+	name={Concurrency},
+	description={Die Eigenschaft eines Systems, mehrere Berechnungen, Anweisungen oder Befehle gleichzeitig auszuführen}
 }
 
 \title{Balanced Banana}
@@ -128,23 +173,88 @@
 \section{Einleitung}
 \vspace*{1cm}
 
-Aufgabenverteilung ist ein in vielen Unternehmen übliches Problem. Wenn ein Unternehmen größer wird, 
-so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Aufgaben größer und komplexer sein. Es wird immer schwieriger, die genannten Ressourcen effizient und gerecht auf die verschiedenen Teams, Mitarbeiter und Aufgaben aufzuteilen. \\
+Die Verteilung rechenintensiver Aufgaben ist ein in vielen Unternehmen übliches Problem. Wenn ein Team größer wird, 
+so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Aufgaben größer und komplexer sein.
+Es wird immer schwieriger, die vorhandenen Ressourcen effizient und gerecht auf die verschiedenen Mitarbeiter und Aufgaben aufzuteilen.
+Aktuell stehen nur einzelne Rechner zur Verfügung, die von jedem Mitarbeiter beliebig verwendet werden können. So können Aufgaben nur bearbeitet werden,
+wenn zum Zeitpunkt der Anfrage ein Rechner frei steht. Doch das ist weder fair den einzelnen Nutzern gegenüber, noch kann die Hardware dadurch gut ausgelastet werden.
+Wird eine Aufgabe beispielsweise mitten in der Nacht abgeschlossen, ist niemand da, um eine neue Aufgabe ausführen zu lassen.
+Es gibt auf dem Markt bereits viele Lösungen für dieses Problem, allerdings sind sie sehr komplex und nicht leicht erweiterbar.
+Balanced Banana soll dieses Problemes in Form eines kompakten, einfach zu bedienenden und skalierbaren Programms lösen.
+Mit unserem Programm soll der Benutzer seine Aufgaben einfach von der Kommandozeile absetzen können, die dann automatisch auf die bereitstehende Hardware verteilt werden.
+Darüber hinaus soll der Benutzer durch die Verwendung von zusätzlichen Parametern in der Lage sein, weitere Einschränkungen und/oder Bedingungen für seine Aufgaben anzugeben.
+Mit Hilfe intelligenter Algorithmen soll unser Programm in der Lage sein die verfügbaren Rechenressourcen für die anstehenden Aufgaben effizient zu verteilen,
+basierend auf Größe, Priorität und gegebenen Einschränkungen und Bedingungen. Um möglichst flexibel einsetzbar zu sein, soll außerdem die Verteilalgorithmik
+über eine feste Schnittstelle jederzeit änderbar sein, sodass Aspekten wie Fairness oder Turnaround-Zeit unterschiedliche Priorität eingeräumt werden kann.
 
-Viele Lösungen gibt es bereits auf dem Markt, sie sind aber zu komplex und nicht leicht erweiterbar. Balanced Banana löst diese Probleme in Form eines kompakten, einfach zu bedienenden und skalierbaren Programms. \\
-
-Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, \gls{Prioritaet}, Einschränkungen und Bedingungen.
-
+\clearpage
 \section{Zielbestimmung}
 \subsection{Musskriterien}
+\begin{itemize}[nosep]
+	
+	\item Der Benutzer kann seine Aufgabe einfach von der Kommandozeile absetzen.
+	
+	\item Parameter ermöglichen die Angabe weiterer Optionen, zum Beispiel das Setzen einer Priorität oder Anforderungen für die Tasks. 
+		
+	\item Balanced Banana soll in der Lage sein, die Tasks des Benutzers auf die \gls{Rechenknoten} zu verteilen.
+	
+	\item Balanced Banana soll das oben genannte Ziel mit minimalem Aufwand für den Benutzer erfüllen.
+	
+	\item Vom Benutzer gescheduelte \glspl{Task} sollen nicht manuell gestartet werden müssen. Balanced Banana macht dies automatisch.
+	
+	\item Balanced Banana sammelt \glspl{Statistik} über \glspl{Task} und stellt sie den Benutzern zur Verfügung.
+	
+	\item Die Anzahl der Worker ist leicht anpassbar.
+	
+	\item Der Benutzer ist in der Lage, verschiedene Prioritäten für Tasks zu setzen.
+	
+	\item Der Benutzer soll benachrichtigt werden, wenn eine Task erledigt ist oder fehlschlägt.
+	
+	\item Statistiken sollen über eine \gls{Web-API} mit HTTP-Requests bereitgestellt werden.
+	
+	\item Die \gls{Web-API} ermöglicht eine einfache Integration der Balanced Banana-Statistik in andere Projekte (z.B. das SmartTV-Projekt).
+	
+	\item Das Programm ist ausführlich dokumentiert und enthält klare Anleitungen zur Benutzung.
+
+\end{itemize}
+
 \subsection{Wunschkriterien}
+\begin{itemize}[nosep]
+
+	\item Der Benutzer kann \glspl{Task} pausieren.	
+	
+	\item Das Programm kann die \gls{Estimated Time of Arrival} für die verbleibenden Tasks vorhersagen.
+	
+	\item Mehrsprachige Benachrichtigung.
+	
+	\item Andere Benutzer können den Status anderer Tasks verfolgen und sich darüber benachrichtigen lassen.
+	
+	\item Der Benutzer kann die Ausführung einer Task verzögern (z.B. wenn eine Task in 30 Minuten ausgeführt werden soll).
+	
+\end{itemize}
+
 \subsection{Abgrenzungskriterien}
+\begin{itemize}[nosep]
+
+	\item Das Programm führt die gescheduelten \glspl{Task} nicht persönlich aus, sondern überlässt die Arbeit den \gls{Rechenknoten}.
+	
+	\item Das Programm macht nichts mit der Ausgabe der verschiedenen Tasks, es verteilt nur die Tasks.
+	
+	\item Das Programm macht keine \gls{Ausnahmebehandlung}. Es geht davon aus, dass die an es gesendeten Tasks fehlerfrei funktionieren.
+	
+	\item Das Programm macht nichts mit den gesammelten \glspl{Statistik}, es lässt den Benutzer sie nur über die \gls{Web-API} sehen.
+	
+	\item Das Programm ermöglicht keine \gls{Concurrency} von Tasks auf einem Rechenknoten.
+	
+\end{itemize}
+
 % Was will ich bewusst nicht umsetzen?
 % Was soll es nicht sein?
 
 % Ist das nicht ne Wiederholung von Einleitung + Anforderungen?
 % Ich würde das sehr kurz halten, so wie die Einleitung zum Beispiel
 
+\clearpage
 \section{Szenarien}
 
 \subsection{\textbf{Einreihen einer Aufgabe in Warteschlange}}
@@ -176,14 +286,70 @@ Am nächsten morgen bemerkt Peter das Tom ein weiteres Duzent Katzensimulationen
 Peter bemerkt das seine Aufgabe nun in der Warteschlange langsam nach vorne rückt und schließlich gestartet wird. 
 Nach einiger Zeit erhält Peter eine Email mit dem Ergebnis seiner Simulation.
 
+\clearpage
 \section{Produkteinsatz}
 % Zielgruppe
 % Anwendungsbereiche
 % Betriebsbedinugen
 % Wer? Was? Wozu?
+\begin{itemize}
+\begin{minipage}[t]{\linewidth}
+\item \textbf{Zielgruppe}\newline
+Das Produkt ist für die Verwendung durch die Mitarbeiter am Institut für Technische Informatik (ITEC) des Karlsruher Institut für Technologie (KIT) gedacht.\newline
+Den Mitarbeitern soll die Benutzung der Arbeiter Rechner erleichtert werden, indem die Verteilung der Aufgaben automatisch erfolgt. Somit soll garantiert werden, dass die Aufgaben sich gegenseitig möglichst wenig stören.\newline
+Durch die Vermeidung von Situationen, in denen mehrere Personen Aufgaben auf dem selben Rechner ausführen, während einer oder mehrere andere Arbeiter unbeschäftigt sind, soll die Leistungsfähigkeit sowie allgemeine Zufriedenheit und Harmonie gesteigert werden.
+\end{minipage}
+\\
 
+\begin{minipage}[t]{\linewidth}
+\item \textbf{Verwendungszweck}\newline
+Das Produkt dient dazu, Simulationen und andere rechenintensive Aufgaben auf eigens zu diesem Zweck gedachte Rechner (Arbeiter) zu verteilen.\newline
+Oftmals fallen Aufgaben an, die von einem Computer berechnet werden können und sollen. Nicht immer ist der eigene Rechner jedoch dieser Aufgabe gewachsen. Damit sich Benutzer und Aufgabe also nicht um Rechenzeit streiten, werden die anstehenden Aufgaben auf einen Pool von Arbeiter Rechnern verteilt, die speziell für diesen Zweck zur Verfügung stehen. Die Aufgabe des Verteilens wird von dem Produkt übernommen.
+\end{minipage}
+\\
+
+\begin{minipage}[t]{\linewidth}
+\item \textbf{Produktaufbau}\newline
+Das Produkt ist den Aufgabengebieten entsprechend in drei Programme aufgeteilt:\newline
+1. Der Client (Benutzer): Verantwortlich für die Interaktion des Benutzers mit dem Produkt auf der Befehlszeile.\newline
+2. Der Scheduler (Server): Verantwortlich für das effiziente Verteilen der Aufgaben auf dem Arbeiterpool. Agiert als Mittelmann zwischen Benutzer und Arbeiter.\newline
+3. Der Arbeiter (Worker): Verantwortlich für Ausführung, Pausieren und Abbruch der Aufgaben auf den Arbeitern (spezielle Rechner für die Aufgabenverarbeitung).
+\end{minipage}
+\end{itemize}
+\newpage
+
+\newpage
 \section{Produktumgebung}
 % Unter welcher Software / Hardware läuft es?
+
+\begin{itemize}
+\begin{minipage}[t]{\linewidth}
+\item \textbf{Client (Nutzer) Umgebung}\newline
+Das Benutzer Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgenden Anforderungen genügt:
+\subitem \textbf{Betriebssystem:} Linux oder ein Linux basiertes Betriebssystem
+\subitem \textbf{CPU:} Mindestens ein CPU Kern
+\subitem \textbf{Arbeitsspeicher:} Mindestens 1 GB verfügbarer Arbeitsspeicher
+\end{minipage}
+\\
+
+\begin{minipage}[t]{\linewidth}
+\item \textbf{Scheduler (Server) Umgebung}\newline
+Das Server Produkt ist für den Einsatz auf einem Rechner bestimmt, der das Benutzer Netzwerk mit dem Arbeiter Netzwerk verbindet und folgenden Anforderungen genügt:
+\subitem \textbf{Betriebssystem:} CentOS 7 oder Ubuntu 18.04
+\subitem \textbf{CPU:} Mindestens ein CPU Kern
+\subitem \textbf{Arbeitsspeicher:} Mindestens 4 GB verfügbarer Arbeitsspeicher
+\end{minipage}
+\\
+
+\begin{minipage}[t]{\linewidth}
+\item \textbf{Arbeiter (Worker) Umgebung}\newline
+Das Arbeiter Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgenden Anforderungen genügt:
+\subitem \textbf{Betriebssystem:} CentOS 7 oder Ubuntu 18.04
+\subitem \textbf{CPU:} Mindestens ein CPU Kern, Empfohlen: 24 CPU Kerne
+\subitem \textbf{Arbeitsspeicher:} Mindestens 8 GB verfügbarer Arbeitsspeicher, Empfohlen: 64 GB Arbeitsspeicher
+\end{minipage}
+\end{itemize}
+\newpage
 
 \section{Funktionale Anforderungen}
 
@@ -202,7 +368,7 @@ Nach einiger Zeit erhält Peter eine Email mit dem Ergebnis seiner Simulation.
 \item[FA42]	Benutzer kann Parameter über \gls{Configfile} übergeben
 \item[FA43] Benutzer kann \gls{Prioritaet} einer Aufgabe festlegen %Glossar \gls{Prioritaet}???
 \item[FA44] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
-\item[FA45] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
+ \item[FA45] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
 \item[FA46] Benutzer kann das benutzte Betriebssystem festlegen
 \item[FA47] Benutzer kann angeben ob die Aufgabe pausierbar ist. %evtl optional
 \item[FA48] Benutzer kann angeben ob der \gls{Client} blockieren soll bis die Aufgabe beendet ist. %Blockierbar glosar?
@@ -500,8 +666,7 @@ Genauere Informationen können mithilfe weiterer Parameter angefragt werden. (si
 %Format eines Produktdatums:
 \begin{minipage}[t]{\linewidth}
 \item[PD00] \textbf{}
-\subitem \textbf{Erklärung} 
-\subitem \textbf{Wichtigkeit} 
+\subitem \textbf{Erklärung}
 \subitem \textbf{Details} 
 \end{minipage}
 \pagebreak
@@ -509,161 +674,114 @@ Genauere Informationen können mithilfe weiterer Parameter angefragt werden. (si
 
 \end{comment}
 
-% Ausgabedaten
-% Logdaten
+% Kontakt EMail
 \begin{minipage}[t]{\linewidth}
-\item[PD10] \textbf{Ausgabedaten}
-\subitem \textbf{Erklärung} Aufgaben erzeugen typischerweise Ausgabedaten im Verlauf ihrer Ausführung.
-\subitem \textbf{Wichtigkeit} Nicht optional
-\subitem \textbf{Details} Ausgabedaten bezeichnen hier die Ausgaben der Aufgabe auf der Standardausgabe (z.B. std:out oder System.out).\newline
-Um eine Abfrage der letzten Ausgaben einer Aufgabe zu ermöglichen, müssen diese Ausgaben dem Programm bekannt sein. Sie sind in einer Log-Datei abgespeichert und können auf Anfrage des Auftragsgebers an einen Client übermittelt werden.
-\end{minipage}
-\pagebreak
-
-% Allgemein alle Parameter unseres Befehls die für diese Aufgabe angegeben wurden
-\begin{minipage}[t]{\linewidth}
-\item[PD20] \textbf{Befehlsparameter}
-\subitem \textbf{Erklärung} Die Werte der Befehlsparameter auf der Kommandozeile.
-\subitem \textbf{Wichtigkeit} Nicht-optional
-\subitem \textbf{Details} Alle übergebenen Parameter werden zusammen mit ihren Werten für spätere Verwendung abgespeichert.
-\end{minipage}
-\pagebreak
-
-% Ausführungsbefehl, Pausierbefehl, Abbruchbefehl
-\begin{minipage}[t]{\linewidth}
-\item[PD21] \textbf{Aufgabenspezifische Befehle}
-\subitem \textbf{Erklärung} Jede Aufgabe wird mit einem von dem Benutzer definierten Befehl gestartet, pausiert und abgebrochen, sofern diese Aktionen verfügbar sind.
-\subitem \textbf{Wichtigkeit} Nicht optional
-\subitem \textbf{Details} Für jede Aufgabe sind insgesamt drei verschiedene Befehle definierbar:\newline
-1. Start-Befehl: Wie wird diese Aufgabe gestartet?\newline
-2. Pause-Befehl: Wie wird diese Aufgabe pausiert, wenn möglich?\newline
-2,5. Fortsetzen-Befehl: Wie kann die pausierte Aufgabe fortgesetzt werden?\newline
-3. Abbruch-Befehl: Wie kann diese Aufgabe abgebrochen werden?\newline
-Ist für eine Aufgabe eine dieser Aktionen nicht verfügbar, oder muss für diese Aktion nichts besonderes unternommen werden, werden keine besonderen Befehle angegeben und das Programm verwendet nur seine Standardroutine.
-\end{minipage}
-\pagebreak
-
-% Mit welcher \gls{Prioritaet} ist die Aufgabe gestartet worden
-\begin{minipage}[t]{\linewidth}
-\item[PD22] \textbf{Aufgabenpriorität}
-\subitem \textbf{Erklärung} Hinsichtlich der Warteschlangenfunktionalität ist es interessant, für jede Aufgabe die angegebene \gls{Prioritaet} zu kennen.
-\subitem \textbf{Wichtigkeit} Zusammen mit \gls{Prioritaet} Parameter
-\subitem \textbf{Details} Die Position einer Aufgabe in der Warteschlange, sowie das Recht andere Aufgaben zu unterbrechen sind wesentlich von der eigenen \gls{Prioritaet} abhängig. Daher muss diese Information abgespeichert werden (sofern vorhanden).
-\end{minipage}
-\pagebreak
-
-% wer hat die Aufgabe gestartet
-\begin{minipage}[t]{\linewidth}
-\item[PD23] \textbf{Auftraggeber Kontaktinformation}
+\item[PD10] \textbf{Auftraggeber Kontaktinformation}
 \subitem \textbf{Erklärung} Hält Kontaktinformationen (E-Mail Adresse) des Auftraggebers.
-\subitem \textbf{Wichtigkeit} Optional
 \subitem \textbf{Details} Um dem Auftraggeber Rückmeldung über abgeschlossene Aufgaben geben zu können, muss eine Kontaktinformation hinterlegt sein.\newline
 Es ist vorgesehen, eine E-Mail Adresse als Kontaktinformation anzunehmen. Diese wird beim Einreichen der Aufgabe von dem Auftraggeber angegeben.
 \end{minipage}
-\pagebreak
+\vspace{20mm}
 
-% Auf welchem Betriebssystem soll die Aufgabe ausgeführt werden
+% Nutzer ID
 \begin{minipage}[t]{\linewidth}
-\item[PD24] \textbf{Zielbetriebssystem}
-\subitem \textbf{Erklärung} Speichert Betriebssystem Vorgaben für Aufgaben, die ein spezielles Betriebssystem erfordern.
-\subitem \textbf{Wichtigkeit} Optional
-\subitem \textbf{Details} Manche Programme sind Abhängig vom Betriebssystem. Diesen Programmen soll daher ermöglicht werden, auf ihrem gewünschten Zielbetriebssystem zu laufen. Hierzu ist es notwendig, Informationen über besagtes Zielbetriebssystem zu speichern.
+\item[PD20] \textbf{NutzerID}
+\subitem \textbf{Erklärung} Identifiziert einen Benutzer
+\subitem \textbf{Details} Das Programm soll die Identität eines Benutzers sicherstellen können. Zu diesem Zweck ist eine ID notwendig, die dem Benutzer ausgestellt wird.\newline
+Die ID kann dazu verwendet werden, um Berechtigung für diverse Anfragen zu prüfen. So soll zum Beispiel nur der Auftraggeber dazu in der Lage sein, die eigenen Aufgaben abzubrechen.
 \end{minipage}
-\pagebreak
+\vspace{20mm}
 
-% Ist das Programm pausierbar
+% Zuweisung NutzerID -> Aufgaben
 \begin{minipage}[t]{\linewidth}
-\item[PD25] \textbf{Pausierbarkeit}
-\subitem \textbf{Erklärung} Hinsichtlich der Warteschlangenfunktionalität ist es notwendig für jede Aufgabe zu wissen, ob diese unterbrochen (pausiert) werden kann.
-\subitem \textbf{Wichtigkeit} Nicht optional
-\subitem \textbf{Details} Die Information über die Pausierbarkeit einer Aufgabe wird beim Einreichen der Aufgabe als Parameter mitgegeben.\newline
-Die Information über die Pausierbarkeit ist ein Wahrheitswert.
+\item[PD21] \textbf{Zuweisung Nutzer zu Aufgaben}
+\subitem \textbf{Erklärung} Speichert die in Auftrag gegebenen Aufgaben eines Auftraggebers
+\subitem \textbf{Details} Um dem Benutzer zu ermöglichen, den Status seiner Aufgaben zu verfolgen, muss eine Zuweisung von Nutzer zu Aufgaben möglich sein.
 \end{minipage}
-\pagebreak
+\vspace{20mm}
 
-%Aufgabenspezifische Statistiken
+% Liste verfügbare Arbeiter
 \begin{minipage}[t]{\linewidth}
-\item[PD40] \textbf{Aufgabenspezifische Statistiken}
-\subitem \textbf{Erklärung} Das Programm soll in der Lage sein, Kennwerte bezüglich der einzelnen Aufgaben zu erheben.
-\subitem \textbf{Wichtigkeit} Optional
-\subitem \textbf{Details} Die einzelnen Kennwerte sind im folgenden aufgelistet.\newline
-Ein aufgabenspezifischer Kennwert enthält eine Information über eine einzelne Aufgabe.
+\item[PD30] \textbf{Arbeiter Liste}
+\subitem \textbf{Erklärung} Eine Liste aller verfügbaren Arbeiter.
+\subitem \textbf{Details} Enthält alle verfügbaren Worker.\newline
+Somit kann der Server die Aufgaben auf alle Worker verteilen.
 \end{minipage}
-\pagebreak
+\vspace{20mm}
 
-% Ausführungszeit (insgesamt, aktiv, passiv)
+% Last pro Arbeiter und Last aller Arbeiter im Mittel
 \begin{minipage}[t]{\linewidth}
-\item[PD41] \textbf{Arbeitszeiten}
-\subitem \textbf{Erklärung} Das Programm kann sich Details über die Dauer der Ausführung der einzelnen Aufgaben speichern.
-\subitem \textbf{Wichtigkeit} Optional
+\item[PD40] \textbf{Last}
+\subitem \textbf{Erklärung} Auslastung der Arbeiter einzeln und gemeinsam
+\subitem \textbf{Details} Die Auslastung der Hardware (CPU, RAM) ist für jeden Arbeiter individuell bekannt.\newline
+Das Mittel der Hardwareauslastung aller Arbeiter (CPU, RAM) ist bekannt.
+\end{minipage}
+\vspace{20mm}
+
+% Liste aller Aufgaben
+\begin{minipage}[t]{\linewidth}
+\item[PD50] \textbf{Aufgaben}
+\subitem \textbf{Erklärung} Liste aller ausstehenden Aufgaben
+\subitem \textbf{Details} Es ist bekannt, welche Aufgaben derzeit ausstehen (noch nicht beendet sind). Weiter ist bekannt welche dieser Aufgaben derzeit ausgeführt werden (aktiv) und welche derzeit warten (passiv).
+\end{minipage}
+\vspace{20mm}
+
+% Zuweisung Aufgabe -> Arbeiter\begin{minipage}[t]{\linewidth}
+\begin{minipage}[t]{\linewidth}
+\item[PD51] \textbf{Zuweisung Aufgabe zu Arbeiter}
+\subitem \textbf{Erklärung} Aufgaben laufen entweder auf keinem (passiv) oder auf genau einem (aktiv) Arbeiter
+\subitem \textbf{Details} Um genauer Informationen über den Status einer Aufgabe zu erhalten, muss bekannt sein, welche Aufgabe auf welchem Arbeiter läuft.\newline
+Ist eine Aufgabe passiv, ist ihr kein Arbeiter zugewiesen.\newline
+Ist eine Aufgabe aktiv, ist ihr immer genau ein Arbeiter zugewiesen.
+\end{minipage}
+\vspace{20mm}
+
+% Anzahl Aufgaben nach Priorität
+\begin{minipage}[t]{\linewidth}
+\item[PD52] \textbf{Prioritäten der Aufgaben}
+\subitem \textbf{Erklärung} Summe aller Aufgaben einer bestimmten Priorität
+\subitem \textbf{Details} Summiert für jede Priorität die Anzahl der derzeit aktiven und passiven Aufgaben auf, die mit dieser Priorität versehen sind.
+\end{minipage}
+\vspace{20mm}
+
+% Parameterwerte der Aufgabe (angegeben und tatsächlich)
+\begin{minipage}[t]{\linewidth}
+\item[PD60] \textbf{Befehlsparameter}
+\subitem \textbf{Erklärung} Die Werte der Befehlsparameter
+\subitem \textbf{Details} Für jede Aufgabe ist der Wert der Parameter wie er auf der Befehlszeile spezifiziert wurde, sowie der tatsächlich verwendete Wert bekannt.
+\end{minipage}
+\vspace{20mm}
+
+% Ausgabe und Ergebnis (std::out und Rückgabewert)
+\begin{minipage}[t]{\linewidth}
+\item[PD70] \textbf{Ausgabe und Ergebnis}
+\subitem \textbf{Erklärung} Ausgaben der Aufgabe und Rückgabewert der Aufgabe
+\subitem \textbf{Details} Die Ausgabe der Aufgabe erfolgt auf der Standardausgabe (std::out). Sie enthält von der Aufgabe generierte Informationen für den Benutzer.\newline
+Das Ergebnis der Aufgabe ist der Rückgabewert. Er liefert Auskunft über den Erfolg der Ausführung.
+\end{minipage}
+\vspace{20mm}
+
+% Arbeitszeit und Wartezeit
+\begin{minipage}[t]{\linewidth}
+\item[PD80] \textbf{Arbeitszeiten}
+\subitem \textbf{Erklärung} Angaben zu den Zeiten die eine Aufgabe im System verbracht hat.
 \subitem \textbf{Details} Die Informationen über die Arbeitszeit einer Aufgabe sind aufgeteilt in:\newline
 1. aktive Zeit: Die Zeit, in der die Aufgabe tatsächlich ausgeführt wurde.\newline
 2. passive Zeit: Die Zeit in der die Aufgabe in der Warteschlange verbracht hat.\newline
 3. Gesamtzeit: Die Zeit die zwischen Auftragseingang und Abschicken der Abschlussbenachrichtigung vergangen ist.
 \end{minipage}
-\pagebreak
+\vspace{20mm}
 
 % Auf wie vielen Rechnern lief die Aufgabe (Wie oft wurde sie pausiert)
 \begin{minipage}[t]{\linewidth}
-\item[PD42] \textbf{Pausen}
-\subitem \textbf{Erklärung} Anzahl der Pausen und möglicherweise Rechnerwechsel einer Aufgabe.
-\subitem \textbf{Wichtigkeit} Optional (Statistik)
+\item[PD90] \textbf{Pausen}
+\subitem \textbf{Erklärung} Anzahl der Pausen und Rechnerwechsel einer Aufgabe
 \subitem \textbf{Details} Für jedes Programm wird die Anzahl der erfolgten Pausen abgespeichert.\newline
 Zusätzlich soll hinterlegt werden, auf welchen Rechnern die Aufgabe aktiv lief.
 \end{minipage}
-\pagebreak
-
-% Globale Statistiken wie z.B. Anzahl aktive, passive, gequete Aufgaben, Gesamtlast, ...
-\begin{minipage}[t]{\linewidth}
-\item[PD60] \textbf{Globale Statistiken}
-\subitem \textbf{Erklärung} Das Programm soll in der Lage sein, Kennwerte bezüglich des Gesamtsystems (alle Aufgaben) zu erheben.
-\subitem \textbf{Wichtigkeit} Optional
-\subitem \textbf{Details} Die einzelnen Kennwerte sind im folgenden Aufgelistet.\newline
-Ein globaler Kennwert enthält eine Information über das gesamte System. Das heißt über den Zustand aller Aufgaben, aller Worker, usw.
-\end{minipage}
-\pagebreak
-
-% Eine Liste mit allen verfügbaren Workern
-\begin{minipage}[t]{\linewidth}
-\item[PD61] \textbf{Worker Liste}
-\subitem \textbf{Erklärung} Eine Liste aller einsatzbereiten Worker.
-\subitem \textbf{Wichtigkeit} Nicht-optional
-\subitem \textbf{Details} Enthält alle verfügbaren Worker.\newline
-Somit kann der Server die Aufgaben auf alle Worker verteilen.
-\end{minipage}
-\pagebreak
-
-%Anzahl aktive und passive Aufgaben
-\begin{minipage}[t]{\linewidth}
-\item[PD62] \textbf{Aufgaben}
-\subitem \textbf{Erklärung} Anzahl aller laufenden und wartenden Aufgaben.
-\subitem \textbf{Wichtigkeit} Optional
-\subitem \textbf{Details} Die Anzahl der derzeit laufenden (aktiven) Aufgaben und die Anzahl der in der Warteschlange verweilenden Aufgaben.
-\end{minipage}
-\pagebreak
-
-%Gesamtlast
-\begin{minipage}[t]{\linewidth}
-\item[PD63] \textbf{Gesamtlast}
-\subitem \textbf{Erklärung} Auslastung der Worker
-\subitem \textbf{Wichtigkeit} Optional
-\subitem \textbf{Details} Gibt einen Wert für die Gesamtauslastung der Worker (CPU, Arbeitsspeicher, usw.)
-\end{minipage}
-\pagebreak
-
-%Prioritätsverteilung
-\begin{minipage}[t]{\linewidth}
-\item[PD64] \textbf{\glspl{Prioritaet} der Aufgaben}
-\subitem \textbf{Erklärung} Summe aller Aufgaben einer bestimmten \gls{Prioritaet}
-\subitem \textbf{Wichtigkeit} Optional
-\subitem \textbf{Details} Summiert für jede \gls{Prioritaet} die Anzahl der derzeit aktiven und passiven Aufgaben auf, die mit dieser \gls{Prioritaet} gestartet wurden.
-\end{minipage}
-\pagebreak
 
 \end{itemize}
-
-\subsection{Personendaten}
-\subsection{Messdaten}
+\newpage
 
 \section{Nichtfunktionale Anforderungen}
 \begin{itemize}[nosep]
@@ -684,7 +802,20 @@ Somit kann der Server die Aufgaben auf alle Worker verteilen.
 
 \end{comment}
 
-\item[NF10]
+	\item[NF10] Bei Abschluss einer Task soll die Rückmeldung innerhalb von 60 Minuten erfolgen.
+	
+	\item[NF20] Ein Benutzer darf nur auf eigene Dateien zugreifen.
+	
+	\item[NF30] Ein \gls{Administrator} darf auf alle Dateien zugreifen.
+	
+	\item[NF40] Statistiken einer Task können erst angezeigt werden, wenn diese erfolgreich abgeschlossen wurden. % Werden Statistiken angezeigt wenn die Task fehlschlägt?
+	
+	\item[NF50] Statistiken abgeschlossener Tasks sollen nicht änderbar sein.
+	
+	\item[NF60] Die Priorität einer Task wird nach einem bestimmten Zeitrahmen erhöht. % Meiner Meinung nach ist das keine NFA
+
+
+
 \end{itemize}
 
 % Verteilung und Start der Aufgabe innerhalb von XX Minuten
@@ -711,51 +842,89 @@ Somit kann der Server die Aufgaben auf alle Worker verteilen.
 
 % hier die Systemmodelle einfügen
 
+\clearpage
 \section{Benutzer Oberfläche}
 \subsection{Befehlszeile}
-\subsubsection{Server bzw. Arbeiter}
-Startet das Programm im \gls{Daemon} Modus.
+
+\subsubsection{Hauptserver starten}
+Startet das Programm im \gls{Daemon} Modus. Optional kann die Abhöhrende Internet Protokoll Adresse (v4 oder v6) und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk und der Http WebApi angeben werden.
 \begin{mycode}
-bb -d [<--server|-s>]
+bbs [<--server|-s> <ipaddr>] [<--serverport|-sp> <port>] [<--webapi|-w> <ipaddr>] [<--webapi-port|-wp> <port>]
+\end{mycode}
+
+\subsubsection{Arbeiter starten}
+Startet das Programm im \gls{Daemon} Modus. Optional kann die Internet Protokoll Adresse (v4 oder v6) bzw. der DNS Namen des Hauptservers und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk angeben werden.
+\begin{mycode}
+bbd [<--server|-s> <ipaddr>] [<--serverport|-sp> <port>]
 \end{mycode}
 
 \subsubsection{Aufgabe erstellen}
 Sendet die angegebene Aufgabe an den Server und gibt die Aufgaben ID an der Standard Ausgabe aus (Dezimal).
 \begin{mycode}
-bb [--block|-b] [<--priority|-p> <Integer>] [<--docker-file|-df> <path to dockerfile>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] <program> [args]+
+bbc <--run> [--block|-b] [<--priority|-p> <priority>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] [<--email|-em> <email>] <--image|-im> <name> <program> [args]+
 \end{mycode}
+Falls \texttt{-{}-block} block angegeben wurde, wird statt der Aufgaben ID die Ausgabe der Aufgabe ausgegeben.
+Außer man beendet es forzeitig mit \texttt{CTRL + C}, dann wird die Aufgaben ID direkt danach ausgeben.
+
+\subsubsection{Ausgabe der Aufgabe ansehen}
+Gibt die gesammte Standardausgabe der angegebenen Aufgabe aus.
+\begin{mycode}
+bbc <--output> <id>
+\end{mycode}
+\texttt{<id>} Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
+
+\subsubsection{Ausgabe der Aufgabe ansehen}
+Gibt nur die letzten Zeilen der Standardausgabe der angegebenen Aufgabe aus, bis man mit \texttt{CTRL + C} abbricht oder die Aufgabe sich beendet.
+\begin{mycode}
+bbc <--tail> <id>
+\end{mycode}
+\texttt{<id>} Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
 
 \subsubsection{Aufgaben sichern}
 Erstellt einen Schnapschuss der Aufgabe, der später bei bedarf wiederhergestellt werden kann.
 Gibt die Sicherungs ID an der Standard Ausgabe aus (Dezimal).
 \begin{mycode}
-bb <--backup|-b> <id>
+bbc <--backup|-b> <id>
 \end{mycode}
-% \subsubsubsection{<id>} Zu viele ebenen
-Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
+\texttt{<id>} Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
 
 \subsubsection{Aufgaben fortsetzen}
 Setzt die angehaltene Aufgabe fort.
 \begin{mycode}
-bb <--continue|-c> <id>
+bbc <--continue|-c> <id>
 \end{mycode}
+
 \subsubsection{Aufgaben wiederherstellen}
 \begin{mycode}
-bb <--restore|-r> <id> <backupid>
+bbc <--restore|-r> <id> <backupid>
 \end{mycode}
 % \subsubsubsection{<backupid>} Zu viele ebenen
 Sicherungs ID die beim erstellen der Sicherung ausgegeben wurde.
 
-\subsubsection{Aufgaben Pausieren}
+\subsubsection{Aufgaben pausieren}
 Pausiert die Aufgabe mit der angegeben ID Nummer.
 \begin{mycode}
-bb <--pause|-p> <id>
+bbc <--pause|-p> <id>
 \end{mycode}
 
 \subsubsection{Aufgaben beenden}
-Beendet die Aufgabe mit der angegeben ID Nummer.
+Beendet die Aufgabe mit der angegeben ID Nummer und git den exit Status der Aufgabe aus.
 \begin{mycode}
-bb <--stop|-s> <id>
+bbc <--stop|-s> <id>
+\end{mycode}
+
+\subsubsection{Docker Abbild hinzufügen}
+Fügt ein Docker Abbild als Ausführungsumgebung hinzu.
+Legt sämtliche Eigenschaften eines Docker Abbildes mit einer \href{https://docs.docker.com/engine/reference/builder/}{DockerFile} fest.
+Beispielsweise Betriebssystem und installierte Programme. 
+\begin{mycode}
+bbc <--add-image|-ai> <imagename> <Ordner der DockerFile>
+\end{mycode}
+
+\subsubsection{Docker Abbild entfernen}
+Entfernt ein Docker Abbild als Ausführungsumgebung
+\begin{mycode}
+bbc <--remove-image|-ri> <imagename>
 \end{mycode}
 
 \subsubsection{\texttt{-{}-block}}
@@ -765,10 +934,6 @@ Kehrt erst nach der Ausführung der Aufgabe zum Aufrufer zurück. Nützlich um v
 Legt die \gls{Prioritaet} der auszuführenden Aufgabe fest, gefolgt von low (4), medium (3), high (2), extreme (1), bananas (0).
 Es kann der Name bzw. die Zahl in der Klammer als \gls{Prioritaet} verwendet werden.
 
-\subsubsection{\texttt{-{}-docker-file}}
-Legt sämtliche Eigenschaften eines Docker Abbildes, gefolgt vom Pfad einer benutzerdefinierten \href{https://docs.docker.com/engine/reference/builder/}{DockerFile}, fest.
-Beispielsweise Benutzer ID, installierte Programme, auszuführende Umgebung.
-
 \subsubsection{\texttt{-{}-min-cpu-count} und \texttt{-{}-max-cpu-count}}
 Legen die minimale bzw. maximale anzahl der verwendbaren \glspl{CPU} fest.
 
@@ -777,6 +942,27 @@ Legen den minimal verfügbaren bzw. maximale verwendbaren Arbeitsspeicher fest.
 
 \subsubsection{\texttt{-{}-server}}
 Startet den Server, der die Aufgaben an die Arbeiter verteilt.
+
+\subsubsection{Beispiel Bash Skript}
+\begin{mycode}
+# Holen des CentOs Beispiels von github, es reicht ein Ordner der eine DockerFile enthält als Arbeitesverzeichnis zu haben.
+git clone https://github.com/balancedbanana/DockerImage.git DockerImage
+cd DockerImage
+# hinzufügen des Images (falls noch nicht vorhanden, 
+# bzw. wird überschrieben)
+# "." ist das Aktuelle Arbeitesverzeichnis kann auch
+# ein anderer Ordner mit einer DockerFile sein
+bbc --add-image dockercentos7 .
+# Erstellen der aufgabe und speichern der Aufgaben ID in taskid
+taskid = $(bbc --create --image dockercentos7 echo "Hallo Welt")
+# Ausgeben der ID (Optional)
+echo $taskid
+# Gibt "Hallo Welt" an der Konsole Aus und beendet sich,
+# da die Aufgabe abgeschlossen ist bzw. wartet auf das beenden.
+bbc --tail $taskid
+\end{mycode}
+
+\clearpage
 
 \section{Qualitätszielbestimmungen}
 % Tabelle ... schafeln .. was ist ihm wichtig
@@ -797,10 +983,137 @@ Startet den Server, der die Aufgaben an die Arbeiter verteilt.
 
 \end{comment}
 
-\section{Globale Testfälle}
+\clearpage
+\section{Testfälle/Testszenarien}
 \subsection{Globale Testfälle}
 \subsubsection{Grundlegende Testfälle}
+
+\begin{itemize}
+\item[T01] \textbf{Verbinden des Clients mit dem Server (FA1, FA2, FA3)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob sich der Client beim Programstart automatisch mit dem Server verbinden kann.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits laufenden System, das mindestens aus dem Server und einem Arbeiter besteht.
+Der Nutzer versucht eine Aufgabe zu erstellen.
+Wenn das System funktioniert, bekommt er die Job-Id seiner Aufgabe zurück.
+Bekommt er die Fehlermeldung
+\begin{mycode}
+Error: Can not find server
+\end{mycode}
+so konnte keine Verbindung zum Server hergestellt werden. Erhält er die Fehlermelung
+\begin{mycode}
+Error: Could not authenticate to the server
+\end{mycode}
+so konnte der Nutzer sich nicht gegenüber dem Server authentisieren. Erhält er eine andere Fehlermeldung, so konnte die Aufgabe nicht gestartet werden.
+
+\item[T02] \textbf{Speichern von Parametern in dem \gls{Configfile} (FA41 FA42)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob im \gls{Configfile} angegebene Einstellungen beim Erstellen von Aufgaben berücksichtigt werden.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits funktionierenden System, in dem Aufgaben an Arbeiter verteilt werden können.
+Der Nutzer trägt in das \gls{Configfile} eine maximale Speichernutzung von einem Kilobyte ein und erstellt eine Aufgabe, die 2 Kilobyte benötigt.
+Bekommt er eine Benachrichtigung, dass das Programm abgestürzt ist, weil der Speicher vollgelaufen ist, wird das \gls{Configfile} korrekt mit einbezogen.
+
+\item[T03] \textbf{Festlegen von Prioritäten (FA 43)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob Aufgaben mit einer höheren \gls{Prioritaet} bevorzugt werden.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits funktionierenden System mit genau einem Arbeiter, in dem Aufgaben verteilt und bearbeitet werden können.
+Der Nutzer startet eine Aufgabe die einige Zeit benötigt. Während der Bearbeitung gibt er eine Aufgabe mit einer niedrigen \gls{Prioritaet} auf gefolgt von derselben Aufgabe mit einer hohen Priorität.
+Sind alle drei Aufgaben bearbeitet, startet er wieder eine Aufgabe, die einige Zeit benötigt. Danach erstellt er eine Aufgabe mit einer hohen \gls{Prioritaet} und danach dieselbe Aufgabe mit niedriger Priorität.
+Wenn das System korrekt funktioniert, werden in beiden Fällen die Aufgaben mit hoher \gls{Prioritaet} zuerst bearbeitet.
+
+\item[T04] \textbf{Festlegen von minimal und maximal bereitgestellten CPU-Kernen (FA44)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer festlegen kann wie viele Kerne einer Aufgabe zur Verfügung gestellt werden sollen.
+\subitem \textbf{Ablauf} Da jede Aufgabe in einem eigenen Container ausgeführt wird, reicht es aus eine Aufgabe zu starten, die die Anzahl der CPU-Kerne der virtuellen Umgebung ausgibt und diese Aufgabe mit verschiedenen Werten aufgibt.
+
+\item[T05] \textbf{Festlegen von maximal nutzbarem RAM (FA45)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer festlegen kann wie viel Hauptspeicher seiner Anwendung zur Verfügung gestellt werden soll.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, in dem der Nutzer Aufgaben erstellen kann, die bearbeitet werden.
+Der Nutzer startet eine Aufgabe, die mindestens 2 Kilobyte Speicher anfordert und stellt der Aufgabe einen maximalen Hauptspeicher von einem Kilobyte zur Verfügung.
+Bekommt er eine Nachricht, dass der Speicher vollgeöaufen ist und die Aufgabe deshalb abgebrochen werden musste, funktioniert das System.
+
+\item[T06] \textbf{Festlegen des Betriebssystems/des zu verwendenden Containers (FA46)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer verschiedene Container angeben kann, die für die Bearbeitung seiner Aufgabe verwendet werden sollen.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das Aufgaben entgegennehmen und bearbeiten kann.
+Der Nutzer erstellt einen Container auf dem ein Program X installiert ist und einen identischen Container, auf dem aber X nicht installiert ist.
+Dann startet er eine Aufgabe, die das Programm aufrufen soll mit den unterschiedlichen Containern. Wenn das System funktioniert, dann wird genau eine Aufgabe mit einem Fehler beenden und die andere wird korrekt ausgeführt werden.
+
+\item[T07] \textbf{Festlegen der Pausierbareit einer Aufgabe (FA47)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer festlegen kann, ob seine Aufgabe pausiert werden darf und ob das System dies berücksichtigt.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das Aufgaben entgegennimmt und bearbeitet.
+Der Nutzer erstellt eine Aufgabe und gint an, dass diese pausierbar sein soll. Während die Aufgabe bearbeitet wird, versucht er über seine Konsole die Aufgabe zu pausieren.
+Funktioniert das, erstellt er dieselbe Aufgabe erneut, aber lässt sie nicht pausierbar sein. Er versucht erneut die AUfgabe zu pausieren.
+Falls das System korrekt funktioniert, lässt sich diese Aufgabe nicht pausieren und der Nutzer bekommt eine Fehlermeldung angezeigt.
+
+\item[T08] \textbf{Abfragen eines Aufgabenstatus (FA 5 FA51)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer den korrekten Status seiner Aufgaben abfragen kann.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System mit genau einem Arbeiter, das Aufgaben entegennehmen und verarbeiten kann.
+Der Nutzer erstellt eine Aufgabe, die den ganzen Worker auslastet und ruft ihren Status ab. Er sollte als Rückmeldung "processing" erhalten. Bevor die erste Aufgabe abgearbeitet ist, erstellt er eine weitere.
+Von dieser Aufgabe ruft er ebenfalls den Status ab. Funktioniert das System korrekt, bekommt der Nutzer "scheduled" als Antwrt zurück.
+Danach ruft der Nutzer den Status einer nicht vorhandenen Aufgabe ab. Jetzt sollte er eine Fehlermeldung zurück bekommen.
+Als nächstes wartet er auf den Abschluss seiner ersten Aufgabe und ruft erneut ihren Status ab. Nun sollte er "finished" als Antwort erhalten.
+Zuletzt ruft er noch einmal den Status der zweiten Aufgabe ab, dieser solle jetzt "processing" sein.
+
+\item[T09] \textbf{Benachrichtigung bei Abschluss einer Aufgabe (FA 6)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer nach Beendigung einer Aufgabe vom System benachrichtigt wird.
+\subitem \textbf{Ablauf} Ausgegangen word von einem funktionierenden System, das in der Lage ist Aufgaben anzunehmen und zu verarbeiten.
+Der Nutzer erstellt zunächst eine Aufgabe, die nur aus dem Aufruf
+\begin{mycode}
+sleep 10
+\end{mycode}
+besteht und gibt seine Mail-Adresse an, entweder als Parameter in der Konsole oder als Eintrag im \gls{Configfile}.
+Er wartet 2 Minuten und aktualisiert ab und zu seine Mailbox. Bis dahin ist die Aufgabe abgearbeitet und der Mailserver sollte genug Zeit bekommen haben, die Mail zuzustellen.
+Funktioniert das System, so hat er eine Bestätigungsmail vom System erhalten.
+
+\item[T10] \textbf{Erstellen von Sicherungen (FA 7)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob das System regelmäßige Sicherungen seiner Aufgaben anlegt.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist Aufgaben entgegen zu nehmen und zu verarbeiten.
+Der Administrator setzt zuerst das Backup-Intervall des Servers auf eine Minute.
+Dann startet der Nutzer eine Aufgabe, die nur aus dem Aufruf
+\begin{mycode}
+sleep 130
+\end{mycode}
+besteht. Nachdem die Aufgabe abgearbeitet ist, schaut der Administrator nach, ob im Dateisystem Sicherungen der Aufgabe liegen.
+Falls das System korrekt funktioniert, findet er genau zwei dieser Sicherungen vor.
+Am Schluss setzt der Administrator das Backup-Intervall wieder zurück.
+
+\item[T11] \textbf{Anforderung der Standard-Ausgabe (FA 8)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer in der Lage ist sich die korrekte Standardausgabe seiner Aufgabe anzusehen
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System mit genau einem Arbeiter, das in der Lage ist Aufgaben entgegen zu nehmen und zu verarbeiten.
+Der Nutzer führt eine kleine Aufgabe lokal bei sich aus und gibt sie auch an das System weiter. Er sorgt dafür, dass diese Aufgabe alle Resourcen des Arbeiters für sich beansprucht.
+Dann fragt der die Ausgabe der Aufgabe ab und vergleicht sie mit seiner lokalen Ausgabe.
+Bevor die Aufgabe abgeschlossen ist, erstellt er noch eine weitere Aufgabe und ruft direkt die Ausgabe ab.
+Wenn das System funktioniert, bekommt er eine Fehlermeldung zurück, die ihn darauf hinweist, dass die Aufgabe noch nicht begonnen ist, sondern noch in der Warteschlange hängt.
+Dann versucht der Nutzer die Ausgabe einer Aufgabe anzufordern, die es nicht gibt. Auch hier sollte er eine Fehlermeldung erhalten.
+Als letztes wartet er, bis seine erste Aufgabe abgeschlossen ist und fragt dann die Ausgabe der zweiten Aufgabe ab. Jetzt sollte er keine Fehlermeldung mehr erhalten.
+
+\end{itemize}
+
 \subsubsection{Erweiterte Testfälle}
+
+\begin{itemize}
+
+\item[T12] \textbf{Abbrechen von zu langen Aufgaben (OFA2)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Server in der Lage ist Aufgaben, die zu viel Zeit benötigen, abzubrechen.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist Aufgaben entgegenzunehmen und zu verarbeiten und den Auftraggeber nach Abschluss einer Aufgabe zu benachrichtigen.
+Der Administrator setzt die maximale Bearbeitungszeit für Aufgaben auf 1 Minute.
+Danach erstellt der Benutzer eine Aufgabe, die 30 Sekunden für die Bearbeitung benötigt und eine Aufgabe, die 2 Minuten benötigt.
+Wenn das System korrekt funktioniert, bekommt er eine Benachrichtigung, dass seine erste Aufgabe abgeschlossen wurde,
+und eine zweite Nachricht, die ihn darauf hinweist, dass seine Aufgabe die zulässige Zeit überschritten hat.
+Der Administrator setzt zuletzt die maximale Bearbeitungszeit zurück.
+
+\item[T13] \textbf{Manuelles Stoppen von Aufgaben (OFA3)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer in der Lage ist seine Aufgaben selbst abzubrechen.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist Aufgaben entegenzunehmen, zu verarbeiten und den Status von Aufgaben zurückzugeben.
+Der Nutzer gibt eine Aufgabe auf, die einige Zeit zur Abarbeitung benötigt. Als nächstes gibt er eine zweite Aufgabe auf, die sich nicht selbst beenden kann.
+Dann versucht er diese zweite Aufgabe manuell zu beenden. Wenn das System funktioniert, bekommt der Nutzer, wenn er den Status der Aufgabe anfragt, "cancelled" zurück.
+Außerdem sollte der Status der ersten Aufgabe weiterhin "processing" sein.
+
+\item[T14] \textbf{Manuelle Sicherung von Aufgaben (OFA4)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer seine Aufgaben manuell sichern kann.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem System, das in der Lage ist Aufgaben entgegenzunehmen und zu bearbeiten.
+Der Nutzer gibt eine Aufgabe auf, die einige Zeit zur Abarbeitung benötigt.
+Als nächstes versucht er seine Aufgabe zu sichern.
+Dann sieht der Administrator nach, ob im Dateisystem eine Sicherung der Aufgabe vorhanden ist.
+
+\end{itemize}
+
+\subsection{Testszenarien}
 
 \clearpage
 \printnoidxglossaries
