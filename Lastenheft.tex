@@ -825,11 +825,9 @@ bbc --tail $taskid
 \item[T01] \textbf{Verbinden des Clients mit dem Server (FA1, FA2, FA3)}
 \subitem \textbf{Erklärung} Ziel ist zu testen, ob sich der Client beim Programstart automatisch mit dem Server verbinden kann.
 \subitem \textbf{Ablauf} Ausgegangen wird von einem bereits laufenden System, das mindestens aus dem Server und einem Arbeiter besteht.
-Der Client führt folgenden Befehl aus:
-\begin{mycode}
-bb --block sleep 10 ; echo "test"
-\end{mycode}
-Bekommt der Client die Fehlermeldung
+Der Nutzer versucht eine Aufgabe zu erstellen.
+Wenn das System funktioniert, bekommt er die Job-Id seiner Aufgabe zurück.
+Bekommt er die Fehlermeldung
 \begin{mycode}
 Error: Can not find server
 \end{mycode}
@@ -837,8 +835,7 @@ so konnte keine Verbindung zum Server hergestellt werden. Erhält er die Fehlerm
 \begin{mycode}
 Error: Could not authenticate to the server
 \end{mycode}
-so konnte der Benutzer sich nicht gegenüber dem Server authentisieren. Erhält er eine andere Fehlermeldung, so konnte die Aufgabe nicht gestartet werden.
-Bekommt er hingegen eine Job-ID zurück, so konnte die Aufgabe erfolgreich in die Warteschlange eingereiht werden.
+so konnte der Nutzer sich nicht gegenüber dem Server authentisieren. Erhält er eine andere Fehlermeldung, so konnte die Aufgabe nicht gestartet werden.
 
 \item[T02] \textbf{Speichern von Parametern in dem \gls{Configfile} (FA41 FA42)}
 \subitem \textbf{Erklärung} Ziel ist zu testen, ob im \gls{Configfile} angegebene Einstellungen beim Erstellen von Aufgaben berücksichtigt werden.
