@@ -747,7 +747,7 @@ bbc <--pause|-p> <id>
 \end{mycode}
 
 \subsubsection{Aufgaben beenden}
-Beendet die Aufgabe mit der angegeben ID Nummer.
+Beendet die Aufgabe mit der angegeben ID Nummer und git den exit Status der Ausgabe aus.
 \begin{mycode}
 bbc <--stop|-s> <id>
 \end{mycode}
@@ -785,8 +785,10 @@ Startet den Server, der die Aufgaben an die Arbeiter verteilt.
 \subsubsection{Beispiel Bash Skript}
 \begin{mycode}
 # Holen des CentOs Beispiels von github, es reicht ein Ordner der eine DockerFile enthält als Arbeitesverzeichnis zu haben.
-git clone https://github.com/balancedbanana/DockerImage
+git clone https://github.com/balancedbanana/DockerImage.git DockerImage
+cd DockerImage
 # hinzufügen des Images (falls noch nicht vorhanden, bzw. wird überschrieben)
+# "." ist das Aktuelle Arbeitesverzeichnis kann auch ein anderer Ordner mit einer DockerFile sein
 bbc --add-image dockercentos7 .
 # Erstellen der aufgabe und speichern der Aufgaben ID in taskid
 taskid = $(bbc --create --image dockercentos7 echo "Hallo Welt")
