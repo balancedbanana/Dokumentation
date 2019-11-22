@@ -71,6 +71,7 @@
 \newglossaryentry{Prioritaet}
 {
 	name={Priorität},
+	plural={Prioritäten},
 	description={Ein diskretes Maß für Wichtigkeit bzw. Relevanz. Meist eine ganze Zahl, wobei gewisse Werte auch durch vorher definierte Wörter bezeichnet werden können.}
 }
 
@@ -132,7 +133,7 @@ so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Au
 
 Viele Lösungen gibt es bereits auf dem Markt, sie sind aber zu komplex und nicht leicht erweiterbar. Balanced Banana löst diese Probleme in Form eines kompakten, einfach zu bedienenden und skalierbaren Programms. \\
 
-Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, Priorität, Einschränkungen und Bedingungen.
+Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, \gls{Prioritaet}, Einschränkungen und Bedingungen.
 
 \section{Zielbestimmung}
 \subsection{Musskriterien}
@@ -170,7 +171,7 @@ Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozei
 \item[FA4] Benutzer kann Parameter übergeben %evtl auf FA20 verweisen
 \item[FA41]	\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}
 \item[FA42]	Benutzer kann Parameter über \gls{Configfile} übergeben
-\item[FA43] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
+\item[FA43] Benutzer kann \gls{Prioritaet} einer Aufgabe festlegen %Glossar \gls{Prioritaet}???
 \item[FA44] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen %Glossar Kerne
 \item[FA45] Benutzer kann maximal nutzbaren RAM festlegen %Glossar RAM
 \item[FA46] Benutzer kann das benutzte Betriebssystem festlegen
@@ -359,7 +360,7 @@ Die benutzerdefinierten Standardwerte sind in einer ausgezeichneten Konfiguratio
 \end{minipage}
 \pagebreak
 
-%\item[FA33] Benutzer kann Priorität einer Aufgabe festlegen %Glossar Priorität???
+%\item[FA33] Benutzer kann \gls{Prioritaet} einer Aufgabe festlegen %Glossar \gls{Prioritaet}???
 \begin{minipage}[t]{\linewidth}
 \item[FA33] \textbf{\gls{Prioritaet} (Parameter)}
 \subitem \textbf{Erklärung} Beim Einreichen einer neuen Aufgabe soll der Auftraggeber (\gls{Benutzer}) in der Lage sein, seine Aufgabe mit einer \gls{Prioritaet} zu versehen.
@@ -373,14 +374,13 @@ Tritt der Fall ein, dass zwei Aufgaben die selbe \gls{Prioritaet} haben, beide i
 Aufgaben mit hohen \glspl{Prioritaet} können aktive Aufgaben mit stark geringerer \gls{Prioritaet} unterbrechen.\newline
 Aufgaben, die längere Zeit in der Warteschlange verbringen, werden in ihrer \gls{Prioritaet} aufgewertet.\newline
 Eine aktive Aufgabe wird in ihrer \gls{Prioritaet} aufgewertet.\newline
-Die \gls{Prioritaet} wird auf der Kommandozeile mit "--priority" oder "-p" angegeben.\newline
 Für eine \gls{Prioritaet} sind folgende Werte zulässig:\newline
-geringste: low (l)\newline
-normal: medium (m)\newline
-hoch: high (h)\newline
-sehr hoch: extreme (e)\newline
-höchste: bananas (b)\newline
-Der globale Standardwert ist festgelegt auf medium (m).
+geringste: low\newline
+normal: medium\newline
+hoch: high\newline
+sehr hoch: extreme\newline
+höchste: bananas\newline
+Der globale Standardwert ist festgelegt auf medium.
 \end{minipage}
 \pagebreak
 
@@ -636,60 +636,94 @@ Zusätzlich soll hinterlegt werden, auf welchen Rechnern die Aufgabe aktiv lief.
 
 \section{Benutzer Oberfläche}
 \subsection{Befehlszeile}
-\subsubsection{Server bzw. Arbeiter}
-Startet das Programm im \gls{Daemon} Modus.
+
+\subsubsection{Hauptserver starten}
+Startet das Programm im \gls{Daemon} Modus. Optional kann die Abhöhrende Internet Protokoll Adresse (v4 oder v6) und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk und der Http WebApi angeben werden.
 \begin{mycode}
-bb -d [<--server|-s>]
+bbs [<--server|-s> <ipaddr>] [<--serverport|-sp> <port>] [<--webapi|-w> <ipaddr>] [<--webapi-port|-wp> <port>]
+\end{mycode}
+
+\subsubsection{Arbeiter starten}
+Startet das Programm im \gls{Daemon} Modus. Optional kann die Internet Protokoll Adresse (v4 oder v6) bzw. der DNS Namen des Hauptservers und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk angeben werden.
+\begin{mycode}
+bbd [<--server|-s> <ipaddr>] [<--serverport|-sp> <port>]
 \end{mycode}
 
 \subsubsection{Aufgabe erstellen}
 Sendet die angegebene Aufgabe an den Server und gibt die Aufgaben ID an der Standard Ausgabe aus (Dezimal).
 \begin{mycode}
-bb [--block|-b] [<--priority|-p> <Integer>] [<--docker-file|-df> <path to dockerfile>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] <program> [args]+
+bbc <--run> [--block|-b] [<--priority|-p> <priority>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] [<--email|-em> <email>] <--image|-im> <name> <program> [args]+
 \end{mycode}
+Falls \texttt{-{}-block} block angegeben wurde, wird statt der Aufgaben ID die Ausgabe der Aufgabe ausgegeben.
+Außer man beendet es forzeitig mit \texttt{CTRL + C}, dann wird die Aufgaben ID direkt danach ausgeben.
+
+\subsubsection{Ausgabe der Aufgabe ansehen}
+Gibt die gesammte Standardausgabe der angegebenen Aufgabe aus.
+\begin{mycode}
+bbc <--output> <id>
+\end{mycode}
+\texttt{<id>} Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
+
+\subsubsection{Ausgabe der Aufgabe ansehen}
+Gibt nur die letzten Zeilen der Standardausgabe der angegebenen Aufgabe aus, bis man mit \texttt{CTRL + C} abbricht oder die Aufgabe sich beendet.
+\begin{mycode}
+bbc <--tail> <id>
+\end{mycode}
+\texttt{<id>} Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
 
 \subsubsection{Aufgaben sichern}
 Erstellt einen Schnapschuss der Aufgabe, der später bei bedarf wiederhergestellt werden kann.
 Gibt die Sicherungs ID an der Standard Ausgabe aus (Dezimal).
 \begin{mycode}
-bb <--backup|-b> <id>
-% \subsubsubsection{<id>} Zu viele ebenen
-Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
+bbc <--backup|-b> <id>
+\end{mycode}
+\texttt{<id>} Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
 
 \subsubsection{Aufgaben fortsetzen}
 Setzt die angehaltene Aufgabe fort.
 \begin{mycode}
-bb <--continue|-c> <id>
+bbc <--continue|-c> <id>
 \end{mycode}
+
 \subsubsection{Aufgaben wiederherstellen}
 \begin{mycode}
-bb <--restore|-r> <id> <backupid>
+bbc <--restore|-r> <id> <backupid>
 \end{mycode}
 % \subsubsubsection{<backupid>} Zu viele ebenen
 Sicherungs ID die beim erstellen der Sicherung ausgegeben wurde.
 
-\subsubsection{Aufgaben Pausieren}
+\subsubsection{Aufgaben pausieren}
 Pausiert die Aufgabe mit der angegeben ID Nummer.
 \begin{mycode}
-bb <--pause|-p> <id>
+bbc <--pause|-p> <id>
 \end{mycode}
 
 \subsubsection{Aufgaben beenden}
-Beendet die Aufgabe mit der angegeben ID Nummer.
+Beendet die Aufgabe mit der angegeben ID Nummer und git den exit Status der Aufgabe aus.
 \begin{mycode}
-bb <--stop|-s> <id>
+bbc <--stop|-s> <id>
+\end{mycode}
+
+\subsubsection{Docker Abbild hinzufügen}
+Fügt ein Docker Abbild als Ausführungsumgebung hinzu.
+Legt sämtliche Eigenschaften eines Docker Abbildes mit einer \href{https://docs.docker.com/engine/reference/builder/}{DockerFile} fest.
+Beispielsweise Betriebssystem und installierte Programme. 
+\begin{mycode}
+bbc <--add-image|-ai> <imagename> <Ordner der DockerFile>
+\end{mycode}
+
+\subsubsection{Docker Abbild entfernen}
+Entfernt ein Docker Abbild als Ausführungsumgebung
+\begin{mycode}
+bbc <--remove-image|-ri> <imagename>
 \end{mycode}
 
 \subsubsection{\texttt{-{}-block}}
 Kehrt erst nach der Ausführung der Aufgabe zum Aufrufer zurück. Nützlich um voneinander abhängige Aufgaben, in einem Konsolen Skript, nacheinander auszuführen.
 
 \subsubsection{\texttt{-{}-priority}}
-Legt die Priorität der auszuführenden Aufgabe fest, gefolgt von low (0), medium (1), high (2), banana (3).
-Es kann der Name bzw. die Zahl in der Klammer als Priorität verwendet werden.
-
-\subsubsection{\texttt{-{}-docker-file}}
-Legt sämtliche Eigenschaften eines Docker Abbildes, gefolgt vom Pfad einer benutzerdefinierten \href{https://docs.docker.com/engine/reference/builder/}{DockerFile}, fest.
-Beispielsweise Benutzer ID, installierte Programme, auszuführende Umgebung.
+Legt die \gls{Prioritaet} der auszuführenden Aufgabe fest, gefolgt von low (4), medium (3), high (2), extreme (1), bananas (0).
+Es kann der Name bzw. die Zahl in der Klammer als \gls{Prioritaet} verwendet werden.
 
 \subsubsection{\texttt{-{}-min-cpu-count} und \texttt{-{}-max-cpu-count}}
 Legen die minimale bzw. maximale anzahl der verwendbaren \glspl{CPU} fest.
@@ -699,6 +733,25 @@ Legen den minimal verfügbaren bzw. maximale verwendbaren Arbeitsspeicher fest.
 
 \subsubsection{\texttt{-{}-server}}
 Startet den Server, der die Aufgaben an die Arbeiter verteilt.
+
+\subsubsection{Beispiel Bash Skript}
+\begin{mycode}
+# Holen des CentOs Beispiels von github, es reicht ein Ordner der eine DockerFile enthält als Arbeitesverzeichnis zu haben.
+git clone https://github.com/balancedbanana/DockerImage.git DockerImage
+cd DockerImage
+# hinzufügen des Images (falls noch nicht vorhanden, 
+# bzw. wird überschrieben)
+# "." ist das Aktuelle Arbeitesverzeichnis kann auch
+# ein anderer Ordner mit einer DockerFile sein
+bbc --add-image dockercentos7 .
+# Erstellen der aufgabe und speichern der Aufgaben ID in taskid
+taskid = $(bbc --create --image dockercentos7 echo "Hallo Welt")
+# Ausgeben der ID (Optional)
+echo $taskid
+# Gibt "Hallo Welt" an der Konsole Aus und beendet sich,
+# da die Aufgabe abgeschlossen ist bzw. wartet auf das beenden.
+bbc --tail $taskid
+\end{mycode}
 
 \section{Qualitätszielbestimmungen}
 % Tabelle ... schafeln .. was ist ihm wichtig
@@ -719,10 +772,136 @@ Startet den Server, der die Aufgaben an die Arbeiter verteilt.
 
 \end{comment}
 
-\section{Globale Testfälle}
+\section{Testfälle/Testszenarien}
 \subsection{Globale Testfälle}
 \subsubsection{Grundlegende Testfälle}
+
+\begin{itemize}
+\item[T01] \textbf{Verbinden des Clients mit dem Server (FA1, FA2, FA3)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob sich der Client beim Programstart automatisch mit dem Server verbinden kann.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits laufenden System, das mindestens aus dem Server und einem Arbeiter besteht.
+Der Nutzer versucht eine Aufgabe zu erstellen.
+Wenn das System funktioniert, bekommt er die Job-Id seiner Aufgabe zurück.
+Bekommt er die Fehlermeldung
+\begin{mycode}
+Error: Can not find server
+\end{mycode}
+so konnte keine Verbindung zum Server hergestellt werden. Erhält er die Fehlermelung
+\begin{mycode}
+Error: Could not authenticate to the server
+\end{mycode}
+so konnte der Nutzer sich nicht gegenüber dem Server authentisieren. Erhält er eine andere Fehlermeldung, so konnte die Aufgabe nicht gestartet werden.
+
+\item[T02] \textbf{Speichern von Parametern in dem \gls{Configfile} (FA41 FA42)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob im \gls{Configfile} angegebene Einstellungen beim Erstellen von Aufgaben berücksichtigt werden.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits funktionierenden System, in dem Aufgaben an Arbeiter verteilt werden können.
+Der Nutzer trägt in das \gls{Configfile} eine maximale Speichernutzung von einem Kilobyte ein und erstellt eine Aufgabe, die 2 Kilobyte benötigt.
+Bekommt er eine Benachrichtigung, dass das Programm abgestürzt ist, weil der Speicher vollgelaufen ist, wird das \gls{Configfile} korrekt mit einbezogen.
+
+\item[T03] \textbf{Festlegen von Prioritäten (FA 43)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob Aufgaben mit einer höheren \gls{Prioritaet} bevorzugt werden.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits funktionierenden System mit genau einem Arbeiter, in dem Aufgaben verteilt und bearbeitet werden können.
+Der Nutzer startet eine Aufgabe die einige Zeit benötigt. Während der Bearbeitung gibt er eine Aufgabe mit einer niedrigen \gls{Prioritaet} auf gefolgt von derselben Aufgabe mit einer hohen Priorität.
+Sind alle drei Aufgaben bearbeitet, startet er wieder eine Aufgabe, die einige Zeit benötigt. Danach erstellt er eine Aufgabe mit einer hohen \gls{Prioritaet} und danach dieselbe Aufgabe mit niedriger Priorität.
+Wenn das System korrekt funktioniert, werden in beiden Fällen die Aufgaben mit hoher \gls{Prioritaet} zuerst bearbeitet.
+
+\item[T04] \textbf{Festlegen von minimal und maximal bereitgestellten CPU-Kernen (FA44)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer festlegen kann wie viele Kerne einer Aufgabe zur Verfügung gestellt werden sollen.
+\subitem \textbf{Ablauf} Da jede Aufgabe in einem eigenen Container ausgeführt wird, reicht es aus eine Aufgabe zu starten, die die Anzahl der CPU-Kerne der virtuellen Umgebung ausgibt und diese Aufgabe mit verschiedenen Werten aufgibt.
+
+\item[T05] \textbf{Festlegen von maximal nutzbarem RAM (FA45)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer festlegen kann wie viel Hauptspeicher seiner Anwendung zur Verfügung gestellt werden soll.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, in dem der Nutzer Aufgaben erstellen kann, die bearbeitet werden.
+Der Nutzer startet eine Aufgabe, die mindestens 2 Kilobyte Speicher anfordert und stellt der Aufgabe einen maximalen Hauptspeicher von einem Kilobyte zur Verfügung.
+Bekommt er eine Nachricht, dass der Speicher vollgeöaufen ist und die Aufgabe deshalb abgebrochen werden musste, funktioniert das System.
+
+\item[T06] \textbf{Festlegen des Betriebssystems/des zu verwendenden Containers (FA46)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer verschiedene Container angeben kann, die für die Bearbeitung seiner Aufgabe verwendet werden sollen.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das Aufgaben entgegennehmen und bearbeiten kann.
+Der Nutzer erstellt einen Container auf dem ein Program X installiert ist und einen identischen Container, auf dem aber X nicht installiert ist.
+Dann startet er eine Aufgabe, die das Programm aufrufen soll mit den unterschiedlichen Containern. Wenn das System funktioniert, dann wird genau eine Aufgabe mit einem Fehler beenden und die andere wird korrekt ausgeführt werden.
+
+\item[T07] \textbf{Festlegen der Pausierbareit einer Aufgabe (FA47)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer festlegen kann, ob seine Aufgabe pausiert werden darf und ob das System dies berücksichtigt.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das Aufgaben entgegennimmt und bearbeitet.
+Der Nutzer erstellt eine Aufgabe und gint an, dass diese pausierbar sein soll. Während die Aufgabe bearbeitet wird, versucht er über seine Konsole die Aufgabe zu pausieren.
+Funktioniert das, erstellt er dieselbe Aufgabe erneut, aber lässt sie nicht pausierbar sein. Er versucht erneut die AUfgabe zu pausieren.
+Falls das System korrekt funktioniert, lässt sich diese Aufgabe nicht pausieren und der Nutzer bekommt eine Fehlermeldung angezeigt.
+
+\item[T08] \textbf{Abfragen eines Aufgabenstatus (FA 5 FA51)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer den korrekten Status seiner Aufgaben abfragen kann.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System mit genau einem Arbeiter, das Aufgaben entegennehmen und verarbeiten kann.
+Der Nutzer erstellt eine Aufgabe, die den ganzen Worker auslastet und ruft ihren Status ab. Er sollte als Rückmeldung "processing" erhalten. Bevor die erste Aufgabe abgearbeitet ist, erstellt er eine weitere.
+Von dieser Aufgabe ruft er ebenfalls den Status ab. Funktioniert das System korrekt, bekommt der Nutzer "scheduled" als Antwrt zurück.
+Danach ruft der Nutzer den Status einer nicht vorhandenen Aufgabe ab. Jetzt sollte er eine Fehlermeldung zurück bekommen.
+Als nächstes wartet er auf den Abschluss seiner ersten Aufgabe und ruft erneut ihren Status ab. Nun sollte er "finished" als Antwort erhalten.
+Zuletzt ruft er noch einmal den Status der zweiten Aufgabe ab, dieser solle jetzt "processing" sein.
+
+\item[T09] \textbf{Benachrichtigung bei Abschluss einer Aufgabe (FA 6)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer nach Beendigung einer Aufgabe vom System benachrichtigt wird.
+\subitem \textbf{Ablauf} Ausgegangen word von einem funktionierenden System, das in der Lage ist Aufgaben anzunehmen und zu verarbeiten.
+Der Nutzer erstellt zunächst eine Aufgabe, die nur aus dem Aufruf
+\begin{mycode}
+sleep 10
+\end{mycode}
+besteht und gibt seine Mail-Adresse an, entweder als Parameter in der Konsole oder als Eintrag im \gls{Configfile}.
+Er wartet 2 Minuten und aktualisiert ab und zu seine Mailbox. Bis dahin ist die Aufgabe abgearbeitet und der Mailserver sollte genug Zeit bekommen haben, die Mail zuzustellen.
+Funktioniert das System, so hat er eine Bestätigungsmail vom System erhalten.
+
+\item[T10] \textbf{Erstellen von Sicherungen (FA 7)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob das System regelmäßige Sicherungen seiner Aufgaben anlegt.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist Aufgaben entgegen zu nehmen und zu verarbeiten.
+Der Administrator setzt zuerst das Backup-Intervall des Servers auf eine Minute.
+Dann startet der Nutzer eine Aufgabe, die nur aus dem Aufruf
+\begin{mycode}
+sleep 130
+\end{mycode}
+besteht. Nachdem die Aufgabe abgearbeitet ist, schaut der Administrator nach, ob im Dateisystem Sicherungen der Aufgabe liegen.
+Falls das System korrekt funktioniert, findet er genau zwei dieser Sicherungen vor.
+Am Schluss setzt der Administrator das Backup-Intervall wieder zurück.
+
+\item[T11] \textbf{Anforderung der Standard-Ausgabe (FA 8)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer in der Lage ist sich die korrekte Standardausgabe seiner Aufgabe anzusehen
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System mit genau einem Arbeiter, das in der Lage ist Aufgaben entgegen zu nehmen und zu verarbeiten.
+Der Nutzer führt eine kleine Aufgabe lokal bei sich aus und gibt sie auch an das System weiter. Er sorgt dafür, dass diese Aufgabe alle Resourcen des Arbeiters für sich beansprucht.
+Dann fragt der die Ausgabe der Aufgabe ab und vergleicht sie mit seiner lokalen Ausgabe.
+Bevor die Aufgabe abgeschlossen ist, erstellt er noch eine weitere Aufgabe und ruft direkt die Ausgabe ab.
+Wenn das System funktioniert, bekommt er eine Fehlermeldung zurück, die ihn darauf hinweist, dass die Aufgabe noch nicht begonnen ist, sondern noch in der Warteschlange hängt.
+Dann versucht der Nutzer die Ausgabe einer Aufgabe anzufordern, die es nicht gibt. Auch hier sollte er eine Fehlermeldung erhalten.
+Als letztes wartet er, bis seine erste Aufgabe abgeschlossen ist und fragt dann die Ausgabe der zweiten Aufgabe ab. Jetzt sollte er keine Fehlermeldung mehr erhalten.
+
+\end{itemize}
+
 \subsubsection{Erweiterte Testfälle}
+
+\begin{itemize}
+
+\item[T12] \textbf{Abbrechen von zu langen Aufgaben (OFA2)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Server in der Lage ist Aufgaben, die zu viel Zeit benötigen, abzubrechen.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist Aufgaben entgegenzunehmen und zu verarbeiten und den Auftraggeber nach Abschluss einer Aufgabe zu benachrichtigen.
+Der Administrator setzt die maximale Bearbeitungszeit für Aufgaben auf 1 Minute.
+Danach erstellt der Benutzer eine Aufgabe, die 30 Sekunden für die Bearbeitung benötigt und eine Aufgabe, die 2 Minuten benötigt.
+Wenn das System korrekt funktioniert, bekommt er eine Benachrichtigung, dass seine erste Aufgabe abgeschlossen wurde,
+und eine zweite Nachricht, die ihn darauf hinweist, dass seine Aufgabe die zulässige Zeit überschritten hat.
+Der Administrator setzt zuletzt die maximale Bearbeitungszeit zurück.
+
+\item[T13] \textbf{Manuelles Stoppen von Aufgaben (OFA3)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer in der Lage ist seine Aufgaben selbst abzubrechen.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist Aufgaben entegenzunehmen, zu verarbeiten und den Status von Aufgaben zurückzugeben.
+Der Nutzer gibt eine Aufgabe auf, die einige Zeit zur Abarbeitung benötigt. Als nächstes gibt er eine zweite Aufgabe auf, die sich nicht selbst beenden kann.
+Dann versucht er diese zweite Aufgabe manuell zu beenden. Wenn das System funktioniert, bekommt der Nutzer, wenn er den Status der Aufgabe anfragt, "cancelled" zurück.
+Außerdem sollte der Status der ersten Aufgabe weiterhin "processing" sein.
+
+\item[T14] \textbf{Manuelle Sicherung von Aufgaben (OFA4)}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer seine Aufgaben manuell sichern kann.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem System, das in der Lage ist Aufgaben entgegenzunehmen und zu bearbeiten.
+Der Nutzer gibt eine Aufgabe auf, die einige Zeit zur Abarbeitung benötigt.
+Als nächstes versucht er seine Aufgabe zu sichern.
+Dann sieht der Administrator nach, ob im Dateisystem eine Sicherung der Aufgabe vorhanden ist.
+
+\end{itemize}
+
+\subsection{Testszenarien}
 
 \clearpage
 \printnoidxglossaries
