@@ -686,13 +686,13 @@ Somit kann der Server die Aufgaben auf alle Worker verteilen.
 \subsection{Befehlszeile}
 
 \subsubsection{Hauptserver starten}
-Startet das Programm im \gls{Daemon} Modus. Optional kann man die Abhöhrende Internet Protokoll Adresse (v4 oder v6) und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk und der Http  angeben.
+Startet das Programm im \gls{Daemon} Modus. Optional kann die Abhöhrende Internet Protokoll Adresse (v4 oder v6) und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk und der Http WebApi angeben werden.
 \begin{mycode}
-bbs [<--server|-s> <ipaddr>] [<--serverport|-sp> <port>]
+bbs [<--server|-s> <ipaddr>] [<--serverport|-sp> <port>] [<--webapi|-w> <ipaddr>] [<--webapi-port|-wp> <port>]
 \end{mycode}
 
 \subsubsection{Arbeiter starten}
-Startet das Programm im \gls{Daemon} Modus. Optional kann man die Internet Protokoll Adresse (v4 oder v6) bzw. den DNS Namen des Hauptservers und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk angeben.
+Startet das Programm im \gls{Daemon} Modus. Optional kann die Internet Protokoll Adresse (v4 oder v6) bzw. der DNS Namen des Hauptservers und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk angeben werden.
 \begin{mycode}
 bbd [<--server|-s> <ipaddr>] [<--serverport|-sp> <port>]
 \end{mycode}
