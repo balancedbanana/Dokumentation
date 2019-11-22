@@ -787,14 +787,17 @@ Startet den Server, der die Aufgaben an die Arbeiter verteilt.
 # Holen des CentOs Beispiels von github, es reicht ein Ordner der eine DockerFile enthält als Arbeitesverzeichnis zu haben.
 git clone https://github.com/balancedbanana/DockerImage.git DockerImage
 cd DockerImage
-# hinzufügen des Images (falls noch nicht vorhanden, bzw. wird überschrieben)
-# "." ist das Aktuelle Arbeitesverzeichnis kann auch ein anderer Ordner mit einer DockerFile sein
+# hinzufügen des Images (falls noch nicht vorhanden, 
+# bzw. wird überschrieben)
+# "." ist das Aktuelle Arbeitesverzeichnis kann auch
+# ein anderer Ordner mit einer DockerFile sein
 bbc --add-image dockercentos7 .
 # Erstellen der aufgabe und speichern der Aufgaben ID in taskid
 taskid = $(bbc --create --image dockercentos7 echo "Hallo Welt")
 # Ausgeben der ID (Optional)
 echo $taskid
-# Gibt "Hallo Welt" an der Konsole Aus und beendet sich, da die Aufgabe abgeschlossen ist bzw. wartet auf das beenden.
+# Gibt "Hallo Welt" an der Konsole Aus und beendet sich,
+# da die Aufgabe abgeschlossen ist bzw. wartet auf das beenden.
 bbc --tail $taskid
 \end{mycode}
 
