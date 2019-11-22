@@ -128,12 +128,19 @@
 \section{Einleitung}
 \vspace*{1cm}
 
-Aufgabenverteilung ist ein in vielen Unternehmen übliches Problem. Wenn ein Unternehmen größer wird, 
-so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Aufgaben größer und komplexer sein. Es wird immer schwieriger, die genannten Ressourcen effizient und gerecht auf die verschiedenen Teams, Mitarbeiter und Aufgaben aufzuteilen. \\
-
-Viele Lösungen gibt es bereits auf dem Markt, sie sind aber zu komplex und nicht leicht erweiterbar. Balanced Banana löst diese Probleme in Form eines kompakten, einfach zu bedienenden und skalierbaren Programms. \\
-
-Mit unserem Programm kann der Benutzer seine Aufgabe einfach von der Kommandozeile absetzen. Darüber hinaus ist der Benutzer durch die Verwendung von Parametern in der Lage, seinem Programm zusätzliche Einschränkungen und/oder Bedingungen hinzuzufügen. Mit Hilfe intelligenter Algorithmen ist unser Programm in der Lage, die verfügbaren Rechenressourcen für Aufgaben effizient zu verteilen, basierend auf Größe, \gls{Prioritaet}, Einschränkungen und Bedingungen.
+Die Verteilung rechenintensiver Aufgaben ist ein in vielen Unternehmen übliches Problem. Wenn ein Team größer wird, 
+so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Aufgaben größer und komplexer sein.
+Es wird immer schwieriger, die vorhandenen Ressourcen effizient und gerecht auf die verschiedenen Mitarbeiter und Aufgaben aufzuteilen.
+Aktuell stehen nur einzelne Rechner zur Verfügung, die von jedem Mitarbeiter beliebig verwendet werden können. So können Aufgaben nur bearbeitet werden,
+wenn zum Zeitpunkt der Anfrage ein Rechner frei steht. Doch das ist weder fair den einzelnen Nutzern gegenüber, noch kann die Hardware dadurch gut ausgelastet werden.
+Wird eine Aufgabe beispielsweise mitten in der Nacht abgeschlossen, ist niemand da, um eine neue Aufgabe ausführen zu lassen.
+Es gibt auf dem Markt bereits viele Lösungen für dieses Problem, allerdings sind sie sehr komplex und nicht leicht erweiterbar.
+Balanced Banana soll dieses Problemes in Form eines kompakten, einfach zu bedienenden und skalierbaren Programms lösen.
+Mit unserem Programm soll der Benutzer seine Aufgaben einfach von der Kommandozeile absetzen können, die dann automatisch auf die bereitstehende Hardware verteilt werden.
+Darüber hinaus soll der Benutzer durch die Verwendung von zusätzlichen Parametern in der Lage sein, weitere Einschränkungen und/oder Bedingungen für seine Aufgaben anzugeben.
+Mit Hilfe intelligenter Algorithmen soll unser Programm in der Lage sein die verfügbaren Rechenressourcen für die anstehenden Aufgaben effizient zu verteilen,
+basierend auf Größe, Priorität und gegebenen Einschränkungen und Bedingungen. Um möglichst flexibel einsetzbar zu sein, soll außerdem die Verteilalgorithmik
+über eine feste Schnittstelle jederzeit änderbar sein, sodass Aspekten wie Fairness oder Turnaround-Zeit unterschiedliche Priorität eingeräumt werden kann.
 
 \section{Zielbestimmung}
 \subsection{Musskriterien}
