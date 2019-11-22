@@ -684,49 +684,86 @@ Somit kann der Server die Aufgaben auf alle Worker verteilen.
 
 \section{Benutzer Oberfläche}
 \subsection{Befehlszeile}
-\subsubsection{Server bzw. Arbeiter}
-Startet das Programm im \gls{Daemon} Modus.
+
+\subsubsection{Hauptserver starten}
+Startet das Programm im \gls{Daemon} Modus. Optional kann man die Abhöhrende Internet Protokoll Adresse (v4 oder v6) und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk und der Http  angeben.
 \begin{mycode}
-bb -d [<--server|-s>]
+bbs [<--server|-s> <ipaddr>] [<--serverport|-sp> <port>]
+\end{mycode}
+
+\subsubsection{Arbeiter starten}
+Startet das Programm im \gls{Daemon} Modus. Optional kann man die Internet Protokoll Adresse (v4 oder v6) bzw. den DNS Namen des Hauptservers und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk angeben.
+\begin{mycode}
+bbd [<--server|-s> <ipaddr>] [<--serverport|-sp> <port>]
 \end{mycode}
 
 \subsubsection{Aufgabe erstellen}
 Sendet die angegebene Aufgabe an den Server und gibt die Aufgaben ID an der Standard Ausgabe aus (Dezimal).
 \begin{mycode}
-bb [--block|-b] [<--priority|-p> <Integer>] [<--docker-file|-df> <path to dockerfile>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] <program> [args]+
+bbc <--run> [--block|-b] [<--priority|-p> <priority>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] [<--email|-em> <email>] <--image|-im> <name> <program> [args]+
 \end{mycode}
+Falls \texttt{-{}-block} block angegeben wurde, wird statt der Aufgaben ID die Ausgabe der Aufgabe ausgegeben.
+Außer man beendet es forzeitig mit \texttt{CTRL + C}, dann wird die Aufgaben ID direkt danach ausgeben.
+
+\subsubsection{Ausgabe der Aufgabe ansehen}
+Gibt die gesammte Standardausgabe der angegebenen Aufgabe aus.
+\begin{mycode}
+bbc <--output> <id>
+\end{mycode}
+\texttt{<id>} Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
+
+\subsubsection{Ausgabe der Aufgabe ansehen}
+Gibt nur die letzten Zeilen der Standardausgabe der angegebenen Aufgabe aus, bis man mit \texttt{CTRL + C} abbricht oder die Aufgabe sich beendet.
+\begin{mycode}
+bbc <--tail> <id>
+\end{mycode}
+\texttt{<id>} Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
 
 \subsubsection{Aufgaben sichern}
 Erstellt einen Schnapschuss der Aufgabe, der später bei bedarf wiederhergestellt werden kann.
 Gibt die Sicherungs ID an der Standard Ausgabe aus (Dezimal).
 \begin{mycode}
-bb <--backup|-b> <id>
+bbc <--backup|-b> <id>
 \end{mycode}
-% \subsubsubsection{<id>} Zu viele ebenen
-Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
+\texttt{<id>} Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
 
 \subsubsection{Aufgaben fortsetzen}
 Setzt die angehaltene Aufgabe fort.
 \begin{mycode}
-bb <--continue|-c> <id>
+bbc <--continue|-c> <id>
 \end{mycode}
+
 \subsubsection{Aufgaben wiederherstellen}
 \begin{mycode}
-bb <--restore|-r> <id> <backupid>
+bbc <--restore|-r> <id> <backupid>
 \end{mycode}
 % \subsubsubsection{<backupid>} Zu viele ebenen
 Sicherungs ID die beim erstellen der Sicherung ausgegeben wurde.
 
-\subsubsection{Aufgaben Pausieren}
+\subsubsection{Aufgaben pausieren}
 Pausiert die Aufgabe mit der angegeben ID Nummer.
 \begin{mycode}
-bb <--pause|-p> <id>
+bbc <--pause|-p> <id>
 \end{mycode}
 
 \subsubsection{Aufgaben beenden}
 Beendet die Aufgabe mit der angegeben ID Nummer.
 \begin{mycode}
-bb <--stop|-s> <id>
+bbc <--stop|-s> <id>
+\end{mycode}
+
+\subsubsection{Docker Abbild hinzufügen}
+Fügt ein Docker Abbild als Ausführungsumgebung hinzu.
+Legt sämtliche Eigenschaften eines Docker Abbildes mit einer \href{https://docs.docker.com/engine/reference/builder/}{DockerFile} fest.
+Beispielsweise Betriebssystem und installierte Programme. 
+\begin{mycode}
+bbc <--add-image|-ai> <imagename> <Ordner der DockerFile>
+\end{mycode}
+
+\subsubsection{Docker Abbild entfernen}
+Entfernt ein Docker Abbild als Ausführungsumgebung
+\begin{mycode}
+bbc <--remove-image|-ri> <imagename>
 \end{mycode}
 
 \subsubsection{\texttt{-{}-block}}
@@ -736,10 +773,6 @@ Kehrt erst nach der Ausführung der Aufgabe zum Aufrufer zurück. Nützlich um v
 Legt die \gls{Prioritaet} der auszuführenden Aufgabe fest, gefolgt von low (4), medium (3), high (2), extreme (1), bananas (0).
 Es kann der Name bzw. die Zahl in der Klammer als \gls{Prioritaet} verwendet werden.
 
-\subsubsection{\texttt{-{}-docker-file}}
-Legt sämtliche Eigenschaften eines Docker Abbildes, gefolgt vom Pfad einer benutzerdefinierten \href{https://docs.docker.com/engine/reference/builder/}{DockerFile}, fest.
-Beispielsweise Benutzer ID, installierte Programme, auszuführende Umgebung.
-
 \subsubsection{\texttt{-{}-min-cpu-count} und \texttt{-{}-max-cpu-count}}
 Legen die minimale bzw. maximale anzahl der verwendbaren \glspl{CPU} fest.
 
@@ -748,6 +781,20 @@ Legen den minimal verfügbaren bzw. maximale verwendbaren Arbeitsspeicher fest.
 
 \subsubsection{\texttt{-{}-server}}
 Startet den Server, der die Aufgaben an die Arbeiter verteilt.
+
+\subsubsection{Beispiel Bash Skript}
+\begin{mycode}
+# Holen des CentOs Beispiels von github, es reicht ein Ordner der eine DockerFile enthält als Arbeitesverzeichnis zu haben.
+git clone https://github.com/balancedbanana/DockerImage
+# hinzufügen des Images (falls noch nicht vorhanden, bzw. wird überschrieben)
+bbc --add-image dockercentos7 .
+# Erstellen der aufgabe und speichern der Aufgaben ID in taskid
+taskid = $(bbc --create --image dockercentos7 echo "Hallo Welt")
+# Ausgeben der ID (Optional)
+echo $taskid
+# Gibt "Hallo Welt" an der Konsole Aus und beendet sich, da die Aufgabe abgeschlossen ist bzw. wartet auf das beenden.
+bbc --tail $taskid
+\end{mycode}
 
 \section{Qualitätszielbestimmungen}
 % Tabelle ... schafeln .. was ist ihm wichtig
