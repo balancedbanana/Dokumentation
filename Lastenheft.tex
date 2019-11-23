@@ -867,7 +867,7 @@ bbd [<--server|-s> <ipaddr>] [<--serverport|-sp> <port>]
 \subsubsection{Aufgabe erstellen}
 Sendet die angegebene Aufgabe an den Server und gibt die Aufgaben ID an der Standard Ausgabe aus (Dezimal).
 \begin{mycode}
-bbc <--run> [--block|-b] [<--priority|-p> <priority>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] [<--email|-em> <email>] <--image|-im> <name> <program> [args]+
+bbc <--run|-r> [--block|-b] [<--priority|-p> <priority>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] [<--email|-em> <email>] [<--image|-im> <name>] [<program> [args]+]
 \end{mycode}
 Falls \texttt{-{}-block} block angegeben wurde, wird statt der Aufgaben ID die Ausgabe der Aufgabe ausgegeben.
 Außer man beendet es forzeitig mit \texttt{CTRL + C}, dann wird die Aufgaben ID direkt danach ausgeben.
@@ -875,14 +875,14 @@ Außer man beendet es forzeitig mit \texttt{CTRL + C}, dann wird die Aufgaben ID
 \subsubsection{Ausgabe der Aufgabe ansehen}
 Gibt die gesammte Standardausgabe der angegebenen Aufgabe aus.
 \begin{mycode}
-bbc <--output> <id>
+bbc <--output|-o> <id>
 \end{mycode}
 \texttt{<id>} Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
 
 \subsubsection{Ausgabe der Aufgabe ansehen}
 Gibt nur die letzten Zeilen der Standardausgabe der angegebenen Aufgabe aus, bis man mit \texttt{CTRL + C} abbricht oder die Aufgabe sich beendet.
 \begin{mycode}
-bbc <--tail> <id>
+bbc <--tail|-t> <id>
 \end{mycode}
 \texttt{<id>} Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
 
