@@ -31,21 +31,21 @@
 
 \newglossaryentry{Befehlszeile}
 {
-	name=Befehlszeile,
+	name=\gls{Befehlszeile},
 	plural={Befehlszeile},
 	description={Anwendung, mit der Befehle auf dem Rechner ausgeführt werden.},
 }
 
 \newglossaryentry{CPU}
 {
-	name=CPU,
+	name=\gls{CPU},
 	plural={CPU},
 	description={Central Processing Unit, Kern jedes Rechners um Anwendungen auszuführen},
 }
 
 \newglossaryentry{Daemon}
 {
-	name=Daemon,
+	name={Daemon},
 	plural={Daemon},
 	description={Ein Dienst der Anfragen annimmt und beantwortet.},
 }
@@ -53,14 +53,14 @@
 {
 	name={Client},
 	plural={Clients},
-	description={Ein Programm auf einem Benutzer PC, welches mit dem Server kommuniziert.}
+	description={Ein Programm auf einem \gls{Benutzer} PC, welches mit dem \gls{Server} kommuniziert.}
 }
 
 \newglossaryentry{Server}
 {
 	name={Server},
 	plural={Server},
-	description={Ein Programm auf einem Server, der die Benutzer (Außenwelt) mit den Arbeitern (Privates Netzwerk) verbindet.}
+	description={Ein Programm auf einem \gls{Server}, der die \gls{Benutzer} (Außenwelt) mit den Arbeitern (Privates Netzwerk) verbindet.}
 }
 
 \newglossaryentry{Konfigurationsdatei}
@@ -88,27 +88,27 @@
 {
 	name={Arbeiter},
 	plural={Arbeiter},
-	description={Ein Programm auf einem Rechner, der Aufgaben ausführt.}
+	description={Ein Programm auf einem Rechner, der \glspl{Aufgabe} ausführt.}
 }
 
 \newglossaryentry{Aufgabe}
 {
 	name={Aufgabe},
 	plural={Aufgaben},
-	description={Jedes Programm (z.B. Skripte, Simulationen, etc.), das ein Benutzer auf einem Rechenknoten ausführen möchte}
+	description={Jedes Programm (z.B. Skripte, Simulationen, etc.), das ein \gls{Benutzer} auf einem Rechenknoten ausführen möchte}
 }
 
 \newglossaryentry{Statistik}
 {
 	name={Statistik},
 	plural={Statistiken},
-	description={Nützliche Informationen (z.B. Dauer der Task, Statuscode, etc.) über eine Aufgabe, die gesammelt werden sollen.}
+	description={Nützliche Informationen (z.B. Dauer der Task, Statuscode, etc.) über eine \gls{Aufgabe}, die gesammelt werden sollen.}
 }
 
 \newglossaryentry{Web-API}
 {
 	name={Web-API},
-	description={Web-API (Web-Application Programming Interface) ist eine Schnittstelle über das Internet, die eine Sammlung von Funktionen zur Verfügung stellt, die es Benutzern ermöglichen, auf bestimmte Informationen einer Anwendung, eines Betriebssystems oder anderer Dienste zuzugreifen.}
+	description={Web-API (Web-Application Programming Interface) ist eine Schnittstelle über das Internet, die eine Sammlung von Funktionen zur Verfügung stellt, die es \gls{Benutzer}n ermöglichen, auf bestimmte Informationen einer Anwendung, eines Betriebssystems oder anderer Dienste zuzugreifen.}
 }
 
 \newglossaryentry{Fehlerbehandlung}
@@ -121,28 +121,28 @@
 \newglossaryentry{Parameter}
 {
 	name={Parameter},
-	plural=Parameter,
+	plural=\gls{Parameter},
 	description={Eine für die Ausführung eines Programms relevante Variable.}
 }
 
 \newglossaryentry{Schnittstelle}
 {
 	name={Schnittstelle},
-	plural=Schnittstellen,
+	plural={Schnittstellen},
 	description={Eine Art Verbindung zwischen zwei oder mehr voneinander unabhängigen Systemen.}
 }
 
 \newglossaryentry{Warteschlange}
 {
-	name=Warteschlange,
-	plural=Warteschlangen,
-	description={Datenstruktur, in der Aufgaben für die weitere Verwendung zwischengespeichert werden. Kann mit einer Priorität behaftet sein, welche bestimmt, in welcher Reihenfolge die Aufgaben aus der Warteschlange entfernt werden.}
+	name=\gls{Warteschlange},
+	plural=\gls{Warteschlange}n,
+	description={Datenstruktur, in der \glspl{Aufgabe} für die weitere Verwendung zwischengespeichert werden. Kann mit einer \gls{Prioritaet} behaftet sein, welche bestimmt, in welcher Reihenfolge die \glspl{Aufgabe} aus der \gls{Warteschlange} entfernt werden.}
 }
 
 \newglossaryentry{Docker-Container}
 {
 	name=Docker-Container,
-	plural=Docker-Container,
+	plural=Docker-Containern,
 	description={Ein Container ist eine Standardeinheit von Software, die Code und alle Abhängigkeiten zusammenfasst, damit die Anwendung auf unterschiedlichen Rechnersystemen läuft.}
 }
 
@@ -150,7 +150,7 @@
 {
 	name=Docker,
 	plural=Docker,
-	description={Ein Programm, mit dessen Hilfe man Aufgaben von dem Host System abkapseln kann.}
+	description={Ein Programm, mit dessen Hilfe man \glspl{Aufgabe} von dem Host System abkapseln kann.}
 }
 
 \newglossaryentry{Docker-Image}
@@ -212,7 +212,7 @@ Aktuell stehen individuelle \glspl{Arbeiter} zur Verfügung, die von jedem Mitar
 Es gibt auf dem Markt bereits viele Lösungen für dieses Problem, allerdings sind sie sehr komplex und nicht leicht erweiterbar.
 Balanced Banana löst dieses Problem maßgeschneidert an die Bedürfnisse des CES. \\
 
-Mit Balanced Banana soll der \gls{Benutzer} sine \gls{Aufgabe} unkompliziert von der \gls{CLI} abschicken können, sodass diese automatisch auf einen bereitstehenden \gls{Arbeiter} verteilt wird. Die \glspl{Aufgabe} sind in \gls{Docker}-Containern von anderen \glspl{Aufgabe} abgetrennt.  \\
+Mit Balanced Banana soll der \gls{Benutzer} sine \gls{Aufgabe} unkompliziert von der \gls{CLI} abschicken können, sodass diese automatisch auf einen bereitstehenden \gls{Arbeiter} verteilt wird. Die \glspl{Aufgabe} sind in \glspl{Docker-Container} von anderen \glspl{Aufgabe} abgetrennt.  \\
 
 Darüber hinaus soll der \gls{Benutzer} durch zusätzliche \glspl{Parameter} in der Lage sein, weitere Einschränkungen und/oder Bedingungen für seine \glspl{Aufgabe} anzugeben.\\
 
@@ -303,7 +303,7 @@ Nach einiger Zeit erhält Peter eine E-Mail mit dem Ergebnis seiner Simulation.
 \includegraphics[width=\textwidth]{Systemmodelle/Systemaufbau}
 
 Den Kern des Systems stellt der \gls{Server} dar. Er ist in der Lage über ein von Nutzern benutzbares Netzwerk Anfragen von den einzelnen \glspl{Client} entgegenzunehmen und sie zu verwalten.
-Außerdem enthält er eine \gls{Datenbank}, in der sämtliche \glspl{Statistik} gespeichert werden, sowie einen HTTP Dienst, der Anfragen auf \gls{Statistik} beantwortet und einen SMTP-Dienst, der die \glspl{Benutzer} benachrichtigt. An einer weiteren Schnittstelle ist er an ein von Außen nicht sichtbares Netzwerk angeschlossen, in dem sich die einzelnen \glspl{Arbeiter} befinden. Der \gls{Server} kann Anfragen direkt an die sie in diesem Netz verteilen, ohne dass die \gls{Arbeiter} von außerhalb des versteckten Netzes gesehen werden können. Außerdem gibt es ein geteiltes Netzwerk-Dateisystem, das von allen Rechnern in beiden Netzwerken, dem öffentlichen Netz und dem versteckten Arbeiternetz, erreichbar ist. Hier können Daten und Programme gespeichert werden, die für die erstellten \glspl{Aufgabe} benötigt werden.
+Außerdem enthält er eine \gls{Datenbank}, in der sämtliche \glspl{Statistik} gespeichert werden, sowie einen HTTP Dienst, der Anfragen auf \gls{Statistik} beantwortet und einen SMTP-Dienst, der die \glspl{Benutzer} benachrichtigt. An einer weiteren \gls{Schnittstele} ist er an ein von Außen nicht sichtbares Netzwerk angeschlossen, in dem sich die einzelnen \glspl{Arbeiter} befinden. Der \gls{Server} kann Anfragen direkt an die sie in diesem Netz verteilen, ohne dass die \gls{Arbeiter} von außerhalb des versteckten Netzes gesehen werden können. Außerdem gibt es ein geteiltes Netzwerk-Dateisystem, das von allen Rechnern in beiden Netzwerken, dem öffentlichen Netz und dem versteckten Arbeiternetz, erreichbar ist. Hier können Daten und Programme gespeichert werden, die für die erstellten \glspl{Aufgabe} benötigt werden.
 
 \subsection{Ablaufdiagramme}
 \subsubsection{Systeminitialisierung}
@@ -348,7 +348,7 @@ Dieses Diagramm beschreibt den groben Verlauf der Bearbeitung einer \gls{Aufgabe
 7. Der \gls{Server} meldet den Abschluss der \gls{Aufgabe} an den \gls{Benutzer}, sofern er noch im System angemeldet ist und auf eine Antwort wartet.\\
 8. Der \gls{Server} verschickt eine E-Mail an die bei der Erstellung der \gls{Aufgabe} spezifizierte Adresse, die den \gls{Benutzer} auf den Abschluss seiner \gls{Aufgabe} hinweist.
 
-\subsubsection{Notfall Aufgabenverarbeitung}
+\subsubsection{Notfall \glspl{Aufgabe}verarbeitung}
 Dieses Diagramm veranschaulicht den Verlauf einer Notfall Verteilung. Eine Notfall Verteilung bezeichnet eine \gls{Aufgabe}, die schnellstmöglich bearbeitet werden muss.\\
 \includegraphics[width=\linewidth]{Systemmodelle/Models/Emergency-Scheduling.PNG}
 \\
@@ -385,10 +385,10 @@ Oftmals fallen \glspl{Aufgabe} an, die von einem Computer berechnet werden könn
 
 \begin{minipage}[t]{\linewidth}
 \item \textbf{Produktaufbau}\newline
-Balanced Banana ist den Aufgabengebieten entsprechend in drei Teile aufgeteilt:\newline
-1. Der \gls{Client} (\gls{Benutzer}): Verantwortlich für die Interaktion des Benutzers mit dem Produkt auf der \gls{Befehlszeile}.\newline
+Balanced Banana ist den \glspl{Aufgabe}gebieten entsprechend in drei Teile aufgeteilt:\newline
+1. Der \gls{Client} (\gls{Benutzer}): Verantwortlich für die Interaktion des \gls{Benutzer}s mit dem Produkt auf der \gls{Befehlszeile}.\newline
 2. Der \gls{Scheduler} (\gls{Server}): Verantwortlich für das effiziente Verteilen der \glspl{Aufgabe} auf dem Arbeiterpool. Agiert als Mittelmann zwischen \gls{Benutzer} und \gls{Arbeiter}.\newline
-3. Der \gls{Arbeiter} (Worker): Verantwortlich für Ausführung, Pausieren und Abbruch der \glspl{Aufgabe} auf den Arbeitern (spezielle Rechner für die Aufgabenverarbeitung).
+3. Der \gls{Arbeiter} (Rechenknoten): Verantwortlich für Ausführung, Pausieren und Abbruch der \glspl{Aufgabe} auf den Arbeitern (spezielle Rechner für die \glspl{Aufgabe}verarbeitung).
 \end{minipage}
 \end{itemize}
 \newpage
@@ -402,23 +402,23 @@ Balanced Banana ist den Aufgabengebieten entsprechend in drei Teile aufgeteilt:\
 \begin{itemize}[nosep]
 \leftskip=0.5cm
 
-\item[FA1]	\gls{Client} verbindet sich beim Starten mit dem Server.
-\item[FA2] Benutzer authentifiziert sich über den \gls{Client} gegenüber dem Server.
-\item[FA3] Benutzer kann eine Aufgabe über den \gls{Client} einreihen.
-\item[FA4] Benutzer kann Parameter übergeben.
-\item[FA41]	\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}.
-\item[FA42]	Benutzer kann Parameter über \gls{Configfile} übergeben.
-\item[FA43] Benutzer kann \gls{Prioritaet} einer Aufgabe festlegen.
-\item[FA44] Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen.
-\item[FA45] Benutzer kann maximal nutzbaren Arbeitsspeicher festlegen.
-\item[FA46] Benutzer kann das benutzte Betriebssystem festlegen.
-\item[FA47] Benutzer kann angeben, ob der \gls{Client} blockieren soll, bis die Aufgabe beendet ist.
-\item[FA48] Benutzer übergibt Pfad zu der Aufgabe.
-\item[FA49] Falls der Benutzer keine Parameter übergibt, werden Standardwerte benutzt.
-\item[FA5] Benutzer kann den Status einer Aufgabe einsehen.
-\item[FA6] Benutzer bekommt Benachrichtigung über abgeschlossene Aufgabe.
-\item[FA7] Server erstellt regelmäßige Sicherungen von laufenden Aufgaben.
-\item[FA8] Benutzer kann die Ausgabe seiner Aufgabe anfordern.
+\item[FA1]	\gls{Client} verbindet sich beim Starten mit dem \gls{Server}.
+\item[FA2] \gls{Benutzer} authentifiziert sich über den \gls{Client} gegenüber dem \gls{Server}.
+\item[FA3] \gls{Benutzer} kann eine \gls{Aufgabe} über den \gls{Client} einreihen.
+\item[FA4] \gls{Benutzer} kann \gls{Parameter} übergeben.
+\item[FA41]	\gls{Client} speichert voreingestellte \gls{Parameter} in \gls{Configfile}.
+\item[FA42]	\gls{Benutzer} kann \gls{Parameter} über \gls{Configfile} übergeben.
+\item[FA43] \gls{Benutzer} kann \gls{Prioritaet} einer \gls{Aufgabe} festlegen.
+\item[FA44] \gls{Benutzer} kann minimale und maximale Anzahl genutzer Kerne festlegen.
+\item[FA45] \gls{Benutzer} kann maximal nutzbaren Arbeitsspeicher festlegen.
+\item[FA46] \gls{Benutzer} kann das benutzte Betriebssystem festlegen.
+\item[FA47] \gls{Benutzer} kann angeben, ob der \gls{Client} blockieren soll, bis die \gls{Aufgabe} beendet ist.
+\item[FA48] \gls{Benutzer} übergibt Pfad zu der \gls{Aufgabe}.
+\item[FA49] Falls der \gls{Benutzer} keine \gls{Parameter} übergibt, werden Standardwerte benutzt.
+\item[FA5] \gls{Benutzer} kann den Status einer \gls{Aufgabe} einsehen.
+\item[FA6] \gls{Benutzer} bekommt Benachrichtigung über abgeschlossene \gls{Aufgabe}.
+\item[FA7] \gls{Server} erstellt regelmäßige Sicherungen von laufenden \glspl{Aufgabe}.
+\item[FA8] \gls{Benutzer} kann die Ausgabe seiner \gls{Aufgabe} anfordern.
 \item[FA9] \gls{Benutzer} kann erhobene \glspl{Statistik} abfragen.
 \end{itemize}
 \newpage
@@ -428,7 +428,7 @@ Balanced Banana ist den Aufgabengebieten entsprechend in drei Teile aufgeteilt:\
 \begin{itemize}[nosep]
 	\leftskip=0.5cm
 	\begin{minipage}[t]{\linewidth}
-		\item[FA1] \textbf{\gls{Client} verbindet sich beim Starten mit dem Server.}
+		\item[FA1] \textbf{\gls{Client} verbindet sich beim Starten mit dem \gls{Server}.}
 		\subitem \textbf{Erklärung:} Beim Starten des \gls{Client} soll dieser sich automatisch mit dem \gls{Server} verbinden.
 		\subitem \textbf{Voraussetzung(en):} Keine.
 		\subitem \textbf{Nachbedingung(en):}
@@ -439,46 +439,46 @@ Balanced Banana ist den Aufgabengebieten entsprechend in drei Teile aufgeteilt:\
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[FA2] \textbf{Benutzer authentifiziert sich über den \gls{Client} gegenüber dem Server.}
-		\subitem \textbf{Erklärung:} Bevor der Benutzer Befehle ausführen kann, muss dieser sich authentifziert haben.
-		\subitem \textbf{Voraussetzung(en):} Der Client hat sich mit dem Server verbunden.
+		\item[FA2] \textbf{Benutzer authentifiziert sich über den \gls{Client} gegenüber dem \gls{Server}.}
+		\subitem \textbf{Erklärung:} Bevor der \gls{Benutzer} Befehle ausführen kann, muss dieser sich authentifziert haben.
+		\subitem \textbf{Voraussetzung(en):} Der \gls{Client} hat sich mit dem \gls{Server} verbunden.
 		\subitem \textbf{Nachbedingung(en):} 
 		\subsubitem \textbf{Erfolg:} Der \gls{Benutzer} wurde authentifiziert.
 		\subsubitem \textbf{Misserfolg:} Der \gls{Benutzer} konnte nicht authentifiziert werden. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Bevor der Benutzer eine Aufgabe einreihen kann (FA3) oder den Status seiner Aufgaben einsehen kann (FA6), muss sich dieser authentifizieren. Dies führt der Client automatisch durch. Falls notwendig, wird der \gls{Benutzer} aufgefordert ein Passwort einzugeben.
+		\subitem \textbf{Details:} Bevor der \gls{Benutzer} eine \gls{Aufgabe} einreihen kann (FA3) oder den Status seiner \glspl{Aufgabe} einsehen kann (FA6), muss sich dieser authentifizieren. Dies führt der \gls{Client} automatisch durch. Falls notwendig, wird der \gls{Benutzer} aufgefordert ein Passwort einzugeben.
 	\end{minipage}
     \newline
     \\
     
     \begin{minipage}[t] {\linewidth}
-    	\item[FA3] \textbf{Benutzer kann eine Aufgabe über den \gls{Client} einreihen.}
-    	\subitem \textbf{Erklärung:} Benutzer kann eine Aufgabe mit Parametern zur Bearbeitung einreihen.
+    	\item[FA3] \textbf{Benutzer kann eine \gls{Aufgabe} über den \gls{Client} einreihen.}
+    	\subitem \textbf{Erklärung:} \gls{Benutzer} kann eine \gls{Aufgabe} mit \gls{Parameter}n zur Bearbeitung einreihen.
     	\subitem \textbf{Voraussetzung(en):} Der \gls{Benutzer} hat sich gegenüber dem \gls{Server} authentifiziert.
     	\subitem \textbf{Nachbedingung(en):}
-    	\subsubitem \textbf{Erfolg:} Die Aufgabe wird in eine Warteschlange eingereiht. Der \gls{Benutzer} bekommt eine Rückmeldung mit der Aufgaben ID.
-    	\subsubitem \textbf{Misserfolg:} Die Aufgabe wird nicht eingereiht. Der Benutzer bekommt eine entsprechende Fehlermeldung.
-    	\subitem \textbf{Details:} Der \gls{Benutzer} kann über die \gls{Befehlszeile} eine Aufgabe einreihen. Dabei kann er Parameter mit übergeben (FA4). Falls der Benutzer keine Parameter mit übergibt werden Standardparameter verwendet (FA49).
+    	\subsubitem \textbf{Erfolg:} Die \gls{Aufgabe} wird in eine \gls{Warteschlange} eingereiht. Der \gls{Benutzer} bekommt eine Rückmeldung mit der \glspl{Aufgabe} ID.
+    	\subsubitem \textbf{Misserfolg:} Die \gls{Aufgabe} wird nicht eingereiht. Der \gls{Benutzer} bekommt eine entsprechende Fehlermeldung.
+    	\subitem \textbf{Details:} Der \gls{Benutzer} kann über die \gls{Befehlszeile} eine \gls{Aufgabe} einreihen. Dabei kann er \gls{Parameter} mit übergeben (FA4). Falls der \gls{Benutzer} keine \gls{Parameter} mit übergibt werden Standard\gls{Parameter} verwendet (FA49).
    \end{minipage}
    \newline
    \\
 	
-	%\item[FA30] Benutzer kann Parameter übergeben %evtl auf FA20 verweisen
+	%\item[FA30] \gls{Benutzer} kann \gls{Parameter} übergeben %evtl auf FA20 verweisen
 	\begin{minipage}[t]{\linewidth}
-		\item[FA4] \textbf{Benutzer kann Parameter übergeben.}
-		\subitem \textbf{Erklärung:} Bei der Einreihung einer Aufgabe, können weiter Parameter übergeben werden.
-		\subitem \textbf{Voraussetzung(en):}Eine Aufgabe soll eingereiht werden.
+		\item[FA4] \textbf{Benutzer kann \gls{Parameter} übergeben.}
+		\subitem \textbf{Erklärung:} Bei der Einreihung einer \gls{Aufgabe}, können weiter \gls{Parameter} übergeben werden.
+		\subitem \textbf{Voraussetzung(en):}Eine \gls{Aufgabe} soll eingereiht werden.
 		\subitem \textbf{Nachbedingung(en):}
-		\subsubitem \textbf{Erfolg:} Der Befehl wird mit den angegebenen Parametern eingereiht.
-		\subsubitem \textbf{Misserfolg:} Die Aufgabe wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Wenn eine Aufgabe eingereiht wird, kann der \gls{Benutzer} noch weitere Parameter hinzufügen. Diese können in einer \gls{Configfile} übergeben werden (FA42). Falls keine Parameter eingegeben wurden, werden Standardparameter verwendet (FA49).
-		Können mehrere Rechner für eine Aufgabe verwendet werden, so wird zuerst nach minimalem Arbeitsspeicher und danach nach minimalen Kernen ausgesucht.
+		\subsubitem \textbf{Erfolg:} Der Befehl wird mit den angegebenen \gls{Parameter}n eingereiht.
+		\subsubitem \textbf{Misserfolg:} Die \gls{Aufgabe} wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
+		\subitem \textbf{Details:} Wenn eine \gls{Aufgabe} eingereiht wird, kann der \gls{Benutzer} noch weitere \gls{Parameter} hinzufügen. Diese können in einer \gls{Configfile} übergeben werden (FA42). Falls keine \gls{Parameter} eingegeben wurden, werden Standard\gls{Parameter} verwendet (FA49).
+		Können mehrere Rechner für eine \gls{Aufgabe} verwendet werden, so wird zuerst nach minimalem Arbeitsspeicher und danach nach minimalen Kernen ausgesucht.
 	\end{minipage}
 	\pagebreak
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[FA41] \textbf{\gls{Client} speichert voreingestellte Parameter in \gls{Configfile}.}
-		\subitem \textbf{Erklärung:} Standardparameter werden einer \gls{Configfile} gespeichert.
-		Diese können bearbeitet werden. Zur einfachen Einreihung können alle Parameter durch eine \gls{Configfile} angegeben werden.
+		\item[FA41] \textbf{\gls{Client} speichert voreingestellte \gls{Parameter} in \gls{Configfile}.}
+		\subitem \textbf{Erklärung:} Standard\gls{Parameter} werden einer \gls{Configfile} gespeichert.
+		Diese können bearbeitet werden. Zur einfachen Einreihung können alle \gls{Parameter} durch eine \gls{Configfile} angegeben werden.
 		\subitem \textbf{Vorraussetzungen:} Keine.
 		
 	\end{minipage}
@@ -486,170 +486,170 @@ Balanced Banana ist den Aufgabengebieten entsprechend in drei Teile aufgeteilt:\
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[FA42] \textbf{Benutzer kann Parameter über \gls{Configfile} übergeben.}
-		\subitem \textbf{Erklärung:} Gibt der Benutzer Parameter bei der Einreihung einer Aufgabe nicht ein, so werden diese von der \gls{Configfile} bezogen.
-		\subitem \textbf{Vorraussetzungen:} Eine Aufgabe soll eingereiht werden.
+		\item[FA42] \textbf{Benutzer kann \gls{Parameter} über \gls{Configfile} übergeben.}
+		\subitem \textbf{Erklärung:} Gibt der \gls{Benutzer} \gls{Parameter} bei der Einreihung einer \gls{Aufgabe} nicht ein, so werden diese von der \gls{Configfile} bezogen.
+		\subitem \textbf{Vorraussetzungen:} Eine \gls{Aufgabe} soll eingereiht werden.
 		\subitem \textbf{Nachbedingung:}
-		\subsubitem \textbf{Erfolg:} Fehlende Parameter wurden aus der \gls{Configfile} bezogen.
-		\subsubitem \textbf{Misserfolg:} Fehlende Parameter werden auf Standardwerte gesetzt.
-		\subitem \textbf{Details:} Werden Parameter bei der Einreihung einer Aufgabe nicht weiter spezifiziert, so werden diese aus der \gls{Configfile} gelesen. Sind diese dort ebenfalls nicht spezifiziert, so werden diese auf Standardwerte gesetzt.
+		\subsubitem \textbf{Erfolg:} Fehlende \gls{Parameter} wurden aus der \gls{Configfile} bezogen.
+		\subsubitem \textbf{Misserfolg:} Fehlende \gls{Parameter} werden auf Standardwerte gesetzt.
+		\subitem \textbf{Details:} Werden \gls{Parameter} bei der Einreihung einer \gls{Aufgabe} nicht weiter spezifiziert, so werden diese aus der \gls{Configfile} gelesen. Sind diese dort ebenfalls nicht spezifiziert, so werden diese auf Standardwerte gesetzt.
 	\end{minipage}
 	\newline
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[FA43] \textbf{Benutzer kann \gls{Prioritaet} einer Aufgabe festlegen.}
-		\subitem \textbf{Erklärung:} \gls{Benutzer} kann seine Aufgabe mit einer \gls{Prioritaet} versehen.
-		\subitem \textbf{Voraussetzung(en):} Eine Aufgabe soll eingereiht werden.
+		\item[FA43] \textbf{Benutzer kann \gls{Prioritaet} einer \gls{Aufgabe} festlegen.}
+		\subitem \textbf{Erklärung:} \gls{Benutzer} kann seine \gls{Aufgabe} mit einer \gls{Prioritaet} versehen.
+		\subitem \textbf{Voraussetzung(en):} Eine \gls{Aufgabe} soll eingereiht werden.
 		\subitem \textbf{Nachbedingung(en):}
-		\subsubitem \textbf{Erfolg:} Die Aufgabe wird mit der gewünschten \gls{Prioritaet} in die Warteschlange eingereiht.
-		\subsubitem \textbf{Misserfolg:} Die Aufgabe wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Ein \gls{Benutzer} kann einer eingereihten Aufgabe eine \gls{Prioritaet} geben. Diese bestimmt welche Position die Aufgabe in der Warteschlange bekommt. Es gibt vier \glspl{Prioritaet}: Low, Normal, High, Emergency (von niedrig bis hoch sortiert). Eine höhere \gls{Prioritaet} bewirkt ein Einreihen weiter vorne in der Warteschlange. Bei zwei Aufgaben mit gleicher Priorität entscheidet der Zeitpunkt der Einreihung.
+		\subsubitem \textbf{Erfolg:} Die \gls{Aufgabe} wird mit der gewünschten \gls{Prioritaet} in die \gls{Warteschlange} eingereiht.
+		\subsubitem \textbf{Misserfolg:} Die \gls{Aufgabe} wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
+		\subitem \textbf{Details:} Ein \gls{Benutzer} kann einer eingereihten \gls{Aufgabe} eine \gls{Prioritaet} geben. Diese bestimmt welche Position die \gls{Aufgabe} in der \gls{Warteschlange} bekommt. Es gibt vier \glspl{Prioritaet}: Low, Normal, High, Emergency (von niedrig bis hoch sortiert). Eine höhere \gls{Prioritaet} bewirkt ein Einreihen weiter vorne in der \gls{Warteschlange}. Bei zwei \glspl{Aufgabe} mit gleicher \gls{Prioritaet} entscheidet der Zeitpunkt der Einreihung.
     \end{minipage}	
 	\newline
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
 		\item[FA44] \textbf{Benutzer kann minimale und maximale Anzahl genutzer Kerne festlegen.}
-		\subitem \textbf{Erklärung:} \gls{Benutzer} kann eine minimale und maximale Anzahl nutzbarer Kerne als Parameter angeben.
-		\subitem \textbf{Voraussetzung(en):} Eine Aufgabe soll eingereiht werden.
+		\subitem \textbf{Erklärung:} \gls{Benutzer} kann eine minimale und maximale Anzahl nutzbarer Kerne als \gls{Parameter} angeben.
+		\subitem \textbf{Voraussetzung(en):} Eine \gls{Aufgabe} soll eingereiht werden.
 		\subitem \textbf{Nachbedingung(en):}
-		\subsubitem \textbf{Erfolg:} Die Aufgabe wird mit der gewünschten minimalen und maximalen Anzahl Kerne als Parameter in die Warteschlange eingereiht.
-		\subsubitem \textbf{Misserfolg:} Die Aufgabe wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Ein \gls{Benutzer} kann einer eingereihten Aufgabe eine minimale und maximale Anzahl nutzbarer Kerne zuweisen. Die Aufgabe wird dann mindestens die spezifizierte Angabe Kerne nutzen können und maximal die spezifizierte Anzahl Kerne nutzen können.
+		\subsubitem \textbf{Erfolg:} Die \gls{Aufgabe} wird mit der gewünschten minimalen und maximalen Anzahl Kerne als \gls{Parameter} in die \gls{Warteschlange} eingereiht.
+		\subsubitem \textbf{Misserfolg:} Die \gls{Aufgabe} wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
+		\subitem \textbf{Details:} Ein \gls{Benutzer} kann einer eingereihten \gls{Aufgabe} eine minimale und maximale Anzahl nutzbarer Kerne zuweisen. Die \gls{Aufgabe} wird dann mindestens die spezifizierte Angabe Kerne nutzen können und maximal die spezifizierte Anzahl Kerne nutzen können.
 	\end{minipage}
 	\newline
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
 		\item[FA45] \textbf{Benutzer kann minimal und maximal nutzbaren RAM festlegen.}
-		\subitem \textbf{Erklärung:} Erlaubt es dem \gls{Benutzer} eine minimale bzw. maximale Menge Arbeitsspeicher als Parameter anzugeben.
-		\subitem \textbf{Voraussetzung(en):} Eine Aufgabe soll eingereiht werden.
+		\subitem \textbf{Erklärung:} Erlaubt es dem \gls{Benutzer} eine minimale bzw. maximale Menge Arbeitsspeicher als \gls{Parameter} anzugeben.
+		\subitem \textbf{Voraussetzung(en):} Eine \gls{Aufgabe} soll eingereiht werden.
 		\subitem \textbf{Nachbedingung(en):}
-		\subsubitem \textbf{Erfolg:} Die Aufgabe wird mit der gewünschten minimalen und maximalen Größe des nutzbaren Arbeitsspeichers als Parameter in die Warteschlange eingereiht.
-		\subsubitem \textbf{Misserfolg:} Die Aufgabe wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Ein \gls{Benutzer} kann einer eingereihten Aufgabe eine minimale und maximale Größe nutzbaren RAMs zuweisen. Die Aufgabe wird dann mindestens die minimale Größe und höchstens die maximale Größe nutzen können.
+		\subsubitem \textbf{Erfolg:} Die \gls{Aufgabe} wird mit der gewünschten minimalen und maximalen Größe des nutzbaren Arbeitsspeichers als \gls{Parameter} in die \gls{Warteschlange} eingereiht.
+		\subsubitem \textbf{Misserfolg:} Die \gls{Aufgabe} wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
+		\subitem \textbf{Details:} Ein \gls{Benutzer} kann einer eingereihten \gls{Aufgabe} eine minimale und maximale Größe nutzbaren RAMs zuweisen. Die \gls{Aufgabe} wird dann mindestens die minimale Größe und höchstens die maximale Größe nutzen können.
 	\end{minipage}
 	\newline
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
 		\item[FA46] \textbf{Benutzer kann das benutzte Betriebssystem festlegen.}
-		\subitem \textbf{Erklärung:} Erlaubt es dem \gls{Benutzer} das Betriebssystem, auf dem die Aufgabe ausgeführt werden soll, als Parameter auszuwählen.
-		\subitem \textbf{Voraussetzung(en):} Eine Aufgabe soll eingereiht werden.
+		\subitem \textbf{Erklärung:} Erlaubt es dem \gls{Benutzer} das Betriebssystem, auf dem die \gls{Aufgabe} ausgeführt werden soll, als \gls{Parameter} auszuwählen.
+		\subitem \textbf{Voraussetzung(en):} Eine \gls{Aufgabe} soll eingereiht werden.
 		\subitem \textbf{Nachbedingung(en):}
-		\subsubitem \textbf{Erfolg:} Die Aufgabe wird mit dem gewünschten Betriebssystem als Parameter eingereiht.
-		\subsubitem \textbf{Misserfolg:} Die Aufgabe wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Ein \gls{Benutzer} kann einer eingereihten Aufgabe ein gewünschtes Betriebssystem als Parameter zuweisen. Die Aufgabe wird dann auf dem gewünschten Betriebssystem ausgeführt.
+		\subsubitem \textbf{Erfolg:} Die \gls{Aufgabe} wird mit dem gewünschten Betriebssystem als \gls{Parameter} eingereiht.
+		\subsubitem \textbf{Misserfolg:} Die \gls{Aufgabe} wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
+		\subitem \textbf{Details:} Ein \gls{Benutzer} kann einer eingereihten \gls{Aufgabe} ein gewünschtes Betriebssystem als \gls{Parameter} zuweisen. Die \gls{Aufgabe} wird dann auf dem gewünschten Betriebssystem ausgeführt.
 	\end{minipage}
 	\newline
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[FA47] \textbf{Benutzer kann angeben, ob der \gls{Client} blockieren soll, bis die Aufgabe beendet ist.}
-		\subitem \textbf{Erklärung:} Erlaubt es dem \gls{Benutzer} anzugeben, ob der Client keine weiteren Befehle annehmen soll, bis die einreihende Aufgabe beendet ist.
-		\subitem \textbf{Voraussetzung(en):} Eine Aufgabe soll eingereiht werden.
+		\item[FA47] \textbf{Benutzer kann angeben, ob der \gls{Client} blockieren soll, bis die \gls{Aufgabe} beendet ist.}
+		\subitem \textbf{Erklärung:} Erlaubt es dem \gls{Benutzer} anzugeben, ob der \gls{Client} keine weiteren Befehle annehmen soll, bis die einreihende \gls{Aufgabe} beendet ist.
+		\subitem \textbf{Voraussetzung(en):} Eine \gls{Aufgabe} soll eingereiht werden.
 		\subitem \textbf{Nachbedingung(en):}
-		\subsubitem \textbf{Erfolg:} Die Aufgabe wird eingereiht. Der Benutzer kann keine weiteren Befehle über den Client eingeben, bis die eingereihte Aufgabe beendet ist.
-		\subsubitem \textbf{Misserfolg:} Die Aufgabe wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Ein \gls{Benutzer} kann zu einer eingereihten Aufgabe spezifizieren, ob der Client Eingaben blockieren soll, bis die eingereihte Aufgabe beendet wurde. Dies ist nützlich für Skripte für z.B Aufgaben, die abhängig von dem Ergebnis von anderen Aufgaben sind.
+		\subsubitem \textbf{Erfolg:} Die \gls{Aufgabe} wird eingereiht. Der \gls{Benutzer} kann keine weiteren Befehle über den \gls{Client} eingeben, bis die eingereihte \gls{Aufgabe} beendet ist.
+		\subsubitem \textbf{Misserfolg:} Die \gls{Aufgabe} wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
+		\subitem \textbf{Details:} Ein \gls{Benutzer} kann zu einer eingereihten \gls{Aufgabe} spezifizieren, ob der \gls{Client} Eingaben blockieren soll, bis die eingereihte \gls{Aufgabe} beendet wurde. Dies ist nützlich für Skripte für z.B \glspl{Aufgabe}, die abhängig von dem Ergebnis von anderen \glspl{Aufgabe} sind.
 	\end{minipage}
 	\newline
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[FA48] \textbf{\gls{Benutzer} übergibt Pfad zu der Aufgabe.}
-		\subitem \textbf{Erklärung:} Der \gls{Benutzer} ist aufgefordert einen Dateipfad als Parameter an eine Einreihung anzuhängen, der zu der Aufgabe zeigt.
-		\subitem \textbf{Voraussetzung(en):} Eine Aufgabe soll eingereiht werden.
+		\item[FA48] \textbf{\gls{Benutzer} übergibt Pfad zu der \gls{Aufgabe}.}
+		\subitem \textbf{Erklärung:} Der \gls{Benutzer} ist aufgefordert einen Dateipfad als \gls{Parameter} an eine Einreihung anzuhängen, der zu der \gls{Aufgabe} zeigt.
+		\subitem \textbf{Voraussetzung(en):} Eine \gls{Aufgabe} soll eingereiht werden.
 		\subitem \textbf{Nachbedingung(en):}
-		\subsubitem \textbf{Erfolg:} Die angegebene Aufgabe wird eingereiht.
-		\subsubitem \textbf{Misserfolg:} Die Aufgabe wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Ein \gls{Benutzer} wird aufgefordert einen Dateipfad als Parameter an einen Einreihungsbefehl anzuhängen. Hierfür existiert kein Standardparameter. Die Ausführbarkeit der Aufgabe wird bis zum Aufgabenstart nicht überprüft.
+		\subsubitem \textbf{Erfolg:} Die angegebene \gls{Aufgabe} wird eingereiht.
+		\subsubitem \textbf{Misserfolg:} Die \gls{Aufgabe} wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
+		\subitem \textbf{Details:} Ein \gls{Benutzer} wird aufgefordert einen Dateipfad als \gls{Parameter} an einen Einreihungsbefehl anzuhängen. Hierfür existiert kein Standard\gls{Parameter}. Die Ausführbarkeit der \gls{Aufgabe} wird bis zum \glspl{Aufgabe}start nicht überprüft.
 	\end{minipage}
 	\newline
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[FA49] \textbf{Falls der \gls{Benutzer} keine Parameter übergibt, werden Standardwerte benutzt.}
-		\subitem \textbf{Erklärung:} Sollte der \gls{Benutzer} keine Parameter über die Befehlszeile übergeben oder nicht in einer Configfile spezifiziert haben, werden für bestimmte Parameter Standardwerte ausgewählt
-		\subitem \textbf{Voraussetzung(en):} Eine Aufgabe soll eingereiht werden.
+		\item[FA49] \textbf{Falls der \gls{Benutzer} keine \gls{Parameter} übergibt, werden Standardwerte benutzt.}
+		\subitem \textbf{Erklärung:} Sollte der \gls{Benutzer} keine \gls{Parameter} über die \gls{Befehlszeile} übergeben oder nicht in einer \gls{Konfigurationsdatei} spezifiziert haben, werden für bestimmte \gls{Parameter} Standardwerte ausgewählt
+		\subitem \textbf{Voraussetzung(en):} Eine \gls{Aufgabe} soll eingereiht werden.
 		\subitem \textbf{Nachbedingung(en):}
-		\subsubitem \textbf{Erfolg:} Die Aufgabe wird mit Standardparametern eingereiht.
-		\subsubitem \textbf{Misserfolg:} Die Aufgabe wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Sollten einzelne Parameter in der Befehlseingabe fehlen, so sucht sich der \gls{Client} diese fehlende Parameter aus der Configfile. Sollten diese dort ebenfalls nicht spezifiziert werden, so werden für einige Standardparameter verwendet.
+		\subsubitem \textbf{Erfolg:} Die \gls{Aufgabe} wird mit Standard\gls{Parameter}n eingereiht.
+		\subsubitem \textbf{Misserfolg:} Die \gls{Aufgabe} wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
+		\subitem \textbf{Details:} Sollten einzelne \gls{Parameter} in der Befehlseingabe fehlen, so sucht sich der \gls{Client} diese fehlende \gls{Parameter} aus der \gls{Konfigurationsdatei}. Sollten diese dort ebenfalls nicht spezifiziert werden, so werden für einige Standard\gls{Parameter} verwendet.
 		Diese sind für alle \glspl{Client} die selben. Die Standardwerte sind änderbar.
 		\begin{itemize}[nosep,label={}]
-			\item Standardparameter:
-			\item Priorität: Normal
+			\item Standard\gls{Parameter}:
+			\item \gls{Prioritaet}: Normal
 			\item Minimale Kerne: 1
 			\item Maximale Kerne: 12
 			\item Minimal nutzbarer RAM: 1 GB
 			\item Maximal nutzbarer RAM: 32 GB
 			\item Betriebssystem: Egal
 			\item blockierend: Nein
-			\item Pfad: Kein Standardparameter (Gibt Fehlermeldung aus, falls fehlend)
+			\item Pfad: Kein Standard\gls{Parameter} (Gibt Fehlermeldung aus, falls fehlend)
 	\end{itemize}
 	\end{minipage}
 	\newline
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[FA5] \textbf{\gls{Benutzer} kann den Status einer Aufgabe einsehen.}
-		\subitem \textbf{Erklärung:} Der \gls{Benutzer} kann den Status seiner Aufgabe anhand einer ID von dem Client aus einsehen. Hierzu gehören Wartezeit, Position in der Warteschlange, Priorität und Zeit seitdem die Aufgabe auf einem \gls{Arbeiter} gestartet wurde.
-		\subitem \textbf{Voraussetzung(en):} Eine Aufgabe wurde vom \gls{Benutzer} eingereiht.
+		\item[FA5] \textbf{\gls{Benutzer} kann den Status einer \gls{Aufgabe} einsehen.}
+		\subitem \textbf{Erklärung:} Der \gls{Benutzer} kann den Status seiner \gls{Aufgabe} anhand einer ID von dem \gls{Client} aus einsehen. Hierzu gehören Wartezeit, Position in der \gls{Warteschlange}, \gls{Prioritaet} und Zeit seitdem die \gls{Aufgabe} auf einem \gls{Arbeiter} gestartet wurde.
+		\subitem \textbf{Voraussetzung(en):} Eine \gls{Aufgabe} wurde vom \gls{Benutzer} eingereiht.
 		\subitem \textbf{Nachbedingung(en):}
 		\subsubitem \textbf{Erfolg:} Eine entsprechende Statusmeldung wird angezeigt
 		\subsubitem \textbf{Misserfolg:} Keine Statusmeldung wird angezeigt. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Ein \gls{Benutzer} kann den Status einer seiner Aufgaben anhand der ID vom \gls{Client} aus abfragen. Hierbei bekommt er Auskunft, wie lange seine Aufgabe schon wartet, an welcher Position in der \gls{Warteschlange} sie sich befindet, welche Priorität die Aufgabe besitzt und, falls die Aufgabe bereits gestartet wurde, wie lange sie bereits läuft.
+		\subitem \textbf{Details:} Ein \gls{Benutzer} kann den Status einer seiner \glspl{Aufgabe} anhand der ID vom \gls{Client} aus abfragen. Hierbei bekommt er Auskunft, wie lange seine \gls{Aufgabe} schon wartet, an welcher Position in der \gls{Warteschlange} sie sich befindet, welche \gls{Prioritaet} die \gls{Aufgabe} besitzt und, falls die \gls{Aufgabe} bereits gestartet wurde, wie lange sie bereits läuft.
 	\end{minipage}
 	\newline
 	\\
 	
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[FA6] \textbf{\gls{Benutzer} bekommt Benachrichtigung über abgeschlossene Aufgabe.}
-		\subitem \textbf{Erklärung:} Nach Abschluss einer Aufgabe soll der \gls{Benutzer} eine Benachrichtigung in Form einer E-Mail erhalten.
-		\subitem \textbf{Voraussetzung(en):} Eine Aufgabe wurde abgeschlossen.
+		\item[FA6] \textbf{\gls{Benutzer} bekommt Benachrichtigung über abgeschlossene \gls{Aufgabe}.}
+		\subitem \textbf{Erklärung:} Nach Abschluss einer \gls{Aufgabe} soll der \gls{Benutzer} eine Benachrichtigung in Form einer E-Mail erhalten.
+		\subitem \textbf{Voraussetzung(en):} Eine \gls{Aufgabe} wurde abgeschlossen.
 		\subitem \textbf{Nachbedingung(en):}
-		\subsubitem \textbf{Erfolg:} Der \gls{Benutzer} bekommt eine E-Mail als Benachrichtigung der abgeschlossenen Aufgabe.
+		\subsubitem \textbf{Erfolg:} Der \gls{Benutzer} bekommt eine E-Mail als Benachrichtigung der abgeschlossenen \gls{Aufgabe}.
 		\subsubitem \textbf{Misserfolg:} Der \gls{Benutzer} bekommt keine E-Mail als Benachrichtigung.
-		\subitem \textbf{Details:} Sollte der \gls{Benutzer} eine E-Mail als Parameter zu einer Einreihung einer Aufgabe mitgegeben haben, so bekommt dieser eine Benachrichtigung über den Abschluss dieser Aufgabe. Sollte diese E-Mail Adresse nicht existieren, so kann der Benutzer den Status seiner Aufgabe auch mit der Aufgaben ID auslesen.
+		\subitem \textbf{Details:} Sollte der \gls{Benutzer} eine E-Mail als \gls{Parameter} zu einer Einreihung einer \gls{Aufgabe} mitgegeben haben, so bekommt dieser eine Benachrichtigung über den Abschluss dieser \gls{Aufgabe}. Sollte diese E-Mail Adresse nicht existieren, so kann der \gls{Benutzer} den Status seiner \gls{Aufgabe} auch mit der \glspl{Aufgabe} ID auslesen.
     \end{minipage}	
 	\newline
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[FA7] \textbf{\gls{Server} erstellt regelmäßige Sicherungen von laufenden Aufgaben.}
-		\subitem \textbf{Erklärung:} Der \gls{Server} erstellt eigenständig in regelmäßigen Intervallen Sicherungen von laufenden Aufgaben.
-		\subitem \textbf{Voraussetzung(en):} Mindestens eine Aufgabe wird ausgeführt.
+		\item[FA7] \textbf{\gls{Server} erstellt regelmäßige Sicherungen von laufenden \glspl{Aufgabe}.}
+		\subitem \textbf{Erklärung:} Der \gls{Server} erstellt eigenständig in regelmäßigen Intervallen Sicherungen von laufenden \glspl{Aufgabe}.
+		\subitem \textbf{Voraussetzung(en):} Mindestens eine \gls{Aufgabe} wird ausgeführt.
 		\subitem \textbf{Nachbedingung(en):}
 		\subsubitem \textbf{Erfolg:} Es werden Sicherungen erstellt.
 		\subsubitem \textbf{Misserfolg:} Es werden keine Sicherungen erstellt. Eine entsprechende Fehlermeldung wird aufgezeichnet.
-		\subitem \textbf{Details:} In regelmäßigen Abständen (Standard: 1 Stunde) erstellt der Server eine Sicherung von allen laufenden Aufgaben. Diese können zu einem späteren Zeitpunkt gestartet werden, sollte das System die \glspl{Aufgabe} nicht beendet haben. Der Server speichert alle Sicherungen der letzten Woche. Die Sicherungsintervalle können angepasst werden.
+		\subitem \textbf{Details:} In regelmäßigen Abständen (Standard: 1 Stunde) erstellt der \gls{Server} eine Sicherung von allen laufenden \glspl{Aufgabe}. Diese können zu einem späteren Zeitpunkt gestartet werden, sollte das System die \glspl{Aufgabe} nicht beendet haben. Der \gls{Server} speichert alle Sicherungen der letzten Woche. Die Sicherungsintervalle können angepasst werden.
 	\end{minipage}	
 	\newline
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[FA8] \textbf{\gls{Benutzer} kann die Ausgabe seiner Aufgabe anfordern.}
+		\item[FA8] \textbf{\gls{Benutzer} kann die Ausgabe seiner \gls{Aufgabe} anfordern.}
 		\subitem \textbf{Erklärung:} Der \gls{Benutzer} kann die Ausgabe einer seiner \glspl{Aufgabe} anhand der ID anfordern.
 		\subitem \textbf{Voraussetzung(en):} Keine.
 		\subitem \textbf{Nachbedingung(en):}
-		\subsubitem \textbf{Erfolg:} Dem Benutzer werden die letzten 200 Zeilen der Ausgabe seiner Aufgabe angezeigt.
-		\subsubitem \textbf{Misserfolg:} Dem Benutzer wird keine Ausgabe angezeigt. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Der \gls{Benutzer} kann anhand einer ID die Ausgabe seiner Aufgabe anfordern. Die letzten 200 Zeilen werden auf der Konsole ausgegeben.
+		\subsubitem \textbf{Erfolg:} Dem \gls{Benutzer} werden die letzten 200 Zeilen der Ausgabe seiner \gls{Aufgabe} angezeigt.
+		\subsubitem \textbf{Misserfolg:} Dem \gls{Benutzer} wird keine Ausgabe angezeigt. Eine entsprechende Fehlermeldung wird ausgegeben.
+		\subitem \textbf{Details:} Der \gls{Benutzer} kann anhand einer ID die Ausgabe seiner \gls{Aufgabe} anfordern. Die letzten 200 Zeilen werden auf der Konsole ausgegeben.
 	\end{minipage}	
 	\newline
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
 	\item[FA9] \textbf{\gls{Benutzer} kann erhobene \glspl{Statistik} abfragen.}
-	\subitem \textbf{Erklärung:} Zu den ausgeführten Aufgaben werden \glspl{Statistik} erhoben.
+	\subitem \textbf{Erklärung:} Zu den ausgeführten \glspl{Aufgabe} werden \glspl{Statistik} erhoben.
 	\subitem \textbf{Voraussetzung(en):} Keine.
 	\subitem \textbf{Nachbedingung(en):}
-	\subsubitem \textbf{Erfolg:} Der Benutzer erhält angefragte Auszüge der gespeicherten Statistiken.
-	\subsubitem \textbf{Misserfolg:} Der Benutzer erhält keine Statistiken. Eine entsprechende Fehlermeldung wird gesendet.
-	\subitem \textbf{Details:} Es werden Statistiken zu den individuellen Aufgaben, sowie zu dem Gesamtsystem erhoben. Diese können über einen HTTPS-Server angefragt werden.
+	\subsubitem \textbf{Erfolg:} Der \gls{Benutzer} erhält angefragte Auszüge der gespeicherten \glspl{Statistik}.
+	\subsubitem \textbf{Misserfolg:} Der \gls{Benutzer} erhält keine \glspl{Statistik}. Eine entsprechende Fehlermeldung wird gesendet.
+	\subitem \textbf{Details:} Es werden \glspl{Statistik} zu den individuellen \glspl{Aufgabe}, sowie zu dem Gesamtsystem erhoben. Diese können über einen HTTPS-\gls{Server} angefragt werden.
 \end{minipage}	
 \newline
 \\	
@@ -659,11 +659,11 @@ Balanced Banana ist den Aufgabengebieten entsprechend in drei Teile aufgeteilt:\
 \subsection{Übersicht der optionalen Anforderungen}
 \begin{itemize}[nosep]
 \leftskip=0.5cm
-\item[OFA1] Benutzer kann eine geschätzte Restzeit einer Aufgabe sehen.
-\item[OFA2] Server stoppt Aufgaben die zu lange dauern.
-\item[OFA3] Benutzer kann eine manuelle Stoppung seiner Aufgabe anfordern.
-\item[OFA4] Benutzer kann eine manuelle Sicherung seiner Aufgabe anfordern.
-\item[OFA5] Benutzer kann angeben ob die Aufgabe pausierbar ist.
+\item[OFA1] \gls{Benutzer} kann eine geschätzte Restzeit einer \gls{Aufgabe} sehen.
+\item[OFA2] \gls{Server} stoppt \glspl{Aufgabe} die zu lange dauern.
+\item[OFA3] \gls{Benutzer} kann eine manuelle Stoppung seiner \gls{Aufgabe} anfordern.
+\item[OFA4] \gls{Benutzer} kann eine manuelle Sicherung seiner \gls{Aufgabe} anfordern.
+\item[OFA5] \gls{Benutzer} kann angeben ob die \gls{Aufgabe} pausierbar ist.
 \end{itemize}
 \newpage
 
@@ -674,86 +674,86 @@ Balanced Banana ist den Aufgabengebieten entsprechend in drei Teile aufgeteilt:\
 \begin{minipage}[t]{\linewidth}
 \item[PD1] \textbf{Auftraggeber Kontaktinformation}
 \subitem \textbf{Erklärung} Hält Kontaktinformation (E-Mail Adresse) des Auftraggebers.
-\subitem \textbf{Details} Um dem Auftraggeber Rückmeldung über abgeschlossene Aufgaben geben zu können, muss eine Kontaktinformation hinterlegt sein.\newline
-Es ist vorgesehen, eine E-Mail Adresse als Kontaktinformation anzunehmen. Diese wird beim Einreichen der Aufgabe von dem Auftraggeber angegeben.
+\subitem \textbf{Details} Um dem Auftraggeber Rückmeldung über abgeschlossene \glspl{Aufgabe} geben zu können, muss eine Kontaktinformation hinterlegt sein.\newline
+Es ist vorgesehen, eine E-Mail Adresse als Kontaktinformation anzunehmen. Diese wird beim Einreichen der \gls{Aufgabe} von dem Auftraggeber angegeben.
 \end{minipage}
 \vspace{20mm}
 
 \begin{minipage}[t]{\linewidth}
 \item[PD2] \textbf{NutzerID}
-\subitem \textbf{Erklärung} Identifiziert einen Benutzer
-\subitem \textbf{Details} Das Programm soll die Identität eines Benutzers sicherstellen können. Zu diesem Zweck ist eine ID notwendig, die dem Benutzer ausgestellt wird.\newline
-Die ID kann dazu verwendet werden, um Berechtigung für diverse Anfragen zu prüfen. So soll zum Beispiel nur der Auftraggeber dazu in der Lage sein, den Status der Aufgabe einzusehen.
+\subitem \textbf{Erklärung} Identifiziert einen \gls{Benutzer}
+\subitem \textbf{Details} Das Programm soll die Identität eines \gls{Benutzer}s sicherstellen können. Zu diesem Zweck ist eine ID notwendig, die dem \gls{Benutzer} ausgestellt wird.\newline
+Die ID kann dazu verwendet werden, um Berechtigung für diverse Anfragen zu prüfen. So soll zum Beispiel nur der Auftraggeber dazu in der Lage sein, den Status der \gls{Aufgabe} einzusehen.
 \end{minipage}
 \vspace{20mm}
 
 \begin{minipage}[t]{\linewidth}
-\item[PD21] \textbf{Zuweisung Nutzer zu Aufgaben}
-\subitem \textbf{Erklärung} Speichert die in Auftrag gegebenen Aufgaben eines Auftraggebers
-\subitem \textbf{Details} Um dem Benutzer zu ermöglichen, den Status seiner Aufgaben zu verfolgen, muss eine Zuweisung von Nutzer zu Aufgaben möglich sein.
+\item[PD21] \textbf{Zuweisung Nutzer zu \glspl{Aufgabe}}
+\subitem \textbf{Erklärung} Speichert die in Auftrag gegebenen \glspl{Aufgabe} eines Auftraggebers
+\subitem \textbf{Details} Um dem \gls{Benutzer} zu ermöglichen, den Status seiner \glspl{Aufgabe} zu verfolgen, muss eine Zuweisung von Nutzer zu \glspl{Aufgabe} möglich sein.
 \end{minipage}
 \vspace{20mm}
 
 \begin{minipage}[t]{\linewidth}
 \item[PD3] \textbf{Arbeiter Liste}
 \subitem \textbf{Erklärung} Eine Liste aller verfügbaren Arbeiter.
-\subitem \textbf{Details} Enthält alle verfügbaren Worker.\newline
-Somit kann der Server die Aufgaben auf alle Worker verteilen.
+\subitem \textbf{Details} Enthält alle verfügbaren \gls{Arbeiter}.\newline
+Somit kann der \gls{Server} die \glspl{Aufgabe} auf alle \gls{Arbeiter} verteilen.
 \end{minipage}
 \vspace{20mm}
 
 \begin{minipage}[t]{\linewidth}
 \item[PD4] \textbf{Last}
 \subitem \textbf{Erklärung} Tatsächliche Auslastung der Arbeiter einzeln und gemeinsam.
-\subitem \textbf{Details} Die Auslastung der Hardware (CPU, RAM) ist für jeden Arbeiter individuell bekannt.\newline
-Das Mittel der Hardwareauslastung aller Arbeiter (CPU, RAM) ist bekannt.
+\subitem \textbf{Details} Die Auslastung der Hardware (\gls{CPU}, RAM) ist für jeden Arbeiter individuell bekannt.\newline
+Das Mittel der Hardwareauslastung aller Arbeiter (\gls{CPU}, RAM) ist bekannt.
 \end{minipage}
 \vspace{20mm}
 
 \begin{minipage}[t]{\linewidth}
 \item[PD5] \textbf{Aufgaben}
-\subitem \textbf{Erklärung} Liste aller ausstehenden Aufgaben
-\subitem \textbf{Details} Es ist bekannt, welche Aufgaben derzeit ausstehen (noch nicht beendet sind). Weiter ist bekannt welche dieser Aufgaben derzeit ausgeführt werden (aktiv) und welche derzeit warten (passiv).
+\subitem \textbf{Erklärung} Liste aller ausstehenden \glspl{Aufgabe}
+\subitem \textbf{Details} Es ist bekannt, welche \glspl{Aufgabe} derzeit ausstehen (noch nicht beendet sind). Weiter ist bekannt welche dieser \glspl{Aufgabe} derzeit ausgeführt werden (aktiv) und welche derzeit warten (passiv).
 \end{minipage}
 \vspace{20mm}
 
 \begin{minipage}[t]{\linewidth}
-\item[PD51] \textbf{Zuweisung Aufgabe zu Arbeiter}
-\subitem \textbf{Erklärung} Aufgaben laufen entweder auf keinem (passiv) oder auf genau einem (aktiv) Arbeiter
-\subitem \textbf{Details} Um genauer Informationen über den Status einer Aufgabe zu erhalten, muss bekannt sein, welche Aufgabe auf welchem Arbeiter läuft.\newline
-Ist eine Aufgabe passiv, ist ihr kein Arbeiter zugewiesen.\newline
-Ist eine Aufgabe aktiv, ist ihr immer genau ein Arbeiter zugewiesen.
+\item[PD51] \textbf{Zuweisung \gls{Aufgabe} zu Arbeiter}
+\subitem \textbf{Erklärung} \glspl{Aufgabe} laufen entweder auf keinem (passiv) oder auf genau einem (aktiv) Arbeiter
+\subitem \textbf{Details} Um genauer Informationen über den Status einer \gls{Aufgabe} zu erhalten, muss bekannt sein, welche \gls{Aufgabe} auf welchem Arbeiter läuft.\newline
+Ist eine \gls{Aufgabe} passiv, ist ihr kein Arbeiter zugewiesen.\newline
+Ist eine \gls{Aufgabe} aktiv, ist ihr immer genau ein Arbeiter zugewiesen.
 \end{minipage}
 \vspace{20mm}
 
 \begin{minipage}[t]{\linewidth}
-\item[PD52] \textbf{Prioritäten der Aufgaben}
-\subitem \textbf{Erklärung} Summe aller Aufgaben einer bestimmten Priorität
-\subitem \textbf{Details} Summiert für jede Priorität die Anzahl der derzeit aktiven und passiven Aufgaben auf, die mit dieser Priorität versehen sind.
+\item[PD52] \textbf{Prioritäten der \glspl{Aufgabe}}
+\subitem \textbf{Erklärung} Summe aller \glspl{Aufgabe} einer bestimmten \gls{Prioritaet}
+\subitem \textbf{Details} Summiert für jede \gls{Prioritaet} die Anzahl der derzeit aktiven und passiven \glspl{Aufgabe} auf, die mit dieser \gls{Prioritaet} versehen sind.
 \end{minipage}
 \vspace{20mm}
 
 \begin{minipage}[t]{\linewidth}
-\item[PD53] \textbf{Befehlsparameter}
-\subitem \textbf{Erklärung} Die Werte der Befehlsparameter
-\subitem \textbf{Details} Für jede Aufgabe ist der Wert der Parameter wie er auf der Befehlszeile spezifiziert wurde, sowie der tatsächlich verwendete Wert bekannt.
+\item[PD53] \textbf{Befehls\gls{Parameter}}
+\subitem \textbf{Erklärung} Die Werte der Befehls\gls{Parameter}
+\subitem \textbf{Details} Für jede \gls{Aufgabe} ist der Wert der \gls{Parameter} wie er auf der \gls{Befehlszeile} spezifiziert wurde, sowie der tatsächlich verwendete Wert bekannt.
 \end{minipage}
 \vspace{20mm}
 
 \begin{minipage}[t]{\linewidth}
 \item[PD54] \textbf{Ausgabe und Ergebnis}
-\subitem \textbf{Erklärung} Ausgaben der Aufgabe und Rückgabewert der Aufgabe
-\subitem \textbf{Details} Die Ausgabe der Aufgabe erfolgt auf der \gls{Befehlszeile}. Sie enthält von der Aufgabe generierte Informationen für den Benutzer.\newline
-Das Ergebnis der Aufgabe ist der Rückgabewert. Er liefert Auskunft über den Erfolg der Ausführung.
+\subitem \textbf{Erklärung} Ausgaben der \gls{Aufgabe} und Rückgabewert der \gls{Aufgabe}
+\subitem \textbf{Details} Die Ausgabe der \gls{Aufgabe} erfolgt auf der \gls{Befehlszeile}. Sie enthält von der \gls{Aufgabe} generierte Informationen für den \gls{Benutzer}.\newline
+Das Ergebnis der \gls{Aufgabe} ist der Rückgabewert. Er liefert Auskunft über den Erfolg der Ausführung.
 \end{minipage}
 \vspace{20mm}
 
 \begin{minipage}[t]{\linewidth}
 \item[PD55] \textbf{Arbeitszeiten}
-\subitem \textbf{Erklärung} Angaben zu den Zeiten die eine Aufgabe im System verbracht hat.
-\subitem \textbf{Details} Die Informationen über die Arbeitszeit einer Aufgabe sind aufgeteilt in:\newline
-1. aktive Zeit: Die Zeit, in der die Aufgabe tatsächlich ausgeführt wurde.\newline
-2. passive Zeit: Die Zeit in der die Aufgabe in der Warteschlange verbracht hat.\newline
+\subitem \textbf{Erklärung} Angaben zu den Zeiten die eine \gls{Aufgabe} im System verbracht hat.
+\subitem \textbf{Details} Die Informationen über die Arbeitszeit einer \gls{Aufgabe} sind aufgeteilt in:\newline
+1. aktive Zeit: Die Zeit, in der die \gls{Aufgabe} tatsächlich ausgeführt wurde.\newline
+2. passive Zeit: Die Zeit in der die \gls{Aufgabe} in der \gls{Warteschlange} verbracht hat.\newline
 3. Gesamtzeit: Die Zeit die zwischen Auftragseingang und Abschicken der Abschlussbenachrichtigung vergangen ist.
 \end{minipage}
 \vspace{20mm}
@@ -766,15 +766,15 @@ Das Ergebnis der Aufgabe ist der Rückgabewert. Er liefert Auskunft über den Er
 \begin{itemize}[nosep]
 \leftskip=0.5cm
 
-	\item[NFA1] \hspace{\parindent} Bei Abschluss einer Aufgabe soll die Rückmeldung innerhalb von 60 Minuten erfolgen.
+	\item[NFA1] \hspace{\parindent} Bei Abschluss einer \gls{Aufgabe} soll die Rückmeldung innerhalb von 60 Minuten erfolgen.
 	
 	\item[NFA2] \hspace{\parindent} Ein \gls{Benutzer} darf nur auf eigene Dateien zugreifen.
 	
-	\item[NFA3] \hspace{\parindent} Statistiken abgeschlossener Aufgaben sollen nicht änderbar sein.
+	\item[NFA3] \hspace{\parindent} \glspl{Statistik} abgeschlossener \glspl{Aufgabe} sollen nicht änderbar sein.
 	
 	\item[NFA4] \hspace{\parindent} Passwörter werden nicht als Klartext gespeichert werden.
 	
-	\item[NFA5] \hspace{\parindent} Der \gls{Benutzer} verbindet sich mit dem Server über eine sichere Verbindung.
+	\item[NFA5] \hspace{\parindent} Der \gls{Benutzer} verbindet sich mit dem \gls{Server} über eine sichere Verbindung.
 \end{itemize}
 \subsection{Erläuterung der nichtfunktionalen Anforderungen}
 
@@ -782,23 +782,23 @@ Das Ergebnis der Aufgabe ist der Rückgabewert. Er liefert Auskunft über den Er
 	\leftskip=0.5cm
 	\begin{minipage}[t]{\linewidth}
 		\item[NFA1] \hspace{\parindent} \textbf{Rückmeldung erfolgt innerhalb von 60 Minuten}
-		\subitem \textbf{Erklärung:} Bei Abschluss einer Aufgabe soll die Rückmeldung innerhalb von 60 Minuten erfolgen. Dies ist auch der Fall, wenn eine Aufgabe fehlschlägt. Die Rückmeldung ist per E-Mail zu erfolgen.
+		\subitem \textbf{Erklärung:} Bei Abschluss einer \gls{Aufgabe} soll die Rückmeldung innerhalb von 60 Minuten erfolgen. Dies ist auch der Fall, wenn eine \gls{Aufgabe} fehlschlägt. Die Rückmeldung ist per E-Mail zu erfolgen.
 	
 	\end{minipage}
 	\newline
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[NFA2]\hspace{\parindent} \textbf{Ein Benutzer darf nur auf eigene Dateien zugreifen}
-		\subitem \textbf{Erklärung:} Um die Sicherheit der Daten jedes Benutzers zu gewährleisten, ist es normalen Benutzern nicht gestattet, auf die Daten eines anderen Benutzers zuzugreifen.
+		\item[NFA2]\hspace{\parindent} \textbf{Ein \gls{Benutzer} darf nur auf eigene Dateien zugreifen}
+		\subitem \textbf{Erklärung:} Um die Sicherheit der Daten jedes \gls{Benutzer}s zu gewährleisten, ist es normalen \gls{Benutzer}n nicht gestattet, auf die Daten eines anderen \gls{Benutzer}s zuzugreifen.
 	
 	\end{minipage}
 	\newline
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[NFA3] \hspace{\parindent} \textbf{Statistiken abgeschlossener Aufgaben sollen nicht änderbar sein}
-		\subitem \textbf{Erklärung:} Statistiken sollen nicht veränderbar sein, um die Zuverlässigkeit und Genauigkeit der Daten zu gewährleisten.
+		\item[NFA3] \hspace{\parindent} \textbf{Statistiken abgeschlossener \glspl{Aufgabe} sollen nicht änderbar sein}
+		\subitem \textbf{Erklärung:} \glspl{Statistik} sollen nicht veränderbar sein, um die Zuverlässigkeit und Genauigkeit der Daten zu gewährleisten.
 	
 	\end{minipage}
 	\newline
@@ -806,15 +806,15 @@ Das Ergebnis der Aufgabe ist der Rückgabewert. Er liefert Auskunft über den Er
 	
 	\begin{minipage}[t]{\linewidth}
 		\item[NFA4]\hspace{\parindent} \textbf{Passwörter werden nicht als Klartext gespeichert werden}
-		\subitem \textbf{Erklärung:} Um die Sicherheit privater Benutzerdaten zu gewährleisten, sind Passwörter zu verschlüsseln.
+		\subitem \textbf{Erklärung:} Um die Sicherheit privater \gls{Benutzer}daten zu gewährleisten, sind Passwörter zu verschlüsseln.
 	
 	\end{minipage}
 	\newline
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[NFA5]\hspace{\parindent}  \textbf{Benutzer verbindet sich mit dem Server über eine sichere Verbindung}
-		\subitem \textbf{Erklärung:} Um die Sicherheit der Benutzerdaten zu gewährleisten, müssen sich die Benutzer über eine sichere Verbindung mit dem Server verbinden.
+		\item[NFA5]\hspace{\parindent}  \textbf{Benutzer verbindet sich mit dem \gls{Server} über eine sichere Verbindung}
+		\subitem \textbf{Erklärung:} Um die Sicherheit der \gls{Benutzer}daten zu gewährleisten, müssen sich die \gls{Benutzer} über eine sichere Verbindung mit dem \gls{Server} verbinden.
 	
 	\end{minipage}
 \end{itemize}
@@ -826,7 +826,7 @@ Das Ergebnis der Aufgabe ist der Rückgabewert. Er liefert Auskunft über den Er
 \begin{itemize}
 \begin{minipage}[t]{\linewidth}
 \item \textbf{Client (Nutzer) Umgebung}\newline
-Das Benutzer Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgenden Anforderungen genügt:
+Das \gls{Benutzer} Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgenden Anforderungen genügt:
 \subitem \textbf{Betriebssystem:} Linux basiertes Betriebssystem
 \subitem \textbf{CPU:} 1 GHz oder schneller
 \subitem \textbf{Arbeitsspeicher:} Mindestens 1 GB verfügbarer Arbeitsspeicher
@@ -834,8 +834,8 @@ Das Benutzer Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgen
 \\
 
 \begin{minipage}[t]{\linewidth}
-\item \textbf{Scheduler (Server) Umgebung}\newline
-Das Server Produkt ist für den Einsatz auf einem Rechner bestimmt, der das Benutzer Netzwerk mit dem Arbeiter Netzwerk verbindet und folgenden Anforderungen genügt:
+\item \textbf{Scheduler (\gls{Server}) Umgebung}\newline
+Das \gls{Server} Produkt ist für den Einsatz auf einem Rechner bestimmt, der das \gls{Benutzer} Netzwerk mit dem Arbeiter Netzwerk verbindet und folgenden Anforderungen genügt:
 \subitem \textbf{Betriebssystem:} CentOS 7 oder Ubuntu 18.04
 \subitem \textbf{CPU:} 1 GHz oder schneller
 \subitem \textbf{Arbeitsspeicher:} Mindestens 4 GB verfügbarer Arbeitsspeicher
@@ -843,7 +843,7 @@ Das Server Produkt ist für den Einsatz auf einem Rechner bestimmt, der das Benu
 \\
 
 \begin{minipage}[t]{\linewidth}
-\item \textbf{Arbeiter (Worker) Umgebung}\newline
+\item \textbf{Arbeiter (\gls{Arbeiter}) Umgebung}\newline
 Das Arbeiter Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgenden Anforderungen genügt:
 \subitem \textbf{Betriebssystem:} CentOS 7 oder Ubuntu 18.04
 \subitem \textbf{CPU:} 1 GHz oder schneller
@@ -856,14 +856,14 @@ Das Arbeiter Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgen
 
 \subsection {Beispiel E-Mails}
 \subsubsection{Aufgabe gestartet}
-Dies ist ein Beispiel für eine E-Mail-Benachrichtigung, die ein Benutzer erhält, wenn eine Aufgabe ausgeführt wird, und nicht, wenn sie vom Benutzer in die Warteschlange aufgenommen wird. \\
+Dies ist ein Beispiel für eine E-Mail-Benachrichtigung, die ein \gls{Benutzer} erhält, wenn eine \gls{Aufgabe} ausgeführt wird, und nicht, wenn sie vom \gls{Benutzer} in die \gls{Warteschlange} aufgenommen wird. \\
 \begin{center}
 	\makebox[\textwidth]{\includegraphics[width=\linewidth]{email_start.png}}
 \end{center}
 
 \clearpage
 \subsubsection{Aufgabe beendet}
-Dies ist ein Beispiel für eine E-Mail-Benachrichtigung, die ein Benutzer erhält, wenn eine Aufgabe abgeschlossen ist. Eine Aufgabe gilt als abgeschlossen, wenn sie erfolgreich ausgeführt wurde oder fehlgeschlagen ist. Die E-Mail-Benachrichtigung zeigt diesen Unterschied nicht an, es liegt an dem Benutzer, das Programm zu überprüfen, um zu sehen, ob die Aufgabe fehlgeschlagen ist oder nicht. Die Ausgabe des Programms wird in einer .txt-Datei gespeichert und in der E-Mail angehängt. \\
+Dies ist ein Beispiel für eine E-Mail-Benachrichtigung, die ein \gls{Benutzer} erhält, wenn eine \gls{Aufgabe} abgeschlossen ist. Eine \gls{Aufgabe} gilt als abgeschlossen, wenn sie erfolgreich ausgeführt wurde oder fehlgeschlagen ist. Die E-Mail-Benachrichtigung zeigt diesen Unterschied nicht an, es liegt an dem \gls{Benutzer}, das Programm zu überprüfen, um zu sehen, ob die \gls{Aufgabe} fehlgeschlagen ist oder nicht. Die Ausgabe des Programms wird in einer .txt-Datei gespeichert und in der E-Mail angehängt. \\
 
 \begin{center}
 	\makebox[\textwidth]{\includegraphics[width=\linewidth]{email_ended.png}}
@@ -876,50 +876,50 @@ Dies ist ein Beispiel für eine E-Mail-Benachrichtigung, die ein Benutzer erhäl
 
 \subsection{Befehlszeile}
 
-\subsubsection{Hauptserver starten}
-Startet das Programm im \gls{Daemon} Modus. Optional kann die Abhöhrende Internet Protokoll Adresse (v4 oder v6) und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk und der Http WebApi angeben werden.
+\subsubsection{Haupt\gls{Server} starten}
+Startet das Programm im \gls{Daemon} Modus. Optional kann die Abhöhrende Internet Protokoll Adresse (v4 oder v6) und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk und der Http \gls{Web-API} angeben werden.
 \begin{mycode}
-bbs [<--server|-s> <ipaddr>] [<--serverport|-sp> <port>] [<--webapi|-w> <ipaddr>] [<--webapi-port|-wp> <port>]
+bbs [<--\gls{Server}|-s> <ipaddr>] [<--\gls{Server}port|-sp> <port>] [<--\gls{Web-API}|-w> <ipaddr>] [<--\gls{Web-API}-port|-wp> <port>]
 \end{mycode}
 
 \subsubsection{Arbeiter starten}
-Startet das Programm im \gls{Daemon} Modus. Optional kann die Internet Protokoll Adresse (v4 oder v6) bzw. der DNS Namen des Hauptservers und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk angeben werden.
+Startet das Programm im \gls{Daemon} Modus. Optional kann die Internet Protokoll Adresse (v4 oder v6) bzw. der DNS Namen des Haupt\gls{Server}s und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk angeben werden.
 \begin{mycode}
-bbd [<--server|-s> <ipaddr>] [<--serverport|-sp> <port>]
+bbd [<--\gls{Server}|-s> <ipaddr>] [<--\gls{Server}port|-sp> <port>]
 \end{mycode}
 
 \subsubsection{Aufgabe erstellen}
-Sendet die angegebene Aufgabe an den Server und gibt die Aufgaben ID an der Standard Ausgabe aus (Dezimal).
+Sendet die angegebene \gls{Aufgabe} an den \gls{Server} und gibt die \glspl{Aufgabe} ID an der Standard Ausgabe aus (Dezimal).
 \begin{mycode}
-bbc <--run|-r> [--block|-b] [<--priority|-p> <priority>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] [<--email|-em> <email>] [<--image|-im> <name>] [<program> [args]+]
+bbc <--run|-r> [--block|-b] [<--priority|-p> <priority>] [<--max-\gls{CPU}-count|-Mc> <Integer>] [<--min-\gls{CPU}-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] [<--email|-em> <email>] [<--image|-im> <name>] [<program> [args]+]
 \end{mycode}
-Falls \texttt{-{}-block} block angegeben wurde, wird statt der Aufgaben ID die Ausgabe der Aufgabe ausgegeben.
-Außer man beendet es forzeitig mit \texttt{CTRL + C}, dann wird die Aufgaben ID direkt danach ausgeben.
+Falls \texttt{-{}-block} block angegeben wurde, wird statt der \glspl{Aufgabe} ID die Ausgabe der \gls{Aufgabe} ausgegeben.
+Außer man beendet es forzeitig mit \texttt{CTRL + C}, dann wird die \glspl{Aufgabe} ID direkt danach ausgeben.
 
-\subsubsection{Ausgabe der Aufgabe ansehen}
-Gibt die gesammte Standardausgabe der angegebenen Aufgabe aus.
+\subsubsection{Ausgabe der \gls{Aufgabe} ansehen}
+Gibt die gesammte Standardausgabe der angegebenen \gls{Aufgabe} aus.
 \begin{mycode}
 bbc <--output|-o> <id>
 \end{mycode}
-\texttt{<id>} Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
+\texttt{<id>} \glspl{Aufgabe} ID die beim erstellen der \gls{Aufgabe} ausgegeben wurde.
 
-\subsubsection{Ausgabe der Aufgabe ansehen}
-Gibt nur die letzten Zeilen der Standardausgabe der angegebenen Aufgabe aus, bis man mit \texttt{CTRL + C} abbricht oder die Aufgabe sich beendet.
+\subsubsection{Ausgabe der \gls{Aufgabe} ansehen}
+Gibt nur die letzten Zeilen der Standardausgabe der angegebenen \gls{Aufgabe} aus, bis man mit \texttt{CTRL + C} abbricht oder die \gls{Aufgabe} sich beendet.
 \begin{mycode}
 bbc <--tail|-t> <id>
 \end{mycode}
-\texttt{<id>} Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
+\texttt{<id>} \glspl{Aufgabe} ID die beim erstellen der \gls{Aufgabe} ausgegeben wurde.
 
 \subsubsection{Aufgaben sichern}
-Erstellt einen Schnapschuss der Aufgabe, der später bei bedarf wiederhergestellt werden kann.
+Erstellt einen Schnapschuss der \gls{Aufgabe}, der später bei bedarf wiederhergestellt werden kann.
 Gibt die Sicherungs ID an der Standard Ausgabe aus (Dezimal).
 \begin{mycode}
 bbc <--backup|-b> <id>
 \end{mycode}
-\texttt{<id>} Aufgaben ID die beim erstellen der Aufgabe ausgegeben wurde.
+\texttt{<id>} \glspl{Aufgabe} ID die beim erstellen der \gls{Aufgabe} ausgegeben wurde.
 
 \subsubsection{Aufgaben fortsetzen}
-Setzt die angehaltene Aufgabe fort.
+Setzt die angehaltene \gls{Aufgabe} fort.
 \begin{mycode}
 bbc <--continue|-c> <id>
 \end{mycode}
@@ -932,46 +932,46 @@ bbc <--restore|-r> <id> <backupid>
 Sicherungs ID die beim erstellen der Sicherung ausgegeben wurde.
 
 \subsubsection{Aufgaben pausieren}
-Pausiert die Aufgabe mit der angegeben ID Nummer.
+Pausiert die \gls{Aufgabe} mit der angegeben ID Nummer.
 \begin{mycode}
 bbc <--pause|-p> <id>
 \end{mycode}
 
 \subsubsection{Aufgaben beenden}
-Beendet die Aufgabe mit der angegeben ID Nummer und git den exit Status der Aufgabe aus.
+Beendet die \gls{Aufgabe} mit der angegeben ID Nummer und git den exit Status der \gls{Aufgabe} aus.
 \begin{mycode}
 bbc <--stop|-s> <id>
 \end{mycode}
 
 \subsubsection{Docker Abbild hinzufügen}
-Fügt ein Docker Abbild als Ausführungsumgebung hinzu.
-Legt sämtliche Eigenschaften eines Docker Abbildes mit einer \href{https://docs.docker.com/engine/reference/builder/}{DockerFile} fest.
+Fügt ein \gls{Docker} Abbild als Ausführungsumgebung hinzu.
+Legt sämtliche Eigenschaften eines \gls{Docker} Abbildes mit einer \href{https://docs.\gls{Docker}.com/engine/reference/builder/}{DockerFile} fest.
 Beispielsweise Betriebssystem und installierte Programme. 
 \begin{mycode}
-bbc <--add-image|-ai> <imagename> <Ordner der DockerFile>
+bbc <--add-image|-ai> <imagename> <Ordner der \gls{Docker}File>
 \end{mycode}
 
 \subsubsection{Docker Abbild entfernen}
-Entfernt ein Docker Abbild als Ausführungsumgebung
+Entfernt ein \gls{Docker} Abbild als Ausführungsumgebung
 \begin{mycode}
 bbc <--remove-image|-ri> <imagename>
 \end{mycode}
 
 \subsubsection{\texttt{-{}-block}}
-Kehrt erst nach der Ausführung der Aufgabe zum Aufrufer zurück. Nützlich um voneinander abhängige Aufgaben, in einem Konsolen Skript, nacheinander auszuführen.
+Kehrt erst nach der Ausführung der \gls{Aufgabe} zum Aufrufer zurück. Nützlich um voneinander abhängige \glspl{Aufgabe}, in einem Konsolen Skript, nacheinander auszuführen.
 
 \subsubsection{\texttt{-{}-priority}}
-Legt die \gls{Prioritaet} der auszuführenden Aufgabe fest, gefolgt von low (4), medium (3), high (2), extreme (1), bananas (0).
+Legt die \gls{Prioritaet} der auszuführenden \gls{Aufgabe} fest, gefolgt von low (4), medium (3), high (2), extreme (1), bananas (0).
 Es kann der Name bzw. die Zahl in der Klammer als \gls{Prioritaet} verwendet werden.
 
-\subsubsection{\texttt{-{}-min-cpu-count} und \texttt{-{}-max-cpu-count}}
+\subsubsection{\texttt{-{}-min-\gls{CPU}-count} und \texttt{-{}-max-\gls{CPU}-count}}
 Legen die minimale bzw. maximale anzahl der verwendbaren \glspl{CPU} fest.
 
 \subsubsection{\texttt{-{}-min-ram} und \texttt{-{}-max-ram}}
 Legen den minimal verfügbaren bzw. maximale verwendbaren Arbeitsspeicher fest.
 
-\subsubsection{\texttt{-{}-server}}
-Startet den Server, der die Aufgaben an die Arbeiter verteilt.
+\subsubsection{\texttt{-{}-\gls{Server}}}
+Startet den \gls{Server}, der die \glspl{Aufgabe} an die Arbeiter verteilt.
 
 
 \clearpage
@@ -979,70 +979,70 @@ Startet den Server, der die Aufgaben an die Arbeiter verteilt.
 \subsection{Grundlegende Testfälle}
 
 \begin{itemize}
-\item[T1] \textbf{Verbinden des Clients mit dem Server}
-\subitem \textbf{Erklärung} Ziel ist zu testen, ob sich der Client beim Programstart automatisch mit dem Server verbinden kann.
-\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits laufenden System, das mindestens aus dem Server und einem Arbeiter besteht.
-Der Nutzer versucht eine Aufgabe zu erstellen.
-Wenn das System funktioniert, bekommt er die Job-Id seiner Aufgabe zurück.
+\item[T1] \textbf{Verbinden des \glspl{Client} mit dem \gls{Server}}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob sich der \gls{Client} beim Programstart automatisch mit dem \gls{Server} verbinden kann.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits laufenden System, das mindestens aus dem \gls{Server} und einem Arbeiter besteht.
+Der Nutzer versucht eine \gls{Aufgabe} zu erstellen.
+Wenn das System funktioniert, bekommt er die Job-Id seiner \gls{Aufgabe} zurück.
 Bekommt er die Fehlermeldung
 \begin{mycode}
-Error: Can not find server
+Error: Can not find \gls{Server}
 \end{mycode}
-so konnte keine Verbindung zum Server hergestellt werden. Erhält er die Fehlermelung
+so konnte keine Verbindung zum \gls{Server} hergestellt werden. Erhält er die Fehlermelung
 \begin{mycode}
-Error: Could not authenticate to the server
+Error: Could not authenticate to the \gls{Server}
 \end{mycode}
-so konnte der Nutzer sich nicht gegenüber dem Server authentisieren. Erhält er eine andere Fehlermeldung, so konnte die Aufgabe nicht gestartet werden.
+so konnte der Nutzer sich nicht gegenüber dem \gls{Server} authentisieren. Erhält er eine andere Fehlermeldung, so konnte die \gls{Aufgabe} nicht gestartet werden.
 
-\item[T2] \textbf{Festlegen von Prioritäten }
-\subitem \textbf{Erklärung} Ziel ist zu testen, ob Aufgaben mit einer höheren \gls{Prioritaet} bevorzugt werden.
-\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits funktionierenden System mit genau einem Arbeiter, in dem Aufgaben verteilt und bearbeitet werden können.
-Der Nutzer startet eine Aufgabe die einige Zeit benötigt. Während der Bearbeitung gibt er eine Aufgabe mit einer niedrigen \gls{Prioritaet} auf gefolgt von derselben Aufgabe mit einer hohen Priorität.
-Sind alle drei Aufgaben bearbeitet, startet er wieder eine Aufgabe, die einige Zeit benötigt. Danach erstellt er eine Aufgabe mit einer hohen \gls{Prioritaet} und danach dieselbe Aufgabe mit niedriger Priorität.
-Wenn das System korrekt funktioniert, werden in beiden Fällen die Aufgaben mit hoher \gls{Prioritaet} zuerst bearbeitet.
+\item[T2] \textbf{Festlegen von \glspl{Prioritaet} }
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob \glspl{Aufgabe} mit einer höheren \gls{Prioritaet} bevorzugt werden.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits funktionierenden System mit genau einem Arbeiter, in dem \glspl{Aufgabe} verteilt und bearbeitet werden können.
+Der Nutzer startet eine \gls{Aufgabe} die einige Zeit benötigt. Während der Bearbeitung gibt er eine \gls{Aufgabe} mit einer niedrigen \gls{Prioritaet} auf gefolgt von derselben \gls{Aufgabe} mit einer hohen \gls{Prioritaet}.
+Sind alle drei \glspl{Aufgabe} bearbeitet, startet er wieder eine \gls{Aufgabe}, die einige Zeit benötigt. Danach erstellt er eine \gls{Aufgabe} mit einer hohen \gls{Prioritaet} und danach dieselbe \gls{Aufgabe} mit niedriger \gls{Prioritaet}.
+Wenn das System korrekt funktioniert, werden in beiden Fällen die \glspl{Aufgabe} mit hoher \gls{Prioritaet} zuerst bearbeitet.
 
 \item[T3] \textbf{Festlegen des Betriebssystems}
-\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer verschiedene Betriebssysteme angeben kann, die für die Bearbeitung seiner Aufgabe verwendet werden sollen.
-\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits funktionierenden System mit mehreren Arbeitern und mindestens zwei verschiedenen Arbeitern. Der Nutzer startet eine Aufgabe, die das Betriebssystem ausliest und ausgibt. Diese soll für jedes Betriebssystem einmal eingereiht werden mit einem Parameter, der das jeweilige Betriebssystem anfordert.
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer verschiedene Betriebssysteme angeben kann, die für die Bearbeitung seiner \gls{Aufgabe} verwendet werden sollen.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem bereits funktionierenden System mit mehreren Arbeitern und mindestens zwei verschiedenen Arbeitern. Der Nutzer startet eine \gls{Aufgabe}, die das Betriebssystem ausliest und ausgibt. Diese soll für jedes Betriebssystem einmal eingereiht werden mit einem \gls{Parameter}, der das jeweilige Betriebssystem anfordert.
 
-\item[T4] \textbf{Abfragen eines Aufgabenstatus }
-\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer den korrekten Status seiner Aufgaben abfragen kann.
-\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System mit genau einem Arbeiter, der Aufgaben entgegennehmen und verarbeiten kann.
-Der Nutzer reiht mehrere Aufgaben mit unterschiedlichen Prioritäten ein. Die Aufgaben mit niedrigeren Prioritäten sollten in der Warteschlange sein und die Aufgaben mit höherer Priorität sollten entweder gestartet oder weiter vorne in der Warteschlange sein.
+\item[T4] \textbf{Abfragen eines \glspl{Aufgabe}status }
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer den korrekten Status seiner \glspl{Aufgabe} abfragen kann.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System mit genau einem Arbeiter, der \glspl{Aufgabe} entgegennehmen und verarbeiten kann.
+Der Nutzer reiht mehrere \glspl{Aufgabe} mit unterschiedlichen \glspl{Prioritaet} ein. Die \glspl{Aufgabe} mit niedrigeren \glspl{Prioritaet} sollten in der \gls{Warteschlange} sein und die \glspl{Aufgabe} mit höherer \gls{Prioritaet} sollten entweder gestartet oder weiter vorne in der \gls{Warteschlange} sein.
 
-\item[T5] \textbf{Benachrichtigung bei Abschluss einer Aufgabe }
-\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer nach Abschluss einer Aufgabe vom System benachrichtigt wird.
-\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist, Aufgaben anzunehmen und zu verarbeiten.
-Der Nutzer reiht eine Aufgabe ein und prüft regelmäßig den Status seiner Aufgabe. Sollte die Aufgabe abgeschlossen sein, so sollte zeitnah eine Benachrichtigung per E-Mail folgen.
+\item[T5] \textbf{Benachrichtigung bei Abschluss einer \gls{Aufgabe} }
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer nach Abschluss einer \gls{Aufgabe} vom System benachrichtigt wird.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist, \glspl{Aufgabe} anzunehmen und zu verarbeiten.
+Der Nutzer reiht eine \gls{Aufgabe} ein und prüft regelmäßig den Status seiner \gls{Aufgabe}. Sollte die \gls{Aufgabe} abgeschlossen sein, so sollte zeitnah eine Benachrichtigung per E-Mail folgen.
 
 \item[T6] \textbf{Erstellen von Sicherungen}
-\subitem \textbf{Erklärung} Ziel ist zu testen, ob das System regelmäßige Sicherungen seiner Aufgaben anlegt.
-\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist, Aufgaben entgegenzunehmen und zu verarbeiten. Es wird eine Aufgabe eingereicht die hinreichend lange bearbeitet wird. Nach Ablauf eines Sicherungsintervalls wird im Dateisystem nach einer Sicherung der Aufgabe gesucht.
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob das System regelmäßige Sicherungen seiner \glspl{Aufgabe} anlegt.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist, \glspl{Aufgabe} entgegenzunehmen und zu verarbeiten. Es wird eine \gls{Aufgabe} eingereicht die hinreichend lange bearbeitet wird. Nach Ablauf eines Sicherungsintervalls wird im Dateisystem nach einer Sicherung der \gls{Aufgabe} gesucht.
 
 \item[T7] \textbf{Anforderung der Standard-Ausgabe }
-\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer in der Lage ist, sich die korrekte Standardausgabe seiner Aufgabe anzusehen
-\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System mit genau einem Arbeiter, das in der Lage ist, Aufgaben entgegenzunehmen und zu verarbeiten.
-Der Nutzer reiht eine Aufgabe mit bekannter Ausgabe ein. Nach Abschluss der Aufgabe sollte die Ausgabe dieser entsprechen. Zusätzlich sollte der Abruf der Ausgabe einer nicht-existierenden Aufgabe eine Fehlermeldung ausgeben.
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer in der Lage ist, sich die korrekte Standardausgabe seiner \gls{Aufgabe} anzusehen
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System mit genau einem Arbeiter, das in der Lage ist, \glspl{Aufgabe} entgegenzunehmen und zu verarbeiten.
+Der Nutzer reiht eine \gls{Aufgabe} mit bekannter Ausgabe ein. Nach Abschluss der \gls{Aufgabe} sollte die Ausgabe dieser entsprechen. Zusätzlich sollte der Abruf der Ausgabe einer nicht-existierenden \gls{Aufgabe} eine Fehlermeldung ausgeben.
 \end{itemize}
 
 \subsection{Erweiterte Testfälle}
 
 \begin{itemize}
 
-\item[T8] \textbf{Abbrechen von zu langen Aufgaben }
-\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Server in der Lage ist, Aufgaben, die zu viel Zeit benötigen, abzubrechen.
-\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist Aufgaben entgegenzunehmen und zu verarbeiten und den Auftraggeber nach Abschluss einer Aufgabe zu benachrichtigen.
-Der Nutzer reiht eine Aufgabe ein, die nicht beendet. Nach einem festen Zeitintervall sollte der Benutzer eine Benachrichtigung über den erzwungenen Abschluss seiner Aufgabe erhalten.
+\item[T8] \textbf{Abbrechen von zu langen \glspl{Aufgabe} }
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der \gls{Server} in der Lage ist, \glspl{Aufgabe}, die zu viel Zeit benötigen, abzubrechen.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist \glspl{Aufgabe} entgegenzunehmen und zu verarbeiten und den Auftraggeber nach Abschluss einer \gls{Aufgabe} zu benachrichtigen.
+Der Nutzer reiht eine \gls{Aufgabe} ein, die nicht beendet. Nach einem festen Zeitintervall sollte der \gls{Benutzer} eine Benachrichtigung über den erzwungenen Abschluss seiner \gls{Aufgabe} erhalten.
 
-\item[T9] \textbf{Manuelles Stoppen von Aufgaben }
-\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer in der Lage ist, seine Aufgaben selbst abzubrechen.
-\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist Aufgaben entgegenzunehmen, zu verarbeiten und den Status von Aufgaben zurückzugeben.
-Der Nutzer reiht eine Aufgabe ein und fordert im Anschluss den Stopp der Aufgabe. Bei einer Statusabfrage sollte die Aufgabe nun als gestoppt angezeigt werden.
+\item[T9] \textbf{Manuelles Stoppen von \glspl{Aufgabe} }
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer in der Lage ist, seine \glspl{Aufgabe} selbst abzubrechen.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System, das in der Lage ist \glspl{Aufgabe} entgegenzunehmen, zu verarbeiten und den Status von \glspl{Aufgabe} zurückzugeben.
+Der Nutzer reiht eine \gls{Aufgabe} ein und fordert im Anschluss den Stopp der \gls{Aufgabe}. Bei einer Statusabfrage sollte die \gls{Aufgabe} nun als gestoppt angezeigt werden.
 
-\item[T10] \textbf{Manuelle Sicherung von Aufgaben}
-\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer seine Aufgaben manuell sichern kann.
-\subitem \textbf{Ablauf} Ausgegangen wird von einem System, das in der Lage ist, Aufgaben entgegenzunehmen und zu bearbeiten.
-Der Nutzer reiht eine Aufgabe ein und fordert im Anschluss daran die manuelle Sicherung dieser. Im Dateisystem wird nach der Sicherung dieser Aufgabe gesucht.
+\item[T10] \textbf{Manuelle Sicherung von \glspl{Aufgabe}}
+\subitem \textbf{Erklärung} Ziel ist zu testen, ob der Nutzer seine \glspl{Aufgabe} manuell sichern kann.
+\subitem \textbf{Ablauf} Ausgegangen wird von einem System, das in der Lage ist, \glspl{Aufgabe} entgegenzunehmen und zu bearbeiten.
+Der Nutzer reiht eine \gls{Aufgabe} ein und fordert im Anschluss daran die manuelle Sicherung dieser. Im Dateisystem wird nach der Sicherung dieser \gls{Aufgabe} gesucht.
 
 \end{itemize}
 
