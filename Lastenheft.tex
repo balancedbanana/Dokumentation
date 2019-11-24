@@ -323,7 +323,8 @@ Nach einiger Zeit erhält Peter eine Email mit dem Ergebnis seiner Simulation.
 
 \section{Systemmodelle}
 
-% hier die Systemmodelle einfügen
+\includegraphics[width=\textwidth]{Anwendungsmöglichkeiten}
+\includegraphics[width=\textwidth]{Systemmodelle/Systemaufbau}
 
 Den Kern des Systems stellt der Verteilungsserver dar. Er ist in der Lage über ein von Nutzern benutzbares Netzwerk Anfragen von den einzelnen Clients entgegenzunehmen und sie zu verwalten.
 Außerdem enthält er eine Datenbank, in der sämtliche Statistiken gespeichert werden, sowie einen HTTP Dienst, der Anfragen auf Statistiken beantwortet und einen SMTP-Dienst, der die Benutzer benachrichtigt. An einer weiteren Schnittstelle ist er an ein von Außen nicht sichtbares Netzwerk angeschlossen, in dem sich die einzelnen Arbeiter befinden. Der Verteilungsserver kann Anfragen direkt an die sie in diesem Netz verteilen, ohne dass die Arbeiter von außerhalb des versteckten Netzes gesehen werden können. Außerdem gibt es ein geteiltes Netzwerk-Dateisystem, das von allen Rechnern in beiden Netzwerken, dem öffentlichen Netz und dem versteckten Arbeiternetz, erreichbar ist. Hier können Daten und Programme gespeichert werden, die für die erstellten Aufgaben benötigt werden.
