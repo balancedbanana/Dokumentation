@@ -297,6 +297,8 @@ Am nächsten morgen bemerkt Peter das Tom ein weiteres Duzent Katzensimulationen
 Peter bemerkt das seine \gls{Aufgabe} nun in der \gls{Warteschlange} langsam nach vorne rückt und schließlich gestartet wird. 
 Nach einiger Zeit erhält Peter eine E-Mail mit dem Ergebnis seiner Simulation.
 
+\clearpage
+
 \section{Systemmodelle}
 
 Die Grafik listet einige der Funktionen auf, die einem \gls{Benutzer} zur Verfügung stehen.\\
@@ -309,6 +311,7 @@ Den Kern des Systems stellt der \gls{Server} dar. Er ist in der Lage über ein v
 Außerdem enthält er eine \gls{Datenbank}, in der sämtliche \glspl{Statistik} gespeichert werden, sowie einen HTTP Dienst, der Anfragen auf \gls{Statistik} beantwortet und einen SMTP-Dienst, der die \glspl{Benutzer} benachrichtigt. An einer weiteren \gls{Schnittstelle} ist er an ein von Außen nicht sichtbares Netzwerk angeschlossen, in dem sich die einzelnen \glspl{Arbeiter} befinden. Der \gls{Server} kann Anfragen direkt an die sie in diesem Netz verteilen, ohne dass die \gls{Arbeiter} von außerhalb des versteckten Netzes gesehen werden können. Außerdem gibt es ein geteiltes Netzwerk-Dateisystem, das von allen Rechnern in beiden Netzwerken, dem öffentlichen Netz und dem versteckten Arbeiternetz, erreichbar ist. Hier können Daten und Programme gespeichert werden, die für die erstellten \glspl{Aufgabe} benötigt werden.
 
 \subsection{Ablaufdiagramme}
+\begin{minipage}[t]{\linewidth}
 \subsubsection{Systeminitialisierung}
 Dieses Ablaufdiagramm soll grob den Ablauf der Systeminitialisierung skizzieren, bei der aus einzelnen Rechnern das ganze System gebaut wird.\\
 
@@ -319,7 +322,9 @@ Dieses Ablaufdiagramm soll grob den Ablauf der Systeminitialisierung skizzieren,
 3. Der \gls{Server} bestätigt dem \gls{Arbeiter}, dass er ein \gls{Server} ist.\\
 4. Der \gls{Arbeiter} teilt dem \gls{Server} mit, dass er bereitsteht um bei jenem eingereichte \glspl{Aufgabe} zu bearbeiten.\\
 5. Der \gls{Arbeiter} wartet auf \glspl{Aufgabe} vom \gls{Server}.
+\end{minipage}
 
+\begin{minipage}[t]{\linewidth}
 \subsubsection{Systemabbau}
 Im Folgenden soll der Ablauf zur Außerbetriebnahme des Systems für beispielsweise Wartungsarbeiten skizziert werden.\\
 
@@ -337,6 +342,10 @@ Herunterfahren des gesamten Systems:\\
 8. Der \gls{Server} verarbeitet diese Meldung normal und gibt auch ihn frei.
 9. Der \gls{Server} beendet seinen Dienst.
 
+\end{minipage}
+
+\begin{minipage}[t]{\linewidth}
+
 \subsection{Aufgabenverarbeitung}
 Dieses Diagramm beschreibt den groben Verlauf der Bearbeitung einer \gls{Aufgabe} von der Erstellung bis zur Benachrichtigung beim Abschluss.\\
 %Hier Bild einfügen
@@ -350,6 +359,10 @@ Dieses Diagramm beschreibt den groben Verlauf der Bearbeitung einer \gls{Aufgabe
 6. Der \gls{Server} speichert \glspl{Statistik} über die \gls{Aufgabe} in der \gls{Datenbank} ab.\\
 7. Der \gls{Server} meldet den Abschluss der \gls{Aufgabe} an den \gls{Benutzer}, sofern er noch im System angemeldet ist und auf eine Antwort wartet.\\
 8. Der \gls{Server} verschickt eine E-Mail an die bei der Erstellung der \gls{Aufgabe} spezifizierte Adresse, die den \gls{Benutzer} auf den Abschluss seiner \gls{Aufgabe} hinweist.
+
+\end{minipage}
+
+\begin{minipage}[t]{\linewidth}
 
 \subsubsection{Notfall \glspl{Aufgabe}verarbeitung}
 Dieses Diagramm veranschaulicht den Verlauf einer Notfall Verteilung. Eine Notfall Verteilung bezeichnet eine \gls{Aufgabe}, die schnellstmöglich bearbeitet werden muss.\\
@@ -366,6 +379,8 @@ Dieses Diagramm veranschaulicht den Verlauf einer Notfall Verteilung. Eine Notfa
 9. Der \gls{Server} weist den \gls{Arbeiter} an, seine unterbrochene Arbeit fortzusetzen.\\
 10. Der \gls{Server} benachrichtigt den \gls{Client} über den Abschluss des Notfalls.\\
 11. Der \gls{Server} löst das Versenden der Benachrichtigungs E-Mail aus.
+
+\end{minipage}
 
 \clearpage
 
@@ -394,8 +409,6 @@ Balanced Banana ist den \glspl{Aufgabe}gebieten entsprechend in drei Teile aufge
 3. Der \gls{Arbeiter} (Rechenknoten): Verantwortlich für Ausführung, Pausieren und Abbruch der \glspl{Aufgabe} auf den Arbeitern (spezielle Rechner für die \glspl{Aufgabe}verarbeitung).
 \end{minipage}
 \end{itemize}
-\newpage
-
 \newpage
 
 \section{Funktionale Anforderungen}
