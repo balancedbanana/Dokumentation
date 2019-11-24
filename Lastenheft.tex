@@ -31,14 +31,14 @@
 
 \newglossaryentry{Befehlszeile}
 {
-	name=\gls{Befehlszeile},
+	name={Befehlszeile},
 	plural={Befehlszeile},
 	description={Anwendung, mit der Befehle auf dem Rechner ausgeführt werden.},
 }
 
 \newglossaryentry{CPU}
 {
-	name=\gls{CPU},
+	name={CPU},
 	plural={CPU},
 	description={Central Processing Unit, Kern jedes Rechners um Anwendungen auszuführen},
 }
@@ -134,36 +134,36 @@
 
 \newglossaryentry{Warteschlange}
 {
-	name=\gls{Warteschlange},
-	plural=\gls{Warteschlange}n,
-	description={Datenstruktur, in der \glspl{Aufgabe} für die weitere Verwendung zwischengespeichert werden. Kann mit einer \gls{Prioritaet} behaftet sein, welche bestimmt, in welcher Reihenfolge die \glspl{Aufgabe} aus der \gls{Warteschlange} entfernt werden.}
+	name={Warteschlange},
+	plural={Warteschlangen},
+	description={Datenstruktur, in der Aufgabe für die weitere Verwendung zwischengespeichert werden. Kann mit einer Priorität behaftet sein, welche bestimmt, in welcher Reihenfolge die Aufgabe aus der Warteschlange entfernt werden.}
 }
 
 \newglossaryentry{Docker-Container}
 {
-	name=Docker-Container,
-	plural=Docker-Containern,
+	name={Docker-Container},
+	plural={Docker-Containern},
 	description={Ein Container ist eine Standardeinheit von Software, die Code und alle Abhängigkeiten zusammenfasst, damit die Anwendung auf unterschiedlichen Rechnersystemen läuft.}
 }
 
 \newglossaryentry{Docker}
 {
-	name=Docker,
-	plural=Docker,
+	name={Docker},
+	plural={Docker},
 	description={Ein Programm, mit dessen Hilfe man \glspl{Aufgabe} von dem Host System abkapseln kann.}
 }
 
 \newglossaryentry{Docker-Image}
 {
-	name=Docker-Image,
-	plural=Docker-Images,
+	name={Docker-Image}
+	plural={Docker-Images},
 	description={Ein Bauplan für einen Docker Container.}
 }
 
 \newglossaryentry{Datenbank}
 {
-	name=Datenbank,
-	plural=Datenbanken,
+	name={Datenbank},
+	plural={Datenbanken},
 	description={Enthalten verschiedene Informationen, so dass Abfragen nach bestimmten Merkmalen effizient möglich sind.}
 }
 
@@ -212,11 +212,11 @@ Aktuell stehen individuelle \glspl{Arbeiter} zur Verfügung, die von jedem Mitar
 Es gibt auf dem Markt bereits viele Lösungen für dieses Problem, allerdings sind sie sehr komplex und nicht leicht erweiterbar.
 Balanced Banana löst dieses Problem maßgeschneidert an die Bedürfnisse des CES. \\
 
-Mit Balanced Banana soll der \gls{Benutzer} sine \gls{Aufgabe} unkompliziert von der \gls{CLI} abschicken können, sodass diese automatisch auf einen bereitstehenden \gls{Arbeiter} verteilt wird. Die \glspl{Aufgabe} sind in \glspl{Docker-Container} von anderen \glspl{Aufgabe} abgetrennt.  \\
+Mit Balanced Banana soll der \gls{Benutzer} sine \gls{Aufgabe} unkompliziert von der \gls{Befehlszeile} abschicken können, sodass diese automatisch auf einen bereitstehenden \gls{Arbeiter} verteilt wird. Die \glspl{Aufgabe} sind in \glspl{Docker-Container} von anderen \glspl{Aufgabe} abgetrennt.  \\
 
 Darüber hinaus soll der \gls{Benutzer} durch zusätzliche \glspl{Parameter} in der Lage sein, weitere Einschränkungen und/oder Bedingungen für seine \glspl{Aufgabe} anzugeben.\\
 
-Balanced Banana soll in der Lage sein, die anstehenden \glspl{Aufgabe} effizient auf die verfügbaren \glspl{Arbeiter} zu verteilen. Hierbei werden Größe, \gls{Prioritaet} und gegebenen Einschränkungen berücksichtigt. Um möglichst flexibel einsetzbar zu sein, soll außerdem die \gls{Verteilerlogik} über eine feste \gls{Schnittstelle} jederzeit änderbar sein, sodass Aspekten wie Fairness oder \gls{Turnaround}-Zeit unterschiedliche Relevanz eingeräumt werden kann.
+Balanced Banana soll in der Lage sein, die anstehenden \glspl{Aufgabe} effizient auf die verfügbaren \glspl{Arbeiter} zu verteilen. Hierbei werden Größe, \gls{Prioritaet} und gegebenen Einschränkungen berücksichtigt. Um möglichst flexibel einsetzbar zu sein, soll außerdem die Verteilerlogik über eine feste \gls{Schnittstelle} jederzeit änderbar sein, sodass Aspekten wie Fairness unterschiedliche Relevanz eingeräumt werden kann.
 
 \clearpage
 \section{Zielbestimmung}
@@ -231,9 +231,9 @@ Balanced Banana soll in der Lage sein, die anstehenden \glspl{Aufgabe} effizient
 	
 	\item Vom \gls{Benutzer} in Auftrag gegebene \glspl{Aufgabe} sollen automatisch gestartet werden.
 	
-	\item Balanced Banana sammelt \glspl{Statistik} über \glspl{Aufgabe}. Die \glspl{Statistik} sind von dem \gls{Auftraggeber} einsehbar.
+	\item Balanced Banana sammelt \glspl{Statistik} über \glspl{Aufgabe}. Die \glspl{Statistik} sind von dem Auftraggeber einsehbar.
 	
-	\item Öffentliche \glspl{Statistik} sollen über eine \gls{Web-API} mit \glspl{HTTP-Anfrage} bereitgestellt werden.
+	\item Öffentliche \glspl{Statistik} sollen über eine \gls{Web-API} mit HTTP-Anfragen bereitgestellt werden.
 	
 	\item Die Anzahl der \glspl{Arbeiter} ist variabel.
 	
@@ -267,7 +267,7 @@ Balanced Banana soll in der Lage sein, die anstehenden \glspl{Aufgabe} effizient
 	
 	\item Balanced Banana ignoriert die Ausgabe der \glspl{Aufgabe}. Balanced Banana ist ausschließlich für die Verteilung der \glspl{Aufgabe} verantwortlich.
 
-	\item Balanced Banana ignoriert Fehler der \glspl{Aufgabe}. Eine \gls{Fehlerbehandlung} soll von den \glspl{Aufgabe} oder dem \gls{Auftraggeber} erfolgen.
+	\item Balanced Banana ignoriert Fehler der \glspl{Aufgabe}. Eine \gls{Fehlerbehandlung} soll von den \glspl{Aufgabe} oder dem Auftraggeber erfolgen.
 
 	\item Die erhobenen \glspl{Statistik} werden nicht ausgewertet. Die \glspl{Statistik} werden zur Weiterverwendung durch die \glspl{Benutzer} erhoben.
 	
@@ -299,11 +299,13 @@ Nach einiger Zeit erhält Peter eine E-Mail mit dem Ergebnis seiner Simulation.
 
 \section{Systemmodelle}
 
+Die Grafik listet einige der Funktionen auf, die einem \gls{Benutzer} zur Verfügung stehen.
 \includegraphics[width=\textwidth]{Anwendungsmöglichkeiten}
+
 \includegraphics[width=\textwidth]{Systemmodelle/Systemaufbau}
 
 Den Kern des Systems stellt der \gls{Server} dar. Er ist in der Lage über ein von Nutzern benutzbares Netzwerk Anfragen von den einzelnen \glspl{Client} entgegenzunehmen und sie zu verwalten.
-Außerdem enthält er eine \gls{Datenbank}, in der sämtliche \glspl{Statistik} gespeichert werden, sowie einen HTTP Dienst, der Anfragen auf \gls{Statistik} beantwortet und einen SMTP-Dienst, der die \glspl{Benutzer} benachrichtigt. An einer weiteren \gls{Schnittstele} ist er an ein von Außen nicht sichtbares Netzwerk angeschlossen, in dem sich die einzelnen \glspl{Arbeiter} befinden. Der \gls{Server} kann Anfragen direkt an die sie in diesem Netz verteilen, ohne dass die \gls{Arbeiter} von außerhalb des versteckten Netzes gesehen werden können. Außerdem gibt es ein geteiltes Netzwerk-Dateisystem, das von allen Rechnern in beiden Netzwerken, dem öffentlichen Netz und dem versteckten Arbeiternetz, erreichbar ist. Hier können Daten und Programme gespeichert werden, die für die erstellten \glspl{Aufgabe} benötigt werden.
+Außerdem enthält er eine \gls{Datenbank}, in der sämtliche \glspl{Statistik} gespeichert werden, sowie einen HTTP Dienst, der Anfragen auf \gls{Statistik} beantwortet und einen SMTP-Dienst, der die \glspl{Benutzer} benachrichtigt. An einer weiteren \gls{Schnittstelle} ist er an ein von Außen nicht sichtbares Netzwerk angeschlossen, in dem sich die einzelnen \glspl{Arbeiter} befinden. Der \gls{Server} kann Anfragen direkt an die sie in diesem Netz verteilen, ohne dass die \gls{Arbeiter} von außerhalb des versteckten Netzes gesehen werden können. Außerdem gibt es ein geteiltes Netzwerk-Dateisystem, das von allen Rechnern in beiden Netzwerken, dem öffentlichen Netz und dem versteckten Arbeiternetz, erreichbar ist. Hier können Daten und Programme gespeichert werden, die für die erstellten \glspl{Aufgabe} benötigt werden.
 
 \subsection{Ablaufdiagramme}
 \subsubsection{Systeminitialisierung}
@@ -387,7 +389,7 @@ Oftmals fallen \glspl{Aufgabe} an, die von einem Computer berechnet werden könn
 \item \textbf{Produktaufbau}\newline
 Balanced Banana ist den \glspl{Aufgabe}gebieten entsprechend in drei Teile aufgeteilt:\newline
 1. Der \gls{Client} (\gls{Benutzer}): Verantwortlich für die Interaktion des \gls{Benutzer}s mit dem Produkt auf der \gls{Befehlszeile}.\newline
-2. Der \gls{Scheduler} (\gls{Server}): Verantwortlich für das effiziente Verteilen der \glspl{Aufgabe} auf dem Arbeiterpool. Agiert als Mittelmann zwischen \gls{Benutzer} und \gls{Arbeiter}.\newline
+2. Der \gls{Server}: Verantwortlich für das effiziente Verteilen der \glspl{Aufgabe} auf dem Arbeiterpool. Agiert als Mittelmann zwischen \gls{Benutzer} und \gls{Arbeiter}.\newline
 3. Der \gls{Arbeiter} (Rechenknoten): Verantwortlich für Ausführung, Pausieren und Abbruch der \glspl{Aufgabe} auf den Arbeitern (spezielle Rechner für die \glspl{Aufgabe}verarbeitung).
 \end{minipage}
 \end{itemize}
@@ -406,8 +408,8 @@ Balanced Banana ist den \glspl{Aufgabe}gebieten entsprechend in drei Teile aufge
 \item[FA2] \gls{Benutzer} authentifiziert sich über den \gls{Client} gegenüber dem \gls{Server}.
 \item[FA3] \gls{Benutzer} kann eine \gls{Aufgabe} über den \gls{Client} einreihen.
 \item[FA4] \gls{Benutzer} kann \gls{Parameter} übergeben.
-\item[FA41]	\gls{Client} speichert voreingestellte \gls{Parameter} in \gls{Configfile}.
-\item[FA42]	\gls{Benutzer} kann \gls{Parameter} über \gls{Configfile} übergeben.
+\item[FA41]	\gls{Client} speichert voreingestellte \gls{Parameter} in \gls{Konfigurationsdatei}.
+\item[FA42]	\gls{Benutzer} kann \gls{Parameter} über \gls{Konfigurationsdatei} übergeben.
 \item[FA43] \gls{Benutzer} kann \gls{Prioritaet} einer \gls{Aufgabe} festlegen.
 \item[FA44] \gls{Benutzer} kann minimale und maximale Anzahl genutzer Kerne festlegen.
 \item[FA45] \gls{Benutzer} kann maximal nutzbaren Arbeitsspeicher festlegen.
@@ -470,15 +472,15 @@ Balanced Banana ist den \glspl{Aufgabe}gebieten entsprechend in drei Teile aufge
 		\subitem \textbf{Nachbedingung(en):}
 		\subsubitem \textbf{Erfolg:} Der Befehl wird mit den angegebenen \gls{Parameter}n eingereiht.
 		\subsubitem \textbf{Misserfolg:} Die \gls{Aufgabe} wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Wenn eine \gls{Aufgabe} eingereiht wird, kann der \gls{Benutzer} noch weitere \gls{Parameter} hinzufügen. Diese können in einer \gls{Configfile} übergeben werden (FA42). Falls keine \gls{Parameter} eingegeben wurden, werden Standard\gls{Parameter} verwendet (FA49).
+		\subitem \textbf{Details:} Wenn eine \gls{Aufgabe} eingereiht wird, kann der \gls{Benutzer} noch weitere \gls{Parameter} hinzufügen. Diese können in einer \gls{Konfigurationsdatei} übergeben werden (FA42). Falls keine \gls{Parameter} eingegeben wurden, werden Standard\gls{Parameter} verwendet (FA49).
 		Können mehrere Rechner für eine \gls{Aufgabe} verwendet werden, so wird zuerst nach minimalem Arbeitsspeicher und danach nach minimalen Kernen ausgesucht.
 	\end{minipage}
 	\pagebreak
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[FA41] \textbf{\gls{Client} speichert voreingestellte \gls{Parameter} in \gls{Configfile}.}
-		\subitem \textbf{Erklärung:} Standard\gls{Parameter} werden einer \gls{Configfile} gespeichert.
-		Diese können bearbeitet werden. Zur einfachen Einreihung können alle \gls{Parameter} durch eine \gls{Configfile} angegeben werden.
+		\item[FA41] \textbf{\gls{Client} speichert voreingestellte \gls{Parameter} in \gls{Konfigurationsdatei}.}
+		\subitem \textbf{Erklärung:} Standard\gls{Parameter} werden einer \gls{Konfigurationsdatei} gespeichert.
+		Diese können bearbeitet werden. Zur einfachen Einreihung können alle \gls{Parameter} durch eine \gls{Konfigurationsdatei} angegeben werden.
 		\subitem \textbf{Vorraussetzungen:} Keine.
 		
 	\end{minipage}
@@ -486,13 +488,13 @@ Balanced Banana ist den \glspl{Aufgabe}gebieten entsprechend in drei Teile aufge
 	\\
 	
 	\begin{minipage}[t]{\linewidth}
-		\item[FA42] \textbf{Benutzer kann \gls{Parameter} über \gls{Configfile} übergeben.}
-		\subitem \textbf{Erklärung:} Gibt der \gls{Benutzer} \gls{Parameter} bei der Einreihung einer \gls{Aufgabe} nicht ein, so werden diese von der \gls{Configfile} bezogen.
+		\item[FA42] \textbf{Benutzer kann \gls{Parameter} über \gls{Konfigurationsdatei} übergeben.}
+		\subitem \textbf{Erklärung:} Gibt der \gls{Benutzer} \gls{Parameter} bei der Einreihung einer \gls{Aufgabe} nicht ein, so werden diese von der \gls{Konfigurationsdatei} bezogen.
 		\subitem \textbf{Vorraussetzungen:} Eine \gls{Aufgabe} soll eingereiht werden.
 		\subitem \textbf{Nachbedingung:}
-		\subsubitem \textbf{Erfolg:} Fehlende \gls{Parameter} wurden aus der \gls{Configfile} bezogen.
+		\subsubitem \textbf{Erfolg:} Fehlende \gls{Parameter} wurden aus der \gls{Konfigurationsdatei} bezogen.
 		\subsubitem \textbf{Misserfolg:} Fehlende \gls{Parameter} werden auf Standardwerte gesetzt.
-		\subitem \textbf{Details:} Werden \gls{Parameter} bei der Einreihung einer \gls{Aufgabe} nicht weiter spezifiziert, so werden diese aus der \gls{Configfile} gelesen. Sind diese dort ebenfalls nicht spezifiziert, so werden diese auf Standardwerte gesetzt.
+		\subitem \textbf{Details:} Werden \gls{Parameter} bei der Einreihung einer \gls{Aufgabe} nicht weiter spezifiziert, so werden diese aus der \gls{Konfigurationsdatei} gelesen. Sind diese dort ebenfalls nicht spezifiziert, so werden diese auf Standardwerte gesetzt.
 	\end{minipage}
 	\newline
 	\\
@@ -895,6 +897,13 @@ bbc <--run|-r> [--block|-b] [<--priority|-p> <priority>] [<--max-\gls{CPU}-count
 \end{mycode}
 Falls \texttt{-{}-block} block angegeben wurde, wird statt der \glspl{Aufgabe} ID die Ausgabe der \gls{Aufgabe} ausgegeben.
 Außer man beendet es forzeitig mit \texttt{CTRL + C}, dann wird die \glspl{Aufgabe} ID direkt danach ausgeben.
+
+\subsubsection{Status der \gls{Aufgabe} anfordern}
+Gibt den Status der angegebenen \gls{Aufgabe} aus.
+\begin{mycode}
+bbc <--status|-s> <id>
+\end{mycode}
+\texttt{<id>} \glspl{Aufgabe} ID die beim erstellen der \gls{Aufgabe} ausgegeben wurde.
 
 \subsubsection{Ausgabe der \gls{Aufgabe} ansehen}
 Gibt die gesammte Standardausgabe der angegebenen \gls{Aufgabe} aus.
