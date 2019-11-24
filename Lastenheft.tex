@@ -473,7 +473,7 @@ Balanced Banana ist den \glspl{Aufgabe}gebieten entsprechend in drei Teile aufge
     	\subitem \textbf{Nachbedingung(en):}
     	\subsubitem \textbf{Erfolg:} Die \gls{Aufgabe} wird in eine \gls{Warteschlange} eingereiht. Der \gls{Benutzer} bekommt eine Rückmeldung mit der \glspl{Aufgabe} ID.
     	\subsubitem \textbf{Misserfolg:} Die \gls{Aufgabe} wird nicht eingereiht. Der \gls{Benutzer} bekommt eine entsprechende Fehlermeldung.
-    	\subitem \textbf{Details:} Der \gls{Benutzer} kann über die \gls{Befehlszeile} eine \gls{Aufgabe} einreihen. Dabei kann er \gls{Parameter} mit übergeben (FA4). Falls der \gls{Benutzer} keine \gls{Parameter} mit übergibt werden Standard\gls{Parameter} verwendet (FA49).
+    	\subitem \textbf{Details:} Der \gls{Benutzer} kann über die \gls{Befehlszeile} eine \gls{Aufgabe} einreihen. Dabei kann er \gls{Parameter} mit übergeben (FA4). Falls der \gls{Benutzer} keine \gls{Parameter} mit übergibt werden Standardparameter verwendet (FA49).
    \end{minipage}
    \newline
    \\
@@ -486,14 +486,13 @@ Balanced Banana ist den \glspl{Aufgabe}gebieten entsprechend in drei Teile aufge
 		\subitem \textbf{Nachbedingung(en):}
 		\subsubitem \textbf{Erfolg:} Der Befehl wird mit den angegebenen \gls{Parameter}n eingereiht.
 		\subsubitem \textbf{Misserfolg:} Die \gls{Aufgabe} wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Wenn eine \gls{Aufgabe} eingereiht wird, kann der \gls{Benutzer} noch weitere \gls{Parameter} hinzufügen. Diese können in einer \gls{Konfigurationsdatei} übergeben werden (FA42). Falls keine \gls{Parameter} eingegeben wurden, werden Standard\gls{Parameter} verwendet (FA49).
+		\subitem \textbf{Details:} Wenn eine \gls{Aufgabe} eingereiht wird, kann der \gls{Benutzer} noch weitere \gls{Parameter} hinzufügen. Diese können in einer \gls{Konfigurationsdatei} übergeben werden (FA42). Falls keine \gls{Parameter} eingegeben wurden, werden Standardparameter verwendet (FA49).
 		Können mehrere Rechner für eine \gls{Aufgabe} verwendet werden, so wird zuerst nach minimalem Arbeitsspeicher und danach nach minimalen Kernen ausgesucht.
 	\end{minipage}
-	\pagebreak
 	
 	\begin{minipage}[t]{\linewidth}
 		\item[FA41] \textbf{\gls{Client} speichert voreingestellte \gls{Parameter} in \gls{Konfigurationsdatei}.}
-		\subitem \textbf{Erklärung:} Standard\gls{Parameter} werden einer \gls{Konfigurationsdatei} gespeichert.
+		\subitem \textbf{Erklärung:} Standardparameter werden einer \gls{Konfigurationsdatei} gespeichert.
 		Diese können bearbeitet werden. Zur einfachen Einreihung können alle \gls{Parameter} durch eine \gls{Konfigurationsdatei} angegeben werden.
 		\subitem \textbf{Vorraussetzungen:} Keine.
 		
@@ -580,7 +579,7 @@ Balanced Banana ist den \glspl{Aufgabe}gebieten entsprechend in drei Teile aufge
 		\subitem \textbf{Nachbedingung(en):}
 		\subsubitem \textbf{Erfolg:} Die angegebene \gls{Aufgabe} wird eingereiht.
 		\subsubitem \textbf{Misserfolg:} Die \gls{Aufgabe} wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Ein \gls{Benutzer} wird aufgefordert einen Dateipfad als \gls{Parameter} an einen Einreihungsbefehl anzuhängen. Hierfür existiert kein Standard\gls{Parameter}. Die Ausführbarkeit der \gls{Aufgabe} wird bis zum \glspl{Aufgabe}start nicht überprüft.
+		\subitem \textbf{Details:} Ein \gls{Benutzer} wird aufgefordert einen Dateipfad als \gls{Parameter} an einen Einreihungsbefehl anzuhängen. Hierfür existiert kein Standardparameter. Die Ausführbarkeit der \gls{Aufgabe} wird bis zum \glspl{Aufgabe}start nicht überprüft.
 	\end{minipage}
 	\newline
 	\\
@@ -590,12 +589,12 @@ Balanced Banana ist den \glspl{Aufgabe}gebieten entsprechend in drei Teile aufge
 		\subitem \textbf{Erklärung:} Sollte der \gls{Benutzer} keine \gls{Parameter} über die \gls{Befehlszeile} übergeben oder nicht in einer \gls{Konfigurationsdatei} spezifiziert haben, werden für bestimmte \gls{Parameter} Standardwerte ausgewählt
 		\subitem \textbf{Voraussetzung(en):} Eine \gls{Aufgabe} soll eingereiht werden.
 		\subitem \textbf{Nachbedingung(en):}
-		\subsubitem \textbf{Erfolg:} Die \gls{Aufgabe} wird mit Standard\gls{Parameter}n eingereiht.
+		\subsubitem \textbf{Erfolg:} Die \gls{Aufgabe} wird mit Standardparametern eingereiht.
 		\subsubitem \textbf{Misserfolg:} Die \gls{Aufgabe} wird nicht eingereiht. Eine entsprechende Fehlermeldung wird ausgegeben.
-		\subitem \textbf{Details:} Sollten einzelne \gls{Parameter} in der Befehlseingabe fehlen, so sucht sich der \gls{Client} diese fehlende \gls{Parameter} aus der \gls{Konfigurationsdatei}. Sollten diese dort ebenfalls nicht spezifiziert werden, so werden für einige Standard\gls{Parameter} verwendet.
+		\subitem \textbf{Details:} Sollten einzelne \gls{Parameter} in der Befehlseingabe fehlen, so sucht sich der \gls{Client} diese fehlende \gls{Parameter} aus der \gls{Konfigurationsdatei}. Sollten diese dort ebenfalls nicht spezifiziert werden, so werden für einige Standardparameter verwendet.
 		Diese sind für alle \glspl{Client} die selben. Die Standardwerte sind änderbar.
 		\begin{itemize}[nosep,label={}]
-			\item Standard\gls{Parameter}:
+			\item Standardparameter:
 			\item \gls{Prioritaet}: Normal
 			\item Minimale Kerne: 1
 			\item Maximale Kerne: 12
@@ -603,7 +602,7 @@ Balanced Banana ist den \glspl{Aufgabe}gebieten entsprechend in drei Teile aufge
 			\item Maximal nutzbarer RAM: 32 GB
 			\item Betriebssystem: Egal
 			\item blockierend: Nein
-			\item Pfad: Kein Standard\gls{Parameter} (Gibt Fehlermeldung aus, falls fehlend)
+			\item Pfad: Kein Standardparameter (Gibt Fehlermeldung aus, falls fehlend)
 	\end{itemize}
 	\end{minipage}
 	\newline
@@ -671,6 +670,8 @@ Balanced Banana ist den \glspl{Aufgabe}gebieten entsprechend in drei Teile aufge
 \\	
 	
 \end{itemize}
+
+\newpage
 
 \subsection{Übersicht der optionalen Anforderungen}
 \begin{itemize}[nosep]
@@ -1002,11 +1003,11 @@ Der Nutzer versucht eine \gls{Aufgabe} zu erstellen.
 Wenn das System funktioniert, bekommt er die Job-Id seiner \gls{Aufgabe} zurück.
 Bekommt er die Fehlermeldung
 \begin{mycode}
-Error: Can not find \gls{Server}
+Error: Can not find Server
 \end{mycode}
 so konnte keine Verbindung zum \gls{Server} hergestellt werden. Erhält er die Fehlermelung
 \begin{mycode}
-Error: Could not authenticate to the \gls{Server}
+Error: Could not authenticate to the Server
 \end{mycode}
 so konnte der Nutzer sich nicht gegenüber dem \gls{Server} authentisieren. Erhält er eine andere Fehlermeldung, so konnte die \gls{Aufgabe} nicht gestartet werden.
 
@@ -1040,6 +1041,8 @@ Der Nutzer reiht eine \gls{Aufgabe} ein und prüft regelmäßig den Status seine
 \subitem \textbf{Ablauf} Ausgegangen wird von einem funktionierenden System mit genau einem Arbeiter, das in der Lage ist, \glspl{Aufgabe} entgegenzunehmen und zu verarbeiten.
 Der Nutzer reiht eine \gls{Aufgabe} mit bekannter Ausgabe ein. Nach Abschluss der \gls{Aufgabe} sollte die Ausgabe dieser entsprechen. Zusätzlich sollte der Abruf der Ausgabe einer nicht-existierenden \gls{Aufgabe} eine Fehlermeldung ausgeben.
 \end{itemize}
+
+\newpage
 
 \subsection{Erweiterte Testfälle}
 
