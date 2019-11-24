@@ -118,10 +118,10 @@
 	description={Web-API (Web-Application Programming Interface) ist eine Schnittstelle über das Internet, die eine Sammlung von Funktionen zur Verfügung stellt, die es Benutzern ermöglichen, auf bestimmte Informationen einer Anwendung, eines Betriebssystems oder anderer Dienste zuzugreifen.}
 }
 
-\newglossaryentry{Ausnahmebehandlung}
+\newglossaryentry{Fehlerbehandlung}
 {
-	name={Ausnahmebehandlung},
-	plural={Ausnahmebehandlungen},
+	name={Fehlerbehandlung},
+	plural={Fehlerbehandlungen},
 	description={Vorschriften oder Abläufe, die zur Korrektur eines Fehlers dienen.}
 }
 
@@ -130,6 +130,53 @@
 	name={ETA},
 	plural={ETA},
 	description={Abschätzung des Eingangszeitpunkts eines Ereignisses.}
+}
+
+\newglossaryentry{Parameter}
+{
+	name={Parameter},
+	description={something}
+}
+
+\newglossaryentry{Schnittstelle}
+{
+	name={Schnittstelle},
+	description={interface}
+}
+\newglossaryentry{Turnaround}
+{
+	name={Turnaround},
+	description={Turnaround}
+}
+
+\newglossaryentry{Auftraggeber}
+{
+	name={Auftraggeber},
+	description={dude that gives work}
+}
+
+\newglossaryentry{HTTP-Anfragen}
+{
+	name={HTTP-Anfragen},
+	description={keine Ahnung...}
+}
+
+\newglossaryentry{Configfile}
+{
+	name={Configfile},
+	description={config file}
+}
+
+\newglossaryentry{Scheduler}
+{
+	name={Scheduler},
+	description={scheduler for something}
+}
+
+\newglossaryentry{Verteilerlogik}
+{
+	name={Verteilerlogik},
+	description={logic}
 }
 
 \title{Balanced Banana}
@@ -217,7 +264,7 @@ Mit Hilfe intelligenter Algorithmen soll Balanced Banana in der Lage sein, die a
 
 	\item Der \gls{Benutzer} kann eine von ihm in Auftrag gegebene \gls{Aufgabe} pausieren.	
 	
-	\item Balanced Banana kann die \gls{Estimated Time of Arrival} für die nicht beendeten \glspl{Aufgabe} vorhersagen.
+	\item Balanced Banana kann die \gls{ETA} für die nicht beendeten \glspl{Aufgabe} vorhersagen.
 	
 	\item Die Rückmeldung nach Beendigung einer \gls{Aufgabe} kann in verschiedenen Sprachen erfolgen.
 	
@@ -231,7 +278,7 @@ Mit Hilfe intelligenter Algorithmen soll Balanced Banana in der Lage sein, die a
 \subsection{Abgrenzungskriterien}
 \begin{itemize}[nosep]
 
-	\item Balanced Banana führt die in Auftrag gegebenen \glspl{Aufgaben} nicht persönlich aus, sondern übergibt die \gls{Aufgabe} an einen \gls{Arbeiter}.
+	\item Balanced Banana führt die in Auftrag gegebenen \glspl{Aufgabe} nicht persönlich aus, sondern übergibt die \gls{Aufgabe} an einen \gls{Arbeiter}.
 	
 %	\item Das Programm macht nichts mit der Ausgabe der verschiedenen Tasks, es verteilt nur die Tasks.
 	\item Balanced Banana ignoriert die Ausgabe der \glspl{Aufgabe}. Balanced Banana ist ausschließlich für die Verteilung der \glspl{Aufgabe} verantwortlich.
@@ -242,7 +289,7 @@ Mit Hilfe intelligenter Algorithmen soll Balanced Banana in der Lage sein, die a
 %	\item Das Programm macht nichts mit den gesammelten \glspl{Statistik}, es lässt den Benutzer sie nur über die \gls{Web-API} sehen.
 	\item Die erhobenen \glspl{Statistik} werden nicht ausgewertet. Die \glspl{Statistik} werden zur Weiterverwendung durch die \glspl{Benutzer} erhoben.
 	
-	\item Balanced Banana garantiert nicht, dass getrennte \glspl{Aufgaben} miteinander kommunizieren können.
+	\item Balanced Banana garantiert nicht, dass getrennte \glspl{Aufgabe} miteinander kommunizieren können.
 	
 \end{itemize}
 
@@ -307,7 +354,7 @@ Oftmals fallen \glspl{Aufgabe} an, die von einem Computer berechnet werden könn
 \begin{minipage}[t]{\linewidth}
 \item \textbf{Produktaufbau}\newline
 Balanced Banana ist den Aufgabengebieten entsprechend in drei Teile aufgeteilt:\newline
-1. Der \gls{Client} (\gls{Benutzer}): Verantwortlich für die Interaktion des Benutzers mit dem Produkt auf der \gls{Befehlszeile}.\newline
+1. Der \gls{Client} (\gls{Benutzer}): Verantwortlich für die Interaktion des Benutzers mit dem Produkt auf der \gls{CLI}.\newline
 2. Der \gls{Scheduler} (\gls{Server}): Verantwortlich für das effiziente Verteilen der \glspl{Aufgabe} auf dem Arbeiterpool. Agiert als Mittelmann zwischen \gls{Benutzer} und \gls{Arbeiter}.\newline
 3. Der \gls{Arbeiter} (Worker): Verantwortlich für Ausführung, Pausieren und Abbruch der \glspl{Aufgabe} auf den Arbeitern (spezielle Rechner für die Aufgabenverarbeitung).
 \end{minipage}
@@ -739,6 +786,7 @@ Zusätzlich soll hinterlegt werden, auf welchen Rechnern die Aufgabe aktiv lief.
 \newpage
 
 \section{Nichtfunktionale Anforderungen}
+\subsection{Übersicht der Anforderungen}
 \begin{itemize}[nosep]
 \leftskip=0.5cm
 
@@ -748,7 +796,6 @@ Zusätzlich soll hinterlegt werden, auf welchen Rechnern die Aufgabe aktiv lief.
 \begin{minipage}[t]{\linewidth}
 \item[FA00] \textbf{<Titel>}
 \subitem \textbf{Erklärung} <In ca. 3 Zeilen eine grobe Beschreibung geben>
-\subitem \textbf{Wichtigkeit} <Wie relevant ist es für uns, diese Anforderung zu erfüllen>
 \subitem \textbf{Bezug} <Welcher funktionalen Anforderung ist diese Anforderung zuzuordnen>
 \subitem \textbf{Details} <Ausführliche Beschreibung dieser nichtfunktionalen Anforderung>
 \end{minipage}
@@ -772,9 +819,93 @@ Zusätzlich soll hinterlegt werden, auf welchen Rechnern die Aufgabe aktiv lief.
 	\item[NFA70] \hspace{\parindent} Der \gls{Benutzer} verbindet sich mit dem Server über eine sichere Verbindung.
 	
 	%\item[NF60] Die Priorität einer Task wird nach einem bestimmten Zeitrahmen erhöht. % Meiner Meinung nach ist das keine NFA
-
 \end{itemize}
 
+% Verteilung und Start der Aufgabe innerhalb von XX Minuten
+
+% Verhältnis von Laufzeit und Pausierzeit soll nicht geringer sein als 1 zu XX
+
+% Mindestens 1000 Aufgaben sollen in der Warteschlage gehalten werden können
+
+% Mindestens 100 Nutzer sollen zeitgleich neue Aufgaben in Auftrag geben können
+
+% Bei Ausfall der Worker (Stromausfall, ...) soll nicht mehr als 1 Stunde Rechenzeit verloren gehen -> Stündliche Backups
+
+% Bei Abschluss einer Aufgabe soll die Rückmeldung innerhalb von XX Minuten erfolgen
+
+% Statistiken sollen nur veröffentlicht werden, nachdem die Aufgabe abgeschlossen ist
+
+% Ein Administrator soll den Prioritätenpool verwalten können
+
+% Ein Benutzer darf nur auf eigene Dateien zugreifen
+
+% Statistiken sind read only
+
+\subsection{Erläuterung der nichtfunktionalen Anforderungen}
+
+\begin{itemize}[nosep]
+	\leftskip=0.5cm
+	\begin{minipage}[t]{\linewidth}
+		\item[NFA10] \hspace{\parindent} \textbf{Rückmeldung erfolgt innerhalb von 60 Minuten}
+		\subitem \textbf{Erklärung} Bei Abschluss einer Aufgabe soll die Rückmeldung innerhalb von 60 Minuten erfolgen. Dies ist auch der Fall, wenn eine Aufgabe fehlschlägt. Die Rückmeldung ist per E-Mail zu erfolgen.
+\subitem \textbf{Bezug} FA6
+	
+	\end{minipage}
+	\newline
+	\\
+	
+	\begin{minipage}[t]{\linewidth}
+		\item[NFA20]\hspace{\parindent} \textbf{Ein Benutzer darf nur auf eigene Dateien zugreifen}
+		\subitem \textbf{Erklärung} Um die Sicherheit der Daten jedes Benutzers zu gewährleisten, ist es normalen Benutzern nicht gestattet, auf die Daten eines anderen Benutzers zuzugreifen.
+\subitem \textbf{Bezug} Allgemein
+	
+	\end{minipage}
+	\newline
+	\\
+	
+	\begin{minipage}[t]{\linewidth}
+		\item[NFA30]\hspace{\parindent} \textbf{Ein Administrator darf auf alle Dateien zugreifen}
+		\subitem \textbf{Erklärung} Der Administrator ist der einzige Benutzer, der auf die Daten jedes Benutzers zugreifen kann.
+\subitem \textbf{Bezug} Allgemein
+	
+	\end{minipage}
+	\newline
+	\\
+	
+	\begin{minipage}[t]{\linewidth}
+		\item[NFA40] \hspace{\parindent} \textbf{Statistiken sind erst nach Beendigung der Aufgabe sichtbar}
+		\subitem \textbf{Erklärung} Aus Gründen der Übersichtlichkeit können Statistiken für eine Aufgabe eingesehen werden, nur wenn diese abgeschlossen ist (d.h. erfolgreich oder fehlgeschlagen).
+\subitem \textbf{Bezug} %Add FA
+	
+	\end{minipage}
+	\newline
+	\\
+	
+	\begin{minipage}[t]{\linewidth}
+		\item[NFA50] \hspace{\parindent} \textbf{Statistiken abgeschlossener Aufgaben sollen nicht änderbar sein}
+		\subitem \textbf{Erklärung} Statistiken sollen nicht veränderbar sein, um die Zuverlässigkeit und Genauigkeit der Daten zu gewährleisten.
+\subitem \textbf{Bezug} %Add FA
+	
+	\end{minipage}
+	\newline
+	\\
+	
+	\begin{minipage}[t]{\linewidth}
+		\item[NFA60]\hspace{\parindent} \textbf{Passwörter werden nicht als Fließtext gespeichert werden}
+		\subitem \textbf{Erklärung} Um die Sicherheit privater Benutzerdaten zu gewährleisten, sind Passwörter zu verschlüsseln.
+\subitem \textbf{Bezug} FA2
+	
+	\end{minipage}
+	\newline
+	\\
+	
+	\begin{minipage}[t]{\linewidth}
+		\item[NFA70]\hspace{\parindent}  \textbf{Benutzer verbindet sich mit dem Server über eine sichere Verbindung}
+		\subitem \textbf{Erklärung} Um die Sicherheit der Benutzerdaten zu gewährleisten, müssen sich die Benutzer über eine sichere Verbindung mit dem Server verbinden.
+\subitem \textbf{Bezug} FA1
+	
+	\end{minipage}
+\end{itemize}
 \newpage
 
 \section{Produktumgebung}
