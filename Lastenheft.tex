@@ -904,19 +904,19 @@ Dies ist ein Beispiel für eine E-Mail-Benachrichtigung, die ein \gls{Benutzer} 
 \subsubsection{Haupt\gls{Server} starten}
 Startet das Programm im \gls{Daemon} Modus. Optional kann die Abhöhrende Internet Protokoll Adresse (v4 oder v6) und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk und der Http \gls{Web-API} angeben werden.
 \begin{mycode}
-bbs [<--\gls{Server}|-s> <ipaddr>] [<--\gls{Server}port|-sp> <port>] [<--\gls{Web-API}|-w> <ipaddr>] [<--\gls{Web-API}-port|-wp> <port>]
+bbs [<--server|-s> <ipaddr>] [<--serverport|-sp> <port>] [<--webapi}|-w> <ipaddr>] [<--webapi-port|-wp> <port>]
 \end{mycode}
 
 \subsubsection{Arbeiter starten}
 Startet das Programm im \gls{Daemon} Modus. Optional kann die Internet Protokoll Adresse (v4 oder v6) bzw. der DNS Namen des Haupt\gls{Server}s und den Port (Dezimale 16bit Ganzzahl) im (lokalen) Netzwerk angeben werden.
 \begin{mycode}
-bbd [<--\gls{Server}|-s> <ipaddr>] [<--\gls{Server}port|-sp> <port>]
+bbd [<--server|-s> <ipaddr>] [<--serverport|-sp> <port>]
 \end{mycode}
 
 \subsubsection{Aufgabe erstellen}
 Sendet die angegebene \gls{Aufgabe} an den \gls{Server} und gibt die \glspl{Aufgabe} ID an der Standard Ausgabe aus (Dezimal).
 \begin{mycode}
-bbc <--run|-r> [--block|-b] [<--priority|-p> <priority>] [<--max-\gls{CPU}-count|-Mc> <Integer>] [<--min-\gls{CPU}-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] [<--email|-em> <email>] [<--image|-im> <name>] [<program> [args]+]
+bbc <--run|-r> [--block|-b] [<--priority|-p> <priority>] [<--max-cpu-count|-Mc> <Integer>] [<--min-cpu-count|-mc> <Integer>] [<--max-ram|-Mr> <Integer>] [<--min-ram|-mr> <Integer>] [<--email|-em> <email>] [<--image|-im> <name>] [<program> [args]+]
 \end{mycode}
 Falls \texttt{-{}-block} block angegeben wurde, wird statt der \glspl{Aufgabe} ID die Ausgabe der \gls{Aufgabe} ausgegeben.
 Außer man beendet es forzeitig mit \texttt{CTRL + C}, dann wird die \glspl{Aufgabe} ID direkt danach ausgeben.
@@ -973,7 +973,7 @@ Fügt ein \gls{Docker} Abbild als Ausführungsumgebung hinzu.
 Legt sämtliche Eigenschaften eines \gls{Docker} Abbildes mit einer \href{https://docs.\gls{Docker}.com/engine/reference/builder/}{DockerFile} fest.
 Beispielsweise Betriebssystem und installierte Programme. 
 \begin{mycode}
-bbc <--add-image|-ai> <imagename> <Ordner der \gls{Docker}File>
+bbc <--add-image|-ai> <imagename> <Ordner der DockerFile>
 \end{mycode}
 
 \subsubsection{Docker Abbild entfernen}
@@ -994,10 +994,6 @@ Legen die minimale bzw. maximale anzahl der verwendbaren \glspl{CPU} fest.
 
 \subsubsection{\texttt{-{}-min-ram} und \texttt{-{}-max-ram}}
 Legen den minimal verfügbaren bzw. maximale verwendbaren Arbeitsspeicher fest.
-
-\subsubsection{\texttt{-{}-\gls{Server}}}
-Startet den \gls{Server}, der die \glspl{Aufgabe} an die Arbeiter verteilt.
-
 
 \clearpage
 \section{Testfälle/Testszenarien}
