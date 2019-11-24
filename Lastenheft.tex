@@ -314,11 +314,70 @@ Nach einiger Zeit erhält Peter eine E-Mail mit dem Ergebnis seiner Simulation.
 \includegraphics[width=\textwidth]{Anwendungsmöglichkeiten}
 \includegraphics[width=\textwidth]{Systemmodelle/Systemaufbau}
 
-Den Kern des Systems stellt der Verteilungsserver dar. Er ist in der Lage über ein von Nutzern benutzbares Netzwerk Anfragen von den einzelnen Clients entgegenzunehmen und sie zu verwalten.
-Außerdem enthält er eine Datenbank, in der sämtliche Statistiken gespeichert werden, sowie einen HTTP Dienst, der Anfragen auf Statistiken beantwortet und einen SMTP-Dienst, der die Benutzer benachrichtigt. An einer weiteren Schnittstelle ist er an ein von Außen nicht sichtbares Netzwerk angeschlossen, in dem sich die einzelnen Arbeiter befinden. Der Verteilungsserver kann Anfragen direkt an die sie in diesem Netz verteilen, ohne dass die Arbeiter von außerhalb des versteckten Netzes gesehen werden können. Außerdem gibt es ein geteiltes Netzwerk-Dateisystem, das von allen Rechnern in beiden Netzwerken, dem öffentlichen Netz und dem versteckten Arbeiternetz, erreichbar ist. Hier können Daten und Programme gespeichert werden, die für die erstellten Aufgaben benötigt werden.
+Den Kern des Systems stellt der \gls{Server} dar. Er ist in der Lage über ein von Nutzern benutzbares Netzwerk Anfragen von den einzelnen \glspl{Client} entgegenzunehmen und sie zu verwalten.
+Außerdem enthält er eine \gls{Datenbank}, in der sämtliche \glspl{Statistik} gespeichert werden, sowie einen HTTP Dienst, der Anfragen auf \gls{Statistik} beantwortet und einen SMTP-Dienst, der die \glspl{Benutzer} benachrichtigt. An einer weiteren Schnittstelle ist er an ein von Außen nicht sichtbares Netzwerk angeschlossen, in dem sich die einzelnen \glspl{Arbeiter} befinden. Der \gls{Server} kann Anfragen direkt an die sie in diesem Netz verteilen, ohne dass die \gls{Arbeiter} von außerhalb des versteckten Netzes gesehen werden können. Außerdem gibt es ein geteiltes Netzwerk-Dateisystem, das von allen Rechnern in beiden Netzwerken, dem öffentlichen Netz und dem versteckten Arbeiternetz, erreichbar ist. Hier können Daten und Programme gespeichert werden, die für die erstellten \glspl{Aufgabe} benötigt werden.
 
+\subsection{Ablaufdiagramme}
+\subsubsection{Systeminitialisierung}
+Dieses Ablaufdiagramm soll grob den Ablauf der Systeminitialisierung skizzieren, bei der aus einzelnen Rechnern das ganze System gebaut wird.\\
+
+\includegraphics[width=\linewidth]{Systemmodelle/Models/Init.PNG}
+\\
+1. Der \gls{Server} fängt an, auf Anfragen von Nutzern und Arbeitern zu hören. Falls die \gls{Warteschlange} beim letzten System Stopp nicht leer war, lädt er außerdem alle noch nicht bearbeiteten \glspl{Aufgabe} in seine \gls{Warteschlange}.\\
+2. Ein \gls{Arbeiter} schickt eine Anfrage an alle Rechner im Netzwerk, ob es sich bei ihnen um einen \gls{Server} handelt. \\
+3. Der \gls{Server} bestätigt dem \gls{Arbeiter}, dass er ein \gls{Server} ist.\\
+4. Der \gls{Arbeiter} teilt dem \gls{Server} mit, dass er bereitsteht um bei jenem eingereichte \glspl{Aufgabe} zu bearbeiten.\\
+5. Der \gls{Arbeiter} wartet auf \glspl{Aufgabe} vom \gls{Server}.
+
+\subsubsection{Systemabbau}
+Im Folgenden soll der Ablauf zur Außerbetriebnahme des Systems für beispielsweise Wartungsarbeiten skizziert werden.\\
+
+\includegraphics[width=\linewidth]{Systemmodelle/Models/Shutdown.PNG}
+\\
+Manuelle Abmeldung eines einzelnen \gls{Arbeiter}s:\\
+1. Der \gls{Arbeiter}1 soll vom System abgemeldet werden und meldet sich deshalb beim \gls{Server} ab, rechnet aber seine aktuelle \gls{Aufgabe} noch zu ende.\\
+2. Der \gls{Server} plant den \gls{Arbeiter}1 aus.\\
+3. Der \gls{Arbeiter}1 meldet den Abschluss der \gls{Aufgabe}.\\
+4. Der \gls{Server} benachrichtigt den \gls{Arbeiter}1, dass er befreit ist.\\
+5. Der \gls{Arbeiter}1 bestätigt dem \gls{Server}, dass er die Befreiung erhalten hat.\\
+Herunterfahren des gesamten Systems:\\
+6. Der \gls{Server} wartet, bis alle \gls{Arbeiter} mit ihren aktuellen \glspl{Aufgabe} fertig sind, gibt sie dann frei (siehe 4. bis 5.) und speichert schon mal alle sich noch in der \gls{Warteschlange} befindenden \glspl{Aufgabe} ab.\\
+7. Der letzte \gls{Arbeiter} (\gls{Arbeiter}2) meldet den Abschluss seiner \gls{Aufgabe}.
+8. Der \gls{Server} verarbeitet diese Meldung normal und gibt auch ihn frei.
+9. Der \gls{Server} beendet seinen Dienst.
+
+\subsection{Aufgabenverarbeitung}
+Dieses Diagramm beschreibt den groben Verlauf der Bearbeitung einer \gls{Aufgabe} von der Erstellung bis zur Benachrichtigung beim Abschluss.\\
+%Hier Bild einfügen
+\includegraphics[width=\linewidth]{Systemmodelle/Models/Scheduling.PNG}
+\\
+1. Der \gls{Benutzer} erstellt eine \gls{Aufgabe} und sendet sie an den \gls{Server}.
+2. Der \gls{Server} plant die \gls{Aufgabe} ein und wartet, bis ein \gls{Arbeiter} genug Ressourcen zur Verfügung stellt, damit die \gls{Aufgabe} bearbeitet werden kann.\\
+3. Der \gls{Server} sendet die \gls{Aufgabe} an den \gls{Arbeiter}.\\
+4. Der \gls{Arbeiter} bearbeitet die \gls{Aufgabe}.\\
+5. Der \gls{Arbeiter} meldet den Abschluss der \gls{Aufgabe} beim \gls{Server}.\\
+6. Der \gls{Server} speichert \glspl{Statistik} über die \gls{Aufgabe} in der \gls{Datenbank} ab.\\
+7. Der \gls{Server} meldet den Abschluss der \gls{Aufgabe} an den \gls{Benutzer}, sofern er noch im System angemeldet ist und auf eine Antwort wartet.\\
+8. Der \gls{Server} verschickt eine E-Mail an die bei der Erstellung der \gls{Aufgabe} spezifizierte Adresse, die den \gls{Benutzer} auf den Abschluss seiner \gls{Aufgabe} hinweist.
+
+\subsubsection{Notfall Aufgabenverarbeitung}
+Dieses Diagramm veranschaulicht den Verlauf einer Notfall Verteilung. Eine Notfall Verteilung bezeichnet eine \gls{Aufgabe}, die schnellstmöglich bearbeitet werden muss.\\
+\includegraphics[width=\linewidth]{Systemmodelle/Models/Emergency-Scheduling.PNG}
+\\
+1. Der \gls{Client} sendet eine Notfall-Anfrage an den \gls{Server}.\\
+2. Der \gls{Server} sucht sich einen geeigneten \gls{Arbeiter}.\\
+3. Der \gls{Server} weist den \gls{Arbeiter} dazu an, seine Arbeit zu unterbrechen.\\
+4. Der \gls{Arbeiter} meldet, dass er seine Arbeit unterbrochen hat.\\
+5. Der \gls{Server} übermittelt die Notfall \gls{Aufgabe} an den \gls{Arbeiter}.\\
+6. Der \gls{Arbeiter} bearbeitet die Notfall \gls{Aufgabe}.\\
+7. Der \gls{Arbeiter} benachrichtigt den \gls{Server} über den Abschluss des Notfalls.\\
+8. Der \gls{Server} speichert \glspl{Statistik} und Ergebnis der Notfall \gls{Aufgabe}.\\
+9. Der \gls{Server} weist den \gls{Arbeiter} an, seine unterbrochene Arbeit fortzusetzen.\\
+10. Der \gls{Server} benachrichtigt den \gls{Client} über den Abschluss des Notfalls.\\
+11. Der \gls{Server} löst das Versenden der Benachrichtigungs E-Mail aus.
 
 \clearpage
+
 \section{Produkteinsatz}
 \begin{itemize}
 \begin{minipage}[t]{\linewidth}
