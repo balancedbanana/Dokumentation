@@ -177,7 +177,7 @@ Aktuell stehen individuelle \glspl{Arbeiter} zur Verfügung, die von jedem Mitar
 Es gibt auf dem Markt bereits viele Lösungen für dieses Problem, allerdings sind sie sehr komplex und nicht leicht erweiterbar.
 Balanced Banana soll dieses Problem in Form eines kompakten, einfach bedienbaren und skalierbaren Programms lösen. \\
 
-Mit Balanced Banana soll der \gls{Benutzer} sine \gls{Aufgabe} unkompliziert von der \gls{Kommandozeile} abschicken können, sodass diese automatisch auf einen bereitstehenden \gls{Arbeiter} verteilt wird. \\
+Mit Balanced Banana soll der \gls{Benutzer} sine \gls{Aufgabe} unkompliziert von der \gls{CLI} abschicken können, sodass diese automatisch auf einen bereitstehenden \gls{Arbeiter} verteilt wird. \\
 
 Darüber hinaus soll der \gls{Benutzer} durch zusätzliche \glspl{Parameter} in der Lage sein, weitere Einschränkungen und/oder Bedingungen für seine \glspl{Aufgabe} anzugeben.\\
 
@@ -188,7 +188,7 @@ Mit Hilfe intelligenter Algorithmen soll Balanced Banana in der Lage sein, die a
 \subsection{Musskriterien}
 \begin{itemize}[nosep]
 	
-	\item Der \gls{Benutzer} kann seine \gls{Aufgabe} unkompliziert von der \gls{Befehlszeile} abschicken.
+	\item Der \gls{Benutzer} kann seine \gls{Aufgabe} unkompliziert von der \gls{CLI} abschicken.
 	
 	\item \gls{Parameter} ermöglichen die Angabe von Einschränkungen und Ansprüchen, wie zum Beispiel \gls{Prioritaet} oder minimal benötigter Arbeitsspeicher.
 		
@@ -258,7 +258,7 @@ Mit Hilfe intelligenter Algorithmen soll Balanced Banana in der Lage sein, die a
 \subsection{\textbf{Einreihen einer Aufgabe in Warteschlange}}
 Tom möchte eine Katzensimulation auf dem Rechenkluster simulieren lassen. %Alternative für Rechenkluster
 Tom startet auf seinem PC den BalancedBanana-Client. Dieser verbindet sich im Hintergrund mit dem Hauptserver des Rechenklusters und authentifiziert Tom.
-Nun reiht Tom seine Simulation auf der Kommandozeile mit normaler Priorität ein.
+Nun reiht Tom seine Simulation auf der Befehlszeile mit normaler Priorität ein.
 Tom sieht, dass alle Server ausgelastet sind und das er an zweiter Stelle in der Warteschlange steht.
 Nach zwei Stunden sieht Tom erneut nach und stellt fest, dass er nun an vorderer Stelle in der Warteschlange steht.
 Nach drei weiteren Stunden sieht er, dass seine Aufgabe aus der Warteschlange verschwunden ist und er eine E-mail erhalten hat.
@@ -273,6 +273,14 @@ Am nächsten morgen bemerkt Peter das Tom ein weiteres Duzent Katzensimulationen
 24 Stunden nach Einreihung seiner Aufgabe wird nun die Priorität dieser automatisch erhöht und hat nun ebenfalls hohe Priorität.
 Peter bemerkt das seine Aufgabe nun in der Warteschlange langsam nach vorne rückt und schließlich gestartet wird. 
 Nach einiger Zeit erhält Peter eine Email mit dem Ergebnis seiner Simulation.
+
+\section{Systemmodelle}
+
+% hier die Systemmodelle einfügen
+
+Den Kern des Systems stellt der Verteilungsserver dar. Er ist in der Lage über ein von Nutzern benutzbares Netzwerk Anfragen von den einzelnen Clients entgegenzunehmen und sie zu verwalten.
+Außerdem enthält er eine Datenbank, in der sämtliche Statistiken gespeichert werden, sowie einen HTTP Dienst, der Anfragen auf Statistiken beantwortet und einen SMTP-Dienst, der die Benutzer benachrichtigt. An einer weiteren Schnittstelle ist er an ein von Außen nicht sichtbares Netzwerk angeschlossen, in dem sich die einzelnen Arbeiter befinden. Der Verteilungsserver kann Anfragen direkt an die sie in diesem Netz verteilen, ohne dass die Arbeiter von außerhalb des versteckten Netzes gesehen werden können. Außerdem gibt es ein geteiltes Netzwerk-Dateisystem, das von allen Rechnern in beiden Netzwerken, dem öffentlichen Netz und dem versteckten Arbeiternetz, erreichbar ist. Hier können Daten und Programme gespeichert werden, die für die erstellten Aufgaben benötigt werden.
+
 
 \clearpage
 \section{Produkteinsatz}
@@ -306,37 +314,6 @@ Balanced Banana ist den Aufgabengebieten entsprechend in drei Teile aufgeteilt:\
 \end{itemize}
 \newpage
 
-\newpage
-\section{Produktumgebung}
-% Unter welcher Software / Hardware läuft es?
-
-\begin{itemize}
-\begin{minipage}[t]{\linewidth}
-\item \textbf{Client (Nutzer) Umgebung}\newline
-Das Benutzer Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgenden Anforderungen genügt:
-\subitem \textbf{Betriebssystem:} Linux oder ein Linux basiertes Betriebssystem
-\subitem \textbf{CPU:} Mindestens ein CPU Kern
-\subitem \textbf{Arbeitsspeicher:} Mindestens 1 GB verfügbarer Arbeitsspeicher
-\end{minipage}
-\\
-
-\begin{minipage}[t]{\linewidth}
-\item \textbf{Scheduler (Server) Umgebung}\newline
-Das Server Produkt ist für den Einsatz auf einem Rechner bestimmt, der das Benutzer Netzwerk mit dem Arbeiter Netzwerk verbindet und folgenden Anforderungen genügt:
-\subitem \textbf{Betriebssystem:} CentOS 7 oder Ubuntu 18.04
-\subitem \textbf{CPU:} Mindestens ein CPU Kern
-\subitem \textbf{Arbeitsspeicher:} Mindestens 4 GB verfügbarer Arbeitsspeicher
-\end{minipage}
-\\
-
-\begin{minipage}[t]{\linewidth}
-\item \textbf{Arbeiter (Worker) Umgebung}\newline
-Das Arbeiter Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgenden Anforderungen genügt:
-\subitem \textbf{Betriebssystem:} CentOS 7 oder Ubuntu 18.04
-\subitem \textbf{CPU:} Mindestens ein CPU Kern, Empfohlen: 24 CPU Kerne
-\subitem \textbf{Arbeitsspeicher:} Mindestens 8 GB verfügbarer Arbeitsspeicher, Empfohlen: 64 GB Arbeitsspeicher
-\end{minipage}
-\end{itemize}
 \newpage
 
 \section{Funktionale Anforderungen}
@@ -531,7 +508,7 @@ Das Arbeiter Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgen
 	
 	\begin{minipage}[t]{\linewidth}
 		\item[FA49] \textbf{Falls der \gls{Benutzer} keine Parameter übergibt werden Standartwerte benutzt.}
-		\subitem \textbf{Erklärung} Sollte der \gls{Benutzer} keine Parameter über die Kommandozeile übergeben, oder nicht in einer Configfile spezifiziert haben, werden für bestimmte Parameter Standartwerte ausgewählt
+		\subitem \textbf{Erklärung} Sollte der \gls{Benutzer} keine Parameter über die Befehlszeile übergeben, oder nicht in einer Configfile spezifiziert haben, werden für bestimmte Parameter Standartwerte ausgewählt
 		\subitem \textbf{Voraussetzung(en)} Eine Aufgabe soll eingereiht werden.
 		\subitem \textbf{Nachbedingung(en)}
 		\subsubitem \textbf{Erfolg} Die Aufgabe wird mit Standartparametern eingereiht.
@@ -798,33 +775,38 @@ Zusätzlich soll hinterlegt werden, auf welchen Rechnern die Aufgabe aktiv lief.
 
 \end{itemize}
 
-% Verteilung und Start der Aufgabe innerhalb von XX Minuten
+\newpage
 
-% Verhältnis von Laufzeit und Pausierzeit soll nicht geringer sein als 1 zu XX
+\section{Produktumgebung}
+% Unter welcher Software / Hardware läuft es?
 
-% Mindestens 1000 Aufgaben sollen in der Warteschlage gehalten werden können
+\begin{itemize}
+\begin{minipage}[t]{\linewidth}
+\item \textbf{Client (Nutzer) Umgebung}\newline
+Das Benutzer Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgenden Anforderungen genügt:
+\subitem \textbf{Betriebssystem:} Linux oder ein Linux basiertes Betriebssystem
+\subitem \textbf{CPU:} Mindestens ein CPU Kern
+\subitem \textbf{Arbeitsspeicher:} Mindestens 1 GB verfügbarer Arbeitsspeicher
+\end{minipage}
+\\
 
-% Mindestens 100 Nutzer sollen zeitgleich neue Aufgaben in Auftrag geben können
+\begin{minipage}[t]{\linewidth}
+\item \textbf{Scheduler (Server) Umgebung}\newline
+Das Server Produkt ist für den Einsatz auf einem Rechner bestimmt, der das Benutzer Netzwerk mit dem Arbeiter Netzwerk verbindet und folgenden Anforderungen genügt:
+\subitem \textbf{Betriebssystem:} CentOS 7 oder Ubuntu 18.04
+\subitem \textbf{CPU:} Mindestens ein CPU Kern
+\subitem \textbf{Arbeitsspeicher:} Mindestens 4 GB verfügbarer Arbeitsspeicher
+\end{minipage}
+\\
 
-% Bei Ausfall der Worker (Stromausfall, ...) soll nicht mehr als 1 Stunde Rechenzeit verloren gehen -> Stündliche Backups
-
-% Bei Abschluss einer Aufgabe soll die Rückmeldung innerhalb von XX Minuten erfolgen
-
-% Statistiken sollen nur veröffentlicht werden, nachdem die Aufgabe abgeschlossen ist
-
-% Ein Administrator soll den Prioritätenpool verwalten können
-
-% Ein Benutzer darf nur auf eigene Dateien zugreifen
-
-% Statistiken sind read only
-
-\section{Systemmodelle}
-
-% hier die Systemmodelle einfügen
-
-Den Kern des Systems stellt der Verteilungsserver dar. Er ist in der Lage über ein von Nutzern benutzbares Netzwerk Anfragen von den einzelnen Clients entgegenzunehmen und sie zu verwalten.
-Außerdem enthält er eine Datenbank, in der sämtliche Statistiken gespeichert werden, sowie einen HTTP Dienst, der Anfragen auf Statistiken beantwortet und einen SMTP-Dienst, der die Benutzer benachrichtigt. An einer weiteren Schnittstelle ist er an ein von Außen nicht sichtbares Netzwerk angeschlossen, in dem sich die einzelnen Arbeiter befinden. Der Verteilungsserver kann Anfragen direkt an die sie in diesem Netz verteilen, ohne dass die Arbeiter von außerhalb des versteckten Netzes gesehen werden können. Außerdem gibt es ein geteiltes Netzwerk-Dateisystem, das von allen Rechnern in beiden Netzwerken, dem öffentlichen Netz und dem versteckten Arbeiternetz, erreichbar ist. Hier können Daten und Programme gespeichert werden, die für die erstellten Aufgaben benötigt werden.
-
+\begin{minipage}[t]{\linewidth}
+\item \textbf{Arbeiter (Worker) Umgebung}\newline
+Das Arbeiter Produkt ist für den Einsatz auf einem Rechner bestimmt, der folgenden Anforderungen genügt:
+\subitem \textbf{Betriebssystem:} CentOS 7 oder Ubuntu 18.04
+\subitem \textbf{CPU:} Mindestens ein CPU Kern, Empfohlen: 24 CPU Kerne
+\subitem \textbf{Arbeitsspeicher:} Mindestens 8 GB verfügbarer Arbeitsspeicher, Empfohlen: 64 GB Arbeitsspeicher
+\end{minipage}
+\end{itemize}
 
 \clearpage
 \section{Benutzer Oberfläche}
@@ -952,9 +934,6 @@ bbc --tail $taskid
   \makebox[\textwidth]{\includegraphics[width=\paperwidth]{beispiel_email.png}}
 \end{center}
 \clearpage
-
-\section{Qualitätszielbestimmungen}
-% Tabelle ... schafeln .. was ist ihm wichtig
 
 \begin{comment}
 
