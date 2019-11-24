@@ -32,40 +32,48 @@
 \newglossaryentry{CLI}
 {
 	name=CLI,
+	plural={CLI},
 	description={Befehlszeile, engl. Commandline Interface},
 }
 
 \newglossaryentry{CPU}
 {
 	name=CPU,
+	plural={CPU},
 	description={Central Processing Unit, Kern jedes Rechners um Anwendungen auszuführen},
 }
 
 \newglossaryentry{Daemon}
 {
 	name=Daemon,
-	description={Ein Dienst der auf Anfragen reagiert und antwortet},
+	plural={Daemon},
+	description={Ein Dienst der Anfragen annimmt und beantwortet.},
 }
 \newglossaryentry{Client}
 {
 	name={Client},
-	description={Programm auf dem Computer eines Benutzers um mit dem Server zu  kommunizieren}
-}
-\newglossaryentry{Configfile}
-{
-	name={Configfile},
-	description={Eine Datei die bestimmte Einstellungen speichert}
+	plural={Clients},
+	description={Ein Programm auf einem Benutzer PC, welches mit dem Server kommuniziert.}
 }
 
 \newglossaryentry{Server}
 {
 	name={Server},
-	description={Programm auf dem Server, der die Benutzer (Außenwelt) mit den Arbeitern (Privates Netzwerk) verbindet}
+	plural={Server},
+	description={Ein Programm auf einem Server, der die Benutzer (Außenwelt) mit den Arbeitern (Privates Netzwerk) verbindet.}
+}
+
+\newglossaryentry{Konfigurationsdatei}
+{
+	name={Konfigurationsdatei},
+	plural={Konfigurationsdateien},
+	description={Eine Datei die bestimmte Einstellungen speichert}
 }
 
 \newglossaryentry{Benutzer}
 {
 	name={Benutzer},
+	plural={Benutzer},
 	description={Eine Person, die dazu in der Lage ist, Befehle auszuführen}
 }
 
@@ -76,35 +84,25 @@
 	description={Ein diskretes Maß für Wichtigkeit bzw. Relevanz. Meist eine ganze Zahl, wobei gewisse Werte auch durch vorher definierte Wörter bezeichnet werden können}
 }
 
-\newglossaryentry{Multicast}
+\newglossaryentry{Arbeiter}
 {
-	name={Multicast},
-	description={Eine Möglichkeit Nachrichten an mehrere Rechner gleichzeitig zu senden, ermöglicht eine Verbindungslose Kommunikation zwischen Client und Server. Auf einem vorher vereinbarten Kommunikationskanal (Es können mehrere Programme ungestört auf anderen Komunikationskanälen laufen).}
-}
-
-\newglossaryentry{Worker}
-{
-	name={Worker},
-	description={Programm auf den Rechenknoten, welche dafür zuständig sind, die Aufgaben auszuführen}
+	name={Arbeiter},
+	plural={Arbeiter},
+	description={Ein Programm auf einem Rechner, der Aufgaben ausführt.}
 }
 
 \newglossaryentry{Administrator}
 {
 	name={Administrator},
+	plural={Administratoren},
 	description={Eine Person, die dazu privilegiert ist, das Gesamtsystem zu verwalten und über uneingeschränkten Zugriff auf Ein- und Ausgabedateien verfügt}
 }
 
-\newglossaryentry{Task}
+\newglossaryentry{Aufgabe}
 {
-	name={Task},
-	plural={Tasks},
+	name={Aufgabe},
+	plural={Aufgaben},
 	description={Jedes Programm (z.B. Skripte, Simulationen, etc.), das ein Benutzer auf einem Rechenknoten ausführen möchte}
-}
-
-\newglossaryentry{Rechenknoten}
-{
-	name={Rechenknoten},
-	description={Leistungsstarke Rechner, die die von einem Benutzer gescheduelten Task ausführen}
 }
 
 \newglossaryentry{Statistik}
@@ -117,25 +115,21 @@
 \newglossaryentry{Web-API}
 {
 	name={Web-API},
-	description={Web-API (Web-Application Programming Interface) ist eine Art Schnittstelle über das Web, die über eine Reihe von Funktionen verfügt, die es Benutzern ermöglichen, auf bestimmte Funktionen oder Daten einer Applikation, eines Betriebssystems oder anderer Dienste zuzugreifen}
+	description={Web-API (Web-Application Programming Interface) ist eine Schnittstelle über das Internet, die eine Sammlung von Funktionen zur Verfügung stellt, die es Benutzern ermöglichen, auf bestimmte Informationen einer Anwendung, eines Betriebssystems oder anderer Dienste zuzugreifen.}
 }
 
 \newglossaryentry{Ausnahmebehandlung}
 {
 	name={Ausnahmebehandlung},
-	description={Der Prozess der Reaktion auf das Auftreten von Ausnahmen  - außergewöhnliche Bedingungen, die eine spezielle Verarbeitung erfordern - während der Berechnung , die oft den normalen Ablauf der Programmausführung unterbrechen}
+	plural={Ausnahmebehandlungen},
+	description={Vorschriften oder Abläufe, die zur Korrektur eines Fehlers dienen.}
 }
 
-\newglossaryentry{Estimated Time of Arrival}
+\newglossaryentry{ETA}
 {
 	name={ETA},
-	description={Der Zeitpunkt, zu dem eine Task erledigt wird}
-}
-
-\newglossaryentry{Concurrency}
-{
-	name={Concurrency},
-	description={Die Eigenschaft eines Systems, mehrere Berechnungen, Anweisungen oder Befehle gleichzeitig auszuführen}
+	plural={ETA},
+	description={Abschätzung des Eingangszeitpunkts eines Ereignisses.}
 }
 
 \title{Balanced Banana}
@@ -173,84 +167,82 @@
 \section{Einleitung}
 \vspace*{1cm}
 
-Die Verteilung rechenintensiver Aufgaben ist ein in vielen Unternehmen übliches Problem. Wenn ein Team größer wird, 
-so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten Aufgaben größer und komplexer sein.\\
+Die Verteilung rechenintensiver \glspl{Aufgabe} ist ein in vielen Unternehmen übliches Problem. Wenn ein Team größer wird, so werden auch die verfügbaren Rechenressourcen und die darauf ausgeführten \glspl{Aufgabe} größer und komplexer.\\
 
 
-Es wird immer schwieriger, die vorhandenen Ressourcen effizient und gerecht auf die verschiedenen Mitarbeiter und Aufgaben aufzuteilen.
-Aktuell stehen nur einzelne Rechner zur Verfügung, die von jedem Mitarbeiter beliebig verwendet werden können. So können Aufgaben nur bearbeitet werden,
-wenn zum Zeitpunkt der Anfrage ein Rechner frei steht. Doch das ist weder fair den einzelnen Nutzern gegenüber, noch kann die Hardware dadurch gut ausgelastet werden. Wird eine Aufgabe beispielsweise mitten in der Nacht abgeschlossen, ist niemand da, um eine neue Aufgabe ausführen zu lassen. \\
+Es wird immer schwieriger, die vorhandenen Ressourcen effizient und gerecht an die verschiedenen Mitarbeiter und \glspl{Aufgabe} zu verteilen.
+Aktuell stehen individuelle \glspl{Arbeiter} zur Verfügung, die von jedem Mitarbeiter beliebig verwendet werden können. So können \glspl{Aufgabe} nur bearbeitet werden, wenn zum Zeitpunkt der Anfrage ein \gls{Arbeiter} frei steht. Doch das ist weder fair einem einzelnen \gls{Benutzer} gegenüber, noch kann die Hardware dadurch gut ausgelastet werden. Wird eine \gls{Aufgabe} beispielsweise mitten in der Nacht abgeschlossen, ist niemand da, um eine neue \glspl{Aufgabe} ausführen zu lassen. \\
 
 
 Es gibt auf dem Markt bereits viele Lösungen für dieses Problem, allerdings sind sie sehr komplex und nicht leicht erweiterbar.
-Balanced Banana soll dieses Problemes in Form eines kompakten, einfach zu bedienenden und skalierbaren Programms lösen. \\
+Balanced Banana soll dieses Problem in Form eines kompakten, einfach bedienbaren und skalierbaren Programms lösen. \\
 
-Mit unserem Programm soll der Benutzer seine Aufgaben einfach von der Kommandozeile absetzen können, die dann automatisch auf die bereitstehende Hardware verteilt werden. \\
+Mit Balanced Banana soll der \gls{Benutzer} sine \gls{Aufgabe} unkompliziert von der \gls{Kommandozeile} abschicken können, sodass diese automatisch auf einen bereitstehenden \gls{Arbeiter} verteilt wird. \\
 
-Darüber hinaus soll der Benutzer durch die Verwendung von zusätzlichen Parametern in der Lage sein, weitere Einschränkungen und/oder Bedingungen für seine Aufgaben anzugeben.\\
+Darüber hinaus soll der \gls{Benutzer} durch zusätzliche \glspl{Parameter} in der Lage sein, weitere Einschränkungen und/oder Bedingungen für seine \glspl{Aufgabe} anzugeben.\\
 
-Mit Hilfe intelligenter Algorithmen soll unser Programm in der Lage sein die verfügbaren Rechenressourcen für die anstehenden Aufgaben effizient zu verteilen,
-basierend auf Größe, Priorität und gegebenen Einschränkungen und Bedingungen. Um möglichst flexibel einsetzbar zu sein, soll außerdem die Verteilalgorithmik
-über eine feste Schnittstelle jederzeit änderbar sein, sodass Aspekten wie Fairness oder Turnaround-Zeit unterschiedliche Priorität eingeräumt werden kann.
+Mit Hilfe intelligenter Algorithmen soll Balanced Banana in der Lage sein, die anstehenden \glspl{Aufgabe} effizient auf die verfügbaren \glspl{Arbeiter} zu verteilen. Hierbei werden Größe, \gls{Prioritaet} und gegebenen Einschränkungen berücksichtigt. Um möglichst flexibel einsetzbar zu sein, soll außerdem die \gls{Verteilerlogik} über eine feste \gls{Schnittstelle} jederzeit änderbar sein, sodass Aspekten wie Fairness oder \gls{Turnaround}-Zeit unterschiedliche Relevanz eingeräumt werden kann.
 
 \clearpage
 \section{Zielbestimmung}
 \subsection{Musskriterien}
 \begin{itemize}[nosep]
 	
-	\item Der Benutzer kann seine Aufgabe einfach von der Kommandozeile absetzen.
+	\item Der \gls{Benutzer} kann seine \gls{Aufgabe} unkompliziert von der \gls{Befehlszeile} abschicken.
 	
-	\item Parameter ermöglichen die Angabe weiterer Optionen, zum Beispiel das Setzen einer Priorität oder Anforderungen für die Tasks. 
+	\item \gls{Parameter} ermöglichen die Angabe von Einschränkungen und Ansprüchen, wie zum Beispiel \gls{Prioritaet} oder minimal benötigter Arbeitsspeicher.
 		
-	\item Balanced Banana soll in der Lage sein, die Tasks des Benutzers auf die \gls{Rechenknoten} zu verteilen.
+	\item Balanced Banana soll die \glspl{Aufgabe} der \glspl{Benutzer} auf die \glspl{Arbeiter} verteilen.
 	
-	\item Balanced Banana soll das oben genannte Ziel mit minimalem Aufwand für den Benutzer erfüllen.
+	\item Vom \gls{Benutzer} in Auftrag gegebene \glspl{Aufgabe} sollen automatisch gestartet werden.
 	
-	\item Vom Benutzer gescheduelte \glspl{Task} sollen nicht manuell gestartet werden müssen. Balanced Banana macht dies automatisch.
+	\item Balanced Banana sammelt \glspl{Statistik} über \glspl{Aufgabe}. Die \glspl{Statistik} sind von dem \gls{Auftraggeber} einsehbar.
 	
-	\item Balanced Banana sammelt \glspl{Statistik} über \glspl{Task} und stellt sie den Benutzern zur Verfügung.
+	\item Öffentliche \glspl{Statistik} sollen über eine \gls{Web-API} mit \gls{HTTP-Anfragen} bereitgestellt werden.
 	
-	\item Die Anzahl der Worker ist leicht anpassbar.
+	\item Die Anzahl der \glspl{Arbeiter} ist variabel.
 	
-	\item Der Benutzer ist in der Lage, verschiedene Prioritäten für Tasks zu setzen.
+	\item Der \gls{Benutzer} kann eine \gls{Prioritaet} für jede \gls{Aufgabe} angeben.
 	
-	\item Der Benutzer soll benachrichtigt werden, wenn eine Task erledigt ist oder fehlschlägt.
+	\item Der \gls{Benutzer} soll benachrichtigt werden, sobald eine von ihm in Auftrag gegebene \gls{Aufgabe} erledigt ist oder fehlschlägt.
 	
-	\item Statistiken sollen über eine \gls{Web-API} mit HTTP-Requests bereitgestellt werden.
+%	\item Die \gls{Web-API} ermöglicht eine einfache Integration der Balanced Banana-Statistik in andere Projekte (z.B. das % SmartTV-Projekt).
 	
-	\item Die \gls{Web-API} ermöglicht eine einfache Integration der Balanced Banana-Statistik in andere Projekte (z.B. das SmartTV-Projekt).
-	
-	\item Das Programm ist ausführlich dokumentiert und enthält klare Anleitungen zur Benutzung.
+	\item Balanced Banana verfügt über eine ausführliche Dokumentation und Bedienungsanleitung.
 
 \end{itemize}
 
 \subsection{Wunschkriterien}
 \begin{itemize}[nosep]
 
-	\item Der Benutzer kann \glspl{Task} pausieren.	
+	\item Der \gls{Benutzer} kann eine von ihm in Auftrag gegebene \gls{Aufgabe} pausieren.	
 	
-	\item Das Programm kann die \gls{Estimated Time of Arrival} für die verbleibenden Tasks vorhersagen.
+	\item Balanced Banana kann die \gls{Estimated Time of Arrival} für die nicht beendeten \glspl{Aufgabe} vorhersagen.
 	
-	\item Mehrsprachige Benachrichtigung.
+	\item Die Rückmeldung nach Beendigung einer \gls{Aufgabe} kann in verschiedenen Sprachen erfolgen.
 	
-	\item Andere Benutzer können den Status anderer Tasks verfolgen und sich darüber benachrichtigen lassen.
+%	\item Andere Benutzer können den Status anderer Tasks verfolgen und sich darüber benachrichtigen lassen.
+	\item \gls{Benutzer} können den Status von \glspl{Aufgabe}, die nicht von ihnen in Auftrag gegeben wurden, einsehen und 	sich über Änderungen benachrichtigen lassen.
 	
-	\item Der Benutzer kann die Ausführung einer Task verzögern (z.B. wenn eine Task in 30 Minuten ausgeführt werden soll).
+	\item Der \gls{Benutzer} kann einen verzögerten Start einer \gls{Aufgabe} anfordern.
 	
 \end{itemize}
 
 \subsection{Abgrenzungskriterien}
 \begin{itemize}[nosep]
 
-	\item Das Programm führt die gescheduelten \glspl{Task} nicht persönlich aus, sondern überlässt die Arbeit den \gls{Rechenknoten}.
+	\item Balanced Banana führt die in Auftrag gegebenen \glspl{Aufgaben} nicht persönlich aus, sondern übergibt die \gls{Aufgabe} an einen \gls{Arbeiter}.
 	
-	\item Das Programm macht nichts mit der Ausgabe der verschiedenen Tasks, es verteilt nur die Tasks.
+%	\item Das Programm macht nichts mit der Ausgabe der verschiedenen Tasks, es verteilt nur die Tasks.
+	\item Balanced Banana ignoriert die Ausgabe der \glspl{Aufgabe}. Balanced Banana ist ausschließlich für die Verteilung der \glspl{Aufgabe} verantwortlich.
+
+%	\item Das Programm macht keine \gls{Ausnahmebehandlung}. Es geht davon aus, dass die an es gesendeten Tasks fehlerfrei funktionieren.
+	\item Balanced Banana ignoriert Fehler der \glspl{Aufgabe}. Eine \gls{Fehlerbehandlung} soll von den \glspl{Aufgabe} oder dem \gls{Auftraggeber} erfolgen.
+
+%	\item Das Programm macht nichts mit den gesammelten \glspl{Statistik}, es lässt den Benutzer sie nur über die \gls{Web-API} sehen.
+	\item Die erhobenen \glspl{Statistik} werden nicht ausgewertet. Die \glspl{Statistik} werden zur Weiterverwendung durch die \glspl{Benutzer} erhoben.
 	
-	\item Das Programm macht keine \gls{Ausnahmebehandlung}. Es geht davon aus, dass die an es gesendeten Tasks fehlerfrei funktionieren.
-	
-	\item Das Programm macht nichts mit den gesammelten \glspl{Statistik}, es lässt den Benutzer sie nur über die \gls{Web-API} sehen.
-	
-	\item Das Programm ermöglicht keine \gls{Concurrency} von Tasks auf einem Rechenknoten.
+	\item Balanced Banana garantiert nicht, dass getrennte \glspl{Aufgaben} miteinander kommunizieren können.
 	
 \end{itemize}
 
@@ -291,25 +283,25 @@ Nach einiger Zeit erhält Peter eine Email mit dem Ergebnis seiner Simulation.
 \begin{itemize}
 \begin{minipage}[t]{\linewidth}
 \item \textbf{Zielgruppe}\newline
-Das Produkt ist für die Verwendung durch die Mitarbeiter am Institut für Technische Informatik (ITEC) des Karlsruher Institut für Technologie (KIT) gedacht.\newline
-Den Mitarbeitern soll die Benutzung der Arbeiter Rechner erleichtert werden, indem die Verteilung der Aufgaben automatisch erfolgt. Somit soll garantiert werden, dass die Aufgaben sich gegenseitig möglichst wenig stören.\newline
-Durch die Vermeidung von Situationen, in denen mehrere Personen Aufgaben auf dem selben Rechner ausführen, während einer oder mehrere andere Arbeiter unbeschäftigt sind, soll die Leistungsfähigkeit sowie allgemeine Zufriedenheit und Harmonie gesteigert werden.
+Balanced Banana ist für die Verwendung durch die Mitarbeiter am Institut für Technische Informatik (ITEC) des Karlsruher Institut für Technologie (KIT) gedacht.\newline
+Den Mitarbeitern soll die Benutzung der \gls{Arbeiter} erleichtert werden, indem die Verteilung der \glspl{Aufgabe} automatisch erfolgt. Somit soll garantiert werden, dass die \glspl{Aufgabe} sich gegenseitig möglichst wenig stören.\newline
+Durch die Vermeidung von Situationen, in denen mehrere Personen \glspl{Aufgabe} auf dem selben \gls{Arbeiter} ausführen, während einer oder mehrere andere \glspl{Arbeiter} unbeschäftigt sind, soll die Leistungsfähigkeit sowie allgemeine Zufriedenheit und Harmonie gesteigert werden.
 \end{minipage}
 \\
 
 \begin{minipage}[t]{\linewidth}
 \item \textbf{Verwendungszweck}\newline
-Das Produkt dient dazu, Simulationen und andere rechenintensive Aufgaben auf eigens zu diesem Zweck gedachte Rechner (Arbeiter) zu verteilen.\newline
-Oftmals fallen Aufgaben an, die von einem Computer berechnet werden können und sollen. Nicht immer ist der eigene Rechner jedoch dieser Aufgabe gewachsen. Damit sich Benutzer und Aufgabe also nicht um Rechenzeit streiten, werden die anstehenden Aufgaben auf einen Pool von Arbeiter Rechnern verteilt, die speziell für diesen Zweck zur Verfügung stehen. Die Aufgabe des Verteilens wird von dem Produkt übernommen.
+Balanced Banana dient dazu, Simulationen und andere rechenintensive \glspl{Aufgabe} auf eigens zu diesem Zweck gedachte Rechner (\gls{Arbeiter}) zu verteilen.\newline
+Oftmals fallen \glspl{Aufgabe} an, die von einem Computer berechnet werden können und sollen. Nicht immer ist der eigene Rechner jedoch dieser \gls{Aufgabe} gewachsen. Damit sich \gls{Benutzer} und \gls{Aufgabe} also nicht um Rechenzeit streiten, werden die anstehenden \glspl{Aufgabe} auf einen Pool von Arbeitern verteilt, die speziell für diesen Zweck zur Verfügung stehen. Die Aufgabe des Verteilens wird von Balanced Banana übernommen.
 \end{minipage}
 \\
 
 \begin{minipage}[t]{\linewidth}
 \item \textbf{Produktaufbau}\newline
-Das Produkt ist den Aufgabengebieten entsprechend in drei Programme aufgeteilt:\newline
-1. Der Client (Benutzer): Verantwortlich für die Interaktion des Benutzers mit dem Produkt auf der Befehlszeile.\newline
-2. Der Scheduler (Server): Verantwortlich für das effiziente Verteilen der Aufgaben auf dem Arbeiterpool. Agiert als Mittelmann zwischen Benutzer und Arbeiter.\newline
-3. Der Arbeiter (Worker): Verantwortlich für Ausführung, Pausieren und Abbruch der Aufgaben auf den Arbeitern (spezielle Rechner für die Aufgabenverarbeitung).
+Balanced Banana ist den Aufgabengebieten entsprechend in drei Teile aufgeteilt:\newline
+1. Der \gls{Client} (\gls{Benutzer}): Verantwortlich für die Interaktion des Benutzers mit dem Produkt auf der \gls{Befehlszeile}.\newline
+2. Der \gls{Scheduler} (\gls{Server}): Verantwortlich für das effiziente Verteilen der \glspl{Aufgabe} auf dem Arbeiterpool. Agiert als Mittelmann zwischen \gls{Benutzer} und \gls{Arbeiter}.\newline
+3. Der \gls{Arbeiter} (Worker): Verantwortlich für Ausführung, Pausieren und Abbruch der \glspl{Aufgabe} auf den Arbeitern (spezielle Rechner für die Aufgabenverarbeitung).
 \end{minipage}
 \end{itemize}
 \newpage
