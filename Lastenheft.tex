@@ -255,33 +255,23 @@ Mit Hilfe intelligenter Algorithmen soll Balanced Banana in der Lage sein, die a
 \clearpage
 \section{Szenarien}
 
-\subsection{\textbf{Einreihen einer \gls{Aufgabe} in die \gls{Warteschlange}}}
-Tom möchte eine Katzensimulation auf dem \gls{Arbeiter} simulieren lassen.
-Tom startet auf seinem PC den Balanced Banana-\gls{Client}. Dieser verbindet sich im Hintergrund mit dem \gls{Server} der \glspl{Arbeiter} und authentifiziert Tom.
-Nun reiht Tom seine Simulation auf der \gls{Vefehlszeile} mit dem Befehl 
-\begin{mycode}
-	bb -df \CatSimulation.docker -cf \Config.txt -p 2 -e TomSim@Cats.de
-\end{mycode}
-ein. %bitte den Befehl ändern, nur ganz schlechter Prototyp
-Die \gls{Aufgabe} wird nun mit normaler \gls{Prioritaet] in die \gls{Warteschlange} eingereiht.
-Tom sieht das alle \glspl{Arbeiter} ausgelastet sind und das er an zweiter Stelle in der \gls{Warteschlange} steht.
-Mit dem Befehl
-\begin{mycode}
-	bb queue
-\end{mycode}
-sieht Tom den Inhalt der aktuellen \gls{Warteschlange} ein. Vor ihm liegt eine \gls{Aufgabe} mit höherer \gls{Prioritaet} und hinter ihm eine \gls{Aufgabe} mit niedrigerer \gls{Prioritaet}.
-Nach zwei Stunden sieht Tom erneut nach und stellt fest, dass er nun an vorderer Stelle in der \gls{Warteschlange} steht.
-Nach drei weiteren Stunden sieht er das seine \gls{Aufgabe} aus der \gls{Warteschlange} verschwunden ist und er eine Email an TomSim@Cats.de erhalten hat.
-In dieser steht, dass seine \gls{Aufgabe} in 43 Minuten abgeschlossen wurde. Er erhält einen Link mit dem er die Ausgabe seiner \gls{Aufgabe} einsehen kann.
+\subsection{\textbf{Einreihen einer Aufgabe in Warteschlange}}
+Tom möchte eine Katzensimulation auf dem Rechenkluster simulieren lassen. %Alternative für Rechenkluster
+Tom startet auf seinem PC den BalancedBanana-Client. Dieser verbindet sich im Hintergrund mit dem Hauptserver des Rechenklusters und authentifiziert Tom.
+Nun reiht Tom seine Simulation auf der Kommandozeile mit normaler Priorität ein.
+Tom sieht, dass alle Server ausgelastet sind und das er an zweiter Stelle in der Warteschlange steht.
+Nach zwei Stunden sieht Tom erneut nach und stellt fest, dass er nun an vorderer Stelle in der Warteschlange steht.
+Nach drei weiteren Stunden sieht er, dass seine Aufgabe aus der Warteschlange verschwunden ist und er eine E-mail erhalten hat.
+In dieser steht, dass seine Aufgabe in 43 Minuten abgeschlossen wurde er erhält einen Link mit dem er die Ausgabe seiner Aufgabe einsehen kann.
 
-\subsection{\textbf{Aufwerten der \gls{Prioritaet}}}
+\subsection{\textbf{Aufwerten der Priorität}}
 Peter möchte eine wichtige Bauteilsimulation rechnen lassen.
-Dazu startet Peter den Balanced Banana-\gls{Client} und reiht seine \gls{Aufgabe} mit normaler \gls{Prioritaet} ein.
-Nachdem Peter nach 3 Stunden keine Rückmeldung bekommen hat, prüft er die \gls{Warteschlange} und sieht das Tom ein Duzent Katzensimulationen mit hoher \gls{Prioritaet} eingereiht hat.
-Genervt beendet Peter seinen PC und hofft, dass seine Simulation bis morgen abgeschlossen ist.
-Am nächsten morgen bemerkt Peter, dass Tom ein weiteres Duzent Katzensimulationen mit erneut hoher \gls{Prioritaet} eingereiht hat.
-24 Stunden nach Einreihung seiner \gls{Aufgabe} wird nun die \gls{Prioritaet} dieser erhöht und hat nun ebenfalls hohe \gls{Prioritaet}.
-Peter bemerkt das seine Aufgabe nun in der \gls{Warteschlange} langsam nach vorne rückt und schließlich gestartet wird. 
+Dazu startet Peter den BalancedBanana-Client und reiht seine Aufgabe mit normaler Priorität ein.
+Nachdem Peter nach 3 Stunden keine Rückmeldung bekommen hat, prüft er die Warteschlange und sieht das Tom ein Duzent Katzensimulationen mit hoher Priorität eingereiht hat.
+Genervt beendet Peter seinen PC und hofft das seine Simulation bis morgen abgeschlossen ist.
+Am nächsten morgen bemerkt Peter das Tom ein weiteres Duzent Katzensimulationen mit erneut hoher Priorität eingereiht hat.
+24 Stunden nach Einreihung seiner Aufgabe wird nun die Priorität dieser automatisch erhöht und hat nun ebenfalls hohe Priorität.
+Peter bemerkt das seine Aufgabe nun in der Warteschlange langsam nach vorne rückt und schließlich gestartet wird. 
 Nach einiger Zeit erhält Peter eine Email mit dem Ergebnis seiner Simulation.
 
 \clearpage
