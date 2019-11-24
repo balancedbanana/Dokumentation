@@ -1060,10 +1060,23 @@ echo $taskid
 bbc --tail $taskid
 \end{mycode}
 
-\subsection {Beispiel E-mail - Task Beendet}
+\clearpage
+
+\subsection {Beispiel E-Mails}
+\subsubsection{Aufgabe gestartet}
+Dies ist ein Beispiel für eine E-Mail-Benachrichtigung, die ein Benutzer erhält, wenn eine Aufgabe ausgeführt wird, und nicht, wenn sie vom Benutzer in die Warteschlange aufgenommen wird. \\
 \begin{center}
-  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{beispiel_email.png}}
+  \makebox[\textwidth]{\includegraphics[width=\linewidth]{email_start.png}}
 \end{center}
+
+\clearpage
+\subsubsection{Aufgabe beendet}
+Dies ist ein Beispiel für eine E-Mail-Benachrichtigung, die ein Benutzer erhält, wenn eine Aufgabe abgeschlossen ist. Eine Aufgabe gilt als abgeschlossen, wenn sie erfolgreich ausgeführt wurde oder fehlgeschlagen ist. Die E-Mail-Benachrichtigung zeigt diesen Unterschied nicht an, es liegt an dem Benutzer, das Programm zu überprüfen, um zu sehen, ob die Aufgabe fehlgeschlagen ist oder nicht. Die Ausgabe des Programms wird in einer .txt-Datei gespeichert und in der E-Mail angehängt. \\
+
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\linewidth]{email_ended.png}}
+\end{center}
+
 \clearpage
 
 \begin{comment}
