@@ -1,0 +1,26 @@
+name: Build
+on: [push]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v1
+      - name: Compile Lastenheft.tex
+        uses: dante-ev/latex-action@master
+        with:
+          root_file: Pflichtenheft/Lastenheft.tex
+      - name: Compile Entwurf.tex
+        uses: dante-ev/latex-action@master
+        with:
+          root_file: Entwurf/Entwurf.tex
+      - name: Upload Pflichtenheft
+        uses: actions/upload-artifact@master
+        with:
+          name: Pflichtenheft
+          path: ${{ github.workspace }}/Pflichtenheft/Lastenheft.pdf
+      - name: Upload Entwurf
+        uses: actions/upload-artifact@master
+        with:
+          name: Entwurf
+          path: ${{ github.workspace }}/Entwurf/Entwurf.pdf
