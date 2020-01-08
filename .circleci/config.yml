@@ -1,8 +1,15 @@
 version: 2
 jobs:
-   build:
-     docker:
-       - image: danteev/texlive
-     steps:
-       - checkout
-       - run: pushd Pflichtenheft && latexmk -pdf Lastenheft.tex && popd && pushd Entwurf && latexmk -pdf Entwurf.tex && popd
+  build:
+    docker:
+      - image: danteev/texlive
+    steps:
+      - checkout
+      - run:
+          name: Download clang 9.0.0 and install libstdc++
+          command: pushd Pflichtenheft && latexmk -pdf Lastenheft.tex && popd && pushd Entwurf && latexmk -pdf Entwurf.tex && popd
+      - store_artifacts:
+          path: Pflichtenheft/Lastenheft.pdf
+          destination: /
+      - store_artifacts:
+          path: Entwurf/Entwurf.pdf
