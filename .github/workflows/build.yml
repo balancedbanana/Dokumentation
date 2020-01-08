@@ -9,18 +9,20 @@ jobs:
       - name: Compile Lastenheft.tex
         uses: dante-ev/latex-action@master
         with:
-          root_file: Pflichtenheft/Lastenheft.tex
+          working-directory: Pflichtenheft/
+          root_file: Lastenheft.tex
       - name: Compile Entwurf.tex
         uses: dante-ev/latex-action@master
         with:
-          root_file: Entwurf/Entwurf.tex
+          working-directory: Entwurf/
+          root_file: Entwurf.tex
       - name: Upload Pflichtenheft
         uses: actions/upload-artifact@master
         with:
           name: Pflichtenheft
-          path: ${{ github.workspace }}/Pflichtenheft/Lastenheft.pdf
+          path: Pflichtenheft/Lastenheft.pdf
       - name: Upload Entwurf
         uses: actions/upload-artifact@master
         with:
           name: Entwurf
-          path: ${{ github.workspace }}/Entwurf/Entwurf.pdf
+          path: Entwurf/Entwurf.pdf

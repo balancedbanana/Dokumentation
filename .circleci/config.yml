@@ -5,4 +5,4 @@ jobs:
        - image: danteev/texlive
      steps:
        - checkout
-       - run: latexmk -pdf Pflichtenheft/Lastenheft.tex && latexmk -pdf Entwurf/Entwurf.tex
+       - run: pushd Pflichtenheft && latexmk -pdf Lastenheft.tex && popd && pushd Entwurf && latexmk -pdf Entwurf.tex && popd
