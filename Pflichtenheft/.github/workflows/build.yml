@@ -14,4 +14,4 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: Dokumentation
-          path: ${{ github.workspace }}/Lastenheft.pdf
+          path: ${{ github.workspace }}/Pflichtenheft/Lastenheft.pdf

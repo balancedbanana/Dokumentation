@@ -1,0 +1,17 @@
+name: Build
+on: [push]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v1
+      - name: Compile Entwurf.tex
+        uses: dante-ev/latex-action@master
+        with:
+          root_file: Entwurf.tex
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: Dokumentation
+          path: ${{ github.workspace }}/Entwurf/Entwurf.pdf
