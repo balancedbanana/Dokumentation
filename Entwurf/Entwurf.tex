@@ -14,6 +14,9 @@
 \usepackage{enumitem}
 \usepackage{verbatim}
 \usepackage{indentfirst} % Adds indent for the first paragraph after a {/section}
+\usepackage{url}
+\newcommand\purl[1]{\protect\url{#1}}
+
 
 
 \deftranslation[to=ngerman]{Glossary}{\section{Stichwortverzeichnis}}
@@ -101,6 +104,8 @@ Kurze Beschreibung
 \subsection{Datenbank}
 \subsubsection{Model}
 %Show the class diagram for it first
+
+
 
 \subsubsection{Repository}
 
@@ -208,6 +213,100 @@ Erzeugt Objekte aus gegebenen Daten.
 
 
 \end{itemize}
+\subsubsection{<<struct>> \purl{user_details}}
+
+Eine struct, die alle relevanten Userdaten kapselt.
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{int id} Eine eindeutige ID zur Identifizierung des Users.
+			
+			\item \textit{std::string name} Der Name des Users.
+			
+			\item \textit{std::string email} Die Email des Users.
+			
+			\item \textit{authkey} to be filled
+		\end{itemize}
+
+
+\end{itemize}
+
+\subsubsection{<<struct>> specs}
+
+Eine struct, die alle relevanten Hardware-Spezifikationen des Rechners kapselt.
+
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{int space} Speicherplatz.
+			
+			\item \textit{int ram} Random-Access Memory.
+			
+			\item \textit{int cores} Anzahl der CPU-Kerne.
+			
+		\end{itemize}
+
+
+\end{itemize}
+
+\subsubsection{<<struct>> \purl{worker_details}}
+
+Eine struct, die alle relevanten Workerdaten kapselt.
+
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{int id} Eine eindeutige ID zur Identifizierung des Workers.
+			
+			\item \textit{specs specs} Hardware-Spezifikationen des Rechners.
+			
+			\item \textit{std::string address}
+			
+			\item \textit{authkey} to be filled
+		\end{itemize}
+
+
+\end{itemize}
+\clearpage
+
+\subsubsection{<<struct>> \purl{job_details}}
+
+Eine struct, die alle relevanten Jobdaten kapselt.
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{JobConfig config} Enthält die Konfiguration eines Jobs.
+			
+			\item \textit{int user\_id} Die ID des Users, der diesen Job gescheduled hat.
+			
+			\item \textit{int status} Der Statuscode eines Jobs.
+			
+			\item \textit{int id} Eine eindeutige ID zur Identifizierung des Jobs.
+			
+			\item \textit{std::string command} Der Befehl des Jobs, der in der Befehlszeile eingegeben wurde.
+			
+			\item \textit{std::string schedule\_time} Die Uhrzeit, zu der der Job gescheduled wurde.
+			
+			\item \textit{std::string start\_time} Die Uhrzeit, zu der der Job gestartet wurde.
+			
+			\item \textit{std::string finish\_time} Die Uhrzeit, zu der der Job beendet wurde.
+			
+			\item \textit{specs allocated\_specs} Die Hardware-Ressourcen, die dem Job zugewiesen wurden.
+
+		\end{itemize}
+
+
+\end{itemize}
+
+
 
 % Document ends here.
 \printnoidxglossaries
