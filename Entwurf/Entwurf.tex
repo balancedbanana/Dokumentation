@@ -75,6 +75,24 @@
 \clearpage
 \section{Aufbau}
 
+\subsection{Architektur}
+% Hier soll die verschiedenen Teile unseres Programms erklärt werden.
+
+\subsubsection{Datenbank}
+
+	Die Datenbank enthält relevante Daten über verschiedene Entitäten in unserem Programm. Mit Hilfe von SQL-Queries kann unser Programm diese Daten abrufen und sinnvoll nutzen.  Unsere Datenbank verwendet ein relationales Datenbank-Managementsystem, um Informationen in verschiedenen Tabellen zu speichern. Darüber hinaus sind die Tabellen über Beziehungen miteinander verbunden, die den Sinn der Daten weiter verdeutlichen. Nachfolgend finden Sie ein Entity-Relationship-Diagramm, das zeigt, wie unsere Datenbank konzipiert ist:
+
+\includegraphics[width=\textwidth]{database_relational}
+
+Die Datenbank ist in drei verschiedene Klassen unterteilt: Die Repository-, die Gateway- und die Factory-Klasse. Die Gateway-Klasse verwendet das Qt-Framework, um sich mit der Datenbank zu verbinden und die SQL-Queries durchzuführen. Die Factory-Klasse ist für die Erstellung von Objekten aus den vom Gateway zurückgegebenen Daten verantwortlich. Das Repository nutzt beide Klassen und dient als Schnittstelle für den Zugriff auf die Datenbank.
+
+
+\subsection{Klassendiagramm}
+
+% Übersicht aller Klassendiagramme
+
+
+
 
 \clearpage
 \section{Klassenbeschreibung}
