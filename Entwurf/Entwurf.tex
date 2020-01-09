@@ -6,8 +6,8 @@
 \usepackage[T1]{fontenc}    % this is needed for correct output of umlauts in pdf
 \usepackage[margin=2.5cm]{geometry} %layout
 \usepackage{booktabs}
-\usepackage[hidelinks]{hyperref}
-\hypersetup{pdftitle={Balanced Banana},bookmarks=true,}
+%\usepackage[hidelinks]{hyperref}
+%\hypersetup{pdftitle={Balanced Banana},bookmarks=true,}
 \usepackage{graphicx}
 \usepackage{csquotes}
 \usepackage[nonumberlist]{glossaries}
@@ -119,11 +119,10 @@ Kurze Beschreibung
 \end{itemize}
 
 \fi
+
 \subsection{Datenbank}
 \subsubsection{Model}
 %Show the class diagram for it first
-
-
 
 \subsubsection{Repository}
 
@@ -269,7 +268,6 @@ Eine struct, die alle relevanten Hardware-Spezifikationen des Rechners kapselt.
 
 
 \end{itemize}
-
 \subsubsection{struct \purl{worker_details}}
 
 Eine struct, die alle relevanten Workerdaten kapselt.
@@ -322,6 +320,112 @@ Eine struct, die alle relevanten Jobdaten kapselt.
 
 
 \end{itemize}
+\clearpage
+
+\subsection{Client}
+
+\subsubsection{Model}
+
+% Diagramm
+
+\subsubsection{CommandLineProcessor}
+
+Der Command Line Processor (CLP) ist dafür zuständig, die Benutzereingabe auf der Befehlszeile in eine für das Programm verwendbare Struktur zu überführen. Es werden die Argumente auf der Befehlszeile eingelesen und mit vom Benutzer in einer Konfigurationsdatei angegebenen Standardwerten ergänzt. Anhand der Angaben auf der Befehlszeile kann erkannt werden, um welchen Typ von Befehl es sich handelt, und welche Parameter für die Ausführung des Befehls vorhanden sein müssen.
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{public Task process(char** argv, int* argc)} Verarbeitet Argumente der Befehlszeile. Weist jedem Argument zuerst den auf der Befehlszeile spezifizierten Wert, dann den vom Benutzer in einer Konfigurationsdatei hinterlegten Wert zu. Argumente, die nicht auf der Befehlszeile oder in der Konfigurationsdatei vorhanden sind, werden von dem Server mit Standardwerten verfollständigt.\newline
+			\newline
+			argv: Array der Bezeichner sowie Werte der Argumente\newline
+			argc: Anzahl der Einträge in argv
+
+
+			\item \textit{private void preProcess(char** argv, int* argc, std::shared\_pointer<Task> task)}
+			Baut aus den übergebenen Argumenten einen Task auf.\newline
+			Bestimmt den Typ der Anfrage (neue Aufgabe oder vorhandene Bearbeiten)\newline
+			Hierbei werden komplexe Argumente von den eigentlichen Argumenten getrennt (z.B. wird der Aufgaben 	Startbefehl von den Argumenten unseres Programms abgetrennt, damit dies nicht zu Problemen in späteren
+			Verarbeitungsschritten führt).\newline
+			argv und argc werden dementsprechend angepasst.\newline
+			\newline
+			argv: Array der Bezeichner und Werte der Argumente\newline
+			argc: Anzahl der Einträge in argv\newline
+			task: Bekommt einen Aufgaben-Typ zugewiesen
+
+
+			\item \textit{private void processArguments(char** argv, int* argc, std::shared\_pointer<Task> task)}
+			Wertet die Argumente der Befehlszeile aus und speichert sie in task.\newline
+			Zusätzlich werden die Argumente aus der lokalen Konfigurationsdatei übernommen.\newline
+			\newline
+			argv: Array der Bezeichner und Werte der Argumente\newline
+			argc: Anzahl der Einträge in argv\newline
+			task: Enthält nach Abarbeitungsende alle auf der Befehlszeile eingelesenen Argumente sowie alle Standardargumente der lokalen Konfigurationsdatei
+
+
+		\end{itemize}
+
+
+\end{itemize}
+
+\clearpage
+
+\subsubsection{Task}
+
+Ein Task ist eine Repräsentation eines auf der Befehlszeile eingegebenen Befehls. Er enthält Informationen, die für die Ausführung des gewünschten Befehls wichtig sind. Dazu gehören im wesentlichen Befehlstyp sowie Argumente.
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{taskCommand} Startbefehl für die eingereichte Aufgabe
+			\item \textit{config} Konfiguration dieses Befehls. Argumente der Befehlszeile und der lokalen Konfigurationsdatei.
+			\item \textit{type} Gibt an, um was für eine Form von Anfrage es sich handelt (Starte neue Aufgabe oder frage etwas über eine existierende Aufgabe ab)
+		\end{itemize}
+
+	\item \textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+
+			\item \textit{public int getType()} Gibt den Befehlstyp type zurück.
+
+			\item \textit{public void setType(int type)} Setzt den Befehlstyp zu dem Angegebenen Typ. 
+
+			\item \textit{public JobConfig getConfig()} Gibt Zugang zur Konfiguration des Befehls. Die Konfiguration kann von außerhalb beliebig modifiziert werden. 
+
+			\item \textit{public std::string getTaskCommand()} Gibt den vom Benutzer spezifizierten Startbefehl der eingereichten Aufgabe (falls eine eingereicht wurde) so, wie er auf der Befehlszeile ausgeführt werden soll.
+
+			\item \textit{public void setTaskCommand(const std::string\& taskCommand} Setzt den Startbefehl der eingereichten Aufgabe (falls eine eingereicht wurde).
+		\end{itemize}
+
+\end{itemize}
+\clearpage
+
+\subsubsection{Client}
+
+Die Hauptklasse der Client Anwendung. Verarbeitet die Befehls des Benutzers und leitet diese weiter an den Server. Bei Bedarf kann auf eine Rückmeldung des Servers gewartet werden, die dem Benutzer auf der Befehlszeile angezeigt wird.
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+
+			\item \textit{int main(char** argv, int* argc)} Wandelt den Befehl des Benutzers mithilfe des CommandLineProcessor in verwendbare Struktur um. Leitet diesen dann an den Server weiter. Bei Bedarf wird die Netzwerkkommunikation offen gehalten, bis der Server eine Rückmeldung gesendet hat. Nach Ausgabe der Rückmeldung ist der Befehl beendet und die Client Anwendung wird beendet.
+			
+		\end{itemize}
+
+\end{itemize}
+
+
+\section{Abläufe}
+\subsection{Repository Pattern Beispielverwendung}
+
+Das folgende Sequenzdiagramm veranschaulicht, wie die \textit{getWorker(uint64\_t worker\_id)} funktioniert und, was noch wichtiger ist, wie das Repository-Pattern als Ganzes funktioniert.
+
+\includegraphics[width=\textwidth]{repository_sequence_diagram}
+
+Der Rest des Programms verwendet die Repository-Klasse als Schnittstelle für Queries. \textit{public Worker getWorker(uint64\_t worker\_id)} wird aus dem Repository aufgerufen. Das Repository ruft dann die Methode \textit{getWorker} im Gateway mit dem vom Client übergebenen Argument auf. Wenn die Operation erfolgreich war, übergibt das Repository den Rückgabewert vom Gateway an die Methode \textit{createWorker} in der Factory. Das Repository gibt dann das neu erzeugte Worker-Objekt an den Client zurück.
+
+
 
 \subsection{Configfiles}
 
