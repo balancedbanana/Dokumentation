@@ -513,6 +513,362 @@ Die Hauptklasse der Client Anwendung. Verarbeitet die Befehls des Benutzers und 
 \end{itemize}
 
 
+\subsection{Communication}
+
+\subsubsection{Model}
+
+% Diagramm
+
+
+\subsubsection{AuthHandler}
+
+Beschreibt Methoden zur Ausführung von Authentifizierungsversuchen. Kann mithilfe verschiedener Protokolle eine Person authentifizieren. Dient der Sicherheit vor Verwechselung und Täuschung.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public AuthHandler GetDefault(Communicator comm)} Gibt einen Allzweck AuthHandler zurück, der in jeder Situation funktioniert.
+			\item\textit{public AuthHandler(Communicator comm)} Gibt einen besonderen AuthHandler zurück, der in einer bestimmten Situation angemessener ist, als der Standard AuthHandler
+			\item\textit{public virtual void authenticate(std::shared_pointer<User>, std::string password)} Authentifiziere einen Benutzer mithilfe eines Passworts.
+			\item\textit{public void authenticate(std::shared_pointer<User>, std::string signature)} Authentifiziere einen Benutzer mithilfe einer Signatur (nicht notwendigerweise ein Passwort)
+			
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{SSHAuthHandler}
+
+Implementiert einen AuthHandler, der mit dem SSH Protokoll arbeitet.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void authenticate(std::string username, std::string password)} Implementiert die SSH Authentifizierung eines Benutzers mithilfe eines Passworts.
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{LDAPAuthHandler}
+
+Implementiert einen AuthHandler, der mithilfe des LDAP Protokolls arbeitet.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void authenticate(std::string username, std::string password)} Implementiert die LDAP Authentifizierung eines Benutzers mithilfe eines Passworts.
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{ClientAuthMessage}
+
+Nachricht für die Authentifizierung eines Clienten (Anwendung). Wird beim ersten Verbindungsaufbau verwendet. Bei weiteren Verbindungen können andere Nachrichten Typen erforderlich sein.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{std::string username} Der Name des zu authentifizierenden Benutzers.
+			\item\textit{std::string password} Verschlüsselte Form des vom Benutzer angegebenen Passworts.
+			\item\textit{std::string publickey} Ein öffentlicher Schlüssel, der im Authentifizierungsverfahren Anwendung findet.
+		\end{itemize}
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public ClientAuthMessage(std::string username, std::string password, std::string pubkey)}
+			\item\textit{public void process(std::shared_pointer<MessageProcessor> mp)}
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{PublicKeyAuthMessage}
+
+Nachricht für die Authentifizierung eines Benutzers mittels eine public Key Verfahrens.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			
+			\item\textit{std::string username} Der Name des zu authentifizierenden Benutzers.
+			\item\textit{std::string usernamesignature} Eine Signatur, die dem Benutzer zugewiesen wurde.
+		\end{itemize}
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void process(std::shared_pointer<MessageProcessor> mp)}
+			\item\textit{public PublicKeyAuthMessage(std::string username, std::string usernamesignature)}
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{AuthResult}
+
+Ergebnis der Authentifizierung. Gibt im wesentlichen den Erfolg der Authentifizierung an.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{unsigned long status} Gibt an, wie die Authentifizierung ausgegangen ist. (Erfolg/Misserfolg)
+		\end{itemize}
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public unsigned long getStatus()}
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{WorkerAuthMessage}
+
+Nachricht, die zur Authentifizierung eines Arbeiters dient. Hier wird im Allgemeinen kein komplexes Sicherheitsverfahren verwendet.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{std::string workername} Name des Arbeiters, der authentifiziert wird.
+			\item\textit{std::string publickey} Ein public Key der in gleichnamigen Verfahren Anwendung findet.
+		\end{itemize}
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void process(std::shared_pointer<MEssageProcessor> mp)}
+			\item\textit{public WorkerAuthMessage(std::string workername, std::string pubkey)}
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{Communicator}
+
+Haupteinheit zur Kommunikation der verschiedenen Anwendungen. Ermöglicht senden und empfangen von Nachrichten, die von und zu anderen Einheiten des Systems gesendet werden. Verbirgt die Details der Netzwerkkommunikation vor anderen Teilen der Programme. Wird identisch in allen Anwendungen verwendet.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void listen(std::function<void(std::shared_pointer<Message>)> callback)} Warte auf eine eingehende Nachricht. Ruft dann callback auf, mit der eingegangenen Nachricht als Parameter.
+			\item\textit{public void send(Message message)} Sendet eine Nachricht an einen eindeutigen Empfänger.
+
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{SSLSocket}
+
+Basis der verschlüsselten Kommunikation. Stellt Funktionalität zur sicheren Netzwerkkommunikation mithilfe des SSH Protokolls bereit.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void connect(std::string address} Verbindet sich mit einem Socket an der angegebenen Netzwerkadresse.
+			\item\textit{public void listen(unsigned short port, std::function<void(std::shared_pointer<SSLSocket>)> callback)} Wartet auf eine eingehende Nachricht an einem bestimmten Port. Ruft dann eine callback Methode auf mit dem relevanten Socket als Parameter. Die Callback Routine kann dann die Nachricht verarbeiten.
+			\item\textit{public void send(const char* msg)} Sendet eine Nachricht an einen zuvor spezifizierten Empfänger.
+			\item\textit{public void receive(char* data), size_t size)} Nehme eine Netzwerknachricht entgegen, die in Form eines byte Streams am Netzwerkadapter ankam.
+			\item\textit{public void listen(unsigned short port, std::function<void()> callback)} Wartet auf eine eingehende Nachricht und ruft dann eine callback methode auf, die dieses Ereigniss verarbeitet.
+
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{MessageProcessor}
+
+Haupteinheit für die Verarbeitung eingegangener Nachrichten. Ein Message Processor kann den Typ einer Nachricht identifizieren und je nach Nachrichtentyp die benötigten Prozesse anstoßen, um die Nachricht zu verarbeiten.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void process(std::shared_pointer<Message> msg)} Verarbeitet eine engegangene Nachricht, indem deren Typ identifiziert wird und mit den enthaltenen Daten Ereignisse angestoßen werden.
+			\item\textit{private void handleInvalidMessage(std::shared_pointer<Message> msg)} Sollte eine ungültige Nachricht eingegangen sein, wird diese an dieser Stelle behandelt. Kann von der konreten Implementierung des Message Processors abhängig sein.
+
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{ClientMP}
+
+Message Processor für den Client. Hiermit verarbeitet die Client (Benutzer) Anwendung Nachrichten vom Server, wie zum Beispiel Rückmeldungen auf Statusabfragen.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void process(std::shared_pointer<Message> msg)}
+
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{SchedulerClientMP}
+
+Message Processor für den Server (Scheduler) der Nachrichten verarbeitet, die von Seiten einer Client (Benutzer) Anwendung kommen.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void process(std::shared_pointer<Message> msg)}
+
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{SchedulerWorkerMP}
+
+Message Processor für den Server (Scheduler) der Nachrichten verarbeitet, die von Seiten einer Worker Anwendung kommen.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void process(std::shared_pointer<Message> msg)}
+
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{WorkerMP}
+
+Message Processor für den Worker der Nachrichten verarbeitet, die von Seiten einer Server (Scheduler) Anwendung kommen.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void process(std::shared_pointer<Message> msg)}
+
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{Message}
+
+Basis jeder Nachricht, die von den Anwendungen aneinander versendet werden können. Erzwingt die Möglichkeit zur Eindeutigen Identifikation einer Nachricht anhand einer Id sowie die Möglichkeit eine Nachricht Netzwerkfähig zu machen und aus einer Netzwerknachricht zu rekonstruieren.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{protected const unsigned int typeId} Eindeutige Nummer, die eine Nachricht identifiziert. Wird verwendet um verschiedene Nachrichtentypen mit unterschiedlichen Daten zu unterscheiden.
+			
+		\end{itemize}
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void process(std::shared_pointer<MessageProcessor> mp)} Verarbeite diese Nachricht mithilfe des angegebenen Message Processors.
+			\item\textit{public std::string serialize()} Wandle die Nachricht in eine Abfolge von bytes um, die über das Netzwerk versendet werden kann.
+			\item\textit{public std::shared_pointer<Message> deserialize(const char* msg, unsigned int size)} Rekonstruieren die Nachricht aus einer folge von bytes, die über das Netzwerk angekommen sind.
+
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{SnapshotMessage}
+
+Nachricht, die das Erstellen eines Snapshots einer laufenden Aufgabe auf einem Worker anfordert. Wird vom Scheduler an einen Worker versendet.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{unsigned long jobid} Welche Aufgabe soll gesichert werden?
+			\item\textit{bool stop} Soll während dem Erstellen des Snapshots die Ausführung der Aufgabe pausiert werden?
+			
+		\end{itemize}
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void process(std::shared_pointer<MessageProcessor>)}
+			\item\textit{public SnapshotMessage(unsigned long jobid, bool stop)}
+
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{RegistrationMessage}
+
+Nachricht, um sich bei einer anderen Anwendung anzumelden. Wird primär zwischen Server und Worker verwendet, damit die Worker wissen wie sie einen Scheduler ansprechen können und der Scheduler alle verfügbaren Worker kennen kann.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void process(std::shared_pointer<MessageProcessor>)}
+
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{HardwareDetailMessage}
+
+Nachricht, die Informationen über die Hardware eines Workers enthält. Wird vom Worker zum Scheduler gesendet.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{int coreCount} Wie viele CPU Kerne können für eine Aufgabe verwendet werden.
+			\item\textit{int ramSize} Wie viel Arbeitsspeicher ist auf dem Worker vorhanden.
+			\item\textit{std::string osIdentifier} Welches Betriebssystem verwendet der Worker.
+			
+		\end{itemize}
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void process(std::shared_pointer<MessageProcessor>)}
+			\item\textit{public HardwareDetailMessage(int coreCount, int ramSize, std::string osIdentifier)}
+
+		\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{TaskMessage}
+
+Nachricht, die Informationen zu einer Aufgabe übermittelt. Wird von Client zu Server gesendet.
+
+	\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{Task task} Objekt, welches Informationen über den vom Benutzer angeforderten Befehl enthält. Siehe Task.
+			
+		\end{itemize}
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void process(std::shared_pointer<MessageProcessor>)}
+			\item\textit{public TaskMessage(Task task)}
+
+		\end{itemize}
+
+\end{itemize}
+
+
+
 \section{Abläufe}
 \subsection{Repository Pattern Beispielverwendung}
 
