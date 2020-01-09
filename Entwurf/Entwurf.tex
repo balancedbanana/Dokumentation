@@ -535,8 +535,8 @@ Beschreibt Methoden zur Ausführung von Authentifizierungsversuchen. Kann mithil
 		\begin{itemize}[label={\textbullet}]
 			\item\textit{public AuthHandler GetDefault(Communicator comm)} Gibt einen Allzweck AuthHandler zurück, der in jeder Situation funktioniert.
 			\item\textit{public AuthHandler(Communicator comm)} Gibt einen besonderen AuthHandler zurück, der in einer bestimmten Situation angemessener ist, als der Standard AuthHandler
-			\item\textit{public virtual void authenticate(std::shared_pointer<User>, std::string password)} Authentifiziere einen Benutzer mithilfe eines Passworts.
-			\item\textit{public void authenticate(std::shared_pointer<User>, std::string signature)} Authentifiziere einen Benutzer mithilfe einer Signatur (nicht notwendigerweise ein Passwort)
+			\item\textit{public virtual void authenticate(std::shared\_pointer<User>, std::string password)} Authentifiziere einen Benutzer mithilfe eines Passworts.
+			\item\textit{public void authenticate(std::shared\_pointer<User>, std::string signature)} Authentifiziere einen Benutzer mithilfe einer Signatur (nicht notwendigerweise ein Passwort)
 			
 		\end{itemize}
 
@@ -587,7 +587,7 @@ Nachricht für die Authentifizierung eines Clienten (Anwendung). Wird beim erste
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
 			\item\textit{public ClientAuthMessage(std::string username, std::string password, std::string pubkey)}
-			\item\textit{public void process(std::shared_pointer<MessageProcessor> mp)}
+			\item\textit{public void process(std::shared\_pointer<MessageProcessor> mp)}
 		\end{itemize}
 
 \end{itemize}
@@ -608,7 +608,7 @@ Nachricht für die Authentifizierung eines Benutzers mittels eine public Key Ver
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void process(std::shared_pointer<MessageProcessor> mp)}
+			\item\textit{public void process(std::shared\_pointer<MessageProcessor> mp)}
 			\item\textit{public PublicKeyAuthMessage(std::string username, std::string usernamesignature)}
 		\end{itemize}
 
@@ -648,7 +648,7 @@ Nachricht, die zur Authentifizierung eines Arbeiters dient. Hier wird im Allgeme
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void process(std::shared_pointer<MEssageProcessor> mp)}
+			\item\textit{public void process(std::shared\_pointer<MEssageProcessor> mp)}
 			\item\textit{public WorkerAuthMessage(std::string workername, std::string pubkey)}
 		\end{itemize}
 
@@ -663,7 +663,7 @@ Haupteinheit zur Kommunikation der verschiedenen Anwendungen. Ermöglicht senden
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void listen(std::function<void(std::shared_pointer<Message>)> callback)} Warte auf eine eingehende Nachricht. Ruft dann callback auf, mit der eingegangenen Nachricht als Parameter.
+			\item\textit{public void listen(std::function<void(std::shared\_pointer<Message>)> callback)} Warte auf eine eingehende Nachricht. Ruft dann callback auf, mit der eingegangenen Nachricht als Parameter.
 			\item\textit{public void send(Message message)} Sendet eine Nachricht an einen eindeutigen Empfänger.
 
 		\end{itemize}
@@ -680,9 +680,9 @@ Basis der verschlüsselten Kommunikation. Stellt Funktionalität zur sicheren Ne
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
 			\item\textit{public void connect(std::string address} Verbindet sich mit einem Socket an der angegebenen Netzwerkadresse.
-			\item\textit{public void listen(unsigned short port, std::function<void(std::shared_pointer<SSLSocket>)> callback)} Wartet auf eine eingehende Nachricht an einem bestimmten Port. Ruft dann eine callback Methode auf mit dem relevanten Socket als Parameter. Die Callback Routine kann dann die Nachricht verarbeiten.
+			\item\textit{public void listen(unsigned short port, std::function<void(std::shared\_pointer<SSLSocket>)> callback)} Wartet auf eine eingehende Nachricht an einem bestimmten Port. Ruft dann eine callback Methode auf mit dem relevanten Socket als Parameter. Die Callback Routine kann dann die Nachricht verarbeiten.
 			\item\textit{public void send(const char* msg)} Sendet eine Nachricht an einen zuvor spezifizierten Empfänger.
-			\item\textit{public void receive(char* data), size_t size)} Nehme eine Netzwerknachricht entgegen, die in Form eines byte Streams am Netzwerkadapter ankam.
+			\item\textit{public void receive(char* data), size\_t size)} Nehme eine Netzwerknachricht entgegen, die in Form eines byte Streams am Netzwerkadapter ankam.
 			\item\textit{public void listen(unsigned short port, std::function<void()> callback)} Wartet auf eine eingehende Nachricht und ruft dann eine callback methode auf, die dieses Ereigniss verarbeitet.
 
 		\end{itemize}
@@ -698,8 +698,8 @@ Haupteinheit für die Verarbeitung eingegangener Nachrichten. Ein Message Proces
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void process(std::shared_pointer<Message> msg)} Verarbeitet eine engegangene Nachricht, indem deren Typ identifiziert wird und mit den enthaltenen Daten Ereignisse angestoßen werden.
-			\item\textit{private void handleInvalidMessage(std::shared_pointer<Message> msg)} Sollte eine ungültige Nachricht eingegangen sein, wird diese an dieser Stelle behandelt. Kann von der konreten Implementierung des Message Processors abhängig sein.
+			\item\textit{public void process(std::shared\_pointer<Message> msg)} Verarbeitet eine engegangene Nachricht, indem deren Typ identifiziert wird und mit den enthaltenen Daten Ereignisse angestoßen werden.
+			\item\textit{private void handleInvalidMessage(std::shared\_pointer<Message> msg)} Sollte eine ungültige Nachricht eingegangen sein, wird diese an dieser Stelle behandelt. Kann von der konreten Implementierung des Message Processors abhängig sein.
 
 		\end{itemize}
 
@@ -714,7 +714,7 @@ Message Processor für den Client. Hiermit verarbeitet die Client (Benutzer) Anw
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void process(std::shared_pointer<Message> msg)}
+			\item\textit{public void process(std::shared\_pointer<Message> msg)}
 
 		\end{itemize}
 
@@ -729,7 +729,7 @@ Message Processor für den Server (Scheduler) der Nachrichten verarbeitet, die v
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void process(std::shared_pointer<Message> msg)}
+			\item\textit{public void process(std::shared\_pointer<Message> msg)}
 
 		\end{itemize}
 
@@ -744,7 +744,7 @@ Message Processor für den Server (Scheduler) der Nachrichten verarbeitet, die v
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void process(std::shared_pointer<Message> msg)}
+			\item\textit{public void process(std::shared\_pointer<Message> msg)}
 
 		\end{itemize}
 
@@ -759,7 +759,7 @@ Message Processor für den Worker der Nachrichten verarbeitet, die von Seiten ei
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void process(std::shared_pointer<Message> msg)}
+			\item\textit{public void process(std::shared\_pointer<Message> msg)}
 
 		\end{itemize}
 
@@ -780,9 +780,9 @@ Basis jeder Nachricht, die von den Anwendungen aneinander versendet werden könn
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void process(std::shared_pointer<MessageProcessor> mp)} Verarbeite diese Nachricht mithilfe des angegebenen Message Processors.
+			\item\textit{public void process(std::shared\_pointer<MessageProcessor> mp)} Verarbeite diese Nachricht mithilfe des angegebenen Message Processors.
 			\item\textit{public std::string serialize()} Wandle die Nachricht in eine Abfolge von bytes um, die über das Netzwerk versendet werden kann.
-			\item\textit{public std::shared_pointer<Message> deserialize(const char* msg, unsigned int size)} Rekonstruieren die Nachricht aus einer folge von bytes, die über das Netzwerk angekommen sind.
+			\item\textit{public std::shared\_pointer<Message> deserialize(const char* msg, unsigned int size)} Rekonstruieren die Nachricht aus einer folge von bytes, die über das Netzwerk angekommen sind.
 
 		\end{itemize}
 
@@ -804,7 +804,7 @@ Nachricht, die das Erstellen eines Snapshots einer laufenden Aufgabe auf einem W
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void process(std::shared_pointer<MessageProcessor>)}
+			\item\textit{public void process(std::shared\_pointer<MessageProcessor>)}
 			\item\textit{public SnapshotMessage(unsigned long jobid, bool stop)}
 
 		\end{itemize}
@@ -820,7 +820,7 @@ Nachricht, um sich bei einer anderen Anwendung anzumelden. Wird primär zwischen
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void process(std::shared_pointer<MessageProcessor>)}
+			\item\textit{public void process(std::shared\_pointer<MessageProcessor>)}
 
 		\end{itemize}
 
@@ -843,7 +843,7 @@ Nachricht, die Informationen über die Hardware eines Workers enthält. Wird vom
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void process(std::shared_pointer<MessageProcessor>)}
+			\item\textit{public void process(std::shared\_pointer<MessageProcessor>)}
 			\item\textit{public HardwareDetailMessage(int coreCount, int ramSize, std::string osIdentifier)}
 
 		\end{itemize}
@@ -865,11 +865,11 @@ Nachricht, die Informationen zu einer Aufgabe übermittelt. Wird von Client zu S
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void process(std::shared_pointer<MessageProcessor>)}
+			\item\textit{public void process(std::shared\_pointer<MessageProcessor>)}
 			\item\textit{public TaskMessage(Task task)}
 
 		\end{itemize}
-
+\end{itemize}
 \subsection{Scheduler}
 
 \subsubsection{Queue}
