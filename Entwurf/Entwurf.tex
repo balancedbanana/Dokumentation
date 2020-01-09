@@ -914,6 +914,24 @@ Eine spezielle Implementierung einer Warteschlange. Sortiert Tasks nach Priorit�
 
 \end{itemize}
 
+\subsubsection{Scheduler}
+
+Die Hauptklasse des Schedulers. Hierdurch werden Befehle und Datenbankzugriffe gesteuert.
+\begin{itemize}[label={}]
+	
+	\item \textit{\textbf{Methoden}}
+	\begin{itemize}[label={\textbullet}]
+		
+		\item \textit{void onTaskMessage(Message message)} Verarbeitet den erhaltenen Befehl entsprechend und führt den Inhalt aus.
+		
+		\item \textit{void update()} Prüft alle Worker nach Verbindung und Status und updated gegebenfalls andere Module
+		
+		\item \textit{void intialize()} Stellt Verbindungen zu Workern her und versucht einen Status aus der Datenbank herzustellen. 
+		
+	\end{itemize}
+	
+\end{itemize}
+
 
 
 \clearpage
