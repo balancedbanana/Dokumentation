@@ -516,6 +516,54 @@ Die Hauptklasse der Client Anwendung. Verarbeitet die Befehls des Benutzers und 
 \end{itemize}
 
 \clearpage
+
+\subsection{Scheduler}
+
+\subsubsection{Queue}
+
+Die Oberklasse einer Warteschlangen-Implementierung. Hier werden alle nötigen Methoden für eine spezielle Implementierung einer Warteschlange definiert, sowie Default-Rückgabewerte falls diese nicht implementiert wurden. Eine spezielle Warteschlange soll als konkrete Strategie diese Klasse erweitern.
+
+\begin{itemize}[label={}]
+
+\item \textit{\textbf{Methoden}}
+\begin{itemize}[label={\textbullet}]
+	
+	\item \textit{void addTask(Job job)} Fügt der Warteschlange ein Job hinzu. Standardmäßig werden hier Jobs nur mit angefragter ID entfernt.
+
+\item \textit{int getPos(int id)} Gibt die Position des Tasks mit der übergebenen ID aus. Standardmäßig wird hier "-1" ausgegeben.
+
+\item \textit{Job getJob(int id)} Gibt den Job mit der angegeben ID aus der Warteschlange heraus. Dies ist eine Fallback-Methode und sollte in allen Warteschlangen-Strategien ersetzt werden. 
+
+\item \textit{void update()} Wird regelmäßig vom Scheduler aufgerufen. Standardmäßig passiert nichts. Diese Methode soll von einer konkreten Strategie für regelmäßige Checks benutzt werden.
+
+\end{itemize}
+
+\end{itemize}
+
+\subsubsection{PriorityQueue}
+
+Eine spezielle Implementierung einer Warteschlange. Sortiert Tasks nach Prioritäten.
+
+\begin{itemize}[label={}]
+
+\item \textit{\textbf{Methoden}}
+\begin{itemize}[label={\textbullet}]
+
+\item \textit{void addTask(Job job)} Fügt der Warteschlange ein Job hinzu. Dieser wird entsprechend seiner Priorität weiter vorne eingestuft je wichtiger.
+
+\item \textit{int getPos(int id)} Gibt die Position des Tasks mit der übergebenen ID aus.
+
+\item \textit{Job getJob(int Ram, int Cores)} Gibt den wichtigsten Job, also den mit der höchsten Priorität,  aus, der zu den übergebenen Spezifikationen passt.
+
+\item \textit{void update()} Überprüft ob ein Job bereits 24 Stunden in der Warteschlange verbracht hat und erhöht gegebenenfalls seine Priorität.
+
+\end{itemize}
+
+\end{itemize}
+
+
+
+\clearpage
 \section{Abläufe}
 \subsection{Repository Pattern Beispielverwendung}
 
