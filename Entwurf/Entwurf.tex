@@ -6,8 +6,8 @@
 \usepackage[T1]{fontenc}    % this is needed for correct output of umlauts in pdf
 \usepackage[margin=2.5cm]{geometry} %layout
 \usepackage{booktabs}
-\usepackage[hidelinks]{hyperref}
-\hypersetup{pdftitle={Balanced Banana},bookmarks=true,}
+%\usepackage[hidelinks]{hyperref}
+%\hypersetup{pdftitle={Balanced Banana},bookmarks=true,}
 \usepackage{graphicx}
 \usepackage{csquotes}
 \usepackage[nonumberlist]{glossaries}
@@ -269,7 +269,6 @@ Eine struct, die alle relevanten Hardware-Spezifikationen des Rechners kapselt.
 
 
 \end{itemize}
-
 \subsubsection{struct \purl{worker_details}}
 
 Eine struct, die alle relevanten Workerdaten kapselt.
@@ -322,6 +321,15 @@ Eine struct, die alle relevanten Jobdaten kapselt.
 
 
 \end{itemize}
+\clearpage
+\section{Abläufe}
+\subsection{Repository Pattern Beispielverwendung}
+
+Das folgende Sequenzdiagramm veranschaulicht, wie die \textit{getWorker(uint64\_t worker\_id)} funktioniert und, was noch wichtiger ist, wie das Repository-Pattern als Ganzes funktioniert.
+
+\includegraphics[width=\textwidth]{repository_sequence_diagram}
+
+Der Rest des Programms verwendet die Repository-Klasse als Schnittstelle für Queries. \textit{public Worker getWorker(uint64\_t worker\_id)} wird aus dem Repository aufgerufen. Das Repository ruft dann die Methode \textit{getWorker} im Gateway mit dem vom Client übergebenen Argument auf. Wenn die Operation erfolgreich war, übergibt das Repository den Rückgabewert vom Gateway an die Methode \textit{createWorker} in der Factory. Das Repository gibt dann das neu erzeugte Worker-Objekt an den Client zurück.
 
 
 
