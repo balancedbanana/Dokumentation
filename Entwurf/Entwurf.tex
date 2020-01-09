@@ -64,9 +64,150 @@
 \pagenumbering{arabic}
 
 % Document starts here.
+\section{Einleitung}
+\vspace{1cm}
+
+% Here
+
+\clearpage
+\section{Aufbau}
 
 
+\clearpage
+\section{Klassenbeschreibung}
 
+\iffalse
+Format:
+\subsubsection{Klasse}
+
+Kurze Beschreibung
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{name} beschreibung
+		\end{itemize}
+
+	\item \textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{signatur} beschreibung
+		\end{itemize}
+
+
+\end{itemize}
+
+\fi
+\subsection{Datenbank}
+\subsubsection{Model}
+%Show the class diagram for it first
+
+\subsubsection{Repository}
+
+Die Repository-Klasse ist die Schnittstelle, die der Rest des Programms verwendet, um SQL-Queries durchzuführen und deren Ergebnisse zu interpretieren. Es verwendet die Gateway-Klasse, um die SQL-Queries durchzuführen und erzeugt ein Objekt, indem es der Factory-Klasse die von Gateway zurückgegebenen Daten gibt.
+
+	\begin{itemize}[label={}]
+	
+		\item \textit{\textbf{Methoden}}
+			\begin{itemize}[label={\textbullet}]
+				\item \textit{public int addWorker(int auth\_key, int space, int ram, int cores, std::string address)} Fügt einen Worker zur Datenbank hinzu und gibt seine ID zurück.
+				
+				\item \textit{public bool removeWorker(int id)} Löscht einen Worker aus dem DB. Gibt true zurück, wenn die Operation erfolgreich war, ansonsten false.
+				
+				\item \textit{public Worker getWorker(int worker\_id)} Gibt den Worker mit der angegebenen ID zurück.
+				
+				\item \textit{public std::vector<std::shared\_ptr<Worker>> getWorkers()} Gibt alle Workers zurück.
+				
+				\item \textit{public int addJob(int user\_id, JobConfig config, std::string schedule\_time, std::string command)} Fügt einen Job zur Datenbank hinzu und gibt seine ID zurück. 
+				
+				\item \textit{public bool removeJob(int job\_id)} Löscht einen Job aus dem DB. Gibt true zurück, wenn die Operation erfolgreich war, ansonsten false.
+				
+				\item \textit{public Job getJob(int job\_id)} Gibt den Job mit der angegebenen ID zurück.
+				
+				\item \textit{public std::vector<std::shared\_ptr<Job>> getJobs()} Gibt alle Jobs zurück.
+				
+				\item \textit{public int addUser(std::string name, std::string email, int auth\_key)} Fügt einen User zur Datenbank hinzu und gibt seine ID zurück. 
+				
+				\item \textit{public bool removeUser(int user\_id)} Löscht einen User aus dem DB. Gibt true zurück, wenn die Operation erfolgreich war, ansonsten false.
+				
+				\item \textit{public User getUser(int user\_id)} Gibt den User mit der angegebenen ID zurück.
+				
+				\item \textit{public std::vector<std::shared\_ptr<User>> getUsers()} Gibt alle Users zurück.
+				
+				\item \textit{public bool startJob(int job\_id, int worker\_id, specs specs, std::string start\_time)} Aktualisiert den Eintrag eines Jobs in der Datenbank mit einer Startzeit, den zugewiesenen Ressourcen und dem zugeordneten Mitarbeiter. Gibt true zurück, wenn die Operation erfolgreich war, ansonsten false.
+				
+				\item \textit{public bool finishJob(int job\_id, std::string finish\_time, std::string stdout, int exit\_code)} Aktualisiert den Eintrag eines Jobs mit Endzeit, Ausgabe und Exitcode. Gibt true zurück, wenn die Operation erfolgreich war, ansonsten false.
+				
+				\item \textit{public job\_result getJobResult(int job\_id)} Gibt die Ergebnisse eines \textbf{fertigen} Jobs zurück.
+								
+			\end{itemize}
+			
+	\end{itemize}
+\clearpage
+\subsubsection{Gateway}
+
+Die Gateway-Klasse verbindet sich mit der Datenbank und führt die SQL-Queries aus.
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{QSqlDatabase db} Verwaltet die Verbindung zur Datenbank. 
+		\end{itemize}
+
+	\item \textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{public int addWorker(int auth\_key, int space, int ram, int cores, std::string address)} Fügt einen Worker zur Datenbank hinzu und gibt seine ID zurück.
+				
+				\item \textit{public bool removeWorker(int id)} Löscht einen Worker aus dem DB. Gibt true zurück, wenn die Operation erfolgreich war, ansonsten false.
+				
+				\item \textit{public worker\_details getWorker(int worker\_id)} Gibt die Daten des Workers mit der angegebenen ID zurück.
+				
+				\item \textit{public std::vector<std::shared\_ptr<worker\_details>> getWorkers()} Gibt die Daten jedes Mitarbeiters zurück.
+				
+				\item \textit{public int addJob(int user\_id, JobConfig config, std::string schedule\_time, std::string command)} Fügt einen Job zur Datenbank hinzu und gibt seine ID zurück. 
+				
+				\item \textit{public bool removeJob(int job\_id)} Löscht einen Job aus dem DB. Gibt true zurück, wenn die Operation erfolgreich war, ansonsten false.
+				
+				\item \textit{public job\_details getJob(int job\_id)} Gibt die Daten des Jobs mit der angegebenen ID zurück.
+				
+				\item \textit{public std::vector<std::shared\_ptr<job\_details>> getJobs()} Gibt die Daten jedes Jobs zurück.
+				
+				\item \textit{public int addUser(std::string name, std::string email, int auth\_key)} Fügt einen User zur Datenbank hinzu und gibt seine ID zurück. 
+				
+				\item \textit{public bool removeUser(int user\_id)} Löscht einen User aus dem DB. Gibt true zurück, wenn die Operation erfolgreich war, ansonsten false.
+				
+				\item \textit{public user\_details getUser(int user\_id)} Gibt die Daten des Users mit der angegebenen ID zurück
+				
+				\item \textit{public std::vector<std::shared\_ptr<user\_details>> getUsers()} Gibt die Daten jedes Users zurück.
+				
+				\item \textit{public bool startJob(int job\_id, int worker\_id, specs specs, std::string start\_time)} Aktualisiert den Eintrag eines Jobs in der Datenbank mit einer Startzeit, den zugewiesenen Ressourcen und dem zugeordneten Mitarbeiter. Gibt true zurück, wenn die Operation erfolgreich war, ansonsten false.
+				
+				\item \textit{public bool finishJob(int job\_id, std::string finish\_time, std::string stdout, int exit\_code)} Aktualisiert den Eintrag eines Jobs mit Endzeit, Ausgabe und Exitcode. Gibt true zurück, wenn die Operation erfolgreich war, ansonsten false.
+				
+				\item \textit{public job\_result getJobResult(int job\_id)} Gibt die Ergebnisse eines \textbf{fertigen} Jobs zurück.
+		\end{itemize}
+
+
+\end{itemize}
+
+\subsubsection{Factory}
+
+Erzeugt Objekte aus gegebenen Daten.
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{public Job createJob(job\_details info)} Erzeugt ein Job-Objekt.
+			
+			\item \textit{public Worker createWorker(worker\_details info)} Erzeugt ein Worker-Objekt.
+			
+			\item \textit{public User createUser(user\_details info)} Erzeugt ein User-Objekt.
+		\end{itemize}
+
+
+\end{itemize}
 
 % Document ends here.
 \printnoidxglossaries
