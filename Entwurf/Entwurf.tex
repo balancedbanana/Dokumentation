@@ -75,6 +75,18 @@ Mit diesem Entwurfsdokument möchten wir die Architektur unseres Programms vorst
 \subsection{Architektur}
 % Hier soll die verschiedenen Teile unseres Programms erklärt werden.
 
+Mit Rücksicht auf die verschiedenen Aspekte, die zur Verwendung unseres Programms gehören, wurde unser Programm in 3 Blöcke unterteilt. Diese 3 Blöcke arbeiten als jeweils eigenständiges Programm:\newline
+Die Client Anwendung, die für die Interaktion mit einem menschlichen Benutzer zuständig ist.\newline
+Die Server Anwendung, die den Hauptteil der Logik des Programms ausmacht. Sie ist für die Verteilung der Benutzeraufgaben auf die Arbeiter zuständig, was den Hauptaspekt unseres Programms darstellt.\newline
+Die Worker Anwendung, die für die tatsächliche Ausführung der Benutzeraufgaben auf den verfügbaren Arbeiterrechnern zuständig ist.\newline
+\newline
+Zusätzlich existieren weitere Module, die in diesen Anwendungen Verwendung finden. So ist das Kommunikation-Modul dafür zuständig, dass sich die Anwendungen untereinander austauschen können und somit der Benutzer in der Lage ist, seine Aufgaben mithilfe der Client Anwendung in Auftrag zu geben und Abfragen zu seinen Aufgaben stellen kann.\newline
+Ein weiteres Modul beschäftigt sich mit dem Einlesen von Befehlen auf der Befehlszeile. Dieses Modul findet Hauptsächlich in der Client Anwendung Verwendung, ist jedoch in allen 3 Anwendungen vorhanden, da diese gelegentlich auch mit der Befehlszeile interagieren müssen (mindestens einmal beim Anwendungsstart).
+\newline
+Das Modul Datenbank hingegen findet ausschließlich in der Server Anwendung Verwendung. Es dient dazu, die Informationen zur Ausführung des Verteilersystems zu sichern, und aus den vorhandenen Daten statistische Rückschlüsse zu ermöglichen, die einem Beobachter einen Überblick z.B. über die Auslastung der Arbeiter ermöglichen. Auch werden systemkritische Informationen hier gesichert, die einen Neustart des Systems oder Abbruch der Stromversorgung überleben müssen, um den korrekten Betrieb des Programms zu garantieren. Somit gehen Informationen bezüglich der in Auftrag gegebenen Aufgaben nicht verloren.
+\newline
+Das Modul Warteschlange realisiert eine Grundlage für die Verteilung von Benutzeraufgaben, die von den Benutzern gesetzte Prioritäten berücksichtigen soll. Die Warteschlange ermöglicht eine effiziente Auswahl der auszuführenden Aufgaben aus dem Pool aller Aufgaben.
+
 \subsubsection{Datenbank}
 
 	Die Datenbank enthält relevante Daten über verschiedene Entitäten in unserem Programm. Mit Hilfe von SQL-Queries kann unser Programm diese Daten abrufen und sinnvoll nutzen.  Unsere Datenbank verwendet ein relationales Datenbank-Managementsystem, um Informationen in verschiedenen Tabellen zu speichern. Darüber hinaus sind die Tabellen über Beziehungen miteinander verbunden, die den Sinn der Daten weiter verdeutlichen. Nachfolgend finden Sie ein Entity-Relationship-Diagramm, das zeigt, wie unsere Datenbank konzipiert ist:
