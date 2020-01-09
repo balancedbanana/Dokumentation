@@ -609,7 +609,7 @@ Nachricht für die Authentifizierung eines Clienten (Anwendung). Wird beim erste
 
 \subsubsection{PublicKeyAuthMessage}
 
-Nachricht für die Authentifizierung eines Benutzers mittels eine public Key Verfahrens.
+Nachricht für die Authentifizierung eines Benutzers mittels eines public Key Verfahrens.
 
 	\begin{itemize}[label={}]
 
@@ -617,7 +617,7 @@ Nachricht für die Authentifizierung eines Benutzers mittels eine public Key Ver
 		\begin{itemize}[label={\textbullet}]
 			
 			\item\textit{std::string username} Der Name des zu authentifizierenden Benutzers.
-			\item\textit{std::string usernamesignature} Eine Signatur, die dem Benutzer zugewiesen wurde.
+			\item\textit{std::string usernamesignature} Eine Signatur, die mithilfe des private keys vom Client bzw. Worker erzeugt wird. Kann vom Scheduler mithilfe des zuvor übermittelten public keys überprüft werden.
 		\end{itemize}
 
 	\item\textit{\textbf{Methoden}}
@@ -637,7 +637,7 @@ Ergebnis der Authentifizierung. Gibt im wesentlichen den Erfolg der Authentifizi
 
 	\item\textit{\textbf{Attribute}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{unsigned long status} Gibt an, wie die Authentifizierung ausgegangen ist. (Erfolg/Misserfolg)
+			\item\textit{unsigned long status} Gibt an, wie die Authentifizierung ausgegangen ist. (Erfolg(=0)/Misserfolg(!=0))
 		\end{itemize}
 
 	\item\textit{\textbf{Methoden}}
@@ -662,7 +662,7 @@ Nachricht, die zur Authentifizierung eines Arbeiters dient. Hier wird im Allgeme
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void process(std::shared\_ptr<MEssageProcessor> mp)}
+			\item\textit{public void process(std::shared\_ptr<MessageProcessor> mp)}
 			\item\textit{public WorkerAuthMessage(std::string workername, std::string pubkey)}
 		\end{itemize}
 
@@ -676,8 +676,8 @@ Authentifiziert einen Client und Worker gegenüber dem Scheduler.
 
 	\item \textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item \textit{void authenticate(std::string username, std::string password, std::string pubkey)} Authentifiziert einen Client bei der ersten Verbinung mit einen Benutzernamen, password und einen RSA Public Key (Der private Key wird auf dem Client aufbewart und nicht versendet) (Um sich beim nächsten mal ohne Password anmelden zu können)
-			\item \textit{void authenticate(std::string workername, std::string pubkey)} Authentifiziert einen Worker bei der ersten Verbinung mit einen vom Worker generierten eindeutigen (Worker-)Namen und einen RSA Public Key
+			\item \textit{void authenticate(std::string username, std::string password, std::string pubkey)} Authentifiziert einen Client bei der ersten Verbindung mit einen Benutzernamen, password und einen RSA Public Key. Der private Key wird auf dem Client aufbewart und nicht versendet, um sich beim nächsten mal ohne Password anmelden zu können.
+			\item \textit{void authenticate(std::string workername, std::string pubkey)} Authentifiziert einen Worker bei der ersten Verbindung mit einen vom Worker generierten eindeutigen (Worker-)Namen und einen RSA Public Key
 			\item \textit{void authenticate(std::string username, std::string usernamesignature)} Authentifiziert einen Client / Worker mit Benutzernamen und einer signature, die mit den private Key vom Client automatisch erzeugt wurde (Passwordlose Anmeldenung)
 		\end{itemize}
 
