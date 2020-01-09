@@ -10,6 +10,7 @@
 \usepackage{csquotes}
 \usepackage[nonumberlist]{glossaries}
 \usepackage{enumitem}
+\usepackage[capposition=top]{floatrow}
 \usepackage{verbatim}
 \usepackage{indentfirst} % Adds indent for the first paragraph after a {/section}
 \usepackage{url}
@@ -80,9 +81,16 @@ Mit diesem Entwurfsdokument möchten wir die Architektur unseres Programms vorst
 
 \includegraphics[width=\textwidth]{database_relational}
 
-Die Datenbank ist in drei verschiedene Klassen unterteilt: Die Repository-, die Gateway- und die Factory-Klasse. Die Gateway-Klasse verwendet das Qt-Framework, um sich mit der Datenbank zu verbinden und die SQL-Queries durchzuführen. Die Factory-Klasse ist für die Erstellung von Objekten aus den vom Gateway zurückgegebenen Daten verantwortlich. Das Repository nutzt beide Klassen und dient als Schnittstelle für den Zugriff auf die Datenbank.
+\clearpage
+Die Datenbank ist in drei verschiedene Klassen unterteilt: Die Repository-, die Gateway- und die Factory-Klasse. Die Gateway-Klasse verwendet das Qt-Framework, um sich mit der Datenbank zu verbinden und die SQL-Queries durchzuführen. Die Factory-Klasse ist für die Erstellung von Objekten aus den vom Gateway zurückgegebenen Daten verantwortlich. Das Repository nutzt beide Klassen und dient als Schnittstelle für den Zugriff auf die Datenbank.\newline
 
 
+\begin{figure}
+\includegraphics[width=\textwidth]{high_lvl_repository}
+\floatfoot{High-Level-Darstellung des Datenbankdesigns}
+\end{figure}
+
+\clearpage
 \subsection{Klassendiagramm}
 
 % Übersicht aller Klassendiagramme
