@@ -323,6 +323,102 @@ Eine struct, die alle relevanten Jobdaten kapselt.
 
 \end{itemize}
 
+\subsection{Configfiles}
+
+\subsubsection{enum Priority}
+
+Eine Aufzählung aller möglichen Prioritäten, die ein Job haben kann.
+
+	\item \textit{\textbf{Items}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{low} Priorität für Jobs, deren zeitnahe Abarbeitung unwichtig ist.
+			\item \textit{normal} Priorität für Jobs, die zeitnahe abgearbeitet werden sollen.
+			\item \textit{high} Priorität für Jobs, die sehr schnell abgearbeitet werden müssen.
+			\item \textit{emergency} Priorität für Jobs, die umgehend bearbeitet werden müssen. Der Scheduler kann eventuell sogar andere Jobs zeitweise unterbrechen um andere Jobs mit dieser Priorität zu bearbeiten.
+		\end{itemize}
+
+
+\subsubsection{JobConfig}
+
+Eine Sammlung an allen möglichen Einstellungen, die beschreiben, wie ein Job bearbeitet, bzw. eingeplant werden soll.
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{std::optional<uint32_t> min_ram_} Minimal benötigter Hauptspeicher
+			\item \textit{std::optional<uint32_t> max_ram_} Maximal benötigter Hauptspeicher
+			\item \textit{std::optional<uint32_t> min_cpu_count_} Minimal benötigte CPU Kerne
+			\item \textit{std::optional<uint32_t> max_cpu_count_} Maximal zu verwendende CPU Kerne
+			\item \textit{std::optional<bool> blocking_mode_} Ob der Client auf den Abschluss der Aufgabe wartet
+			\item \textit{std::string email_} Zu benachrichtigende Adresse
+			\item \textit{std::optional<Priority> priority_} Priorität des Jobs in der Warteschlange
+			\item \textit{std::string image_} Zu verwendendes Docker Image
+			\item \textit{std::optional<std::vector<std::string>> environment_} Liste an Umgebungsvariablen
+			\item \textit{std::optional<bool> interruptible_} Ob der Job unterbrechbar ist.
+			\item \textit{std::optional<std::filesystem::path> current_working_dir_} Verzeichnis, von dem aus der Job im Container ausgeführt werden soll.
+		\end{itemize}
+
+	\item \textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{JobConfig()} Erstellt eine leere JobConfig
+			\item \textit{JobConfig(std::stringstream &)} Deserialisiert eine JobConfig aus dem übergebenen Stream
+			\item \textit{JobConfig(std::filesystem::path &)} Lädt eine serialisierte JobConfig aus dem Dateisystem an dem angegebenen Pfad.
+			\item \textit{void set_min_ram(std::optional<uint32_t>)} Setter für min_ram_
+			\item \textit{void set_max_ram(std::optional<uint32_t>)} Setter für max_ram_
+			\item \textit{void set_min_cpu_count(std::optional<uint32_t>)} Setter für min_cpu_count_
+			\item \textit{void set_max_cpu_count(std::optional<uint32_t>)} Setter für max_cpu_count_
+			\item \textit{void set_blocking_mode(std::optional<bool>)} Setter für blocking_mode_
+			\item \textit{void set_email(std::string &)} Setter für email_
+			\item \textit{void set_priority(std::optional<Priority>)} Setter für priority_
+			\item \textit{void set_image(std::string &)} Setter für image_
+			\item \textit{void set_environment(std::optional<std::vector<std::string>> &)} Setter für environment_
+			\item \textit{void set_interruptible(std::optional<bool>)} Setter für interruptible_
+			\item \textit{void set_current_working_dir(std::optional<std::filesystem::path> &)} Setter für
+			current_working_dir_
+			\item \textit{std_optional<uint32_t> min_ram()} Getter für min_ram_
+			\item \textit{std_optional<uint32_t> max_ram()} Getter für max_ram_
+			\item \textit{std_optional<uint32_t> min_cpu_count()} Getter für min_cpu_count_
+			\item \textit{std_optional<uint32_t> max_cpu_count()} Getter für max_cpu_count_
+			\item \textit{std_optional<bool> blocking_mode()} Getter für blocking_mode_
+			\item \textit{std::string &email()} Getter für email_
+			\item \textit{std_optional<Priority> priority()} Getter für priority_
+			\item \textit{std::string &image()} Getter für image_
+			\item \textit{std_optional<std::vector<std::string>> &environment()} Getter für environment_
+			\item \textit{std_optional<bool> interruptible()} Getter für interruptible_
+			\item \textit{std_optional<std::filesystem::path> &current_working_dir()} Getter für current_working_dir_
+			\item \textit{void Serialize(std::stringstream &)} Schiebt die serialisierte JobConfig in den angegebenen Stream.
+			\item \textit{void Save(std::filesystem::path &)} Speichert die JobConfig im Filesystem an der angegebenen Stelle. 
+			\item \textit{void Merge(JobConfig &)} Füllt diese JobConfig mit Werten aus der übergebenen JobConfig auf. In beiden Configs vorhandene Werte werden nicht überschrieben.
+		\end{itemize}
+
+
+\end{itemize}
+
+\subsubsection{SchedulerConfig}
+
+Wrapper für eine Hashmap, der auch eine Möglichkeit zum Speichern und Laden ins Filesystem bietet und als Speicher für verschiedene Regeln beim Einplanen der Jobs dient.
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{std::map<std::string, std::string> values_} Hashmap, die alle Regeln enthält.
+		\end{itemize}
+
+	\item \textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{SchedulerConfig()} Erzeugt eine leere SchedulerConfig
+			\item \textit{SchedulerConfig(std::filesystem::path &)} Lädt eine serialisierte SchedulerConfig aus dem Filesystem
+			\item \textit{size_t count()} Gibt an wie viele Elemente sich in der Config befinden.
+			\item \textit{Get(std::string &)} Gibt das Element zurück, das der übergebenen Regel zugeordnet wurde.
+			\item \textit{Set(std::string &key, std::string &value)} Setzt den Wert der Regel mit dem übergebenen key auf den übergebenen Wert.
+			\item \textit{Save(std::filesystem::path &)} Schreibt die Config in das Filesystem an die angegebene Stelle.
+			\item \textit{Contains(std::string &)} Gibt an, ob sich in der Config eine Regel mit dem angegebenen key befindet.
+		\end{itemize}
+
+
+\end{itemize}
 
 
 % Document ends here.
