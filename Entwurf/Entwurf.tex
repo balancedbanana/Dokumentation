@@ -961,6 +961,16 @@ Das folgende Sequenzdiagramm veranschaulicht, wie die \textit{getWorker(uint64\_
 
 Der Rest des Programms verwendet die Repository-Klasse als Schnittstelle für Queries. \textit{public Worker getWorker(uint64\_t worker\_id)} wird aus dem Repository aufgerufen. Das Repository ruft dann die Methode \textit{getWorker} im Gateway mit dem vom Client übergebenen Argument auf. Wenn die Operation erfolgreich war, übergibt das Repository den Rückgabewert vom Gateway an die Methode \textit{createWorker} in der Factory. Das Repository gibt dann das neu erzeugte Worker-Objekt an den Client zurück.
 
+\clearpage
+
+\subsection{Eine neue Aufgabe einreichen}
+
+In diesem Sequenzdiagramm ist der Ablauf einer typischen Kommunikation zwischen Client (Benutzer) und Server (Scheduler) veranschaulicht. In diesem Fall gibt der Benutzer eine neue Aufgabe in Auftrag. Andere Anfragen, wie etwa eine Statusabfrage einer vorhandenen Aufgabe finden nach einem analogen Ablauf statt.
+
+\includegraphics[width=\textwidth]{createTask}
+
+Ein anderer Befehl des Benutzers, etwa die Nachfrage, wie der Bearbeitungsstatus einer Aufgabe derzeit ist, folgen diesem Ablauf. Sie unterscheiden sich im wesentlichen nur in den Aktionen, die auf Seiten der Server Anwendung stattfinden, sowie der Rückgabe, die der Server an den Client übermittelt.
+
 % Document ends here.
 \printnoidxglossaries
 
