@@ -676,9 +676,9 @@ Authentifiziert einen Client und Worker gegenüber dem Scheduler.
 
 	\item \textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item \textit{void authenticate(std::string username, std::string password, std::string pubkey)} Authentifiziert einen Client bei der ersten Verbindung mit einen Benutzernamen, password und einen RSA Public Key. Der private Key wird auf dem Client aufbewart und nicht versendet, um sich beim nächsten mal ohne Password anmelden zu können.
+			\item \textit{void authenticate(std::string username, std::string password, std::string pubkey)} Authentifiziert einen Client bei der ersten Verbindung mit einen Benutzernamen, Passwort und einen RSA Public Key. Der private Key wird auf dem Client aufbewart und nicht versendet, um sich beim nächsten mal ohne Passwort anmelden zu können.
 			\item \textit{void authenticate(std::string workername, std::string pubkey)} Authentifiziert einen Worker bei der ersten Verbindung mit einen vom Worker generierten eindeutigen (Worker-)Namen und einen RSA Public Key
-			\item \textit{void authenticate(std::string username, std::string usernamesignature)} Authentifiziert einen Client / Worker mit Benutzernamen und einer signature, die mit den private Key vom Client automatisch erzeugt wurde (Passwordlose Anmeldenung)
+			\item \textit{void authenticate(std::string username, std::string usernamesignature)} Authentifiziert einen Client / Worker mit Benutzernamen und einer signature, die mit den private Key vom Client automatisch erzeugt wurde (Passwortlose Anmeldenung)
 		\end{itemize}
 
 
@@ -990,19 +990,30 @@ Ein anderer Befehl des Benutzers, etwa die Nachfrage, wie der Bearbeitungsstatus
 
 \subsection{Erstmalige Anmeldenung eines Clients}
 
+Der Benutzer wird nach seinen Passwort gefragt, da er sich noch nie zufor von diesem Client am Scheduler angemeldet hat. Dafür ruft der Client die authenticate Methode des Authenticators mit Benutzername und Passwort auf. Um das nächste mal ohne Passwort sich authorisieren zu können wird eine public, private Key Schlüsselpaar erzeugt. Anschließend wird der Benutzername, Passwort und publickey an den Scheduler gesendet.
+
 \includegraphics[width=\textwidth]{Authenticator/ClientAuth}
+
+Falls die Authentifizierung erforderlich ist, wird der Benutzername und public Key in der Datenbank des Scheduler gesichert
 
 \clearpage
 
 \subsection{Erstmalige Anmeldenung eines Workers}
 
+Der Worker erzeugt einen eindeutigen Namen und erzeugt ein public, private Key Schlüsselpaar, um wiedererkannt zu werden. Anschließend wird der generierte Name des Worker und der publickey an den Scheduler gesendet.
+
 \includegraphics[width=\textwidth]{Authenticator/WorkerAuth}
 
 \clearpage
 
-\subsection{Passwordlose Anmeldung Client / Worker}
+\subsection{Passwortlose Anmeldung Client / Worker}
+
+Der Client und Worker senden hier statt eines passworts eine signarur, die vom zuvor generierten private key erzeugt wird. Diese wird anschließend vom Scheduler verifiziert.
 
 \includegraphics[width=\textwidth]{Authenticator/PublicKeyAuth}
+
+Ist die Authentifizierung ungültig, wird der Anmeldevorgang mit einer Ausnahme beendet.
+
 % Document ends here.
 \printnoidxglossaries
 
