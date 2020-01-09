@@ -6,12 +6,11 @@
 \usepackage[T1]{fontenc}    % this is needed for correct output of umlauts in pdf
 \usepackage[margin=2.5cm]{geometry} %layout
 \usepackage{booktabs}
-%\usepackage[hidelinks]{hyperref}
-%\hypersetup{pdftitle={Balanced Banana},bookmarks=true,}
 \usepackage{graphicx}
 \usepackage{csquotes}
 \usepackage[nonumberlist]{glossaries}
 \usepackage{enumitem}
+\usepackage[capposition=top]{floatrow}
 \usepackage{verbatim}
 \usepackage{indentfirst} % Adds indent for the first paragraph after a {/section}
 \usepackage{url}
@@ -69,9 +68,7 @@
 % Document starts here.
 \section{Einleitung}
 \vspace{1cm}
-
-% Here
-
+Mit diesem Entwurfsdokument möchten wir die Architektur unseres Programms vorstellen und erläutern. Das Dokument zeigt zunächst die Konzeption unseres Systems auf hohem Niveau. Anschließend werden die Besonderheiten der einzelnen Module und die Klassen innerhalb der Module erläutert. Darüber hinaus sind Sequenzdiagramme verfügbar, um die Funktionalität unseres Programms weiter zu veranschaulichen und ein tieferes, praktischeres Verständnis der Funktionsweise zu vermitteln.
 \clearpage
 \section{Aufbau}
 
@@ -84,9 +81,16 @@
 
 \includegraphics[width=\textwidth]{database_relational}
 
-Die Datenbank ist in drei verschiedene Klassen unterteilt: Die Repository-, die Gateway- und die Factory-Klasse. Die Gateway-Klasse verwendet das Qt-Framework, um sich mit der Datenbank zu verbinden und die SQL-Queries durchzuführen. Die Factory-Klasse ist für die Erstellung von Objekten aus den vom Gateway zurückgegebenen Daten verantwortlich. Das Repository nutzt beide Klassen und dient als Schnittstelle für den Zugriff auf die Datenbank.
+\clearpage
+Die Datenbank ist in drei verschiedene Klassen unterteilt: Die Repository-, die Gateway- und die Factory-Klasse. Die Gateway-Klasse verwendet das Qt-Framework, um sich mit der Datenbank zu verbinden und die SQL-Queries durchzuführen. Die Factory-Klasse ist für die Erstellung von Objekten aus den vom Gateway zurückgegebenen Daten verantwortlich. Das Repository nutzt beide Klassen und dient als Schnittstelle für den Zugriff auf die Datenbank.\newline
 
 
+\begin{figure}
+\includegraphics[width=\textwidth]{high_lvl_repository}
+\floatfoot{High-Level-Darstellung des Datenbankdesigns}
+\end{figure}
+
+\clearpage
 \subsection{Klassendiagramm}
 
 % Übersicht aller Klassendiagramme
@@ -327,7 +331,7 @@ Eine struct, die alle relevanten Jobdaten kapselt.
 \subsubsection{enum Priority}
 
 Eine Aufzählung aller möglichen Prioritäten, die ein Job haben kann.
-
+\begin{itemize}[label={}]
 	\item \textit{\textbf{Items}}
 		\begin{itemize}[label={\textbullet}]
 			\item \textit{low} Priorität für Jobs, deren zeitnahe Abarbeitung unwichtig ist.
@@ -335,7 +339,7 @@ Eine Aufzählung aller möglichen Prioritäten, die ein Job haben kann.
 			\item \textit{high} Priorität für Jobs, die sehr schnell abgearbeitet werden müssen.
 			\item \textit{emergency} Priorität für Jobs, die umgehend bearbeitet werden müssen. Der Scheduler kann eventuell sogar andere Jobs zeitweise unterbrechen um andere Jobs mit dieser Priorität zu bearbeiten.
 		\end{itemize}
-
+\end{itemize}
 
 \subsubsection{JobConfig}
 
@@ -345,55 +349,55 @@ Eine Sammlung an allen möglichen Einstellungen, die beschreiben, wie ein Job be
 
 	\item \textit{\textbf{Attribute}}
 		\begin{itemize}[label={\textbullet}]
-			\item \textit{std::optional<uint32_t> min_ram_} Minimal benötigter Hauptspeicher
-			\item \textit{std::optional<uint32_t> max_ram_} Maximal benötigter Hauptspeicher
-			\item \textit{std::optional<uint32_t> min_cpu_count_} Minimal benötigte CPU Kerne
-			\item \textit{std::optional<uint32_t> max_cpu_count_} Maximal zu verwendende CPU Kerne
-			\item \textit{std::optional<bool> blocking_mode_} Ob der Client auf den Abschluss der Aufgabe wartet
-			\item \textit{std::string email_} Zu benachrichtigende Adresse
-			\item \textit{std::optional<Priority> priority_} Priorität des Jobs in der Warteschlange
-			\item \textit{std::string image_} Zu verwendendes Docker Image
-			\item \textit{std::optional<std::vector<std::string>> environment_} Liste an Umgebungsvariablen
-			\item \textit{std::optional<bool> interruptible_} Ob der Job unterbrechbar ist.
-			\item \textit{std::optional<std::filesystem::path> current_working_dir_} Verzeichnis, von dem aus der Job im Container ausgeführt werden soll.
+			\item \textit{std::optional<uint32\_t> min\_ram\_} Minimal benötigter Hauptspeicher
+			\item \textit{std::optional<uint32\_t> max\_ram\_} Maximal benötigter Hauptspeicher
+			\item \textit{std::optional<uint32\_t> min\_cpu\_count\_} Minimal benötigte CPU Kerne
+			\item \textit{std::optional<uint32\_t> max\_cpu\_count\_} Maximal zu verwendende CPU Kerne
+			\item \textit{std::optional<bool> blocking\_mode\_} Ob der Client auf den Abschluss der Aufgabe wartet
+			\item \textit{std::string email\_} Zu benachrichtigende Adresse
+			\item \textit{std::optional<Priority> priority\_} Priorität des Jobs in der Warteschlange
+			\item \textit{std::string image\_} Zu verwendendes Docker Image
+			\item \textit{std::optional<std::vector<std::string>> environment\_} Liste an Umgebungsvariablen
+			\item \textit{std::optional<bool> interruptible\_} Ob der Job unterbrechbar ist.
+			\item \textit{std::optional<std::filesystem::path> current\_working\_dir\_} Verzeichnis, von dem aus der Job im Container ausgeführt werden soll.
 		\end{itemize}
 
 	\item \textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
 			\item \textit{JobConfig()} Erstellt eine leere JobConfig
-			\item \textit{JobConfig(std::stringstream &)} Deserialisiert eine JobConfig aus dem übergebenen Stream
-			\item \textit{JobConfig(std::filesystem::path &)} Lädt eine serialisierte JobConfig aus dem Dateisystem an dem angegebenen Pfad.
-			\item \textit{void set_min_ram(std::optional<uint32_t>)} Setter für min_ram_
-			\item \textit{void set_max_ram(std::optional<uint32_t>)} Setter für max_ram_
-			\item \textit{void set_min_cpu_count(std::optional<uint32_t>)} Setter für min_cpu_count_
-			\item \textit{void set_max_cpu_count(std::optional<uint32_t>)} Setter für max_cpu_count_
-			\item \textit{void set_blocking_mode(std::optional<bool>)} Setter für blocking_mode_
-			\item \textit{void set_email(std::string &)} Setter für email_
-			\item \textit{void set_priority(std::optional<Priority>)} Setter für priority_
-			\item \textit{void set_image(std::string &)} Setter für image_
-			\item \textit{void set_environment(std::optional<std::vector<std::string>> &)} Setter für environment_
-			\item \textit{void set_interruptible(std::optional<bool>)} Setter für interruptible_
-			\item \textit{void set_current_working_dir(std::optional<std::filesystem::path> &)} Setter für
-			current_working_dir_
-			\item \textit{std_optional<uint32_t> min_ram()} Getter für min_ram_
-			\item \textit{std_optional<uint32_t> max_ram()} Getter für max_ram_
-			\item \textit{std_optional<uint32_t> min_cpu_count()} Getter für min_cpu_count_
-			\item \textit{std_optional<uint32_t> max_cpu_count()} Getter für max_cpu_count_
-			\item \textit{std_optional<bool> blocking_mode()} Getter für blocking_mode_
-			\item \textit{std::string &email()} Getter für email_
-			\item \textit{std_optional<Priority> priority()} Getter für priority_
-			\item \textit{std::string &image()} Getter für image_
-			\item \textit{std_optional<std::vector<std::string>> &environment()} Getter für environment_
-			\item \textit{std_optional<bool> interruptible()} Getter für interruptible_
-			\item \textit{std_optional<std::filesystem::path> &current_working_dir()} Getter für current_working_dir_
-			\item \textit{void Serialize(std::stringstream &)} Schiebt die serialisierte JobConfig in den angegebenen Stream.
-			\item \textit{void Save(std::filesystem::path &)} Speichert die JobConfig im Filesystem an der angegebenen Stelle. 
-			\item \textit{void Merge(JobConfig &)} Füllt diese JobConfig mit Werten aus der übergebenen JobConfig auf. In beiden Configs vorhandene Werte werden nicht überschrieben.
+			\item \textit{JobConfig(std::stringstream \&)} Deserialisiert eine JobConfig aus dem übergebenen Stream
+			\item \textit{JobConfig(std::filesystem::path \&)} Lädt eine serialisierte JobConfig aus dem Dateisystem an dem angegebenen Pfad.
+			\item \textit{void set\_min\_ram(std::optional<uint32\_t>)} Setter für min\_ram\_
+			\item \textit{void set\_max\_ram(std::optional<uint32\_t>)} Setter für max\_ram\_
+			\item \textit{void set\_min\_cpu\_count(std::optional<uint32\_t>)} Setter für min\_cpu\_count\_
+			\item \textit{void set\_max\_cpu\_count(std::optional<uint32\_t>)} Setter für max\_cpu\_count\_
+			\item \textit{void set\_blocking\_mode(std::optional<bool>)} Setter für blocking\_mode\_
+			\item \textit{void set\_email(std::string \&)} Setter für email\_
+			\item \textit{void set\_priority(std::optional<Priority>)} Setter für priority\_
+			\item \textit{void set\_image(std::string \&)} Setter für image\_
+			\item \textit{void set\_environment(std::optional<std::vector<std::string>> \&)} Setter für environment\_
+			\item \textit{void set\_interruptible(std::optional<bool>)} Setter für interruptible\_
+			\item \textit{void set\_current\_working\_dir(std::optional<std::filesystem::path> \&)} Setter für
+			current\_working\_dir\_
+			\item \textit{std\_optional<uint32\_t> min\_ram()} Getter für min\_ram\_
+			\item \textit{std\_optional<uint32\_t> max\_ram()} Getter für max\_ram\_
+			\item \textit{std\_optional<uint32\_t> min\_cpu\_count()} Getter für min\_cpu\_count\_
+			\item \textit{std\_optional<uint32\_t> max\_cpu\_count()} Getter für max\_cpu\_count\_
+			\item \textit{std\_optional<bool> blocking\_mode()} Getter für blocking\_mode\_
+			\item \textit{std::string \&email()} Getter für email\_
+			\item \textit{std\_optional<Priority> priority()} Getter für priority\_
+			\item \textit{std::string \&image()} Getter für image\_
+			\item \textit{std\_optional<std::vector<std::string>> \&environment()} Getter für environment\_
+			\item \textit{std\_optional<bool> interruptible()} Getter für interruptible\_
+			\item \textit{std\_optional<std::filesystem::path> \&current\_working\_dir()} Getter für current\_working\_dir\_
+			\item \textit{void Serialize(std::stringstream \&)} Schiebt die serialisierte JobConfig in den angegebenen Stream.
+			\item \textit{void Save(std::filesystem::path \&)} Speichert die JobConfig im Filesystem an der angegebenen Stelle. 
+			\item \textit{void Merge(JobConfig \&)} Füllt diese JobConfig mit Werten aus der übergebenen JobConfig auf. In beiden Configs vorhandene Werte werden nicht überschrieben.
 		\end{itemize}
 
 
 \end{itemize}
-
+\clearpage
 \subsubsection{SchedulerConfig}
 
 Wrapper für eine Hashmap, der auch eine Möglichkeit zum Speichern und Laden ins Filesystem bietet und als Speicher für verschiedene Regeln beim Einplanen der Jobs dient.
@@ -402,23 +406,23 @@ Wrapper für eine Hashmap, der auch eine Möglichkeit zum Speichern und Laden in
 
 	\item \textit{\textbf{Attribute}}
 		\begin{itemize}[label={\textbullet}]
-			\item \textit{std::map<std::string, std::string> values_} Hashmap, die alle Regeln enthält.
+			\item \textit{std::map<std::string, std::string> values\_} Hashmap, die alle Regeln enthält.
 		\end{itemize}
 
 	\item \textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
 			\item \textit{SchedulerConfig()} Erzeugt eine leere SchedulerConfig
-			\item \textit{SchedulerConfig(std::filesystem::path &)} Lädt eine serialisierte SchedulerConfig aus dem Filesystem
-			\item \textit{size_t count()} Gibt an wie viele Elemente sich in der Config befinden.
-			\item \textit{Get(std::string &)} Gibt das Element zurück, das der übergebenen Regel zugeordnet wurde.
-			\item \textit{Set(std::string &key, std::string &value)} Setzt den Wert der Regel mit dem übergebenen key auf den übergebenen Wert.
-			\item \textit{Save(std::filesystem::path &)} Schreibt die Config in das Filesystem an die angegebene Stelle.
-			\item \textit{Contains(std::string &)} Gibt an, ob sich in der Config eine Regel mit dem angegebenen key befindet.
+			\item \textit{SchedulerConfig(std::filesystem::path \&)} Lädt eine serialisierte SchedulerConfig aus dem Filesystem
+			\item \textit{size\_t count()} Gibt an wie viele Elemente sich in der Config befinden.
+			\item \textit{Get(std::string \&)} Gibt das Element zurück, das der übergebenen Regel zugeordnet wurde.
+			\item \textit{Set(std::string \&key, std::string \&value)} Setzt den Wert der Regel mit dem übergebenen key auf den übergebenen Wert.
+			\item \textit{Save(std::filesystem::path \&)} Schreibt die Config in das Filesystem an die angegebene Stelle.
+			\item \textit{Contains(std::string \&)} Gibt an, ob sich in der Config eine Regel mit dem angegebenen key befindet.
 		\end{itemize}
 
 
 \end{itemize}
-
+\clearpage
 \subsection{Client}
 
 \subsubsection{Model}
@@ -495,7 +499,6 @@ Ein Task ist eine Repräsentation eines auf der Befehlszeile eingegebenen Befehl
 		\end{itemize}
 
 \end{itemize}
-\clearpage
 
 \subsubsection{Client}
 
@@ -511,6 +514,8 @@ Die Hauptklasse der Client Anwendung. Verarbeitet die Befehls des Benutzers und 
 		\end{itemize}
 
 \end{itemize}
+
+\clearpage
 
 
 \subsection{Communication}
@@ -865,9 +870,53 @@ Nachricht, die Informationen zu einer Aufgabe übermittelt. Wird von Client zu S
 
 		\end{itemize}
 
+\subsection{Scheduler}
+
+\subsubsection{Queue}
+
+Die Oberklasse einer Warteschlangen-Implementierung. Hier werden alle nötigen Methoden für eine spezielle Implementierung einer Warteschlange definiert, sowie Default-Rückgabewerte falls diese nicht implementiert wurden. Eine spezielle Warteschlange soll als konkrete Strategie diese Klasse erweitern.
+
+\begin{itemize}[label={}]
+
+\item \textit{\textbf{Methoden}}
+\begin{itemize}[label={\textbullet}]
+	
+	\item \textit{void addTask(Job job)} Fügt der Warteschlange ein Job hinzu. Standardmäßig werden hier Jobs nur mit angefragter ID entfernt.
+
+\item \textit{int getPos(int id)} Gibt die Position des Tasks mit der übergebenen ID aus. Standardmäßig wird hier "-1" ausgegeben.
+
+\item \textit{Job getJob(int id)} Gibt den Job mit der angegeben ID aus der Warteschlange heraus. Dies ist eine Fallback-Methode und sollte in allen Warteschlangen-Strategien ersetzt werden. 
+
+\item \textit{void update()} Wird regelmäßig vom Scheduler aufgerufen. Standardmäßig passiert nichts. Diese Methode soll von einer konkreten Strategie für regelmäßige Checks benutzt werden.
+
+\end{itemize}
+
+\end{itemize}
+
+\subsubsection{PriorityQueue}
+
+Eine spezielle Implementierung einer Warteschlange. Sortiert Tasks nach Prioritäten.
+
+\begin{itemize}[label={}]
+
+\item \textit{\textbf{Methoden}}
+\begin{itemize}[label={\textbullet}]
+
+\item \textit{void addTask(Job job)} Fügt der Warteschlange ein Job hinzu. Dieser wird entsprechend seiner Priorität weiter vorne eingestuft je wichtiger.
+
+\item \textit{int getPos(int id)} Gibt die Position des Tasks mit der übergebenen ID aus.
+
+\item \textit{Job getJob(int Ram, int Cores)} Gibt den wichtigsten Job, also den mit der höchsten Priorität,  aus, der zu den übergebenen Spezifikationen passt.
+
+\item \textit{void update()} Überprüft ob ein Job bereits 24 Stunden in der Warteschlange verbracht hat und erhöht gegebenenfalls seine Priorität.
+
+\end{itemize}
+
 \end{itemize}
 
 
+
+\clearpage
 
 \section{Abläufe}
 \subsection{Repository Pattern Beispielverwendung}
