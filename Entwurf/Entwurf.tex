@@ -399,6 +399,23 @@ Ein Task ist eine Repräsentation eines auf der Befehlszeile eingegebenen Befehl
 
 \end{itemize}
 \clearpage
+
+\subsubsection{Client}
+
+Die Hauptklasse der Client Anwendung. Verarbeitet die Befehls des Benutzers und leitet diese weiter an den Server. Bei Bedarf kann auf eine Rückmeldung des Servers gewartet werden, die dem Benutzer auf der Befehlszeile angezeigt wird.
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+
+			\item \textit{int main(char** argv, int* argc)} Wandelt den Befehl des Benutzers mithilfe des CommandLineProcessor in verwendbare Struktur um. Leitet diesen dann an den Server weiter. Bei Bedarf wird die Netzwerkkommunikation offen gehalten, bis der Server eine Rückmeldung gesendet hat. Nach Ausgabe der Rückmeldung ist der Befehl beendet und die Client Anwendung wird beendet.
+			
+		\end{itemize}
+
+\end{itemize}
+
+
 \section{Abläufe}
 \subsection{Repository Pattern Beispielverwendung}
 
