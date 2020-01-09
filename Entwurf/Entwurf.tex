@@ -668,6 +668,21 @@ Nachricht, die zur Authentifizierung eines Arbeiters dient. Hier wird im Allgeme
 
 \end{itemize}
 
+\subsubsection{Authenticator}
+
+Authentifiziert einen Client und Worker gegenüber dem Scheduler.
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{void authenticate(std::string username, std::string password, std::string pubkey)} Authentifiziert einen Client bei der ersten Verbinung mit einen Benutzernamen, password und einen RSA Public Key (Der private Key wird auf dem Client aufbewart und nicht versendet) (Um sich beim nächsten mal ohne Password anmelden zu können)
+			\item \textit{void authenticate(std::string workername, std::string pubkey)} Authentifiziert einen Worker bei der ersten Verbinung mit einen vom Worker generierten eindeutigen (Worker-)Namen und einen RSA Public Key
+			\item \textit{void authenticate(std::string username, std::string usernamesignature)} Authentifiziert einen Client / Worker mit Benutzernamen und einer signature, die mit den private Key vom Client automatisch erzeugt wurde (Passwordlose Anmeldenung)
+		\end{itemize}
+
+
+\end{itemize}
 
 \subsubsection{Communicator}
 
@@ -971,6 +986,23 @@ In diesem Sequenzdiagramm ist der Ablauf einer typischen Kommunikation zwischen 
 
 Ein anderer Befehl des Benutzers, etwa die Nachfrage, wie der Bearbeitungsstatus einer Aufgabe derzeit ist, folgen diesem Ablauf. Sie unterscheiden sich im wesentlichen nur in den Aktionen, die auf Seiten der Server Anwendung stattfinden, sowie der Rückgabe, die der Server an den Client übermittelt.
 
+\clearpage
+
+\subsection{Erstmalige Anmeldenung eines Clients}
+
+\includegraphics[width=\textwidth]{Authenticator/ClientAuth}
+
+\clearpage
+
+\subsection{Erstmalige Anmeldenung eines Workers}
+
+\includegraphics[width=\textwidth]{Authenticator/WorkerAuth}
+
+\clearpage
+
+\subsection{Passwordlose Anmeldung Client / Worker}
+
+\includegraphics[width=\textwidth]{Authenticator/PublicKeyAuth}
 % Document ends here.
 \printnoidxglossaries
 
