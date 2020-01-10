@@ -546,6 +546,88 @@ Die Hauptklasse der Client Anwendung. Verarbeitet die Befehls des Benutzers und 
 \clearpage
 
 
+\subsection{Worker}
+
+\subsubsection{Model}
+
+\subsubsection{EventHandler}
+
+\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void receiveEvent(Event, uint64\_t taskID)} Behandelt das angekommene Event.
+			
+		\end{itemize}
+\end{itemize}
+
+\subsubsection{Container}
+
+\subsubsection{Docker}
+
+\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public static Container Start(int userid, Task task)} Startet einen Task auf dem Worker mithilfe von Docker. Gibt ein Container Object zurück welches diesen Task während der Ausführung beschreibt.
+			
+		\end{itemize}
+\end{itemize}
+
+\subsubsection{Container}
+
+\begin{itemize}[label={}]
+	\item \textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{std::string id} Docker ID des laufenden Containers.
+		\end{itemize}
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public std::string Tail(int lines)} Gibts die letzten lines Zeilen als Zeichenfolge zurück.
+			\item\textit{public void Stop()} Stoppt den Container und gibt Ressourcen frei, kann mit Resume fortgesetzt werden.
+			\item\textit{public Snapshot Snapshot(bool stop)} Erstellt ein Snapshot (Sicherung) des Containers, stoppt ihn danach falls gewünscht.
+			\item\textit{public void Resume(Snapshot snap)} Setzt das Snapshot snap (Sicherung) des Containers wieder her und setzt die instanz fort.
+			
+		\end{itemize}
+
+\end{itemize}
+
+\subsubsection{Snapshot}
+
+Klasse um ein Docker Snapshot zu verwalten.
+
+\begin{itemize}[label={}]
+	\item \textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{std::string id} Docker ID des laufenden Snapshots.
+		\end{itemize}
+
+\end{itemize}
+
+\subsubsection{Worker}
+
+Hauptklasse der Worker instanz.
+
+\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void processSnapshot(Message msg)} Gibts die letzten lines Zeilen als Zeichenfolge zurück.
+			\item\textit{public Task getContainerbyTaskID(uint64\_t tid)} Gibt dem zum Task gehörenden Container zurück.
+			\item\textit{public void initialize()} Initialisiert den Worker zur Ausführung der Tasks.
+			\item\textit{public void getHardwareDetails()} Ermittelt CPU Kern Anzahl, RAM, Betriebssystem.
+			\item\textit{public void readInTaskList(std::string pathToTaskList)} Liest Einträge aus einer Datei und interpretiert diese als Aufgaben
+			\item\textit{public void moveSnapshotToFileServer(Snapshot snap, std::string location)} Speichert den Snapshot auf dem File Server, damit ein Benutzer darauf zugriff bekommt. location: wo auf dem FileServer soll der Snapshot gespeichert werden.
+			\item\textit{public void backup(std::string location)} Speichert einen Snapshot aller laufenden Aufgaben an der angegebenen Stelle im FileServer oder nur auf dem Worker, falls location keine gültige Stelle auf dem File Server ist.
+			
+		\end{itemize}
+
+\end{itemize}
+
+\clearpage
+
+
 \subsection{Communication}
 
 \subsubsection{Model}
