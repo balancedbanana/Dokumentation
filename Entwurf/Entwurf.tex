@@ -299,7 +299,7 @@ Eine struct, die alle relevanten Userdaten kapselt.
 			
 			\item \textit{std::string email} Die Email des Users.
 			
-			\item \textit{authkey} to be filled
+			\item \textit{std::string public\_key} Ein öffentlicher Schlüssel, der im Authentifizierungsverfahren Anwendung findet. Wird vom Client bzw. Worker erzeugt.
 		\end{itemize}
 
 
@@ -339,7 +339,7 @@ Eine struct, die alle relevanten Workerdaten kapselt.
 			
 			\item \textit{std::string address}
 			
-			\item \textit{authkey} to be filled
+			\item \textit{std::string public\_key} Ein öffentlicher Schlüssel, der im Authentifizierungsverfahren Anwendung findet. Wird vom Client bzw. Worker erzeugt.
 		\end{itemize}
 
 
@@ -372,6 +372,23 @@ Eine struct, die alle relevanten Jobdaten kapselt.
 			
 			\item \textit{specs allocated\_specs} Die Hardware-Ressourcen, die dem Job zugewiesen wurden.
 
+		\end{itemize}
+
+
+\end{itemize}
+
+\subsubsection{struct \purl{job_result}}
+
+Eine struct, die die Ausgabe und Exit-Code eines Jobs kapselt.
+
+\begin{itemize}[label={}]
+
+	\item \textit{\textbf{Attribute}}
+		\begin{itemize}[label={\textbullet}]
+			\item \textit{std::string stdout} Ein Teil der Ausgabe eines Job.
+			
+			\item \textit{int8\_t exit\_code} Exit-Code eines Jobs.
+			
 		\end{itemize}
 
 
