@@ -1136,6 +1136,18 @@ func: Die auszuführende Funktion
 			\item\textit{Event\_RestoreRequest} Event zum wiederherstellen einer Aufgabe
 		\end{itemize}
 \end{itemize}
+
+\subsubsection{EventDispatcher}
+
+\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void dispatch(Event eventType, std::string worker, int taskID)} Verteilt ein ein Event an Worker. Protokolliert zudem diese Events.
+			
+		\end{itemize}
+\end{itemize}
+
 \clearpage
 
 \section{Abläufe}
