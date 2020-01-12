@@ -1110,7 +1110,9 @@ Die Hauptklasse des Schedulers. Hierdurch werden Befehle und Datenbankzugriffe g
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void wait(int s)} Behandelt das angekommene Event.
+			\item\textit{public void wait(int s)} Blockiert den Aufrufer für eine Anzahl an Sekunden
+
+s: Anzahl der zu wartenden Sekunden
 			\item\textit{public void wait(const std::function<void()>\& func)} Wartet s Sekunden und führt dann die Funktion func aus.
 Der Aufrufer wird nicht blockiert
 
