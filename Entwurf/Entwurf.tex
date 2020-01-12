@@ -177,7 +177,8 @@ Kurze Beschreibung
 
 \subsection{Datenbank}
 \subsubsection{Model}
-%Show the class diagram for it first
+
+\includegraphics[width=\textwidth]{database}
 
 \subsubsection{Repository}
 
@@ -379,6 +380,10 @@ Eine struct, die alle relevanten Jobdaten kapselt.
 
 \subsection{Configfiles}
 
+\subsubsection{Model}
+
+\includegraphics[width=\textwidth]{configfiles}
+
 \subsubsection{enum Priority}
 
 Eine Aufzählung aller möglichen Prioritäten, die ein Job haben kann.
@@ -474,13 +479,13 @@ Wrapper für eine Hashmap, der auch eine Möglichkeit zum Speichern und Laden in
 
 \end{itemize}
 \clearpage
-\subsection{Client}
+\subsection{CommandLineProcessing}
 
 \subsubsection{Model}
 
-% Diagramm
+\includegraphics[width=\textwidth]{CommandLineProcessing}
 
-\subsubsection{CommandLineProcessor}
+\subsection{CommandLineProcessor}
 
 Der Command Line Processor (CLP) ist dafür zuständig, die Benutzereingabe auf der Befehlszeile in eine für das Programm verwendbare Struktur zu überführen. Es werden die Argumente auf der Befehlszeile eingelesen und mit vom Benutzer in einer Konfigurationsdatei angegebenen Standardwerten ergänzt. Anhand der Angaben auf der Befehlszeile kann erkannt werden, um welchen Typ von Befehl es sich handelt, und welche Parameter für die Ausführung des Befehls vorhanden sein müssen.
 
@@ -522,7 +527,7 @@ Der Command Line Processor (CLP) ist dafür zuständig, die Benutzereingabe auf 
 
 \clearpage
 
-\subsubsection{Task}
+\subsection{Task}
 
 Ein Task ist eine Repräsentation eines auf der Befehlszeile eingegebenen Befehls. Er enthält Informationen, die für die Ausführung des gewünschten Befehls wichtig sind. Dazu gehören im wesentlichen Befehlstyp sowie Argumente.
 
@@ -551,6 +556,12 @@ Ein Task ist eine Repräsentation eines auf der Befehlszeile eingegebenen Befehl
 
 \end{itemize}
 
+\subsection{Client}
+
+\subsubsection{Model}
+
+\includegraphics[width=\textwidth]{client}
+
 \subsubsection{Client}
 
 Die Hauptklasse der Client Anwendung. Verarbeitet die Befehls des Benutzers und leitet diese weiter an den Server. Bei Bedarf kann auf eine Rückmeldung des Servers gewartet werden, die dem Benutzer auf der Befehlszeile angezeigt wird.
@@ -572,6 +583,8 @@ Die Hauptklasse der Client Anwendung. Verarbeitet die Befehls des Benutzers und 
 \subsection{Worker}
 
 \subsubsection{Model}
+
+\includegraphics[width=\textwidth]{worker}
 
 \subsubsection{EventHandler}
 
@@ -655,8 +668,7 @@ Hauptklasse der Worker instanz.
 
 \subsubsection{Model}
 
-% Diagramm
-
+\includegraphics[width=\textwidth]{communication}
 
 \subsubsection{AuthHandler}
 
@@ -1019,6 +1031,10 @@ Nachricht, die Informationen zu einer Aufgabe übermittelt. Wird von Client zu S
 		\end{itemize}
 \end{itemize}
 \subsection{Scheduler}
+
+\subsubsection{Model}
+
+\includegraphics[width=\textwidth]{scheduler}
 
 \subsubsection{Queue}
 
