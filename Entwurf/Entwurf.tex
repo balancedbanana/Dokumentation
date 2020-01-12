@@ -1111,7 +1111,11 @@ Die Hauptklasse des Schedulers. Hierdurch werden Befehle und Datenbankzugriffe g
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
 			\item\textit{public void wait(int s)} Behandelt das angekommene Event.
-			\item\textit{public void wait(const std::function<void()>\& func)} Behandelt das angekommene Event.
+			\item\textit{public void wait(const std::function<void()>\& func)} Wartet s Sekunden und führt dann die Funktion func aus.
+Der Aufrufer wird nicht blockiert
+
+s: Anzahl der zu wartenden Sekunden,
+func: Die auszuführende Funktion
 			
 		\end{itemize}
 \end{itemize}
