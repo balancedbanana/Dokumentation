@@ -586,17 +586,6 @@ Die Hauptklasse der Client Anwendung. Verarbeitet die Befehls des Benutzers und 
 
 \includegraphics[width=\textwidth]{worker}
 
-\subsubsection{EventHandler}
-
-\begin{itemize}[label={}]
-
-	\item\textit{\textbf{Methoden}}
-		\begin{itemize}[label={\textbullet}]
-			\item\textit{public void receiveEvent(Event, uint64\_t taskID)} Behandelt das angekommene Event.
-			
-		\end{itemize}
-\end{itemize}
-
 \subsubsection{Container}
 
 \subsubsection{Docker}
@@ -1098,7 +1087,34 @@ Die Hauptklasse des Schedulers. Hierdurch werden Befehle und Datenbankzugriffe g
 	
 \end{itemize}
 
+\subsection{TimedEvents}
 
+\subsubsection{Model}
+
+\includegraphics[width=\textwidth]{TimedEvents}
+
+\subsubsection{EventHandler}
+
+\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void receiveEvent(Event, uint64\_t taskID)} Behandelt das angekommene Event.
+			
+		\end{itemize}
+\end{itemize}
+
+\subsubsection{Timer}
+
+\begin{itemize}[label={}]
+
+	\item\textit{\textbf{Methoden}}
+		\begin{itemize}[label={\textbullet}]
+			\item\textit{public void wait(int s)} Behandelt das angekommene Event.
+			\item\textit{public void wait(const std::function<void()>\& func)} Behandelt das angekommene Event.
+			
+		\end{itemize}
+\end{itemize}
 
 \clearpage
 
