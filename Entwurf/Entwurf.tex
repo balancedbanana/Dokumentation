@@ -682,8 +682,8 @@ Beschreibt Methoden zur Ausführung von Authentifizierungsversuchen auf dem Sche
 
 	\item\textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
-			\item\textit{public AuthHandler GetDefault(Communicator comm)} Gibt einen Allzweck AuthHandler zurück, der in jeder Situation funktioniert.
-			\item\textit{public AuthHandler(Communicator comm)} Kontruktor des abstrakten AuthHandler kann nur von Unterklassen aufgerufen werden.
+			\item\textit{public AuthHandler GetDefault()} Gibt einen Allzweck AuthHandler zurück, der in jeder Situation funktioniert.
+			\item\textit{public AuthHandler()} Kontruktor des abstrakten AuthHandler kann nur von Unterklassen aufgerufen werden.
 			\item\textit{public virtual void authenticate(std::shared\_ptr<IUser>, std::string password)} Authentifiziere einen Benutzer mithilfe eines Passworts.
 			\item\textit{public void authenticate(std::shared\_ptr<IUser>, std::string signature)} Authentifiziere einen Benutzer mithilfe einer Signatur (nicht notwendigerweise ein Passwort)
 			
@@ -811,6 +811,7 @@ Authentifiziert einen Client und Worker gegenüber dem Scheduler.
 
 	\item \textit{\textbf{Methoden}}
 		\begin{itemize}[label={\textbullet}]
+			\item\textit{public Authenticator(Communicator comm)} Kontruktor um einen Authenticator für den Communicator comm zu erstellen.
 			\item \textit{void authenticate(std::string username, std::string password, std::string pubkey)} Authentifiziert einen Client bei der ersten Verbindung mit einen Benutzernamen, Passwort und einen RSA Public Key. Der private Key wird auf dem Client aufbewart und nicht versendet, um sich beim nächsten mal ohne Passwort anmelden zu können.
 			\item \textit{void authenticate(std::string workername, std::string pubkey)} Authentifiziert einen Worker bei der ersten Verbindung mit einen vom Worker generierten eindeutigen (Worker-)Namen und einen RSA Public Key
 			\item \textit{void authenticate(std::string username, std::string usernamesignature)} Authentifiziert einen Client / Worker mit Benutzernamen und einer signature, die mit den private Key vom Client automatisch erzeugt wurde (Passwortlose Anmeldenung)
