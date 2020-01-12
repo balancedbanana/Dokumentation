@@ -188,7 +188,7 @@ Die Repository-Klasse ist die Schnittstelle, die der Rest des Programms verwende
 	
 		\item \textit{\textbf{Methoden}}
 			\begin{itemize}[label={\textbullet}]
-				\item \textit{public uint64\_t addWorker(int auth\_key, int space, int ram, int cores, std::string address)} Fügt einen Worker zur Datenbank hinzu und gibt seine ID zurück.
+				\item \textit{public uint64\_t addWorker(std::string name, std::string public\_key, int space, int ram, int cores, std::string address)} Fügt einen Worker zur Datenbank hinzu und gibt seine ID zurück.
 				
 				\item \textit{public bool removeWorker(uint64\_t id)} Löscht einen Worker aus dem DB. Gibt true zurück, wenn die Operation erfolgreich war, ansonsten false.
 				
@@ -204,7 +204,7 @@ Die Repository-Klasse ist die Schnittstelle, die der Rest des Programms verwende
 				
 				\item \textit{public std::vector<std::shared\_ptr<Job>> getJobs()} Gibt alle Jobs zurück.
 				
-				\item \textit{public uint64\_t addUser(std::string name, std::string email, int auth\_key)} Fügt einen User zur Datenbank hinzu und gibt seine ID zurück. 
+				\item \textit{public uint64\_t addUser(std::string name, std::string email, std::string public\_key)} Fügt einen User zur Datenbank hinzu und gibt seine ID zurück. 
 				
 				\item \textit{public bool removeUser(uint64\_t user\_id)} Löscht einen User aus dem DB. Gibt true zurück, wenn die Operation erfolgreich war, ansonsten false.
 				
