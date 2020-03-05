@@ -1,0 +1,111 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amssymb} % needed for math
+\usepackage{amsmath} % needed for math
+\usepackage[utf8]{inputenc} % this is needed for german umlauts
+\usepackage[ngerman]{babel} % this is needed for german umlauts
+\usepackage[T1]{fontenc}    % this is needed for correct output of umlauts in pdf
+\usepackage[margin=2.5cm]{geometry} %layout
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Balanced Banana},bookmarks=true,}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage[nonumberlist]{glossaries}
+\usepackage{enumitem}
+\usepackage{verbatim}
+\usepackage{indentfirst} % Adds indent for the first paragraph after a {/section}
+
+
+\deftranslation[to=ngerman]{Glossary}{\section{Stichwortverzeichnis}}
+
+\makeatletter
+\newenvironment{mycode}
+ {\def\@xobeysp{\ }\verbatim\rightskip=0pt plus 6em\relax}
+ {\endverbatim}
+\makeatother
+
+\setitemize{align=parleft, labelsep=0.5cm}
+
+
+\title{Balanced Banana}
+\author{Niklas Lorenz \and Thomas Häuselmann \and Rakan Zeid Al Masri \and Christopher Lukas Homberger \and Jonas Seiler}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Create a shorter version for tables. DO NOT CHANGE               	 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\addrow[2]{#1 &#2\\ }
+
+\newcommand\addheading[2]{#1 &#2\\ \hline}
+\newcommand\tabularhead{\begin{tabular}{lp{13cm}}
+\hline
+	}
+
+\newcommand\addmulrow[2]{ \begin{minipage}[t][][t]{2.5cm}#1\end{minipage}%
+   &\begin{minipage}[t][][t]{8cm}
+    \begin{enumerate} #2   \end{enumerate}
+    \end{minipage}\\ }
+
+\newenvironment{usecase}{\tabularhead}
+{\hline\end{tabular}}
+
+\usepackage{microtype}
+
+\begin{document}
+\pagenumbering{roman}
+\input{Deckblatt}         % Deckblatt.tex laden und einfügen
+\setcounter{page}{2}
+\tableofcontents          % Inhaltsverzeichnis ausgeben
+\clearpage
+\pagenumbering{arabic}
+
+\section{Einleitung}
+\vspace{0.2cm}
+Dieses Dokument dient dazu, einen allgemeinen Überblick darüber zu geben, was wir, das BalancedBanana-Team, in der Implementierungsphase gemacht haben. \par
+\vspace{5mm}
+
+Das erste Abschnitt beschreibt die Probleme, die wir während dieser Phase hatten, und die Änderungen, die wir am ursprünglichen Entwurf vorgenommen haben. Das Abschnitt ist in mehrere Unterabschnitte unterteilt, die jeweils ein Modul unseres Programms beschreiben.\par 
+\vspace{5mm}
+
+Das nächste Abschnitt listet kurz die verschiedenen externen Bibliotheken und Programme auf, die wir verwendet haben.\par 
+\vspace{5mm}
+
+Danach folgt ein Abschnitt über allgemeine Statistiken über unser Programm einschließlich der Testabdeckung.\par
+\vspace{5mm}
+
+Das letzte Abschnitt gibt einen allgemeinen Überblick über unseren ursprünglichen Zeitplan und den tatsächlichen Zeitplan für das Projekt.
+
+\clearpage
+\section{Probleme und Änderungen am Entwurf}
+\subsection{Allgemein}
+\vspace{0.2cm}
+Viele der Probleme zu Beginn der Phase standen im Zusammenhang mit der Einrichtung unserer einzelnen Systeme. Die Konfiguration der verschiedenen Entwicklungsumgebungen war zu Beginn sehr zeitaufwändig und die Fehlerbehebung war manchmal schwierig, da jede Person eine andere Einrichtung hatte. Es wäre viel einfacher gewesen, wenn wir alle die exakt gleiche Entwicklungsumgebung auf dem gleichen Betriebssystem verwendet hätten.
+\clearpage
+
+\subsection{Datenbank}
+\vspace{0.2cm}
+Viele der früheren Probleme mit der Implementierung der Datenbank waren mit dem Setup und meiner Unkenntnis von MySQL verbunden. Im Allgemeinen gab es jedoch keine großen Probleme mit der Implementierung des Datenbankteils unseres Programms. Ich habe die Zeit, die es nicht nur für die Implementierung der Datenbank, sondern auch für das Testen der Datenbank brauchte, grob unterschätzt. Das Testen der Datenbank nahm aufgrund der Natur relationaler Datenbanken enorm viel Zeit in Anspruch. Die aktuelle Implementierung folgt im Allgemeinen dem ursprünglichen Entwurf, es gab jedoch einige Änderungen.\par 
+\vspace{5mm}
+Eine große Änderung war die Aufspaltung der Gateway-Klasse in drei kleinere Klassen (Job-, Worker- und UserGateway). Damit sollte vermieden werden, dass es eine große Götterklasse gibt, die schwer zu warten und zu testen ist. Alle Gateway-Klassen erben von IGateway. Worker- und UserGateway haben sich im Vergleich zum ursprünglichen Entwurf nicht viel geändert, jedoch wurden neue Methoden zu JobGateway hinzugefügt, die von anderen Teilen unseres Programms benötigt wurden.\par
+\vspace{5mm}
+Eine weitere Änderung war das Hinzufügen eines Caches zum Repository. Der Cache ermöglicht es unserem Programm, verschiedene Objekte zu speichern, so dass andere Teile unseres Programms die Datenbank nicht ständig abfragen müssen.\par
+\vspace{5mm}
+Eine kleinere Änderung bestand darin, dass die IGateway-Klasse die Verbindung zur Datenbank aufbauen konnte, anstatt sie von der Gateway-Klasse erstellen und ein QSqlDatabase-Objekt als Klassenmitglied speichern zu lassen. Diese Änderung wurde aufgrund einer genaueren Untersuchung der Dokumentation vorgenommen.
+
+\clearpage
+\section{Statistik}
+\subsection{Allgemein}
+\subsection{Testfälle}
+
+
+\clearpage
+
+\section{Implementierungsplan}
+\subsection{Geplant}
+
+
+\subsection{Realität}
+
+\clearpage
+
+\end{document}
