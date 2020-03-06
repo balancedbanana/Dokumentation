@@ -127,6 +127,7 @@ Eine weitere große Änderung ist die Aufteilung des Communicator in den Communi
 
 \clearpage
 \section{Externe Abhängigkeiten}
+\subsection{Im Programm}
 \begin{itemize}
 	\item [\textbf{QT}] \hspace{10mm} Bibliothek für Netzwerkübertragung und Datenbanken. Wird verwendet, um die drei Programme (Client, Scheduler und Worker) miteinander kommunizieren lassen zu können. Wird außerdem dazu verwendet die MySQL Datenbank auf dem Scheduler zu verwalten und von innerhalb des Codes SQL Anfragen zu ermöglichen.
 
@@ -147,6 +148,17 @@ Eine weitere große Änderung ist die Aufteilung des Communicator in den Communi
 	\item [\textbf{python}]\hspace{1cm} Programmiersprache für Scripts. Wird verwendet, um gewisse Tests auszuführen, die Netzwerkfunktionalität erfordern.
 
 \end{itemize}
+
+\subsection{Auf GitHub}
+\begin{itemize}
+
+	\item[\textbf{CircleCI}]\hspace{1cm} Ein Continuous-Integrationsprogramm(CI). CI ist eine Softwareentwicklungsstrategie, die die Entwicklungsgeschwindigkeit erhöht und gleichzeitig die Qualität des Codes, den die Teams einsetzen, sicherstellt. Die Entwickler commiten kontinuierlich Code in kleinen Schritten (zumindest täglich oder sogar mehrmals täglich), der dann automatisch erstellt und getestet wird, bevor er mit dem gemeinsamen Repository zusammengeführt wird.
+	
+	\item[\textbf{TravisCI}]\hspace{1cm} Ein weiteres Continuous-Integrationsprogramm.
+	
+	\item[\textbf{Coveralls}]\hspace{1cm} Programm, um die Testabdeckung unseres Codes zu zeigen.
+	
+\end{itemize}
 \section{Statistik}
 \subsection{Allgemein}
 \subsection{Testfälle}
@@ -163,7 +175,7 @@ Externe Bibliotheks schnittstellen kann man nicht einfach fehlschlagen lassen.
 \section{Implementierungsplan}
 \subsection{Geplant}
 
-\includegraphics[width=\textwidth]{oldchart}
+\includegraphics[width=\textwidth]{orgchart}
 
 \subsection{Realität}
 
