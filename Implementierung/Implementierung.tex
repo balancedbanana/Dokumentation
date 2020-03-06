@@ -92,6 +92,27 @@ Eine weitere Änderung war das Hinzufügen eines Caches zum Repository. Der Cach
 \vspace{5mm}
 Eine kleinere Änderung bestand darin, dass die IGateway-Klasse die Verbindung zur Datenbank aufbauen konnte, anstatt sie von der Gateway-Klasse erstellen und ein QSqlDatabase-Objekt als Klassenmitglied speichern zu lassen. Diese Änderung wurde aufgrund einer genaueren Untersuchung der Dokumentation vorgenommen.
 
+\subsection{Config Files}
+\vspace{0.2cm}
+Da es sich bei den Config Files um sehr einfache Container handelt, die keine große Funktion haben, musste hier nichts groß geändert werden. Lediglich die SchedulerConfig Klasse wurde in ApplicationConfig umbenannt, da sie auch in der Worker-Anwendung eingesetzt werden kann. 
+
+\subsection{Communication}
+\vspace{0.2cm}
+Das Communication Paket war im Entwurf noch sehr abstrakt gehalten. Daher ist während der Implementierung vieles dazugekommen, besonders neue Message-Typen. Mittlerweile gibt es:
+\begin{itemize}
+	\item AuthResultMessage
+	\item ClientAuthMessage
+	\item HardwareDetailMessage
+	\item PublicKeyAuthMessage
+	\item RespondToClientMessage
+	\item TaskMessage
+	\item TaskResponseMessage
+	\item WorkerAuthMessage
+	\item WorkerLoadRequestMessage
+	\item WorkerLoadResponseMessage
+\end{itemize}
+Eine weitere große Änderung ist die Aufteilung des Communicator in den Communicator und den CommunicatorListener. Letzterer übernimmt jetzt das Warten an einem Port auf Verbindungsanfragen, während der Communicator nur noch für das Empfangen und Senden von Messages verantwortlich ist. Für die Aufteilung haben wir und deshalb entschieden, da auch in allen Netzwerk-Bibliotheken zwischen Socket und Server unterschieden wird. Für das Verarbeiten von Messages sind weiterhin die Unterklassen des MessageProcessor verantwortlich. Diese befinden sich jetzt in dem entsprechenden Anwendungspaket (Scheduler, Worker oder Client) und nicht länger im Communication Paket, da dieses nur als Grundlage für die Kommunikation dienen soll, nicht jedoch die gesamte Verarbeitung für alle drei Anwendungen.
+
 \clearpage
 \section{Statistik}
 \subsection{Allgemein}
