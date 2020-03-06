@@ -64,7 +64,7 @@
 Dieses Dokument dient dazu, einen allgemeinen Überblick darüber zu geben, was wir, das BalancedBanana-Team, in der Implementierungsphase gemacht haben. \par
 \vspace{5mm}
 
-Das erste Abschnitt beschreibt die Probleme, die wir während dieser Phase hatten, und die Änderungen, die wir am ursprünglichen Entwurf vorgenommen haben. Das Abschnitt ist in mehrere Unterabschnitte unterteilt, die jeweils ein Modul unseres Programms beschreiben.\par 
+Das erste Abschnitt beschreibt die Probleme, die wir während dieser Phase hatten, und die Änderungen, die wir gegenüber dem ursprünglichen Pflichtenheft und Entwurf vorgenommen haben. Dieser Abschnitt ist in mehrere Unterabschnitte unterteilt, die jeweils ein Modul unseres Programms beschreiben.\par 
 \vspace{5mm}
 
 Das nächste Abschnitt listet kurz die verschiedenen externen Bibliotheken und Programme auf, die wir verwendet haben.\par 
@@ -76,7 +76,7 @@ Danach folgt ein Abschnitt über allgemeine Statistiken über unser Programm ein
 Das letzte Abschnitt gibt einen allgemeinen Überblick über unseren ursprünglichen Zeitplan und den tatsächlichen Zeitplan für das Projekt.
 
 \clearpage
-\section{Probleme und Änderungen am Entwurf}
+\section{Probleme, Änderungen am Pflichtenheft und Entwurf}
 \subsection{Allgemein}
 \vspace{0.2cm}
 Viele der Probleme zu Beginn der Phase standen im Zusammenhang mit der Einrichtung unserer einzelnen Systeme. Die Konfiguration der verschiedenen Entwicklungsumgebungen war zu Beginn sehr zeitaufwändig und die Fehlerbehebung war manchmal schwierig, da jede Person eine andere Einrichtung hatte. Es wäre viel einfacher gewesen, wenn wir alle die exakt gleiche Entwicklungsumgebung auf dem gleichen Betriebssystem verwendet hätten.
@@ -84,8 +84,14 @@ Durch teilweiße fehlender Synchronisierung mit der master Branch, entstanden ve
 Wegen vieler Zyklen zwischen den Paketen, wurde die Task klasse in communication verschoben.
 Jedoch wurden weitere größere Paketänderungen in die nächste Phase verschoben, um die Implementierung und ausstehende Merges nicht verkomplizieren.
 \clearpage
+\subsection{Änderungen am Pflichtenheft}
+\subsubsection{CommandLineInterface}
+\vspace{0.2cm}
+Befehle wurden restrukturiert, benutzen jetzt unterbefehle (wie bei git)
+Verkürzung der Abkürzungen: -minc -> -c, -maxc -> C, minr -> -r, -maxr -> -R, -ri -> I, -ai -> i, weil CLI11 für Options Abkürzungen einen einzelnen Buchstaben erfordert.
 
-\subsection{Datenbank}
+\subsection{Änderungen am Entwurf}
+\subsubsection{Datenbank}
 \vspace{0.2cm}
 Viele der früheren Probleme mit der Implementierung der Datenbank waren mit dem Setup und meiner Unkenntnis von MySQL verbunden. Im Allgemeinen gab es jedoch keine großen Probleme mit der Implementierung des Datenbankteils unseres Programms. Ich habe die Zeit, die es nicht nur für die Implementierung der Datenbank, sondern auch für das Testen der Datenbank brauchte, grob unterschätzt. Das Testen der Datenbank nahm aufgrund der Natur relationaler Datenbanken enorm viel Zeit in Anspruch. Die aktuelle Implementierung folgt im Allgemeinen dem ursprünglichen Entwurf, es gab jedoch einige Änderungen.\par 
 \vspace{5mm}
@@ -95,11 +101,11 @@ Eine weitere Änderung war das Hinzufügen eines Caches zum Repository. Der Cach
 \vspace{5mm}
 Eine kleinere Änderung bestand darin, dass die IGateway-Klasse die Verbindung zur Datenbank aufbauen konnte, anstatt sie von der Gateway-Klasse erstellen und ein QSqlDatabase-Objekt als Klassenmitglied speichern zu lassen. Diese Änderung wurde aufgrund einer genaueren Untersuchung der Dokumentation vorgenommen.
 
-\subsection{Config Files}
+\subsubsection{Config Files}
 \vspace{0.2cm}
 Da es sich bei den Config Files um sehr einfache Container handelt, die keine große Funktion haben, musste hier nichts groß geändert werden. Lediglich die SchedulerConfig Klasse wurde in ApplicationConfig umbenannt, da sie auch in der Worker-Anwendung eingesetzt werden kann. 
 
-\subsection{Communication}
+\subsubsection{Communication}
 \vspace{0.2cm}
 Das Communication Paket war im Entwurf noch sehr abstrakt gehalten. Daher ist während der Implementierung vieles dazugekommen, besonders neue Message-Typen. Mittlerweile gibt es:
 \begin{itemize}
