@@ -150,7 +150,13 @@ Eine weitere große Änderung ist die Aufteilung des Communicator in den Communi
 \section{Statistik}
 \subsection{Allgemein}
 \subsection{Testfälle}
+3 Tests von 265 schlagen fehl (master)
+Coverage 79,3%
 
+\subsubsection{Nicht Abgedeckt}
+Docker Checkpoint Tests brechen frühzeitig ab und bleiben unberücksichtigt.
+Unvollständige Einstiegspunkte, werden nicht durch Tests ausgeführt und sind negativ bewertet.
+Externe Bibliotheks schnittstellen kann man nicht einfach fehlschlagen lassen.
 
 \clearpage
 
