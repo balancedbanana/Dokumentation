@@ -114,6 +114,27 @@ Das Communication Paket war im Entwurf noch sehr abstrakt gehalten. Daher ist w�
 Eine weitere große Änderung ist die Aufteilung des Communicator in den Communicator und den CommunicatorListener. Letzterer übernimmt jetzt das Warten an einem Port auf Verbindungsanfragen, während der Communicator nur noch für das Empfangen und Senden von Messages verantwortlich ist. Für die Aufteilung haben wir und deshalb entschieden, da auch in allen Netzwerk-Bibliotheken zwischen Socket und Server unterschieden wird. Für das Verarbeiten von Messages sind weiterhin die Unterklassen des MessageProcessor verantwortlich. Diese befinden sich jetzt in dem entsprechenden Anwendungspaket (Scheduler, Worker oder Client) und nicht länger im Communication Paket, da dieses nur als Grundlage für die Kommunikation dienen soll, nicht jedoch die gesamte Verarbeitung für alle drei Anwendungen.
 
 \clearpage
+\section{Externe Abhängigkeiten}
+\begin{itemize}
+	\item [\textbf{QT}] \hspace{10mm} Bibliothek für Netzwerkübertragung und Datenbanken. Wird verwendet, um die drei Programme (Client, Scheduler und Worker) miteinander kommunizieren lassen zu können. Wird außerdem dazu verwendet die MySQL Datenbank auf dem Scheduler zu verwalten und von innerhalb des Codes SQL Anfragen zu ermöglichen.
+
+	\item [\textbf{CLI11}]\hspace{10mm} Bibliothek zum einlesen der Befehlszeile. Wird verwendet um die Argumente beim Aufruf der drei Programme (Client, Scheduler und Worker) die der Benutzer angegeben hat einzulesen.
+
+	\item [\textbf{OpenSSL}] \hspace{10mm} Bibliothek zur Verschlüsselung von Daten. Wird dazu verwendet einen Benutzer mithilfe eines Public-Private-Key Verfahrens mit dem Scheduler zu verbinden und zu identifizieren, wenn sich der selbe Benutzer erneut im System anmeldet.
+
+	\item [\textbf{GTest}] \hspace{0.5cm} Bibliothek zum Testen von C und C++ Code. Wird verwendet, um die einzelnen Bestandteile der Programme zu testen.
+
+	\item [\textbf{SimpleHTTPServer}] \hspace{3cm} Selbstentwickelte Bibliothek, die das Aufsetzten und verwalten eines HTTP Servers ermöglicht. Wird verwendet, um den HTTP Server zu verwalten, der auf HTTP Anfragen bezüglich des Systemstatus (z.B. Auslastung der Arbeiter Rechner, ...) antwortet.
+
+	\item [\textbf{Docker}]\hspace{10mm} Bibliothek zum kapseln von Prozessen in Containern. Wird dazu verwendet, die Benutzer Aufträge voneinender zu trennen und die gesetzten Grenzen für die Hardwareressourcen einzubehalten.
+
+	\item [\textbf{Cereal}]\hspace{1cm} Bibliothek zur Serialisierung.
+
+	\item [\textbf{criu}] \hspace{1cm}Bibliothek zur Checkpoint-/Wiederherstellungsfunktionalität 
+
+	\item [\textbf{python}]\hspace{1cm} Programmiersprache für Scripts. Wird verwendet, um gewisse Tests auszuführen, die Netzwerkfunktionalität erfordern.
+
+\end{itemize}
 \section{Statistik}
 \subsection{Allgemein}
 \subsection{Testfälle}
