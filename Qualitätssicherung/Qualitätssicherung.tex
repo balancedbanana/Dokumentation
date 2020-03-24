@@ -73,15 +73,27 @@ Tests die wir benutzt haben um die ganzen Testfälle abzudecken und wie diese ge
 Welche Umgebung hatten wir, was haben wir im Endeffekt getestet (zb das aufsetzte Netz von Florian, eine Woche Testbetrieb)
 \begin{itemize}[label={\textbullet}]
     \item Herunterladen des Programms unter\newline \texttt{https://github.com/balancedbanana/balancedbanana/releases}
-    \item Einrichten der MySql Datenbank mit \texttt{cat balancedbanana.sql | sudo mysql}\newline
-          Die SQL Datei ist im Archiv unter \texttt{share/balancedbanana/balancedbanana.sql} zu finden.\newline
-          Nun ist die Datenbank unter dem Schema balancedbanana installiert
-          In der mysql Console einen Datenbank Nutzer für balancedbanana anlegen mit folgenden mysql Befehlen. Das Passwort \texttt{balancedbanana}' nach \texttt{IDENTIFIED BY} bei bedarf anpassen und in \texttt{\$HOME/.bbs/appconfig.ini} als Zeile \texttt{databasepassword:balancedbanana}\newline
-          \texttt{CREATE USER 'balancedbanana'@'localhost' IDENTIFIED BY 'balancedbanana';}\newline
-          \texttt{GRANT ALL PRIVILEGES ON balancedbanana.* TO 'balancedbanana'@'localhost';}\newline
-          \texttt{FLUSH PRIVILEGES;}\newline
-          \texttt{exit}
-    \item Unter \texttt{share/balancedbanana/.bbs} befindet sich eine Beispiel config für den Scheduler, dort kann man ein Benutzerdefiniertes Datenbank password setzen (falls man den Ordner \texttt{.bbs} unter \texttt{\$HOME/} anlegt)
+    \item Einrichten der MySql Datenbank mit \newline
+    \begin{mycode}
+    cat balancedbanana.sql | sudo mysql
+    \end{mycode}
+    Die SQL Datei ist im Archiv unter \newline \texttt{share/balancedbanana/balancedbanana.sql} \newline
+    zu finden.\newline
+    Nun ist die Datenbank unter dem Schema balancedbanana installiert.
+    In der MySQL-Konsole einen Datenbank Nutzer für balancedbanana anlegen mit folgenden MySQL-Befehlen:
+    \begin{mycode}
+    CREATE USER 'balancedbanana'@'localhost' IDENTIFIED BY 
+    'balancedbanana';
+    	
+    GRANT ALL PRIVILEGES ON balancedbanana.* TO 'balancedbanana'@'localhost';
+        
+    FLUSH PRIVILEGES;
+        
+    exit
+    \end{mycode}
+    Das Passwort \texttt{balancedbanana} nach \texttt{IDENTIFIED BY} bei Bedarf anpassen und in \newline
+    \texttt{share/balancedbanana/.bbs/appconfig.ini} \newline
+    in Zeile \texttt{databasepassword} anpassen. \newline
 
 \end{itemize}
 \subsection{Konklusion}
