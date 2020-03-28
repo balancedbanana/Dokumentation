@@ -62,12 +62,18 @@ Dieses Dokument dient als Übersicht der Qualitätssicherung. Erläutert werden 
 \section{Testabdeckung}
 \subsection{Klassenüberdeckung}
 \vspace{0.2cm}
-Die Testüberdeckung der einzelnen Klassen ist in der ersten Woche der Qualitätssicherung um 25\% gefallen, dies liegt daran, dass einige Klassen zwar intern funktioneren, sie jedoch im Zusammenspiel mit anderen nicht. In der ersten Woche wurden also hauptsächlich fehlerhafte Schnittstellen oder andere Fehler beseitigt und entsprechende Unit Tests erst in den folgenden Wochen eingeführt. \newline
-\includegraphics[width=\textwidth]{CoverageD}
+Die Testüberdeckung der einzelnen Klassen ist in der ersten Woche der Qualitätssicherung gefallen, dies liegt daran, dass einige Klassen zwar intern funktioneren, sie jedoch im Zusammenspiel mit anderen nicht. In der ersten Woche wurden also hauptsächlich fehlerhafte Schnittstellen oder andere Fehler beseitigt und entsprechende Unit Tests erst in den folgenden Wochen eingeführt. \newline
+\includegraphics[width=\textwidth]{CoverageD} \newline
+Entsprechend sehen wir einen Anstieg in Lines of Code (LOC) sowie der Anzahl Tests.
+\includegraphics[width=\textwidth]{LOCD} \newline
+\includegraphics[width=\textwidth]{TestD} \newline
+Da der Großteil des Codes bereits implementiert ist, sowie Integrationstests eher länger dafür aber weniger als Unittests sind, steigt auch die Anzahl der Tests nicht stark.
 \clearpage
 \subsection{Integrationstests}
 \vspace{0.2cm}
-Für das Automatisierte Testen des ganzen Systems haben wir ein Skript in Python benutzt, dieses beinhaltete diverse Szenarien und prüfte mit Positiv- als auch mit Negativtests. Neben diesem haben wir auch einiges "von Hand" getestet
+Für das Automatisierte Testen des ganzen Systems haben wir ein Skript in Python benutzt, dieses beinhaltete diverse Szenarien und prüfte mit Positiv- als auch mit Negativtests. Neben diesem haben wir auch einiges "von Hand" getestet 
+%Notiz an Jonas:
+%Liste von Tests sodass wir bessere Tabellen erstellen können
 \section{Umgesetzte Funktionale Anforderungen}
 
 \begin{tabular}{|l|c|r|}
