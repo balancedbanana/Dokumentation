@@ -158,9 +158,11 @@ Nun ist der Scheduler aufgesetzt.
 \subsection{Benutzen des Clients}
 Der Client kann mit dem Programm \texttt{bbc} gestartet werden. Der Client hat verschiedene Subcommands sowie Flags für diese, nachführend sind diese erläutert. Für nicht angegebene Parameter wird zuerst in der Benutzerconfig (\texttt{\$HOME/.bbc}) dann in der Applikationsconfig (\texttt{share/balancedbanana/.bbc}) und danach wird entweder auf Standardwerte oder auf gesetzte Standardparameter im Scheduler gesetzt.
 Bei Unklarheiten der Kommandos oder deren Parameter kann immer mit dem Argument -h ein Hilfemenü aufgerufen werden.
-\subsection{Run}
+\subsubsection{Run}
 Der Run-Command reiht eine Aufgabe ein, folgende Parameter sind verfübar:
 \begin{itemize}
+\item --server. Gibt die IP Adresse des Schedulers an. Angaben als String.
+\item --port. Gibt den Port am Scheduler an. Angaben als 16 Bit Integer.	
 \item --block / -b. Gibt an ob der Client blockiert, bis die Aufgabe beendet ist. Angaben als Boolean.
 \item --email / -e. Gibt die Email an, die benachrichtigt wird, wenn die Aufgabe beendet ist. Angaben als String.
 \item --image / -i. Gibt den Pfad des Images an, dass für die Aufgabe benutzt werden soll.  Angaben als String.
@@ -171,6 +173,81 @@ Der Run-Command reiht eine Aufgabe ein, folgende Parameter sind verfübar:
 \item --min-ram / -r. Gibt den minimal nutzbaren Arbeitsspeicher in miB an. Werte als 64 Bit Integer.
 \item --job / -j. Gibt die Eingabe an, die den Job startet. Alles hinter dieser Eingabe wird als Kommando aufgefasst, dieses Argument sollte also das letzte des Run Kommandos sein. Angaben als String.
 \end{itemize}
+Beispiel: \newline
+\begin{mycode}
+	./bbc run --server 192.168.178.82 --port 25565 -b true -e example@hello.com -i catsimulation -p High -C 4 -c 1 -R 4096 -r 1024 -j sh catsimulationfile.sh
+\end{mycode}
+\subsubsection{addImage}
+Der addImage-Command registriert ein Image, sodass es mit --image eingereiht werden kann.
+Das einzige Argument ist der Pfad zum Dockerfile.
+Beispiel: \newline
+\begin{mycode}
+	./bbc addImage catsimulation ../../Simulations/Catsimulation	
+\end{mycode}
+\subsubsection{removeImage}
+Entfernt ein registriertes Image unter dem gegebenen Namen. Das einzige Argument ist der Name des Images.
+Beispiel: \newline
+\begin{mycode}
+	./bbc removeImage parrotsimulation
+\end{mycode}
+\subsubsection{status}
+Frägt den Scheduler nach dem Status eines Jobs. Das einzige Argument ist die ID des Jobs als unsigned Integer. Beispiel: \newline
+\begin{mycode}
+	./bbc status 42
+\end{mycode}
+\subsubsection{tail}
+Frägt den Scheduler nach den letzten ausgegebenen Zeilen der Aufgabe. Das einzige Argument ist die ID des Jobs als unsigned Integer. Beispiel: \newline
+\begin{mycode}
+	./bbc tail 42
+\end{mycode}
+\subsubsection{stop}
+Stopt den angegebenen Job. Das einzige Argument ist die ID des Jobs als unsigned Integer. Beispiel: \newline
+\begin{mycode}
+	./bbc stop 43
+\end{mycode}
+\subsubsection{pause}
+Pausiert den angegebenen Job. Das einzige Argument ist die ID des Jobs als unsigned Integer. Beispiel: \newline
+\begin{mycode}
+	./bbc pause 43
+\end{mycode}
+\subsubsection{continue}
+Setzt den angegebenen Job fort. Das einzige Argument ist die ID des Jobs als unsigned Integer. Beispiel: \newline
+\begin{mycode}
+	./bbc continue 43
+\end{mycode}
+\subsubsection{backup}
+Sichert den angegebenen Job. Das einzige Argument ist die ID des Jobs. Beispiel:
+\newline 
+\begin{mycode}
+	./bbc backup 43
+\end{mycode}
+\subsubsection{restore}
+Stellt den angegeben Job aus einem Backup wieder her. Das einzige Argument ist die Backup ID. Beispiel: \newline
+\begin{mycode}
+	./bbc restore 240
+\end{mycode}
+\subsection{Benutzen des Schedulers}
+Der Scheduler hat im Gegensatz zum Client keine unterschiedlichen Kommandos und muss nur gestartet werden. Bei Unklarheiten kann wieder mit --help ein Hilfemenü aufgerufen werden. Folgende Parameter stehen zur Verfügung:
+\begin{itemize}
+	\item --server / -s. Legt fest auf welcher IP-Adresse der Scheduler gestartet wird. Angaben als String.
+	\item --webapi / -w. Legt fest auf welcher IP-Adresse die WebAPI des Schedulers gestartet wird. Angaben als String.
+	\item --serverport / -S. Legt fest auf welchem Port der Scheduler gestartet wird. Angaben als 32 Bit Integer.
+	\item --webapi-port / -W. Legt fest auf welchem Port die WebAPI gestartet werden soll. Angaben als 32 Bit Integer
+\end{itemize}
+Hier ein Beispielaufruf:
+\begin{mycode}
+	./bbs -s 192.168.178.81 -w 192.168.178.82 -S 25565 -w 25566
+\end{mycode}
+\subsection{Benutzen des Workers}
+Der Worker hat ebenfalls nur ein Kommando womit er gestartet wird. Bei Unklarheiten kann ebenfalls wieder mit --help ein Hilfemenü aufgerufen werden. Folgende Parameter stehen zur Verfügung:
+\begin{itemize}
+	\item --server / -s. Legt fest welche IP-Adresse der Scheduler hat. Angaben als String.
+	\item --serverport / -S. Legt fest auf welchem Port der Scheduler gestartet wurde. Angaben als 32 Bit Integer.
+\end{itemize}
+Hier ein Beispielaufruf:
+\begin{mycode}
+	./bbd -s 192.168.178.82 -S 25565
+\end{mycode}
 \section{Probleme und Bugs}
 \section{Konklusion}
 
