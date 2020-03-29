@@ -71,9 +71,24 @@ Da der Großteil des Codes bereits implementiert ist, sowie Integrationstests eh
 \clearpage
 \subsection{Integrationstests}
 \vspace{0.2cm}
-Für das Automatisierte Testen des ganzen Systems haben wir ein Skript in Python benutzt, dieses beinhaltete diverse Szenarien und prüfte mit Positiv- als auch mit Negativtests. Neben diesem haben wir auch einiges "von Hand" getestet 
-%Notiz an Jonas:
-%Liste von Tests sodass wir bessere Tabellen erstellen können
+Für das Automatisierte Testen des ganzen Systems haben wir ein Skript in Python benutzt, dieses beinhaltete diverse Szenarien und prüfte mit Positiv- als auch mit Negativtests. Neben diesem haben wir auch einiges "von Hand" getestet.
+Die, im Pflichtenheft definierten, Testfälle werden wie folgt abgedeckt: \newline
+\begin{tabular}{|l|c|r|}
+	\hline
+	T & Kurzbeschreibung & Wie getestet? \\ \hline \hline
+	T1 & Verbinden des Clients mit Server & Automatisch \\ \hline
+	T2 & Festlegen von Prioritäten & Manuell \\ \hline
+	T3 & Festlegen des Betriebssystems & Manuell \\ \hline
+	T4 & Abfragen eines Aufgabenstatus & Automatisch \\ \hline
+	T5 & Benachrichtigung bei Abschluss einer Aufgaben & Manuell \\ \hline
+	T6 & Erstellen von Sicherungen & Manuell \\ \hline
+	T7 & Anforderung von Ausgabe & Manuell \\ \hline
+	T8 & Abbrechen von zu langen Aufgaben & - \\ \hline
+	T9 & Manuelles Stoppen von Aufgaben & Manuell \\ \hline
+	T10 & Manuelle Sicherung von Aufgaben & Manuell \\ \hline
+\end{tabular}
+\newline \newline
+In den Integrationstests haben wir hauptsächlich Verhalten getestet die so im Pflichtenheft noch nicht voraussagbar waren, daher haben wir tatsächlich mehr Tests als nur durch die vordefinierten ersichtlich.
 \section{Umgesetzte Funktionale Anforderungen}
 
 \begin{tabular}{|l|c|r|}
@@ -99,7 +114,7 @@ Für das Automatisierte Testen des ganzen Systems haben wir ein Skript in Python
 	FA9 & Benutzer kann Statistiken abfragen & Ja \\ \hline \hline
 	OFA1 & Benutzer kann Restzeit einsehen & Nein \\ \hline
 	OFA2 & Server stoppt lange Aufgaben & Nein \\ \hline
-	OFA3 & Benutzer kann manuell Aufgaben stoppen & (Nein) \\ \hline
+	OFA3 & Benutzer kann manuell Aufgaben stoppen & Nein \\ \hline
 	OFA4 & Benutzer kann manuell Aufgaben sichern & (Nein) \\ \hline
 	OFA5 & Benutzer kann Pausierbarkeit angeben & (Nein) \\ \hline
 \end{tabular}
