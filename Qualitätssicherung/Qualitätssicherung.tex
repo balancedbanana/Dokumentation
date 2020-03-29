@@ -155,6 +155,22 @@ Zuerst müssen wir das System aufsetzen, das Programm wird in einem Paket gelief
 
 \end{itemize}
 Nun ist der Scheduler aufgesetzt.
+\subsection{Benutzen des Clients}
+Der Client kann mit dem Programm \texttt{bbc} gestartet werden. Der Client hat verschiedene Subcommands sowie Flags für diese, nachführend sind diese erläutert. Für nicht angegebene Parameter wird zuerst in der Benutzerconfig (\texttt{\$HOME/.bbc}) dann in der Applikationsconfig (\texttt{share/balancedbanana/.bbc}) und danach wird entweder auf Standardwerte oder auf gesetzte Standardparameter im Scheduler gesetzt.
+Bei Unklarheiten der Kommandos oder deren Parameter kann immer mit dem Argument -h ein Hilfemenü aufgerufen werden.
+\subsection{Run}
+Der Run-Command reiht eine Aufgabe ein, folgende Parameter sind verfübar:
+\begin{itemize}
+\item --block / -b. Gibt an ob der Client blockiert, bis die Aufgabe beendet ist. Angaben als Boolean.
+\item --email / -e. Gibt die Email an, die benachrichtigt wird, wenn die Aufgabe beendet ist. Angaben als String.
+\item --image / -i. Gibt den Pfad des Images an, dass für die Aufgabe benutzt werden soll.  Angaben als String.
+\item --priority / -p. Gibt die Priorität der Aufgabe an. Mögliche Werte sind "Low","Normal", "High".
+\item --max-cpu-count / -C. Gibt die maximale Anzahl, der benutzten Kerne, der Aufgabe, an. Werte als 32 Bit Integer.
+\item --min-cpu-count / -c. Gibt die minimale Anzahl, der benutzen Kerne, der Aufgabe, an. Werte als 32 Bit Integer.
+\item --max-ram / -R. Gibt den maximal nutzbaren Arbeitsspeicher in miB an. Werte als 64 Bit Integer.
+\item --min-ram / -r. Gibt den minimal nutzbaren Arbeitsspeicher in miB an. Werte als 64 Bit Integer.
+\item --job / -j. Gibt die Eingabe an, die den Job startet. Alles hinter dieser Eingabe wird als Kommando aufgefasst, dieses Argument sollte also das letzte des Run Kommandos sein. Angaben als String.
+\end{itemize}
 \section{Probleme und Bugs}
 \section{Konklusion}
 
