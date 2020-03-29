@@ -91,39 +91,39 @@ Die, im Pflichtenheft definierten, Testfälle werden wie folgt abgedeckt: \newli
 In den Integrationstests haben wir hauptsächlich Verhalten getestet die so im Pflichtenheft noch nicht voraussagbar waren, daher haben wir tatsächlich mehr Tests als nur durch die vordefinierten ersichtlich.
 \section{Umgesetzte Funktionale Anforderungen}
 
-\begin{tabular}{|l|c|r|}
+\begin{tabular}{|l|c|r|r|}
 	\hline
-	FA & Kurzbeschreibung & Implementiert? \\ \hline \hline
-	FA1 & Client verbindet sich mit Server & Ja \\ \hline
-	FA2 & Benutzer authentifiziert sich & Ja \\ \hline
-	FA3 & Benutzer kann Aufgaben einreihen & Ja \\ \hline
-	FA4 & Benutzer kann Parameter übergeben & Ja \\ \hline
-	FA41 & Client speichert Parameter in Config & Ja \\ \hline
-	FA42 & Benutzer kann Config übergeben & Ja \\ \hline
-	FA43 & Benutzer kann Priorität festlegen & Ja \\ \hline
-	FA44 & Benutzer kann min und max Cores festlegen & Ja \\ \hline
-	FA45 & Benutzer kann min und max RAM festlegen & Ja \\ \hline
-	FA46 & Benutzer kann Betriebssystem festlegen & Ja \\ \hline
-	FA47 & Benutzer kann angeben ob Client blockiert & Ja \\ \hline
-	FA48 & Benutzer übergibt Pfad zu Aufgabe & Ja \\ \hline
-	FA49 & Es können Standardwerte benutzt werden & Ja \\ \hline
-	FA5 & Benutzer kann Status von Aufgabe einsehen & Ja \\ \hline
-	FA6 & Benutzer bekommt Email bei Abschluss & Ja \\ \hline
-	FA7 & Server erstellt Backups & (Nein) \\ \hline
-	FA8 & Benutzer kann Ausgabe anfordern & Ja \\ \hline
-	FA9 & Benutzer kann Statistiken abfragen & Ja \\ \hline \hline
-	OFA1 & Benutzer kann Restzeit einsehen & Nein \\ \hline
-	OFA2 & Server stoppt lange Aufgaben & Nein \\ \hline
-	OFA3 & Benutzer kann manuell Aufgaben stoppen & Nein \\ \hline
-	OFA4 & Benutzer kann manuell Aufgaben sichern & (Nein) \\ \hline
-	OFA5 & Benutzer kann Pausierbarkeit angeben & (Nein) \\ \hline
+	FA & Kurzbeschreibung & Implementiert? & Überdeckt von? \\ \hline \hline
+	FA1 & Client verbindet sich mit Server & Ja & T1\\ \hline
+	FA2 & Benutzer authentifiziert sich & Ja & Integrationstest\\ \hline
+	FA3 & Benutzer kann Aufgaben einreihen & Ja & T2 \& T3\\ \hline
+	FA4 & Benutzer kann Parameter übergeben & Ja & T2 \& T3\\ \hline
+	FA41 & Client speichert Parameter in Config & Ja & Manuelltest\\ \hline
+	FA42 & Benutzer kann Config übergeben & Ja & Manuelltest\\ \hline
+	FA43 & Benutzer kann Priorität festlegen & Ja & T2\\ \hline
+	FA44 & Benutzer kann min und max Cores festlegen & Ja & Manuelltest\\ \hline
+	FA45 & Benutzer kann min und max RAM festlegen & Ja & Manuelltest\\ \hline
+	FA46 & Benutzer kann Betriebssystem festlegen & Ja & T3\\ \hline
+	FA47 & Benutzer kann angeben ob Client blockiert & Ja & Manuelltest\\ \hline
+	FA48 & Benutzer übergibt Pfad zu Aufgabe & Ja & Integrationstest\\ \hline
+	FA49 & Es können Standardwerte benutzt werden & Ja & Integrationstest\\ \hline
+	FA5 & Benutzer kann Status von Aufgabe einsehen & Ja & T4\\ \hline
+	FA6 & Benutzer bekommt Email bei Abschluss & Ja & T5 \\ \hline
+	FA7 & Server erstellt Backups & (Nein) & T6 \\ \hline
+	FA8 & Benutzer kann Ausgabe anfordern & Ja & T7\\ \hline
+	FA9 & Benutzer kann Statistiken abfragen & Ja & Manuell\\ \hline \hline
+	OFA1 & Benutzer kann Restzeit einsehen & Nein & - \\ \hline
+	OFA2 & Server stoppt lange Aufgaben & Nein & T8 \\ \hline
+	OFA3 & Benutzer kann manuell Aufgaben stoppen & Nein & T9 \\ \hline
+	OFA4 & Benutzer kann manuell Aufgaben sichern & (Nein) & T10 \\ \hline
+	OFA5 & Benutzer kann Pausierbarkeit angeben & (Nein) & - \\ \hline
 \end{tabular}
 \newline \newline
 Für Anforderungen mit einem (Nein) existiert zwar in manchen Teilen des Programms die Funktionalität dafür, die Funktion selber ist jedoch nicht umgesetzt oder nutzbar.
-\section{Testen des Systems}
-\subsection{Aufsetzen des Systems}
+\section{Benutzeranleitung}
+\subsection{Aufsetzen des Schedulers}
 \vspace{0.2cm}
-Welche Umgebung hatten wir, was haben wir im Endeffekt getestet (zb das aufsetzte Netz von Florian, eine Woche Testbetrieb)
+Zuerst müssen wir das System aufsetzen, das Programm wird in einem Paket geliefert, die entsprechende Funktionen finden sich dann in den einzelnen ausführbaren Dateien.
 \begin{itemize}[label={\textbullet}]
     \item Herunterladen des Programms unter\newline \texttt{https://github.com/balancedbanana/balancedbanana/releases}
     \item Einrichten der MySql Datenbank mit \newline
@@ -154,7 +154,10 @@ Welche Umgebung hatten wir, was haben wir im Endeffekt getestet (zb das aufsetzt
     in Zeile \texttt{databasepassword} anpassen. \newline
 
 \end{itemize}
-\subsection{Konklusion}
-Wie lief es, Leistung, entdeckte Bugs, etc.
+Nun ist der Scheduler aufgesetzt.
+\section{Probleme und Bugs}
+\section{Konklusion}
+
+Wie lief es, Leistung, etc.
 \clearpage
 \end{document}
