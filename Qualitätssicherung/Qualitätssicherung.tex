@@ -144,8 +144,13 @@ Welche Umgebung hatten wir, was haben wir im Endeffekt getestet (zb das aufsetzt
         
     exit
     \end{mycode}
-    Das Passwort \texttt{balancedbanana} nach \texttt{IDENTIFIED BY} bei Bedarf anpassen und in \newline
-    \texttt{share/balancedbanana/.bbs/appconfig.ini} \newline
+    \item Configfiles pro Benutzer anlegen unter \newline
+    \texttt{\$HOME/.bbc} bzw \texttt{.bbs} oder \texttt{.bbd}. \newline
+    Dazu einfach die Configfiles von \newline
+    \texttt{share/balancedbanana/.bbc} bzw \texttt{.bbs} oder \texttt{.bbd} \newline
+    kopieren.
+    \item  Das Passwort \texttt{balancedbanana} nach \texttt{IDENTIFIED BY} bei Bedarf anpassen und in \newline
+    \texttt{\$HOME/.bbs/appconfig.ini} \newline
     in Zeile \texttt{databasepassword} anpassen. \newline
 
 \end{itemize}
