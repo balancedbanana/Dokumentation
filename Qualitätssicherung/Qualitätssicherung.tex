@@ -79,10 +79,10 @@ Die, im Pflichtenheft definierten, Testfälle werden wie folgt abgedeckt: \newli
 	T & Kurzbeschreibung & Wie getestet? \\ \hline \hline
 	T1 & Verbinden des Clients mit Server & Automatisch \\ \hline
 	T2 & Festlegen von Prioritäten & Manuell \\ \hline
-	T3 & Festlegen des Betriebssystems & Manuell \\ \hline
-	T4 & Abfragen eines Aufgabenstatus & Automatisch \\ \hline
+	T3 & Festlegen des Betriebssystems & Automatisch \\ \hline
+	T4 & Abfragen eines Aufgabenstatus & Manuell \\ \hline
 	T5 & Benachrichtigung bei Abschluss einer Aufgaben & Manuell \\ \hline
-	T6 & Erstellen von Sicherungen & Manuell \\ \hline
+	T6 & Erstellen von Sicherungen & - \\ \hline
 	T7 & Anforderung von Ausgabe & Manuell \\ \hline
 	T8 & Abbrechen von zu langen Aufgaben & - \\ \hline
 	T9 & Manuelles Stoppen von Aufgaben & Manuell \\ \hline
@@ -184,7 +184,7 @@ Der addImage-Command registriert ein Image, sodass es mit --image eingereiht wer
 Das einzige Argument ist der Pfad zum Dockerfile.
 Beispiel: \newline
 \begin{mycode}
-	./bbc addImage catsimulation ../../Simulations/Catsimulation	
+	./bbc addImage catsimulation C:/Users/Jonas/Simulations/Catsimulation	
 \end{mycode}
 \subsubsection{removeImage}
 Entfernt ein registriertes Image unter dem gegebenen Namen. Das einzige Argument ist der Name des Images.
@@ -224,9 +224,9 @@ Sichert den angegebenen Job. Das einzige Argument ist die ID des Jobs. Beispiel:
 	./bbc backup 43
 \end{mycode}
 \subsubsection{restore}
-Stellt den angegeben Job aus einem Backup wieder her. Das einzige Argument ist die Backup ID. Beispiel: \newline
+Stellt den angegeben Job aus einem Backup wieder her. Als Argument erhält es die Job ID und die Backup ID des Jobs. Beispiel: \newline
 \begin{mycode}
-	./bbc restore 240
+	./bbc restore 43 240
 \end{mycode}
 \subsection{Benutzen des Schedulers}
 Der Scheduler hat im Gegensatz zum Client keine unterschiedlichen Kommandos und muss nur gestartet werden. Bei Unklarheiten kann wieder mit -h ein Hilfemenü aufgerufen werden. Folgende Parameter stehen zur Verfügung:
