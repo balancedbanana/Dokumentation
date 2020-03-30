@@ -166,7 +166,7 @@ Der Run-Command reiht eine Aufgabe ein, folgende Parameter sind verfübar:
 \item --block / -b. Gibt an ob der Client blockiert, bis die Aufgabe beendet ist. Angaben als Boolean.
 \item --email / -e. Gibt die Email an, die benachrichtigt wird, wenn die Aufgabe beendet ist. Angaben als String.
 \item --image / -i. Gibt den Pfad des Images an, dass für die Aufgabe benutzt werden soll.  Angaben als String.
-\item --priority / -p. Gibt die Priorität der Aufgabe an. Mögliche Werte sind "Low","Normal", "High".
+\item --priority / -p. Gibt die Priorität der Aufgabe an. Mögliche Werte sind "low","normal", "high".
 \item --max-cpu-count / -C. Gibt die maximale Anzahl, der benutzten Kerne, der Aufgabe, an. Werte als 32 Bit Integer.
 \item --min-cpu-count / -c. Gibt die minimale Anzahl, der benutzen Kerne, der Aufgabe, an. Werte als 32 Bit Integer.
 \item --max-ram / -R. Gibt den maximal nutzbaren Arbeitsspeicher in miB an. Werte als 64 Bit Integer.
@@ -175,7 +175,7 @@ Der Run-Command reiht eine Aufgabe ein, folgende Parameter sind verfübar:
 \end{itemize}
 Beispiel: \newline
 \begin{mycode}
-	./bbc run --server 192.168.178.82 --port 25565 -b true -e example@hello.com -i catsimulation -p High -C 4 -c 1 -R 4096 -r 1024 -j sh catsimulationfile.sh
+	./bbc run --server 192.168.178.82 --port 25565 -b true -e example@hello.com -i catsimulation -p high -C 4 -c 1 -R 4096 -r 1024 -j sh catsimulationfile.sh
 \end{mycode}
 \subsubsection{addImage}
 Der addImage-Command registriert ein Image, sodass es mit --image eingereiht werden kann.
