@@ -59,6 +59,7 @@
 \section{Einleitung}
 \vspace{0.2cm}
 Dieses Dokument dient als Übersicht der Qualitätssicherung. Erläutert werden sowohl unsere Methoden zur Qualitätssicherung als auch das Ergebnis dieser. Ebenfalls beinhaltet dieses Dokument eine Anleitung zum Aufsetzen und Benutzen des endgültigen Programms.
+\clearpage
 \section{Testabdeckung}
 \subsection{Klassenüberdeckung}
 \vspace{0.2cm}
@@ -120,6 +121,7 @@ In den Integrationstests haben wir hauptsächlich Verhalten getestet die so im P
 \end{tabular}
 \newline \newline
 Für Anforderungen mit einem (Nein) existiert zwar in manchen Teilen des Programms die Funktionalität dafür, die Funktion selber ist jedoch nicht umgesetzt oder nutzbar.
+\clearpage
 \section{Benutzeranleitung}
 \subsection{Aufsetzen des Schedulers}
 \vspace{0.2cm}
@@ -152,7 +154,7 @@ Zuerst müssen wir das System aufsetzen, das Programm wird in einem Paket gelief
     \item  Das Passwort \texttt{balancedbanana} nach \texttt{IDENTIFIED BY} bei Bedarf anpassen und in \newline
     \texttt{\$HOME/.bbs/appconfig.ini} \newline
     in Zeile \texttt{databasepassword} anpassen. \newline
-
+    
 \end{itemize}
 Nun ist der Scheduler aufgesetzt.
 \subsection{Benutzen des Clients}
@@ -248,13 +250,17 @@ Hier ein Beispielaufruf:
 \begin{mycode}
 	./bbd -s 192.168.178.82 -S 25565
 \end{mycode}
+
+\subsection{DevSetup}
+Die Installationsanleitung für Entwickler, einschließlich einer Liste aller Pakete, Frameworks und Bibliotheken, sind unter \\
+\texttt{https://github.com/balancedbanana/balancedbanana/blob/master/README.md} zu finden.
 \section{Probleme und Bugs}
-Die Phase der Qualitätssicherung wurde durch eine gewisse Pandemie gestört, daher fehlt uns eine richtige Testumgebung. Das Testen unter realen Umständen kam deshalb zu kurz oder gar nicht vor. Wir wissen aktuell noch nicht gut wie sich das Programm mit mehreren Workern verhält. Ebenfalls haben wir zwar die Benachrichtigungsmails privat getestet, wissen jedoch nicht, ob diese fehlerfrei mit dem KIT-Mailserver funktionieren. Die Anleitung zum Aufsetzen und Benutzen des Systems funktioniert auf unseren Systemen zwar, jedoch wissen wir nicht ob es auf den Systemen des CES zu anderweitigen Problemen kommen kann.
-Wir schätzen bei diesen Realtests noch einige Bugs zu finden, dies können wir jedoch aktuell nicht testen. 
+Die Phase der Qualitätssicherung wurde durch eine gewisse Pandemie gestört, daher fehlt uns eine richtige Testumgebung. Das Testen unter realen Umständen kam deshalb zu kurz oder gar nicht vor. Wir wissen aktuell noch nicht gut wie sich das Programm mit mehreren Workern verhält. \\ \newline \indent Ebenfalls haben wir zwar die Benachrichtigungsmails privat getestet, wissen jedoch nicht, ob diese fehlerfrei mit dem KIT-Mailserver funktionieren. \\ \newline \indent Die Anleitung zum Aufsetzen und Benutzen des Systems funktioniert auf unseren Systemen zwar, jedoch wissen wir nicht ob es auf den Systemen des CES zu anderweitigen Problemen kommen kann. \\ \newline
+\indent Wir schätzen bei diesen Realtests noch einige Bugs zu finden, dies können wir jedoch aktuell nicht testen. \\
 \newline
-Einige Funktionen, wie das Stoppen und Fortführen von Jobs, sind, wegen des experimentellen Checkpoint Features von Docker, in keinem konsistent ausführbaren Zustand. Das Aufsetzen der Funktionen ist kompliziert und deshalb haben wir die Funktion vorerst als implementiert aber nicht nutzbar angemerkt.
+\indent Einige Funktionen, wie das Stoppen und Fortführen von Jobs, sind, wegen des experimentellen Checkpoint Features von Docker, in keinem konsistent ausführbaren Zustand. Das Aufsetzen der Funktionen ist kompliziert und deshalb haben wir die Funktion vorerst als implementiert aber nicht nutzbar angemerkt. \\
 \newline
-Ein kleineres Problem ist das Beschreiben des RAMs. Beim Scheduler besteht die Chance, dass sich die Daten im Arbeitsspeicher festsetzen und diesen somit irgendwann vollschreiben. Wir empfehlen also, den Scheduler einmal alle paar Monate neu zu starten. \newline
+\indent Ein kleineres Problem ist das Beschreiben des RAMs. Beim Scheduler besteht die Chance, dass sich die Daten im Arbeitsspeicher festsetzen und diesen somit irgendwann vollschreiben. Wir empfehlen also, den Scheduler einmal alle paar Monate neu zu starten. \newline
 \section{Konklusion}
 Da die Qualitätssischerungsphase mit der Quarantäne kollidierte, fehlt uns leider Erfahrung mit der echten Benutzung des Systems. Trotzdem schafft unser Programm die von uns gestellten Szenarien. Viele optionale Features existieren ebenfalls als Funktion, wir empfehlen jedoch nicht diese aktuell zu benutzen. Wir denken, dass unser Programm an einem Punkt angekommen ist, an dem es mit realem Testen, und sukzessiven Beseitigen der Probleme, gut funktionieren sollte.
 Zusammenfassend sind wir zufrieden mit dem Ergebnis.
