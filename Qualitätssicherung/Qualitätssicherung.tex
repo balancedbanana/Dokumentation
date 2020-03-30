@@ -227,7 +227,7 @@ Stellt den angegeben Job aus einem Backup wieder her. Das einzige Argument ist d
 	./bbc restore 240
 \end{mycode}
 \subsection{Benutzen des Schedulers}
-Der Scheduler hat im Gegensatz zum Client keine unterschiedlichen Kommandos und muss nur gestartet werden. Bei Unklarheiten kann wieder mit --help ein Hilfemenü aufgerufen werden. Folgende Parameter stehen zur Verfügung:
+Der Scheduler hat im Gegensatz zum Client keine unterschiedlichen Kommandos und muss nur gestartet werden. Bei Unklarheiten kann wieder mit -h ein Hilfemenü aufgerufen werden. Folgende Parameter stehen zur Verfügung:
 \begin{itemize}
 	\item --server / -s. Legt fest auf welcher IP-Adresse der Scheduler gestartet wird. Angaben als String.
 	\item --webapi / -w. Legt fest auf welcher IP-Adresse die WebAPI des Schedulers gestartet wird. Angaben als String.
@@ -239,7 +239,7 @@ Hier ein Beispielaufruf:
 	./bbs -s 192.168.178.81 -w 192.168.178.82 -S 25565 -w 25566
 \end{mycode}
 \subsection{Benutzen des Workers}
-Der Worker hat ebenfalls nur ein Kommando womit er gestartet wird. Bei Unklarheiten kann ebenfalls wieder mit --help ein Hilfemenü aufgerufen werden. Folgende Parameter stehen zur Verfügung:
+Der Worker hat ebenfalls nur ein Kommando womit er gestartet wird. Bei Unklarheiten kann ebenfalls wieder mit -h ein Hilfemenü aufgerufen werden. Folgende Parameter stehen zur Verfügung:
 \begin{itemize}
 	\item --server / -s. Legt fest welche IP-Adresse der Scheduler hat. Angaben als String.
 	\item --serverport / -S. Legt fest auf welchem Port der Scheduler gestartet wurde. Angaben als 32 Bit Integer.
@@ -249,8 +249,15 @@ Hier ein Beispielaufruf:
 	./bbd -s 192.168.178.82 -S 25565
 \end{mycode}
 \section{Probleme und Bugs}
+Die Phase der Qualitätssicherung wurde durch eine gewisse Pandemie gestört, daher fehlt uns eine richtige Testumgebung. Das Testen unter realen Umständen kam deshalb zu kurz oder gar nicht vor. Wir wissen aktuell noch nicht gut wie sich das Programm mit mehreren Workern verhält. Ebenfalls haben wir zwar die Benachrichtigungsmails privat getestet, wissen jedoch nicht, ob diese fehlerfrei mit dem KIT-Mailserver funktionieren. Die Anleitung zum Aufsetzen und Benutzen des Systems funktioniert auf unseren Systemen zwar, jedoch wissen wir nicht ob es auf den Systemen des CES zu anderweitigen Problemen kommen kann.
+Wir schätzen bei diesen Realtests noch einige Bugs zu finden, dies können wir jedoch aktuell nicht testen. 
+\newline
+Einige Funktionen, wie das Stoppen und Fortführen von Jobs, sind, wegen des experimentellen Checkpoint Features von Docker, in keinem konsistent ausführbaren Zustand. Das Aufsetzen der Funktionen ist kompliziert und deshalb haben wir die Funktion vorerst als implementiert aber nicht nutzbar angemerkt.
+\newline
+Ein kleineres Problem ist das Beschreiben des RAMs. Beim Scheduler besteht die Chance, dass sich die Daten im Arbeitsspeicher festsetzen und diesen somit irgendwann vollschreiben. Wir empfehlen also, den Scheduler einmal alle paar Monate neu zu starten. \newline
 \section{Konklusion}
+Da die Qualitätssischerungsphase mit der Quarantäne kollidierte, fehlt uns leider Erfahrung mit der echten Benutzung des Systems. Trotzdem schafft unser Programm die von uns gestellten Szenarien. Viele optionale Features existieren ebenfalls als Funktion, wir empfehlen jedoch nicht diese aktuell zu benutzen. Wir denken, dass unser Programm an einem Punkt angekommen ist, an dem es mit realem Testen, und sukzessiven Beseitigen der Probleme, gut funktionieren sollte.
+Zusammenfassend sind wir zufrieden mit dem Ergebnis.
 
-Wie lief es, Leistung, etc.
 \clearpage
 \end{document}
